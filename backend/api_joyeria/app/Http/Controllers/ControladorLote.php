@@ -8,6 +8,7 @@ class ControladorLote extends Controller
 {
     function consultarLotesNoClasificados(){
         $lotes = Lote::all()->where('estado', '=','entregado');
+      
         return response()->json(['mensaje' => $lotes]);
     }
     function consultarLote($id){

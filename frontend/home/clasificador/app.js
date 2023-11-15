@@ -5,6 +5,9 @@ const apiUrl1 = 'http://127.0.0.1:8000/api/consultarLotes'
 
 obtenerLotes().then(function(data){
     pintarLotes(data)
+    if(data.mensaje==''){
+        alert('No hay lotes sin clasificar')
+    }
 
 })
 

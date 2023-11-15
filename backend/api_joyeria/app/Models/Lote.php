@@ -13,4 +13,5 @@ class Lote extends Model
         'ubicacion',
         'estado'
     ];
+    public $timestamps = false;
 }
