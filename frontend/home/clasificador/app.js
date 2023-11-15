@@ -48,7 +48,7 @@ function pintarLotes(lotes) {
             idEmpresa.textContent=lote.id_empresa
            
             boton.addEventListener('click', function(event) {
-                localStorage.setItem('id-lote-a-clasificar',JSON.parse(boton.id))
+                sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
                 window.location.href='./lote/index.html'
                 
               });

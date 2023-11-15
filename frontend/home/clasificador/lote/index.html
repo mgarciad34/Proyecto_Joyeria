@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    
+    <h3 id="cabecera"></h3>
+    <table id="tabla-input">
+        <caption><h4>Introduce componente</h4></caption>
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id=inputDescripcion type="text"></td>
+                <td><input id="inputCantidad" type="number"></td>
+                <td>
+                    <select id="tipos-habilitados">    
+                        <option value="0" disabled selected>Selecciona un tipo</option>     
+                    </select>
+                </td>
+                <td><button id="btbAddElement">Añadir elemento</button></td>
+            </tr>
+        </tbody>
+        <tbody id="elementos-registrados">
+           
+        </tbody>
+    </table>
+
+    <script src="./app.js"></script>
 </body>
 </html>

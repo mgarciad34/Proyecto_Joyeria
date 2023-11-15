@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorLote;
+use App\Http\Controllers\ControladorTipos;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('consultarLotes',[ControladorLote::class,'consultarLotesNoClasificados']);
-Route::get('consultarLoteId',[ControladorLote::class,'consultarLote']);
+Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
+Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);

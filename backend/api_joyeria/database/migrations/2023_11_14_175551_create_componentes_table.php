@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('componentes', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion');
+            $table->unsignedBigInteger('tipo');
             $table->integer('cantidad');
+           
         });
     }
 
