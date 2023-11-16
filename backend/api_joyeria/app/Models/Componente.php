@@ -13,4 +13,5 @@ class Componente extends Model
         'tipo',
         'cantidad',
     ];
+    public $timestamps = false;
 }
