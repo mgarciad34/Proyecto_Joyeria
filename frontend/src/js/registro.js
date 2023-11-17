@@ -63,11 +63,7 @@ btnregistro.addEventListener('click', function(event){
     if (mensaje === "") {
         var registrarUsuario = new Users(nombre.value, email.value, rol.value, contrasena.value)
         const url = 'http://127.0.0.1:8000/api/usuarios'
-
         enviarDatos(registrarUsuario, url)
-
-        // Cambiar a la página de login
-        window.location.href="../index.html"
     }else{
         alert(mensaje);
     }
@@ -87,11 +83,8 @@ async function enviarDatos(datos, ruta) {
         throw new Error(`Error de red: ${respuesta.status}`);
       }
   
-      const datosRespuesta = await respuesta.json();
-      console.log('Respuesta exitosa:', datosRespuesta);
-      // Puedes realizar acciones adicionales con la respuesta de la API aquí
+      window.location.href="../index.html"
     } catch (error) {
       console.error('Error al enviar los datos:', error.message);
-      // Manejar el error aquí
     }
   }
