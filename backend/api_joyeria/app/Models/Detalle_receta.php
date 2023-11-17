@@ -11,7 +11,7 @@ class Detalle_receta extends Model
 
     protected $primaryKey = ['id_receta', 'id_componente'];
     public $incrementing = false; 
-
+    public $timestamps = false;
  
 
 }

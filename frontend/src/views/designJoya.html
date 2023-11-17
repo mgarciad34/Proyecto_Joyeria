@@ -34,11 +34,11 @@
             <tr>
                 <td>
                     <select id="tipos-habilitados">    
-                        <option value="0" disabled selected>Selecciona un tipo</option>     
+                        <option id="opcion-default" value="1" disabled selected>Selecciona un tipo</option>     
                     </select>
                 </td>
             
-                <td><input id="inputCantidad" type="number"></td>
+                <td><input id="inputCantidad" min=0 type="number"></td>
                 <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
             </tr>
         </tbody>
