@@ -113,14 +113,15 @@ guardarElementosBdd(componentes).then(function(data){
 })
 async function guardarElementosBdd(elementos){
     let url=apiUrlEnviar+idLote
+    const options={
+        method: "POST",
+        headers:{
+            'Content-Type' : 'aplication/json'
+      },
+      body: JSON.stringify(elementos)
+    }
     try {
-        const options={
-            method: "POST",
-            headers:{
-                'Content-Type' : 'aplication/json'
-          },
-          body: JSON.stringify(elementos)
-        }
+       
         const response = await fetch(url,options);
        
         if (!response.ok) {

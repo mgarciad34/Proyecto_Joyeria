@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('cantidad');
             
 
-            $table->primary(['id', 'id_componente']);
+            
         });
     }
 

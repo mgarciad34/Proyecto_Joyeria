@@ -8,7 +8,7 @@ use App\Http\Controllers\Users;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
-
+use App\Http\Controllers\ControladorJoya;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +36,4 @@ Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
 
 Route::post('lote/clasificar/{id}',[ControladorComponentes::class,'guardarElementosLote']);
 
+Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);

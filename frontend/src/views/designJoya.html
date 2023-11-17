@@ -17,8 +17,8 @@
         </thead>
         <tbody id="tabla_joya">
             <tr>
-                <td><input id="nombreJoya" type="text"></td>
-                <th><input id="fotoJoya" type="text"></th>
+                <td><input id="inputNombre" type="text"></td>
+                <th><input id="inputFoto" type="text"></th>
             </tr>
         </tbody>
     </table>
@@ -38,11 +38,12 @@
                     </select>
                 </td>
             
-                <td><input type="number"></td>
-                <td><button id="btnNuevoElementoReceta">Añadir</button></td>
+                <td><input id="inputCantidad" type="number"></td>
+                <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
             </tr>
         </tbody>
-        <tfoot><tr><td><button disabled>Crear joya</button></td></tr></tfoot>
+        <tbody id="detalle-receta"></tbody>
+        <tfoot><tr><td><button id="btn-guardar" disabled>Crear joya</button></td></tr></tfoot>
     </table>
     
     <script src="../js/appDesignJoya.js"></script>
