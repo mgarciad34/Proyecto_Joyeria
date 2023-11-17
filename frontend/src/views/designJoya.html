@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    <h4>Inicio</h4>
+    <table>
+        <caption>Nueva joya</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>foto</th>
+            </tr>
+        </thead>
+        <tbody id="tabla_joya">
+            <tr>
+                <td><input id="inputNombre" type="text"></td>
+                <th><input id="inputFoto" type="text"></th>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption>Introduce una receta para la joya</caption>
+        <thead>
+            <tr>
+                <th>Componente necesario</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody id="tabla_receta">
+            <tr>
+                <td>
+                    <select id="tipos-habilitados">    
+                        <option id="opcion-default" value="1" disabled selected>Selecciona un tipo</option>     
+                    </select>
+                </td>
+            
+                <td><input id="inputCantidad" min=0 type="number"></td>
+                <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
+            </tr>
+        </tbody>
+        <tbody id="detalle-receta"></tbody>
+        <tfoot><tr><td><button id="btn-guardar" disabled>Crear joya</button></td></tr></tfoot>
+    </table>
+    
+    <script src="../js/appDesignJoya.js"></script>
+</body>
+</html>

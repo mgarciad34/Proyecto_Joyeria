@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Joya extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'id_receta',
-    ];
+    public $timestamps = false;
 }

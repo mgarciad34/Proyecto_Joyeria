@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Receta extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'id_usuario'
-    ];
+    // protected $fillable = [
+    //     'id_usuario'
+    // ];
+    public $timestamps = false;
 }

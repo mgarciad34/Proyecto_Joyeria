@@ -1,5 +1,6 @@
 
 
+
 const apiUrl='http://127.0.0.1:8000/api/consultarLoteId/'
 const apiUrl2='http://127.0.0.1:8000/api/consultar/tipos'
 const apiUrlEnviar='http://127.0.0.1:8000/api/lote/clasificar/'
@@ -20,6 +21,7 @@ if (idLote==null){
     cabecera.textContent='Clasificar elementos Lote Nº: '+idLote
     obtenerTipos().then(function(data){
         let desplegable=document.getElementById('tipos-habilitados')
+        console.log(data)
         for (let i=0 ; i<data.tipos.length;i++){
             const opcion = document.createElement('option');
             opcion.value = data.tipos[i].id;
@@ -30,7 +32,7 @@ if (idLote==null){
     })
 
 }
-btnAddElement.addEventListener('click',function(){
+btnAdd.addEventListener('click',function(){
 let inputTipo=document.getElementById('tipos-habilitados').value
 let inputDescripcion=document.getElementById('inputDescripcion').value
 let inputCantidad=document.getElementById('inputCantidad').value
@@ -111,14 +113,15 @@ guardarElementosBdd(componentes).then(function(data){
 })
 async function guardarElementosBdd(elementos){
     let url=apiUrlEnviar+idLote
+    const options={
+        method: "POST",
+        headers:{
+            'Content-Type' : 'aplication/json'
+      },
+      body: JSON.stringify(elementos)
+    }
     try {
-        const options={
-            method: "POST",
-            headers:{
-                'Content-Type' : 'aplication/json'
-          },
-          body: JSON.stringify(elementos)
-        }
+       
         const response = await fetch(url,options);
        
         if (!response.ok) {

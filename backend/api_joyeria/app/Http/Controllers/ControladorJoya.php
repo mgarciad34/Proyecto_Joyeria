@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Detalle_receta;
+use App\Models\Joya;
+use App\Models\Receta;
+class ControladorJoya extends Controller
+{
+    function nuevaJoya(Request $request){
+        $joya=new Joya();
+        $joya->nombre=$request->get('nombre');
+        $joya->foto=$request->get('foto');
+        $joya->save();
+        
+       $receta=new Receta();
+        $receta->id_joya=$joya->id;
+        $receta->save();
+
+        $detalle=$request->detalle;
+      
+        for ($i=0;$i<count($detalle);$i++) {
+            
+            $componente = new Detalle_receta();
+            $componente->id_receta=$receta->id;
+            $componente->id_componente=$detalle[$i]['tipo'];
+            $componente->cantidad=$detalle[$i]['cantidad'];
+            $componente->save();
+            print_r($componente);
+            $componente->id_componente = $detalle[$i]->tipo;
+            $componente->cantidad = $detalle[$i]->cantidad;
+            print_r($componente);
+        }
+    
+        return response()->json(['Nueva joya registrada correctamente']);
+    }
+}

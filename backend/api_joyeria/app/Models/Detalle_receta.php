@@ -9,6 +9,9 @@ class Detalle_receta extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = ['id', 'id_componente'];
+    protected $primaryKey = ['id_receta', 'id_componente'];
+    public $incrementing = false; 
+    public $timestamps = false;
+ 
 
 }

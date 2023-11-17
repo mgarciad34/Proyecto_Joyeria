@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalle_recetas', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id_receta');
             $table->unsignedBigInteger('id_componente');
             $table->integer('cantidad');
             
 
-            $table->primary(['id', 'id_componente']);
+            
         });
     }
 
