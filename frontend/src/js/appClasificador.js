@@ -13,7 +13,7 @@ obtenerLotes().then(function(data){
 
 async function obtenerLotes() {
     try {
-        const response = await fetch(apiUrl1);
+        const response = await fetch('http://127.0.0.1:8000/api/consultarLotes');
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
@@ -52,7 +52,7 @@ function pintarLotes(lotes) {
            
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
-                window.location.href='./lote/index.html'
+                window.location.href='./indexLote.html'
                 
               });
 
