@@ -27,12 +27,15 @@ class ControladorJoya extends Controller
             $componente->id_componente=$detalle[$i]['tipo'];
             $componente->cantidad=$detalle[$i]['cantidad'];
             $componente->save();
-            print_r($componente);
-            $componente->id_componente = $detalle[$i]->tipo;
-            $componente->cantidad = $detalle[$i]->cantidad;
-            print_r($componente);
+            
+            
         }
     
         return response()->json(['Nueva joya registrada correctamente']);
+    }
+    function getAllJoyas(){
+        $joyas=Joya::all();
+
+        return response()->json([$joyas]);
     }
 }
