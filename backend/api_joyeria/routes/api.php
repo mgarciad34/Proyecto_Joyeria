@@ -9,6 +9,7 @@ use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
 use App\Http\Controllers\ControladorJoya;
+use App\Http\Controllers\ControladorReceta;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +41,5 @@ Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
 
 
 Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
+
+Route::get('recetas/{id}',[ControladorReceta::class,'getRecetasOfJoya']);
