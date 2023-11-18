@@ -91,11 +91,8 @@ btnAdd.addEventListener('click', function () {
 
     let inputCantidad = document.getElementById('inputCantidad').value
     let validaciones = [true]
-    let mensaje = ''
-    // if( document.getElementById('opcion-default').selected){
-    //     mensaje=mensaje+ ' Debes seleccionar un tipo de componente \n'
-    //     validaciones.push(false)
-    // }
+    let mensaje =''
+   
     if (inputCantidad == ''|| inputCantidad.includes('-') ||inputCantidad=='0') {
         mensaje = mensaje + ' Debe introducir una cantidad \n'
         validaciones.push(false)
