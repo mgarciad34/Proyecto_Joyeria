@@ -1,4 +1,4 @@
-
+import { guardarElementosBdd,obtenerTipos } from "./http/http-lote.js";
 
 
 const apiUrl='http://127.0.0.1:8000/api/consultarLoteId/'
@@ -12,6 +12,7 @@ let btnAdd=document.getElementById('btnAddElement')
 let btnGuardar= document.getElementById('btn-guardar')
 
 btnGuardar.disabled=true
+console.log(idLote)
 console.log(idLote)
 if (idLote==null){
     tablaInput.style.display='none'
@@ -105,111 +106,11 @@ btnGuardar.addEventListener('click',function(){
        componentes.lista.push(componente)
       }
       
-guardarElementosBdd(componentes).then(function(data){
+guardarElementosBdd(componentes,idLote).then(function(data){
    alert('guardado correctamente')
     
 })
 
 })
-async function guardarElementosBdd(elementos){
-    let url=apiUrlEnviar+idLote
-    const options={
-        method: "POST",
-        headers:{
-            'Content-Type' : 'aplication/json'
-      },
-      body: JSON.stringify(elementos)
-    }
-    try {
-       
-        const response = await fetch(url,options);
-       
-        if (!response.ok) {
-            throw new Error('No se pudo guardar la clasificacion');
-        }
-
-        const data = await response.json();
-        
-        return data
-    } catch (error) {
-        return error
-    }
-}
-
-async function obtenerTipos(){
-    try {
-                const response = await fetch(apiUrl2);
-                if (!response.ok) {
-                    throw new Error('No se pudo obtener las categorias');
-                }
-        
-                const data = await response.json();
-                
-                return data
-            } catch (error) {
-                return error
-            }
-}
-
-// obtenerLotes().then(function(data){
-//     pintarLotes(data)
-
-// })
-
-// async function obtenerLotes() {
-//     try {
-//         const response = await fetch(apiUrl1);
-//         if (!response.ok) {
-//             throw new Error('No se pudo obtener las categorias');
-//         }
-
-//         const data = await response.json();
-        
-//         return data
-
-//     } catch (error) {
-//         return false
-//     }
-// }
 
 
-// function insertarFila(lotes) {
-//     var tabla = document.getElementById('tabla_componentes');
-        
-//         lotes.mensaje.forEach(function (lote) {
-//             console.log(lote.id)
-//             let fila = document.createElement('tr');
-
-//             let botonCelda = document.createElement('td');
-//             let boton = document.createElement('button');
-//             boton.textContent = 'añadir'
-//             boton.setAttribute('id',lote.id)
-
-//             let idCelda = document.createElement('td');
-
-//             let id= document.createElement('span');
-//             id.textContent=lote.id
-           
-
-//             let idEmpresaCelda = document.createElement('td');
-//             let idEmpresa= document.createElement('span');
-//             idEmpresa.textContent=lote.id_empresa
-           
-//             boton.addEventListener('click', function(event) {
-//                 localStorage.setItem('id-lote-a-clasificar',JSON.parse(boton.id))
-//                 window.location.href='./lote/index.html'
-                
-//               });
-
-//             idCelda.appendChild(id)
-//             idEmpresaCelda.appendChild(idEmpresa)
-//            botonCelda.appendChild(boton);
-//            fila.appendChild(idCelda);
-//            fila.appendChild(idEmpresaCelda);
-           
-//             fila.appendChild(botonCelda);
-//             tabla.appendChild(fila);
-//         }
-//         )
-        
-//     }
