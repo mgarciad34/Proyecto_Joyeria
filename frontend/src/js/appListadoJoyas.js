@@ -36,7 +36,7 @@ function pintarJoyas(joyas) {
 
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
-                window.location.href='./detalle-joya.html'
+                window.location.href='./receta-joya.html'
                 
               });
 
