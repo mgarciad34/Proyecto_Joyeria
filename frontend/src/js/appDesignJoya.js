@@ -77,7 +77,7 @@ btnGuardar.addEventListener('click', function () {
         guardarNuevaJoya(joya).then(function () {
             document.getElementById('inputNombre').value=''
             document.getElementById('inputFoto').value=''
-            window.location.reload()
+            window.location.href='listaJoyas.html'
         })
 
     }
