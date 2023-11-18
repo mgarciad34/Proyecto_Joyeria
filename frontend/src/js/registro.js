@@ -4,8 +4,8 @@ import { validarNombre, validarCorreo, validarContrasena, confirmarContrasena } 
 
 // Variables a rellenar
 var nombre = document.getElementById('nombre');
-var correo = document.getElementById('email');
-var rol = document.getElementById('rol')
+var correo = document.getElementById('email'); // Corregido aquí
+var rol = document.getElementById('rol');
 var contrasena = document.getElementById('password');
 var repetirContrasena = document.getElementById('confirmPassword');
 var btnregistro = document.getElementById('registrarse');
@@ -44,7 +44,6 @@ contrasena.addEventListener('input', function(){
 btnregistro.addEventListener('click', function(event){
     event.preventDefault(); // Evita el comportamiento predeterminado del formulario
 
-
     var mensaje = ""; // Declarar mensaje antes de su uso
     if (validarNombre(nombre.value) === false){
         mensaje += "Nombre incorrecto \n";
@@ -61,30 +60,31 @@ btnregistro.addEventListener('click', function(event){
 
     // Hacer algo con el mensaje (mostrar alerta, enviar a un servidor, etc.)
     if (mensaje === "") {
-        var registrarUsuario = new Users(nombre.value, email.value, rol.value, contrasena.value)
-        const url = 'http://127.0.0.1:8000/api/usuarios'
-        enviarDatos(registrarUsuario, url)
-    }else{
+        var registrarUsuario = new Users(nombre.value, correo.value, rol.value, contrasena.value); // Corregido aquí
+        const url = 'http://127.0.0.1:8000/api/usuarios';
+        enviarDatos(registrarUsuario, url);
+    } else {
         alert(mensaje);
     }
 });
 
 async function enviarDatos(datos, ruta) {
     try {
-      const respuesta = await fetch(ruta, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(datos),
-      });
-  
-      if (!respuesta.ok) {
-        throw new Error(`Error de red: ${respuesta.status}`);
-      }
-  
-      window.location.href="../index.html"
+        const respuesta = await fetch(ruta, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(datos),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error(`Error de red: ${respuesta.status}`);
+        }
+
+        window.location.href = "../index.html";
     } catch (error) {
-      console.error('Error al enviar los datos:', error.message);
+        console.error('Error al enviar los datos:', error.message);
+        // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
     }
-  }
+}
