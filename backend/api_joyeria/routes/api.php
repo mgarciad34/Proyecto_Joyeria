@@ -37,3 +37,6 @@ Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
 Route::post('lote/clasificar/{id}',[ControladorComponentes::class,'guardarElementosLote']);
 
 Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
+
+
+Route::get('joyas',[ControlladorJoya::class,'getAllJoyas']);
