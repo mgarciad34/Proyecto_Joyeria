@@ -8,6 +8,6 @@ class ControladorReceta extends Controller
 {
     function getRecetasOfJoya($id){
         $recetas=Receta::all()->where('id_joya','=',$id);
-        return response()->json(['recetas'=>$recetas]);
+        return response()->json([$recetas]);
     }
 }
