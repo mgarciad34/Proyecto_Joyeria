@@ -60,9 +60,10 @@ btnregistro.addEventListener('click', function(event){
 
     // Hacer algo con el mensaje (mostrar alerta, enviar a un servidor, etc.)
     if (mensaje === "") {
-        var registrarUsuario = new Users(nombre.value, correo.value, rol.value, contrasena.value); // Corregido aquí
+        var registrarUsuario = new Users(nombre.value, correo.value, contrasena.value); 
         const url = 'http://127.0.0.1:8000/api/usuarios';
         enviarDatos(registrarUsuario, url);
+        window.location.href = "../index.html";
     } else {
         alert(mensaje);
     }
@@ -81,8 +82,6 @@ async function enviarDatos(datos, ruta) {
         if (!respuesta.ok) {
             throw new Error(`Error de red: ${respuesta.status}`);
         }
-
-        window.location.href = "../index.html";
     } catch (error) {
         console.error('Error al enviar los datos:', error.message);
         // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
