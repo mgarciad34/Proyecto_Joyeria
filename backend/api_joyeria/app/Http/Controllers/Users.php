@@ -14,7 +14,6 @@ class Users extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
-                'rol' => 'required|string',
                 'password' => 'required|string|min:6',
             ]);
 
@@ -22,7 +21,7 @@ class Users extends Controller
 
             $nuevoUsuario->name = $request->input('name');
             $nuevoUsuario->email = $request->input('email');
-            $nuevoUsuario->rol = $request->input('rol');
+            $nuevoUsuario->rol = 'Colaborador';
             $nuevoUsuario->password = bcrypt($request->input('password'));
 
             $nuevoUsuario->save();
