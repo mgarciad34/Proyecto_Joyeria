@@ -1,4 +1,4 @@
-import { obtenerRecetas } from './http/http-receta-joya.js'
+import { obtenerRecetas, fabricarJoya } from './http/http-receta-joya.js'
 let joya=sessionStorage.getItem('joya-guardada')
 let btnFabricar=document.getElementById('btnFabricar')
 let disponible=true
@@ -11,6 +11,15 @@ btnFabricar.addEventListener('click',function(){
         alert('Recursos insuficientes')
     }else{
         var resultado = confirm("¿Estás seguro de que deseas continuar?");
+        if(resultado){
+
+        let id_joya=JSON.parse(sessionStorage.getItem('joya-guardada'))
+        let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+      
+            fabricarJoya(id_joya,usuario).then(function(data){
+                
+            })
+        }
     }
 })
 
