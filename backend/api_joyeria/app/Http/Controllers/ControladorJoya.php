@@ -14,6 +14,7 @@ class ControladorJoya extends Controller
         $joya=new Joya();
         $joya->nombre=$request->get('nombre');
         $joya->foto=$request->get('foto');
+        $joya->id_usuario=$request->get('id_usuario');
         $joya->save();
         
 

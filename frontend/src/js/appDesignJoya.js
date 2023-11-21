@@ -7,7 +7,7 @@ let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
-
+let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 obtenerTipos().then(function (data) {
     let desplegable = document.getElementById('tipos-habilitados')
     console.log(data)
@@ -56,10 +56,12 @@ inputFoto.addEventListener('input', function () {
 btnGuardar.addEventListener('click', function () {
     let tbody = document.getElementById('detalle-receta')
     let joya = {}
+    
     joya.nombre = inputNombre.value
     joya.foto = inputFoto.value
+    joya.id_usuario=usuario
     joya.detalle = []
-
+    
 
     for (let i = 0; i < tbody.rows.length; i++) {
         let fila = tbody.rows[i];
@@ -74,6 +76,7 @@ btnGuardar.addEventListener('click', function () {
     }
     var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
     if (resultado) {
+        console.log(JSON.stringify(joya))
         guardarNuevaJoya(joya).then(function () {
             document.getElementById('inputNombre').value=''
             document.getElementById('inputFoto').value=''
