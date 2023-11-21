@@ -44,6 +44,7 @@ Route::put('joya/fabricar/{id}',[ControladorJoya::class,'fabricarJoya']);
 Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
 
 Route::get('joyas/usuario/{id}',[ControladorJoya::class,'getJoyaFromUsuario']);
+Route::get('/joyas/historial',[ControladorJoya::class,'getAllHistorial']);
 
 Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
 

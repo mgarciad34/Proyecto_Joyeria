@@ -57,4 +57,9 @@ class ControladorJoya extends Controller
         $joyas=Joya::where('id_usuario','=',$id)->get();
         return response()->json([$joyas]);
     }
+
+    function getAllHistorial(){
+        $historial['historial']=HistoricoJoya::all();
+        return response()->json([$historial]);
+    }
 }
