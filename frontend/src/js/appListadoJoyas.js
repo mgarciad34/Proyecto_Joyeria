@@ -32,8 +32,10 @@ function pintarJoyas(joyas) {
             let fotoCelda = document.createElement('td');
             let foto= document.createElement('span');
             foto.textContent=joyas[0][i].foto
-
-
+            
+            let creadorCelda=document.createElement('td')
+            let creador=document.createElement('span')
+            creador.textContent=joyas[0][i].id_usuario
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
                 window.location.href='./receta-joya.html'
@@ -43,11 +45,13 @@ function pintarJoyas(joyas) {
             idCelda.appendChild(id)
             nombreCelda.appendChild(nombre)
             fotoCelda.appendChild(foto)
+            creadorCelda.appendChild(creador)
            botonCelda.appendChild(boton);
 
            fila.appendChild(idCelda);
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
+           fila.appendChild(creadorCelda)
             fila.appendChild(botonCelda);
 
             tabla.appendChild(fila);
