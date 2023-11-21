@@ -5,6 +5,7 @@ module.exports = {
         appLote: './frontend/src/js/appLote.js',
         appDesignjoya: './frontend/src/js/appDesignJoya.js',
         appListadoJoyas: './frontend/src/js/appListadoJoyas.js',
+        appListadoJoyasUsuario: './frontend/src/js/appListadoJoyasUsuario.js',
         appRecetaJoya: './frontend/src/js/appRecetaJoya.js',
         httpDesignJoya: './frontend/src/js/http/http-designJoya.js',
         httpClasificador: './frontend/src/js/http/http-Clasificador.js',
