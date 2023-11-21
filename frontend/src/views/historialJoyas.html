@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*temporal*/
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; 
+        }
+    
+        nav li {
+            margin-right: 10px; 
+        }
+    
+        nav a {
+            text-decoration: none;
+            color: black;
+            
+        }
+    </style>
+</head>
+<body>
+    <nav><ul>
+        <li><a href="./listaJoyas.html">Joyas</a></li>
+        <li><a href="./listaJoyasUsuario.html">Tus Joyas</a></li>
+        <li><a href="./designJoya.html">Nueva Joya</a></li>
+        <li><a href="#">Historial</a></li>
+        
+    </ul></nav>
+    <h4>Joyas</h4>
+    <button><a href="./designJoya.html">Crear nueva joya</a></button>
+    
+    <table>
+        <caption>Listado joyas</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Id Joya</th>
+                <th>Usuario </th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody id="tabla_historial">
+        </tbody>
+    </table>
+    <script src="../../../dist/appHistorialJoyas.bundle.js"></script>
+</body>
+</html>
