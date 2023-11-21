@@ -1,51 +1,62 @@
 import { obtenerRecetas } from './http/http-receta-joya.js'
 let joya=sessionStorage.getItem('joya-guardada')
+let btnFabricar=document.getElementById('btnFabricar')
+let disponible=true
 
 obtenerRecetas(joya).then(function (data) {
     pintarRecetas(data)
 })
-
+btnFabricar.addEventListener('click',function(){
+    if(!disponible){
+        alert('Recursos insuficientes')
+    }else{
+        var resultado = confirm("¿Estás seguro de que deseas continuar?");
+    }
+})
 
 function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
     
-    for (let i = 0; i < recetas[0].length; i++) {
-        
+    for (let i = 0; i < recetas.detalle.length; i++) {
+        console.log(recetas.detalle[i])
         let fila = document.createElement('tr');
 
-        let botonCelda = document.createElement('td');
-        let boton = document.createElement('button');
-        boton.textContent = 'Detalle'
-        boton.setAttribute('id', recetas[0][i].id)
-
         let idCelda = document.createElement('td');
-
         let id = document.createElement('span');
-        id.textContent = recetas[0][i].id
+        id.textContent = recetas.detalle[i].id_componente
 
 
-        let usuarioCelda = document.createElement('td');
-        let usuario = document.createElement('span');
-        usuario.textContent = recetas[0][i].id_usuario
+        let tipoCelda = document.createElement('td');
+        let tipo = document.createElement('span');
+        tipo.textContent = recetas.detalle[i].tipo
+
+        let cNecesariaCelda=document.createElement('td')
+        let cantidadNecesaria=document.createElement('span')
+        cantidadNecesaria.textContent=recetas.detalle[i].cantidad_necesaria
 
 
+        let cDisponibleCelda=document.createElement('td')
+        let cantidadDisponible=document.createElement('span')
+        cantidadDisponible.textContent=recetas.detalle[i].cantidad_disponible
 
 
-        boton.addEventListener('click', function (event) {
-            sessionStorage.setItem('receta-guardada', JSON.parse(boton.id))
-            window.location.href = './detalle-receta.html'
-
-        });
+        if(recetas.detalle[i].cantidad_disponible<recetas.detalle[i].cantidad_necesaria){
+            cantidadDisponible.style.color='red'
+            disponible=false
+            btnFabricar.disabled=true
+        }
+      
+        
 
         idCelda.appendChild(id)
-        usuarioCelda.appendChild(usuario)
-
-        botonCelda.appendChild(boton);
+        tipoCelda.appendChild(tipo)
+        cNecesariaCelda.appendChild(cantidadNecesaria);
+        cDisponibleCelda.appendChild(cantidadDisponible);
 
         fila.appendChild(idCelda);
-        fila.appendChild(usuarioCelda);
-
-        fila.appendChild(botonCelda);
+        fila.appendChild(tipoCelda);
+        fila.appendChild(cNecesariaCelda);
+        fila.appendChild(cDisponibleCelda);
 
         tabla.appendChild(fila);
     }
