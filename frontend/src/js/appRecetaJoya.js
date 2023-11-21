@@ -7,7 +7,7 @@ obtenerRecetas(joya).then(function (data) {
 
 
 function pintarRecetas(recetas) {
-    let tabla = document.getElementById('tabla_recetas');
+    let tabla = document.getElementById('tabla_receta');
     
     for (let i = 0; i < recetas[0].length; i++) {
         
