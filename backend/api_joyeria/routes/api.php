@@ -39,6 +39,7 @@ Route::post('lote/clasificar/{id}',[ControladorComponentes::class,'guardarElemen
 
 Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
 
+Route::put('joya/fabricar/{id}',[ControladorJoya::class,'fabricarJoya']);
 
 Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
 

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('historico_joyas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_joya');
+            $table->unsignedBigInteger('id_usuario');
             $table->date('creado')->default(now());
            
         });

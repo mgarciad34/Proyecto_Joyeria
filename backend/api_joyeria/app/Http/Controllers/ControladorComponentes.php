@@ -7,5 +7,5 @@ use App\Models\Componente;
 use App\Models\Lote;
 class ControladorComponentes extends Controller
 {
-
+    
 }
