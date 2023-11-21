@@ -10,12 +10,15 @@ use App\Models\Tipos_componente;
 class ControladorReceta extends Controller
 {
     function getRecetaOfJoya($id){
-        $recetas=Receta::where('id_joya','=',$id)->get();
+       
         
-        $detalle=Detalle_Receta::where('id_receta','=',$recetas[0]->id)->get();
+        $detalle=Detalle_Receta::where('id_joya','=',$id)->get();
         for($i=0;$i<count($detalle);$i++){
             $tipo=Tipos_componente::find($detalle[$i]->id_componente);
+
            $detalle[$i]->tipo=$tipo->nombre;
+           $detalle[$i]->cantidad_necesaria=$detalle[$i]->cantidad;
+           $detalle[$i]->cantidad_disponible=$tipo->cantidad;
         }
        
         return response()->json($detalle);
