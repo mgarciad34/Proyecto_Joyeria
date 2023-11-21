@@ -35,4 +35,5 @@ class ControladorJoya extends Controller
 
         return response()->json([$joyas]);
     }
+    
 }
