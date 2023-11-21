@@ -92,6 +92,7 @@ function pintarHistorial(datos) {
                 if(tabla.rows[i].cells[indice].textContent!=filtro){
                     tabla.rows[i].style.display='none'
                    }else{
+                    tabla.rows[i].style.display=''
                     contador++
                    }
             }
