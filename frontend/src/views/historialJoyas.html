@@ -30,9 +30,15 @@
         <li><a href="./listaJoyasUsuario.html">Tus Joyas</a></li>
         <li><a href="./designJoya.html">Nueva Joya</a></li>
         <li><a href="#">Historial</a></li>
-        
     </ul></nav>
-    <input type="text" id="barra_busqueda" placeholder="Buscar por ID">
+    Filtrar
+    <select id="opciones-filtrado">
+        <option value="1" selected>ID Joya</option>
+        <option value="2">ID Usuario</option>
+        <option value="3">Fecha</option>
+    </select>
+    <input type="number" min="1" id="barra_busqueda" placeholder="Buscar">
+    <input id="filtro-fecha" style="display: none;" type="date">
     <table>
         <caption>Historial</caption>
         <thead>
@@ -43,7 +49,12 @@
                 <th>Fecha</th>
             </tr>
         </thead>
+        <tbody id="tabla-alerta" style="display: none;">
+            <tr><td></td></tr>
+            <tr><td colspan="4">No se han encontrado resultados</td></tr>
+        </tbody>
         <tbody id="tabla_historial">
+
         </tbody>
     </table>
     <script src="../../../dist/appHistorialJoyas.bundle.js"></script>
