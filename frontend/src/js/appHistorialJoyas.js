@@ -1,8 +1,12 @@
 import { obtenerHistorial } from "./http/http-historialJoyas.js";
-
+let barraBusqueda=document.getElementById('barra_busqueda')
 obtenerHistorial().then(function(data){
     pintarHistorial(data[0])
 
+})
+
+barraBusqueda.addEventListener('input',function(){
+    filtrarHistorial()
 })
 function pintarHistorial(datos) {
     var tabla = document.getElementById('tabla_historial');
@@ -43,5 +47,25 @@ function pintarHistorial(datos) {
             tabla.appendChild(fila);
         }
         
+        
+    }
+
+    function filtrarHistorial(indice) {
+        var barraBusqueda = document.getElementById('barra_busqueda');
+        var filtro = barraBusqueda.value.toLowerCase();
+    
+        var tabla = document.getElementById('tabla_historial');
+        for(let i=0;i<tabla.rows.length;i++){
+            if(filtro==''){
+                tabla.rows[i].style.display=''
+            }else{
+                if(tabla.rows[i].cells[1].textContent!=filtro){
+                    tabla.rows[i].style.display='none'
+                   }
+            }
+
+        }
+       
+   
         
     }
