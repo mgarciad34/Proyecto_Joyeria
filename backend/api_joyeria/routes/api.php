@@ -43,6 +43,8 @@ Route::put('joya/fabricar/{id}',[ControladorJoya::class,'fabricarJoya']);
 
 Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
 
+Route::get('joyas/usuario/{id}',[ControladorJoya::class,'getJoyaFromUsuario']);
+
 Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
 
 Route::post('receta/{id}',[ControladorReceta::class,'nuevaReceta']);

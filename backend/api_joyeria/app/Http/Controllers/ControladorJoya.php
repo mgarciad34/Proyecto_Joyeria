@@ -51,4 +51,9 @@ class ControladorJoya extends Controller
         }
         return response()->json(['Fabricado correctamente']);
     }
+
+    function getJoyaFromUsuario($id){
+        $joyas['joyas']=Joya::where('id_usuario','=',$id)->get();
+        return response()->json([$joyas]);
+    }
 }
