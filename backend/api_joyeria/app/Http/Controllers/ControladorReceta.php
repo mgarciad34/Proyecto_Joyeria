@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Receta;
 use App\Models\Detalle_receta;
+use App\Models\Tipos_componente;
+
 class ControladorReceta extends Controller
 {
-    function getRecetasOfJoya($id){
+    function getRecetaOfJoya($id){
         $recetas=Receta::where('id_joya','=',$id)->get();
-        return response()->json([$recetas]);
+        
+        $detalle=Detalle_Receta::where('id_receta','=',$recetas[0]->id)->get();
+        for($i=0;$i<count($detalle);$i++){
+            $tipo=Tipos_componente::find($detalle[$i]->id_componente);
+           $detalle[$i]->tipo=$tipo->nombre;
+        }
+       
+        return response()->json($detalle);
     }
     function nuevaReceta($id,Request $request){
         $receta=new Receta();

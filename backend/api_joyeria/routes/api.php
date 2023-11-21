@@ -42,6 +42,6 @@ Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
 
 Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
 
-Route::get('recetas/{id}',[ControladorReceta::class,'getRecetasOfJoya']);
+Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
 
 Route::post('receta/{id}',[ControladorReceta::class,'nuevaReceta']);

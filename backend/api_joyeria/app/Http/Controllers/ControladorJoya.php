@@ -14,16 +14,13 @@ class ControladorJoya extends Controller
         $joya->foto=$request->get('foto');
         $joya->save();
         
-       $receta=new Receta();
-        $receta->id_joya=$joya->id;
-        $receta->save();
 
         $detalle=$request->detalle;
       
         for ($i=0;$i<count($detalle);$i++) {
             
             $componente = new Detalle_receta();
-            $componente->id_receta=$receta->id;
+            $componente->id_joya=$joya->id;
             $componente->id_componente=$detalle[$i]['tipo'];
             $componente->cantidad=$detalle[$i]['cantidad'];
             $componente->save();
