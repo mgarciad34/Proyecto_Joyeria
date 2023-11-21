@@ -13,6 +13,6 @@ class Tipos_componente extends Model
         'nombre',
         'cantidad'
     ];
-    protected $timestamps=false;
-    
+    public $timestamps=false;
+
 }
