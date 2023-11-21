@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipos_componente extends Model
+class Despiece_lote extends Model
 {
     use HasFactory;
-    protected $table='tipos_componentes';
     protected $fillable = [
-        'nombre',
-        'cantidad'
+        'descripcion',
+        'tipo',
+        'cantidad',
     ];
-    protected $timestamps=false;
-    
+    public $timestamps = false;
 }
