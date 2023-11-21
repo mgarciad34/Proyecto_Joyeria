@@ -13,15 +13,17 @@ class ControladorReceta extends Controller
        
         
         $detalle=Detalle_Receta::where('id_joya','=',$id)->get();
+        $info['id_joya']=$id;
         for($i=0;$i<count($detalle);$i++){
             $tipo=Tipos_componente::find($detalle[$i]->id_componente);
-
-           $detalle[$i]->tipo=$tipo->nombre;
-           $detalle[$i]->cantidad_necesaria=$detalle[$i]->cantidad;
-           $detalle[$i]->cantidad_disponible=$tipo->cantidad;
+            $info['detalle'][$i]['id_componente']=$detalle[$i]->id_componente;
+            $info['detalle'][$i]['tipo']= $tipo->nombre;
+            $info['detalle'][$i]['cantidad_necesaria']=$detalle[$i]->cantidad;
+            $info['detalle'][$i]['cantidad_disponible']=$tipo->cantidad;
+       
         }
        
-        return response()->json($detalle);
+        return response()->json($info);
     }
     function nuevaReceta($id,Request $request){
         $receta=new Receta();
