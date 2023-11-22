@@ -44,3 +44,27 @@ export async function obtenerJoya(id) {
             return false
         }
     }
+
+    export async function actualizarJoya(id,joyas) {
+      
+        try {
+            let url = 'http://127.0.0.1:8000/api/joyas/'+id
+            const options = {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'aplication/json'
+                },
+                body: JSON.stringify(joyas)
+            }
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error('No se pudo actualizar');
+            }
+    
+            const data = await response.json();
+    
+            return data
+        } catch (error) {
+            return error
+        }
+    }

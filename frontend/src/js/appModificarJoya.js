@@ -1,7 +1,7 @@
-import { obtenerTipos,obtenerJoya,obtenerRecetas } from "./http/http-modificarJoya.js";
+import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya } from "./http/http-modificarJoya.js";
 let idJoya=JSON.parse(sessionStorage.getItem('joya-guardada'))
 let tiposEnUso=[]
-let joyaOriginal={
+let joya_original={
     nombre:'',
     foto:'',
     detalle: [],
@@ -16,8 +16,8 @@ let desplegable = document.getElementById('tipos-habilitados')
 obtenerJoya(idJoya).then(function(data){
     inputNombre.value=data.nombre
     inputFoto.value=data.foto
-    joyaOriginal.nombre=data.nombre
-    joyaOriginal.foto=data.foto
+    joya_original.nombre=data.nombre
+    joya_original.foto=data.foto
 })
 obtenerRecetas(idJoya).then(function(data){
     pintarRecetas(data)
@@ -83,17 +83,25 @@ btnGuardar.addEventListener('click', function () {
 
         joya.detalle.push(componente)
     }
-    var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
-    if (resultado) {
-        console.log(JSON.stringify(joya))
-        guardarNuevaJoya(joya).then(function () {
-            document.getElementById('inputNombre').value=''
-            document.getElementById('inputFoto').value=''
-            window.location.href='listaJoyas.html'
-        })
+    if(joya.detalle.length==0){
 
+        alert('No puedes guardar una joya sin receta')
+
+    }else{
+
+        let resultado = window.confirm("¿Estás seguro de que deseas actualizar esta joya?");
+        if (resultado) {
+           
+           let json={joya_original,joya}
+            actualizarJoya(idJoya,json).then(function () {
+                
+                window.location.href='listaJoyasUsuario.html'
+            })
+            
+        }
     }
-})
+
+    })
 
 
 
@@ -219,7 +227,7 @@ function pintarRecetas(recetas) {
             cantidad:recetas.detalle[i].cantidad_necesaria
         }
         tiposEnUso.push(parseInt(recetas.detalle[i].id_componente))
-        joyaOriginal.detalle.push(aux)
+        joya_original.detalle.push(aux)
 
         
         tipoCelda.appendChild(tipo)
