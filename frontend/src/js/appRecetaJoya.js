@@ -23,7 +23,7 @@ btnFabricar.addEventListener('click',function(){
     }
 })
 
-function pintarRecetas(recetas) {
+ function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
     
     for (let i = 0; i < recetas.detalle.length; i++) {

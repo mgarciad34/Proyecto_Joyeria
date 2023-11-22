@@ -53,13 +53,7 @@ function pintarJoyas(joyas) {
               let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
               if(resultado){
-
-                eliminarJoya(joyas[0][i].id).then(function(data){
-                    console.log(data)
-                    // window.location.href='./listaJoyasUsuario.html'
-
-                })
-                
+                eliminarJoya(joyas[0][i].id).then()
               }
                 
               });
