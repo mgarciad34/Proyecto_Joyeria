@@ -81,7 +81,9 @@ repetirContrasena.addEventListener('input', function(){
 
 
 btnregistro.addEventListener('click', function(event){
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
+    event.preventDefault();
+    var nuevoUsuario = new Users(nombre.value, correo.value, contrasena.value); 
+    console.log(JSON.stringify(nuevoUsuario))
     const url = 'http://127.0.0.1:8000/api/usuarios';
     var colorNombre = comprobarColor(mensajeNombre)
     var colorCorreo = comprobarColor(mensajeEmail)
@@ -89,12 +91,11 @@ btnregistro.addEventListener('click', function(event){
     var colorConfirmar = comprobarColor(mensajeContrasenaConfirmar)
     var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
     if(sumatorio == 4){
-        var registrarUsuario = new Users(nombre.value, correo.value, contrasena.value); 
-        enviarDatos(registrarUsuario, url);
+            enviarDatos(nuevoUsuario, url).then(function(){
+            window.location.href="../index.html";
+        });
+        
     }    
-
-
-   
 });
 
 

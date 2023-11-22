@@ -10,6 +10,7 @@ class Users extends Controller
     //
     public function crearUsuario(Request $request)
     {
+
         try {
             $request->validate([
                 'name' => 'required|string|max:255',

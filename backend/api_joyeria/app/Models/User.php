@@ -15,9 +15,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'rol',
         'password',
-        'remember_token'
+
     ];
 
     protected $hidden = [
@@ -30,5 +29,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public $timestamps = false; // Desactiva los timestamps
+    public $timestamps = false;
 }

@@ -1,4 +1,4 @@
-async function enviarDatos(datos, ruta) {
+export async function enviarDatos(datos, ruta) {
     try {
         const respuesta = await fetch(ruta, {
             method: 'POST',
@@ -11,14 +11,13 @@ async function enviarDatos(datos, ruta) {
         if (!respuesta.ok) {
             throw new Error(`Error de red: ${respuesta.status}`);
         }
-        window.location.href = "../index.html";
     } catch (error) {
         console.error('Error al enviar los datos:', error.message);
         // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
     }
 }
 
-function obtenerNombreColor(rgbColor) {
+export function obtenerNombreColor(rgbColor) {
     // Mapea colores RGB a sus nombres
     var colores = {
         'rgb(255, 0, 0)': 'red',
@@ -27,7 +26,7 @@ function obtenerNombreColor(rgbColor) {
     return colores[rgbColor];
 }
 
-function comprobarColor(etiquetap){
+export function comprobarColor(etiquetap){
 
     var estilos = window.getComputedStyle(etiquetap);
     var colorTextoRGB = estilos.color;
@@ -40,5 +39,3 @@ function comprobarColor(etiquetap){
     }
 
 }
-
-export { enviarDatos, comprobarColor };
