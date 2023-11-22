@@ -67,4 +67,8 @@ class ControladorJoya extends Controller
         $joya->delete();
         return response()->json(['Eliminado correctamente']);
     }
+    function getJoyaById($id){
+        $joya=Joya::find($id);
+        return response()->json($joya);
+    }
 }

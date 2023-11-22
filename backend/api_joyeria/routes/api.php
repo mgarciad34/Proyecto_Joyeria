@@ -46,6 +46,7 @@ Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
 Route::get('joyas/usuario/{id}',[ControladorJoya::class,'getJoyaFromUsuario']);
 Route::get('/joyas/historial',[ControladorJoya::class,'getAllHistorial']);
 Route::delete('joyas/eliminar/{id}',[ControladorJoya::class,'deleteJoya']);
+Route::get('joyas/{id}',[ControladorJoya::class,'getJoyaById']);
 
 Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
 
