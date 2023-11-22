@@ -79,7 +79,7 @@ btnGuardar.addEventListener('click', function () {
 
         let componente = {}
         componente['cantidad'] = cantidad
-        componente['tipo'] = tipo.split('.')[0]
+        componente['id_componente'] = tipo.split('.')[0]
         cantidades.push(cantidad)
         joya.detalle.push(componente)
         

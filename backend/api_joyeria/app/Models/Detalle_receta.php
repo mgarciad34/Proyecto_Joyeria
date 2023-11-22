@@ -12,6 +12,8 @@ class Detalle_receta extends Model
     protected $primaryKey = ['id_joya', 'id_componente'];
     public $incrementing = false; 
     public $timestamps = false;
- 
+   protected $fillable=[
+        'cantidad'
+   ];
 
 }

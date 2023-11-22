@@ -8,6 +8,7 @@ use App\Models\Joya;
 use App\Models\HistoricoJoya;
 use App\Models\Tipos_componente;
 use App\Models\Receta;
+use App\Http\Controllers\ControladorReceta;
 class ControladorJoya extends Controller
 {
     function nuevaJoya(Request $request){
@@ -74,8 +75,21 @@ class ControladorJoya extends Controller
     function updateJoya($id,Request $request){
         $joya=Joya::find($id);
         $detalle=Detalle_receta::where('id_joya','=',$id)->get();
-        $joyaRequest=$request->get('joya');
-        print_r($joyaRequest);
+        $joyaOriginal=$request->get('joya_original');
+        $joyaUpdate=$request->get('joya');
+   
+        if($joyaOriginal['nombre']!=$joyaUpdate['nombre']){
+            $joya->nombre=$joyaUpdate['nombre'];
+         
+        }
+        if($joyaOriginal['foto']!=$joyaUpdate['foto']){
+            $joya->foto=$joyaUpdate['foto'];
+        }
+        $joya->save();
+        if($joyaUpdate['detalle']!=$joyaOriginal['detalle']){
+            $c=new ControladorReceta;
+           $c->updateReceta($id,$joyaOriginal['detalle'],$joyaUpdate['detalle']);
+        }
         // for($i=0;$i<count($detalle);$i++)
         // print_r($detalle[$i]->id_componente);
     }
