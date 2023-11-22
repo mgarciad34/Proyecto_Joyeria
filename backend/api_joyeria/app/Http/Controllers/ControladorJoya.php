@@ -62,4 +62,9 @@ class ControladorJoya extends Controller
         $historial['historial']=HistoricoJoya::all();
         return response()->json([$historial]);
     }
+    function deleteJoya($id){
+        $joya=Joya::find($id);
+        $joya->delete();
+        return response()->json(['Eliminado correctamente']);
+    }
 }
