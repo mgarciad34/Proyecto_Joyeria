@@ -15,8 +15,15 @@ function pintarJoyas(joyas) {
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
-            boton.textContent = 'recetas'
+            boton.textContent = 'receta'
             boton.setAttribute('id',joyas[0][i].id)
+
+            let botonEliminarCelda = document.createElement('td');
+            let botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar'
+            botonEliminar.setAttribute('id',joyas[0][i].id)
+            botonEliminar.style.backgroundColor=' red'
+
 
             let idCelda = document.createElement('td');
 
@@ -40,16 +47,34 @@ function pintarJoyas(joyas) {
                 
               });
 
+            botonEliminar.addEventListener('click', function(event) {
+                sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
+
+              let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
+
+              if(resultado){
+
+                eliminarJoya(joyas[0][i].id).then(function(){
+                    window.location.href='./listaJoyasUsuario.html'
+
+                })
+                
+              }
+                
+              });
+            
+
             idCelda.appendChild(id)
             nombreCelda.appendChild(nombre)
             fotoCelda.appendChild(foto)
            botonCelda.appendChild(boton);
+           botonEliminarCelda.appendChild(botonEliminar);
 
            fila.appendChild(idCelda);
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
             fila.appendChild(botonCelda);
-
+            fila.appendChild(botonEliminarCelda);
             tabla.appendChild(fila);
         }
         
