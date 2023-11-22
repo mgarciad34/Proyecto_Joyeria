@@ -1,4 +1,4 @@
-import{obtenerJoyas} from './http/http-listadoJoyasUsuario.js'
+import{obtenerJoyas,eliminarJoya} from './http/http-listadoJoyasUsuario.js'
 let id=JSON.parse(sessionStorage.getItem('id-usuario'))
 
 obtenerJoyas(id).then(function(data){
@@ -54,8 +54,9 @@ function pintarJoyas(joyas) {
 
               if(resultado){
 
-                eliminarJoya(joyas[0][i].id).then(function(){
-                    window.location.href='./listaJoyasUsuario.html'
+                eliminarJoya(joyas[0][i].id).then(function(data){
+                    console.log(data)
+                    // window.location.href='./listaJoyasUsuario.html'
 
                 })
                 
