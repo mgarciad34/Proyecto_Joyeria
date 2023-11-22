@@ -65,7 +65,7 @@ inputFoto.addEventListener('input', function () {
 btnGuardar.addEventListener('click', function () {
     let tbody = document.getElementById('detalle-receta')
     let joya = {}
-    
+    let cantidades=[]
     joya.nombre = inputNombre.value
     joya.foto = inputFoto.value
     joya.id_usuario=usuario
@@ -74,30 +74,36 @@ btnGuardar.addEventListener('click', function () {
 
     for (let i = 0; i < tbody.rows.length; i++) {
         let fila = tbody.rows[i];
-        let cantidad = fila.cells[1].textContent
+        let cantidad = parseInt(fila.cells[1].querySelector('input').value)
         let tipo = fila.cells[0].textContent
 
         let componente = {}
         componente['cantidad'] = cantidad
         componente['tipo'] = tipo.split('.')[0]
-
+        cantidades.push(cantidad)
         joya.detalle.push(componente)
+        
     }
     if(joya.detalle.length==0){
 
         alert('No puedes guardar una joya sin receta')
 
     }else{
-
-        let resultado = window.confirm("¿Estás seguro de que deseas actualizar esta joya?");
-        if (resultado) {
-           
-           let json={joya_original,joya}
-            actualizarJoya(idJoya,json).then(function () {
+        if(!evaluarCantidades(cantidades)){
+            alert('Debes introducir cantidades correctas')
+        }else{
+            let resultado = window.confirm("¿Estás seguro de que deseas actualizar esta joya?");
+            if (resultado) {
+               
+               let json={joya_original,joya}
+               console.log(JSON.stringify(json))
+                // actualizarJoya(idJoya,json).then(function () {
+                    
+                //     window.location.href='listaJoyasUsuario.html'
+                // })
                 
-                window.location.href='listaJoyasUsuario.html'
-            })
-            
+            }
+
         }
     }
 
@@ -135,6 +141,8 @@ btnAdd.addEventListener('click', function () {
 
         let celdaCantidad = document.createElement('td');
         let cantidad = document.createElement('input')
+        cantidad.setAttribute('type','number')
+        cantidad.setAttribute('min','1')
         cantidad.value = inputCantidad
 
         let celdaTipo = document.createElement('td');
@@ -212,6 +220,8 @@ function pintarRecetas(recetas) {
         let cNecesariaCelda=document.createElement('td')
         let cantidadNecesaria=document.createElement('input')
         cantidadNecesaria.value=recetas.detalle[i].cantidad_necesaria
+        cantidadNecesaria.setAttribute('type','number')
+        cantidadNecesaria.setAttribute('min','1')
 
         let eliminarCelda=document.createElement('td')
         let eliminar=document.createElement('button')
@@ -264,4 +274,17 @@ function eliminarFila(fila){
     let indice=tiposEnUso.indexOf(tipo)
     tiposEnUso.splice(indice)
     console.log(tiposEnUso)
+}
+
+function evaluarCantidades(array){
+    let sigue=true
+    let i=0
+    while(i<array.length && sigue){
+        if(array[i]<=0){
+            sigue=false
+            
+        }
+        i++
+    }
+    return sigue
 }

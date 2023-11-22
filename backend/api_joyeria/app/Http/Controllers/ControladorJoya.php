@@ -71,4 +71,12 @@ class ControladorJoya extends Controller
         $joya=Joya::find($id);
         return response()->json($joya);
     }
+    function updateJoya($id,Request $request){
+        $joya=Joya::find($id);
+        $detalle=Detalle_receta::where('id_joya','=',$id)->get();
+        $joyaRequest=$request->get('joya');
+        print_r($joyaRequest);
+        // for($i=0;$i<count($detalle);$i++)
+        // print_r($detalle[$i]->id_componente);
+    }
 }
