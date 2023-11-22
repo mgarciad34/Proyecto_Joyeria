@@ -1,26 +1,33 @@
 import { obtenerTipos,obtenerJoya,obtenerRecetas } from "./http/http-modificarJoya.js";
 let idJoya=JSON.parse(sessionStorage.getItem('joya-guardada'))
 let tiposEnUso=[]
-let recetaOriginal={
-     detalle: [],
+let joyaOriginal={
+    nombre:'',
+    foto:'',
+    detalle: [],
 }
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
-// obtenerJoya.then(function(data){
+let desplegable = document.getElementById('tipos-habilitados')
 
-// })
-
-obtenerTipos().then(function (data) {
-    pintarTipos(data)
-
+obtenerJoya(idJoya).then(function(data){
+    inputNombre.value=data.nombre
+    inputFoto.value=data.foto
+    joyaOriginal.nombre=data.nombre
+    joyaOriginal.foto=data.foto
 })
 obtenerRecetas(idJoya).then(function(data){
     pintarRecetas(data)
 
 })
+obtenerTipos().then(function (data) {
+    pintarTipos(data)
+    revisarTipos()
+})
+
 inputNombre.addEventListener('input', function () {
     if (!elementoVacio(inputNombre.id)) {
         btnAdd.disabled = false
@@ -119,32 +126,46 @@ btnAdd.addEventListener('click', function () {
 
 
         let celdaCantidad = document.createElement('td');
-        let cantidad = document.createElement('span')
-        cantidad.textContent = inputCantidad
+        let cantidad = document.createElement('input')
+        cantidad.value = inputCantidad
 
         let celdaTipo = document.createElement('td');
 
         let tipos = document.getElementById('tipos-habilitados')
         let indiceSeleccionado = tipos.selectedIndex;
         let textoSeleccionado = tipos.options[indiceSeleccionado].textContent
+        let eliminarCelda=document.createElement('td')
+        let eliminar=document.createElement('button')
+        eliminar.textContent='Eliminar'
+        eliminar.style.backgroundColor='red'
+        eliminar.addEventListener('click',function(){
+            eliminarFila(fila)
+            revisarTipos()
+        })
+
+        tiposEnUso.push(parseInt(tipos.value))
+    
         tipos.options[indiceSeleccionado].disabled = true
+
         document.getElementById('opcion-default').selected = true
         let tipo = document.createElement('span')
         tipo.textContent = textoSeleccionado
 
         celdaTipo.appendChild(tipo);
         celdaCantidad.appendChild(cantidad)
-
+        eliminarCelda.appendChild(eliminar)
 
         fila.appendChild(celdaTipo);
         fila.appendChild(celdaCantidad);
+        fila.appendChild(eliminarCelda)
 
         tablaElementosRegistrados.appendChild(fila);
         btnGuardar.disabled = false
     }
+   
 })
 function pintarTipos(data){
-    let desplegable = document.getElementById('tipos-habilitados')
+   
     for (let i = 0; i < data.tipos.length; i++) {
         const opcion = document.createElement('option');
         opcion.value = data.tipos[i].id;
@@ -170,7 +191,7 @@ function tablaVacia(tabla) {
     return vacia
 }
 function pintarRecetas(recetas) {
-    let tabla = document.getElementById('tabla_receta');
+    let tabla = document.getElementById('detalle-receta');
     
     for (let i = 0; i < recetas.detalle.length; i++) {
         console.log(recetas.detalle[i])
@@ -184,29 +205,55 @@ function pintarRecetas(recetas) {
         let cantidadNecesaria=document.createElement('input')
         cantidadNecesaria.value=recetas.detalle[i].cantidad_necesaria
 
-
-        if(recetas.detalle[i].cantidad_disponible<recetas.detalle[i].cantidad_necesaria){
-            cantidadDisponible.style.color='red'
-            disponible=false
-            btnFabricar.disabled=true
-        }
+        let eliminarCelda=document.createElement('td')
+        let eliminar=document.createElement('button')
+        eliminar.textContent='Eliminar'
+        eliminar.style.backgroundColor='red'
+        eliminar.addEventListener('click',function(){
+            eliminarFila(fila)
+            revisarTipos()
+        })
         
         let aux={
             id_componente:recetas.detalle[i].id_componente,
             cantidad:recetas.detalle[i].cantidad_necesaria
         }
-        recetaOriginal.detalle.push(aux)
+        tiposEnUso.push(parseInt(recetas.detalle[i].id_componente))
+        joyaOriginal.detalle.push(aux)
 
         
         tipoCelda.appendChild(tipo)
         cNecesariaCelda.appendChild(cantidadNecesaria);
+        eliminarCelda.appendChild(eliminar)
+
         fila.appendChild(tipoCelda);
         fila.appendChild(cNecesariaCelda);
+        fila.appendChild(eliminarCelda)
         
 
         tabla.appendChild(fila);
     }
-    console.log(recetaOriginal)
 
 
+
+}
+
+function revisarTipos(){
+    for (let i = 1; i < desplegable.options.length; i++) {
+        var opcion = desplegable.options[i];
+        console.log(tiposEnUso)
+       if(tiposEnUso.includes(parseInt(opcion.value))){
+        opcion.disabled=true
+       }else{
+        opcion.disabled=false
+       }
+    }
+}
+
+function eliminarFila(fila){
+    let tipo= parseInt(fila.cells[0].textContent.split('.')[0])
+    document.getElementById('detalle-receta').removeChild(fila)
+    let indice=tiposEnUso.indexOf(tipo)
+    tiposEnUso.splice(indice)
+    console.log(tiposEnUso)
 }

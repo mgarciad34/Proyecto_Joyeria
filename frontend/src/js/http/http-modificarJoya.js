@@ -15,19 +15,19 @@ export async function obtenerTipos() {
 
 }
 export async function obtenerJoya(id) {
-    // try {
-    //     const apiUrl2 = 'http://127.0.0.1:8000/api/joyas/'+id
-    //     const response = await fetch(apiUrl2);
-    //     if (!response.ok) {
-    //         throw new Error('No se pudo obtener la joya');
-    //     }
+    try {
+        const apiUrl2 = 'http://127.0.0.1:8000/api/joyas/'+id
+        const response = await fetch(apiUrl2);
+        if (!response.ok) {
+            throw new Error('No se pudo obtener la joya');
+        }
 
-    //     const data = await response.json();
+        const data = await response.json();
 
-    //     return data
-    // } catch (error) {
-    //     return error
-    // }
+        return data
+    } catch (error) {
+        return error
+    }
 }
     export async function obtenerRecetas(id) {
         try {
