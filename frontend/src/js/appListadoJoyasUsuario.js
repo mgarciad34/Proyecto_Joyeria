@@ -45,6 +45,10 @@ function pintarJoyas(joyas) {
             let foto= document.createElement('span');
             foto.textContent=joyas[0][i].foto
 
+            botonModificar.addEventListener('click',function(){
+              sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
+              window.location.href='./modificarJoya.html'
+            })
 
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
