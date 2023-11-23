@@ -15,6 +15,23 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->unique();
         });
+
+        // Inserción de datos
+        DB::table('roles')->insert([
+            'nombre' => 'Administrador',
+        ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'Clasificador',
+        ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'Usuario',
+        ]);
+
+        DB::table('roles')->insert([
+            'nombre' => 'Colaborador',
+        ]);
     }
 
     /**

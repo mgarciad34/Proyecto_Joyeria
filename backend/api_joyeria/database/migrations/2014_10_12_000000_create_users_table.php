@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('rol');
             $table->string('password');
             $table->timestamps(); // Esto agrega las columnas created_at y updated_at
         });
