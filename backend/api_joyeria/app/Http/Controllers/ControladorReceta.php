@@ -46,44 +46,35 @@ class ControladorReceta extends Controller
 
     }
     function updateReceta($id_joya,$antigua,$nueva){
-        for($i=0;$i<count($nueva);$i++){
-          
-            for($x=0;$x<count($antigua);$x++){
-                $existe=false;
-                $distinta=false;
-               
-                if($nueva[$i]['id_componente']==$antigua[$x]['id_componente']){
-                    $existe=true;
-                    if($nueva[$i]['cantidad']!=$antigua[$x]['cantidad']){
-                        $distinta=true;
-                    }
-                }
-                print_r('vuleta');
-                if($existe){
-                    if($distinta){
-                        $detalle_receta=Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$nueva[$i]['id_componente']);
-                        
-                        $detalle_receta->update(['cantidad'=>$nueva[$i]['cantidad']]);
-                    }
-                }else{
-                    $detalle_receta=Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$antigua[$x]['id_componente'])->get();
-                    print_r($detalle_receta->count());
-                    if($detalle_receta->count()>0){
-                    //   Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$antigua[$x]['id_componente'])->delete();;
-                    }else{
-                        print_r('llega');
-                        // $detalle_receta=new Detalle_receta();
-                        // $detalle_receta->id_componente=$nueva[$i]['id_componente'];
-                        // $detalle_receta->id_joya=$id_joya;
-                        // $detalle_receta->cantidad=$nueva[$i]['cantidad'];
-                        // $detalle_receta->save();
-                    }
-                }
-            }
-           
+        $componentesNuevaReceta=[];
+        $componentesViejaReceta=[];
 
+        for ($i=0;$i<count($antigua);$i++){
+            $componentesViejaReceta[]=$antigua[$i]['id_componente'];
         }
-  
-      
+        print_r($componentesViejaReceta);
+        print_r('<br>');
+        for ($i=0;$i<count($nueva);$i++){
+            $id=$nueva[$i]['id_componente'];
+            $componentesNuevaReceta[]=$id;
+            if (in_array($id, $componentesViejaReceta)) {
+                print_r('  EL valor '.$id.' no es nuevo');
+            }else{
+               $detalle_receta=new Detalle_receta();
+               $detalle_receta->id_joya=$id_joya;
+               $detalle_receta->id_componente=$id;
+               $detalle_receta->cantidad=$nueva[$i]['cantidad'];
+              $detalle_receta->save();
+            }
+        }
+        print_r(count($componentesNuevaReceta));
+        for($i=0;$i<count($componentesViejaReceta);$i++){
+            if (!in_array($componentesViejaReceta[$i], $componentesNuevaReceta)) {
+              $eliminar=Detalle_receta::where('id_joya','=',$id_joya)
+              ->where('id_componente','=',$componentesViejaReceta[$i]);
+              $eliminar->delete();
+            }
+        }
+
     }
 }

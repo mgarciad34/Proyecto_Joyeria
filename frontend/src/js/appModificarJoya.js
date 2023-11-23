@@ -97,10 +97,10 @@ btnGuardar.addEventListener('click', function () {
                
                let json={joya_original,joya}
                console.log(JSON.stringify(json))
-                // actualizarJoya(idJoya,json).then(function () {
+                actualizarJoya(idJoya,json).then(function () {
                     
-                //     window.location.href='listaJoyasUsuario.html'
-                // })
+                    window.location.href='listaJoyasUsuario.html'
+                })
                 
             }
 
