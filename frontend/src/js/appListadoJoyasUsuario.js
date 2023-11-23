@@ -24,6 +24,11 @@ function pintarJoyas(joyas) {
             botonEliminar.setAttribute('id',joyas[0][i].id)
             botonEliminar.style.backgroundColor=' red'
 
+            let botonModificarCelda = document.createElement('td');
+            let botonModificar = document.createElement('button');
+            botonModificar.textContent = 'Modificar'
+            botonModificar.setAttribute('id',joyas[0][i].id)
+            botonModificar.style.backgroundColor=' orange'
 
             let idCelda = document.createElement('td');
 
@@ -47,7 +52,7 @@ function pintarJoyas(joyas) {
                 
               });
 
-            botonEliminar.addEventListener('click', function(event) {
+              botonEliminar.addEventListener('click', function(event) {
 
               let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
@@ -63,12 +68,16 @@ function pintarJoyas(joyas) {
             fotoCelda.appendChild(foto)
            botonCelda.appendChild(boton);
            botonEliminarCelda.appendChild(botonEliminar);
+            botonModificarCelda.appendChild(botonModificar)
+
 
            fila.appendChild(idCelda);
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
             fila.appendChild(botonCelda);
             fila.appendChild(botonEliminarCelda);
+            fila.appendChild(botonModificarCelda)
+            
             tabla.appendChild(fila);
         }
         

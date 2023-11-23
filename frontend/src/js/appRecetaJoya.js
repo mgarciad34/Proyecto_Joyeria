@@ -1,7 +1,8 @@
 import {
     obtenerRecetas,
     fabricarJoya,
-    isOwner
+    isOwner,
+    eliminarJoya
 } from './http/http-receta-joya.js'
 let id_joya = JSON.parse(sessionStorage.getItem('joya-guardada'));
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
@@ -96,7 +97,10 @@ function addOwnerBotones() {
         let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
         if (resultado) {
-            eliminarJoya(id_joya).then()
+            eliminarJoya(id_joya).then(function(){
+                window.location.href='./listaJoyas.html'
+
+            })
         }
 
     });
