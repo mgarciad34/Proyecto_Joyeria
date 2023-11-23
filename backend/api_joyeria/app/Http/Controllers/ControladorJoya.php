@@ -43,6 +43,7 @@ class ControladorJoya extends Controller
         $historico= new HistoricoJoya();
         $historico->id_joya=$id;
         $historico->id_usuario=$request->get('id_usuario');
+        $historico->creado=now();
         $historico->save();
         $receta=Detalle_receta::where('id_joya','=',$id)->get();
         print_r($receta[0]->id_componente);
