@@ -78,7 +78,7 @@ btnGuardar.addEventListener('click', function () {
         let tipo = fila.cells[0].textContent
 
         let componente = {}
-        componente['cantidad'] = cantidad
+        componente['cantidad'] =parseInt(cantidad)
         componente['id_componente'] = tipo.split('.')[0]
         cantidades.push(cantidad)
         joya.detalle.push(componente)

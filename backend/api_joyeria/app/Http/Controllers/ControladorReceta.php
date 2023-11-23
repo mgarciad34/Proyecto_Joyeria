@@ -58,23 +58,25 @@ class ControladorReceta extends Controller
                         $distinta=true;
                     }
                 }
+                print_r('vuleta');
                 if($existe){
                     if($distinta){
                         $detalle_receta=Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$nueva[$i]['id_componente']);
                         
                         $detalle_receta->update(['cantidad'=>$nueva[$i]['cantidad']]);
-                   
                     }
                 }else{
-                    $detalle_receta=Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$antigua[$x]['id_componente']);
-                    if($detalle_receta->count()==1){
-                        $detalle_receta->delete();
+                    $detalle_receta=Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$antigua[$x]['id_componente'])->get();
+                    print_r($detalle_receta->count());
+                    if($detalle_receta->count()>0){
+                    //   Detalle_receta::where('id_joya','=', $id_joya)->where('id_componente','=',$antigua[$x]['id_componente'])->delete();;
                     }else{
-                        $detalle_receta=new Detalle_receta();
-                        $detalle_receta->id_componente=$nueva[$i]['id_componente'];
-                        $detalle_receta->id_joya=$id_joya;
-                        $detalle_receta->cantidad=$nueva[$i]['cantidad'];
-                        $detalle_receta->save();
+                        print_r('llega');
+                        // $detalle_receta=new Detalle_receta();
+                        // $detalle_receta->id_componente=$nueva[$i]['id_componente'];
+                        // $detalle_receta->id_joya=$id_joya;
+                        // $detalle_receta->cantidad=$nueva[$i]['cantidad'];
+                        // $detalle_receta->save();
                     }
                 }
             }
