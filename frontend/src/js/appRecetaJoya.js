@@ -1,31 +1,40 @@
-import { obtenerRecetas, fabricarJoya } from './http/http-receta-joya.js'
-let joya=sessionStorage.getItem('joya-guardada')
-let btnFabricar=document.getElementById('btnFabricar')
-let disponible=true
+import {
+    obtenerRecetas,
+    fabricarJoya,
+    isOwner
+} from './http/http-receta-joya.js'
+let id_joya = sessionStorage.getItem('joya-guardada')
+let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
+let botones = document.getElementById('botones')
+let btnFabricar = document.getElementById('btnFabricar')
+let disponible = true
 
-obtenerRecetas(joya).then(function (data) {
+obtenerRecetas(id_joya).then(function (data) {
     pintarRecetas(data)
 })
-btnFabricar.addEventListener('click',function(){
-    if(!disponible){
-        alert('Recursos insuficientes')
-    }else{
-        var resultado = confirm("¿Estás seguro de que deseas continuar?");
-        if(resultado){
+isOwner(id_joya, usuario).then(function (data) {
+    if (data.resultado) {
+        addOwnerBotones()
+    }
 
-        let id_joya=JSON.parse(sessionStorage.getItem('joya-guardada'))
-        let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
-      
-            fabricarJoya(id_joya,usuario).then(function(data){
-                
+})
+btnFabricar.addEventListener('click', function () {
+    if (!disponible) {
+        alert('Recursos insuficientes')
+    } else {
+        var resultado = confirm("¿Estás seguro de que deseas continuar?");
+        if (resultado) {
+
+            fabricarJoya(id_joya, usuario).then(function (data) {
+                window.location.reload()
             })
         }
     }
 })
 
- function pintarRecetas(recetas) {
+function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
-    
+
     for (let i = 0; i < recetas.detalle.length; i++) {
         console.log(recetas.detalle[i])
         let fila = document.createElement('tr');
@@ -39,23 +48,23 @@ btnFabricar.addEventListener('click',function(){
         let tipo = document.createElement('span');
         tipo.textContent = recetas.detalle[i].tipo
 
-        let cNecesariaCelda=document.createElement('td')
-        let cantidadNecesaria=document.createElement('span')
-        cantidadNecesaria.textContent=recetas.detalle[i].cantidad_necesaria
+        let cNecesariaCelda = document.createElement('td')
+        let cantidadNecesaria = document.createElement('span')
+        cantidadNecesaria.textContent = recetas.detalle[i].cantidad_necesaria
 
 
-        let cDisponibleCelda=document.createElement('td')
-        let cantidadDisponible=document.createElement('span')
-        cantidadDisponible.textContent=recetas.detalle[i].cantidad_disponible
+        let cDisponibleCelda = document.createElement('td')
+        let cantidadDisponible = document.createElement('span')
+        cantidadDisponible.textContent = recetas.detalle[i].cantidad_disponible
 
 
-        if(recetas.detalle[i].cantidad_disponible<recetas.detalle[i].cantidad_necesaria){
-            cantidadDisponible.style.color='red'
-            disponible=false
-            btnFabricar.disabled=true
+        if (recetas.detalle[i].cantidad_disponible < recetas.detalle[i].cantidad_necesaria) {
+            cantidadDisponible.style.color = 'red'
+            disponible = false
+            btnFabricar.disabled = true
         }
-      
-        
+
+
 
         idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
@@ -70,5 +79,40 @@ btnFabricar.addEventListener('click',function(){
         tabla.appendChild(fila);
     }
 
+
+}
+
+function addOwnerBotones() {
+
+    let botonEliminarCelda = document.createElement('td');
+    let botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar'
+    botonEliminar.setAttribute('id', joyas[0][i].id)
+    botonEliminar.style.backgroundColor = ' red'
+    botonEliminar.addEventListener('click', function (event) {
+
+        let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
+
+        if (resultado) {
+            eliminarJoya(joyas[0][i].id).then()
+        }
+
+    });
+
+    let botonModificarCelda = document.createElement('td');
+    let botonModificar = document.createElement('button');
+    botonModificar.textContent = 'Modificar'
+    botonModificar.setAttribute('id', joyas[0][i].id)
+    botonModificar.style.backgroundColor = ' orange'
+    botonModificar.addEventListener('click', function (event) {
+        sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
+       window.location.href='./modificarJoya.html'
+
+    });
+    botonEliminarCelda.appendChild(botonEliminarCelda)
+    botonModificarCelda.appendChild(botonModificar)
+
+    botones.appendChild(botonEliminarCelda)
+    botones.appendChild(botonModificarCelda)
 
 }

@@ -48,7 +48,6 @@ function pintarJoyas(joyas) {
               });
 
             botonEliminar.addEventListener('click', function(event) {
-                sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
 
               let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
