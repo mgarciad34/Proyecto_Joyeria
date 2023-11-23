@@ -1,4 +1,4 @@
-async function enviarDatos(datos, ruta) {
+export async function enviarDatos(datos, ruta) {
     try {
         const respuesta = await fetch(ruta, {
             method: 'POST',
@@ -17,4 +17,25 @@ async function enviarDatos(datos, ruta) {
     }
 }
 
-export { enviarDatos };
+export function obtenerNombreColor(rgbColor) {
+    // Mapea colores RGB a sus nombres
+    var colores = {
+        'rgb(255, 0, 0)': 'red',
+        'rgb(0, 128, 0)': 'green'
+    };
+    return colores[rgbColor];
+}
+
+export function comprobarColor(etiquetap){
+
+    var estilos = window.getComputedStyle(etiquetap);
+    var colorTextoRGB = estilos.color;
+    var colorTextoNombre = obtenerNombreColor(colorTextoRGB);
+    console.log(colorTextoNombre)
+    if(colorTextoNombre === "green"){
+        return 1;
+    }else{
+        return 0;
+    }
+
+}

@@ -4,7 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Users;
+use App\Http\Controllers\ControladorUsuarios;
+use App\Http\Controllers\ControladorAuth;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
@@ -22,8 +23,11 @@ use App\Http\Controllers\ControladorJoya;
 
 
 //Registro de usuarios
-Route::post('/usuarios', [Users::class, 'crearUsuario']);
+Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
 
+//Login y Logout usuario
+Route::post('login', [ControladorAuth::class, 'login']);
+Route::post('logout', [ControladorAuth::class, 'logout']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
