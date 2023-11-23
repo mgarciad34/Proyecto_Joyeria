@@ -3,7 +3,7 @@ import {
     fabricarJoya,
     isOwner
 } from './http/http-receta-joya.js'
-let id_joya = sessionStorage.getItem('joya-guardada')
+let id_joya = JSON.parse(sessionStorage.getItem('joya-guardada'));
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let botones = document.getElementById('botones')
 let btnFabricar = document.getElementById('btnFabricar')
@@ -13,8 +13,10 @@ obtenerRecetas(id_joya).then(function (data) {
     pintarRecetas(data)
 })
 isOwner(id_joya, usuario).then(function (data) {
+    console.log(data)
     if (data.resultado) {
         addOwnerBotones()
+        
     }
 
 })
@@ -87,14 +89,14 @@ function addOwnerBotones() {
     let botonEliminarCelda = document.createElement('td');
     let botonEliminar = document.createElement('button');
     botonEliminar.textContent = 'Eliminar'
-    botonEliminar.setAttribute('id', joyas[0][i].id)
+    botonEliminar.setAttribute('id',id_joya)
     botonEliminar.style.backgroundColor = ' red'
     botonEliminar.addEventListener('click', function (event) {
 
         let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
         if (resultado) {
-            eliminarJoya(joyas[0][i].id).then()
+            eliminarJoya(id_joya).then()
         }
 
     });
@@ -102,14 +104,14 @@ function addOwnerBotones() {
     let botonModificarCelda = document.createElement('td');
     let botonModificar = document.createElement('button');
     botonModificar.textContent = 'Modificar'
-    botonModificar.setAttribute('id', joyas[0][i].id)
+    botonModificar.setAttribute('id',id_joya)
     botonModificar.style.backgroundColor = ' orange'
     botonModificar.addEventListener('click', function (event) {
         sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
        window.location.href='./modificarJoya.html'
 
     });
-    botonEliminarCelda.appendChild(botonEliminarCelda)
+    botonEliminarCelda.appendChild(botonEliminar)
     botonModificarCelda.appendChild(botonModificar)
 
     botones.appendChild(botonEliminarCelda)

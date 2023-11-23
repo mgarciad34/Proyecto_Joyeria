@@ -42,26 +42,24 @@ export async function fabricarJoya(joya,id_usuario) {
 }
 
 export async function isOwner(joya,id_usuario) {
-    // let json={}
-    // json['id_usuario']=id_usuario
-
+  
     try {
-        let url = 'http://127.0.0.1:8000/api/joya/owner/'+joya+'/'+id_usuario
+        let url = 'http://127.0.0.1:8000/api/joyas/owner/'+joya+'/'+id_usuario
         const options = {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
             },
-            // body:  JSON.stringify(json)
+           
         }
         const response = await fetch(url, options);
         
         if (!response.ok) {
-            throw new Error('No se pudo fabricar la joya');
+            throw new Error('No se pudo obtener el valor');
         }
 
         const data = await response.json();
-
+       
         return data
     } catch (error) {
         return error

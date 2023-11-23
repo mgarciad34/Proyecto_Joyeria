@@ -93,4 +93,9 @@ class ControladorJoya extends Controller
         // for($i=0;$i<count($detalle);$i++)
         // print_r($detalle[$i]->id_componente);
     }
+    function ownerJoya($id,$id_usuario){
+       
+        $cuenta=Joya::where('id','=',$id)->where('id_usuario','=',$id_usuario)->count();
+            return response()->json(['resultado'=>$cuenta>0]);
+        }
 }
