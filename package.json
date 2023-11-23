@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "dev": "webpack serve --config webpack.config.js --mode development"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dev-server": "^0.2.0"
+  }
 }

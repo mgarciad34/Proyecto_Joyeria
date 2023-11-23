@@ -58,7 +58,11 @@ class ControladorReceta extends Controller
             $id=$nueva[$i]['id_componente'];
             $componentesNuevaReceta[]=$id;
             if (in_array($id, $componentesViejaReceta)) {
-                print_r('  EL valor '.$id.' no es nuevo');
+                $posicion = array_search($id, $componentesViejaReceta['id_componente']);
+
+
+
+
             }else{
                $detalle_receta=new Detalle_receta();
                $detalle_receta->id_joya=$id_joya;

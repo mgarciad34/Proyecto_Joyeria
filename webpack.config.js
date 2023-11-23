@@ -19,7 +19,15 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
       },
-   
+      devServer: {
+        static: path.resolve(__dirname, './'), // Carpeta base para el servidor de desarrollo
+        port: 8080, // Puerto del servidor
+        open: true, // Abrir el navegador automáticamente al iniciar el servidor
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          // Otros encabezados si es necesario
+        },
+      },
    
 
 
