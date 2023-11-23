@@ -57,11 +57,21 @@ class ControladorReceta extends Controller
         for ($i=0;$i<count($nueva);$i++){
             $id=$nueva[$i]['id_componente'];
             $componentesNuevaReceta[]=$id;
+        
             if (in_array($id, $componentesViejaReceta)) {
-                $posicion = array_search($id, $componentesViejaReceta['id_componente']);
+                $sigue=false;
+                $x=0;
+                while($x<count($antigua) && !$sigue){
+                    if($antigua[$x]['id_componente']==$id){
+                        $sigue=true;
+                        if($antigua[$x]['cantidad']!=$nueva[$i]['cantidad']){
+                            $actualizar=Detalle_receta::where('id_joya','=',$id_joya)->where('id_componente','=',$id);
+                            $actualizar->update(['cantidad'=>$nueva[$i]['cantidad']]);
+                           
+                        }
+                    }
 
-
-
+                }
 
             }else{
                $detalle_receta=new Detalle_receta();
