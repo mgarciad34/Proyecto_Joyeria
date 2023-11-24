@@ -31,4 +31,19 @@ class ControladorLote extends Controller
 
         return response()->json(['mensaje' => 'Lote insertado correctamente']);
     }
+
+    function cambiarEstadoLote(Request $request, $id){
+        $request->validate([
+            'estado' => 'required',
+        ]);
+        $lote = Lote::find($id);
+
+        if (!$lote) {
+            return response()->json(['mensaje' => 'Lote no encontrado'], 404);
+        }
+        $lote->estado = $request->input('estado');
+        $lote->save();
+        return response()->json(['mensaje' => 'Estado del lote actualizado correctamente']);
+    }
+
 }

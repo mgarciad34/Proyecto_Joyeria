@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('consultarlotes',[ControladorLote::class,'insertarLote']);
+Route::put('modificar/estado/{id}',[ControladorLote::class,'cambiarEstadoLote']);
 Route::get('consultarLotes',[ControladorLote::class,'consultarLotesNoClasificados']);
 Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
 Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
