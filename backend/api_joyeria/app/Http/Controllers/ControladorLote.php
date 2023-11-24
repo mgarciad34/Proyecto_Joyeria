@@ -46,4 +46,17 @@ class ControladorLote extends Controller
         return response()->json(['mensaje' => 'Estado del lote actualizado correctamente']);
     }
 
+    function consultarLotes(Request $request){
+        // Obtener todos los lotes
+        $lotes = Lote::all();
+
+        // Verificar si se encontraron lotes
+        if ($lotes->isEmpty()) {
+            return response()->json(['mensaje' => 'No se encontraron lotes'], 404);
+        }
+
+        // Devolver una respuesta JSON con la lista de todos los lotes
+        return response()->json(['mensaje' => $lotes]);
+    }
+
 }
