@@ -9,6 +9,7 @@ module.exports = {
         appRecetaJoya: './frontend/src/js/appRecetaJoya.js',
         appHistorialJoyas: './frontend/src/js/appHistorialJoyas.js',
         appModificarJoya: './frontend/src/js/appModificarJoya.js',
+        appFabricarJoyas: './frontend/src/js/appFabricarJoyas.js',
         httpDesignJoya: './frontend/src/js/http/http-designJoya.js',
         httpClasificador: './frontend/src/js/http/http-Clasificador.js',
         httpLote: './frontend/src/js/http/http-lote.js',

@@ -37,16 +37,10 @@ function pintarJoyas(joyas) {
             let creador=document.createElement('span')
             creador.textContent=joyas[0][i].id_usuario
 
-           let necasariaCelda=document.createElement('td')
-            let necesaria=document.createElement('span')
-            necesaria.textContent=joyas[0][i].cantidad_necesaria
-
-            let disponibleCelda=document.createElement('td')
-            let disponible=document.createElement('span')
-            disponible.textContent=joyas[0][i].cantidad_necesaria
 
             boton.addEventListener('click', function(event) {
                fabricarJoya(boton.id,usuario).then(function(){
+                console.log('hola')
                 window.location.reload()
                })
                 
@@ -56,16 +50,12 @@ function pintarJoyas(joyas) {
             nombreCelda.appendChild(nombre)
             fotoCelda.appendChild(foto)
             creadorCelda.appendChild(creador)
-            necasariaCelda.appendChild(necesaria)
-            disponibleCelda.appendChild(disponible)
            botonCelda.appendChild(boton);
 
            fila.appendChild(idCelda);
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
            fila.appendChild(creadorCelda)
-           fila.appendChild(necesaria)
-           fila.appendChild(disponible)
             fila.appendChild(botonCelda);
 
             tabla.appendChild(fila);
