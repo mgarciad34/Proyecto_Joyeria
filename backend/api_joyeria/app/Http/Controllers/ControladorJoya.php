@@ -9,6 +9,7 @@ use App\Models\HistoricoJoya;
 use App\Models\Tipos_componente;
 use App\Models\Receta;
 use App\Http\Controllers\ControladorReceta;
+use Illuminate\Support\Facades\DB;
 class ControladorJoya extends Controller
 {
     function nuevaJoya(Request $request){
@@ -99,4 +100,18 @@ class ControladorJoya extends Controller
         $cuenta=Joya::where('id','=',$id)->where('id_usuario','=',$id_usuario)->count();
             return response()->json(['resultado'=>$cuenta>0]);
         }
+
+    function getDisponibles(){
+        $disponibles=[];
+        $joyas=DB::select('SELECT DISTINCT j.id AS id_joya FROM joyas j 
+        JOIN detalle_recetas dr ON j.id = dr.id_joya 
+        JOIN tipos_componentes tc ON dr.id_componente = tc.id 
+        WHERE tc.cantidad >= dr.cantidad;');
+      for ($i=0;$i<count($joyas);$i++){
+        $joya=Joya::find($joyas[$i]->id_joya);
+        $disponibles[]=$joya;
+        
+      }
+      return response()->json([$disponibles]);
+    }
 }

@@ -51,6 +51,8 @@ Route::get('joyas/{id}',[ControladorJoya::class,'getJoyaById']);
 Route::put('joyas/{id}',[ControladorJoya::class,'updateJoya']);
 Route::get('joyas/owner/{id}/{id_usuario}',[ControladorJoya::class,'ownerJoya']);
 
+Route::get('joya/disponibles', [ControladorJoya::class, 'getDisponibles']);
+
 
 
 Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
