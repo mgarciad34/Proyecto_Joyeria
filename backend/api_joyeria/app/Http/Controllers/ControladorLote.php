@@ -8,11 +8,27 @@ class ControladorLote extends Controller
 {
     function consultarLotesNoClasificados(){
         $lotes = Lote::all()->where('estado', '=','entregado');
-      
+
         return response()->json(['mensaje' => $lotes]);
     }
     function consultarLote($id){
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
+    }
+
+    function insertarLote(Request $request){
+        $request->validate([
+            'id_empresa' => 'required',
+            'ubicacion' => 'required',
+            'estado' => 'required',
+        ]);
+
+        $nuevoLote = new Lote();
+        $nuevoLote->id_empresa = $request->input('id_empresa');
+        $nuevoLote->ubicacion = $request->input('ubicacion');
+        $nuevoLote->estado = $request->input('estado');
+        $nuevoLote->save();
+
+        return response()->json(['mensaje' => 'Lote insertado correctamente']);
     }
 }
