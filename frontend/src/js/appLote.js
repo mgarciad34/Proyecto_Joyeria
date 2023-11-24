@@ -108,6 +108,8 @@ btnGuardar.addEventListener('click',function(){
       
 guardarElementosBdd(componentes,idLote).then(function(data){
    alert('guardado correctamente')
+   sessionStorage.removeItem('lote-a-clasificar')
+   window.location.href='./indexClasificador.html'
     
 })
 
