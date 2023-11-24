@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\RolAsignado;
 
 
@@ -20,7 +20,7 @@ class ControladorUsuarios extends Controller
                 'password' => 'required|string|min:6',
             ]);
 
-            $nuevoUsuario = Usuario::create([
+            $nuevoUsuario = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
