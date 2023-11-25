@@ -34,6 +34,7 @@ Route::post('logout', [ControladorAuth::class, 'logout']);
 Route::prefix('administrador')->group(function () {
     Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
     Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);
+    Route::delete('/eliminar/rol/usuario', [ControladorAdministrador::class, 'eliminarRol']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -83,4 +83,43 @@ class ControladorAdministrador extends Controller
     }
 
 
+    public function eliminarRol(Request $request)
+    {
+        try {
+            $request->validate([
+                'idUsuario' => 'required',
+                'idRol' => 'required',
+            ]);
+
+            $idUsuario = $request->input('idUsuario');
+            $idRol = $request->input('idRol');
+
+            $usuarioExistente = User::find($idUsuario);
+
+            if (!$usuarioExistente) {
+                return response()->json(['error' => 'El usuario no existe'], 404);
+            }
+
+
+            $rolExistente = Rol::where('id', $idRol)->exists();
+
+            if (!$rolExistente) {
+                return response()->json(['error' => 'El rol no existe'], 404);
+            }
+
+            $rolAsignado = RolAsignado::where('idusuario', $idUsuario)
+            ->where('idrol', $idRol)->first();
+
+            if (!$rolAsignado) {
+                return response()->json(['error' => 'El rol no está asignado al usuario'], 404);
+            }
+
+            $rolAsignado->delete();
+
+            return response()->json(['message' => 'Rol eliminado exitosamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }
