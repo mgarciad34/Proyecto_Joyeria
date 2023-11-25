@@ -10,6 +10,7 @@ use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
 use App\Http\Controllers\ControladorJoya;
+use App\Http\Controllers\ControladorAdministrador;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +30,12 @@ Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
 Route::post('login', [ControladorAuth::class, 'login']);
 Route::post('logout', [ControladorAuth::class, 'logout']);
 
+//Rutas agrupadas del administrador
+Route::prefix('administrador')->group(function () {
+    Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
+    Route::post('/agregar/rol/usuario/{idusuario}/{idrol}', [ControladorAdministrador::class, 'insertarRol']);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -40,6 +47,7 @@ Route::get('consultar/lotes',[ControladorLote::class,'consultarLotes']);
 //Consultar Lotes sin clasificar
 Route::get('consultarLotes',[ControladorLote::class,'consultarLotesNoClasificados']);
 Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
+
 Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
 
 Route::post('lote/clasificar/{id}',[ControladorComponentes::class,'guardarElementosLote']);
