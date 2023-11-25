@@ -19,6 +19,7 @@ class ControladorAdministrador extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:6',
+                'rol' => 'required',
             ]);
 
             $nuevoUsuario = User::create([
@@ -27,7 +28,7 @@ class ControladorAdministrador extends Controller
                 'password' => bcrypt($request->input('password')),
             ]);
 
-            $this->insertarRol($nuevoUsuario->id, $request->input('rol'));
+            $this->insertarRol($request, $nuevoUsuario->id, $request->input('rol'));
 
             return response()->json(['message' => 'Usuario creado exitosamente'], 201);
         } catch (\Exception $e) {
@@ -35,9 +36,29 @@ class ControladorAdministrador extends Controller
         }
     }
 
-    public function insertarRol($idUsuario, $idRol)
+
+    public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     {
         try {
+            if ($idUsuario !== null && $idRol !== null) {
+            } else {
+                $request->validate([
+                    'idUsuario' => 'required',
+                    'idRol' => 'required',
+                ]);
+
+                $idUsuario = $request->input('idUsuario');
+                $idRol = $request->input('idRol');
+            }
+
+            $registroExistente = RolAsignado::where('idusuario', $idUsuario)
+                                            ->where('idrol', $idRol)
+                                            ->exists();
+
+            if ($registroExistente) {
+                return response()->json(['message' => 'El rol ya está asignado al usuario'], 200);
+            }
+
             $usuarioExistente = User::find($idUsuario);
 
             if (!$usuarioExistente) {

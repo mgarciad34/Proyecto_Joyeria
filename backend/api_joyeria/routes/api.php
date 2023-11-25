@@ -33,7 +33,7 @@ Route::post('logout', [ControladorAuth::class, 'logout']);
 //Rutas agrupadas del administrador
 Route::prefix('administrador')->group(function () {
     Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
-    Route::post('/agregar/rol/usuario/{idusuario}/{idrol}', [ControladorAdministrador::class, 'insertarRol']);
+    Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
