@@ -10,14 +10,13 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    //
     protected $table = "users";
     protected $fillable = [
         'name',
         'email',
-        'rol',
         'password',
-        'remember_token'
+
     ];
 
     protected $hidden = [
@@ -30,5 +29,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public $timestamps = false; // Desactiva los timestamps
+    public $timestamps = false;
 }

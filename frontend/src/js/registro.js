@@ -1,17 +1,22 @@
 // Importamos las clases a utilizar
 import Users from '../js/clases/Users.js';
 import { validarNombre, validarCorreo, validarContrasena, confirmarContrasena } from './validaciones.js';
+import { enviarDatos, comprobarColor } from './http/http-registro.js';
 
 // Variables a rellenar
 var nombre = document.getElementById('nombre');
-var correo = document.getElementById('email');
-var rol = document.getElementById('rol')
+var correo = document.getElementById('email'); 
 var contrasena = document.getElementById('password');
 var repetirContrasena = document.getElementById('confirmPassword');
 var btnregistro = document.getElementById('registrarse');
 
 // Variables de notificaciones
 var mensajeContrasena = document.getElementById('messagePassword');
+var mensajeContrasenaConfirmar = document.getElementById('messagePasswordConfirm');
+var mensajeNombre = document.getElementById('messageName');
+var mensajeEmail = document.getElementById('messageEmail');
+//Variables de los validadores
+
 
 // Funcionalidades
 function comprobarContrasena(contrasena) {
@@ -37,54 +42,61 @@ function comprobarContrasena(contrasena) {
 
 // -------------------- LISTENERS --------------------
 // Comprobación dinámica de la contraseña cuando se genera un cambio en el formulario
+
+nombre.addEventListener('input', function(){
+    if (validarNombre(nombre.value) === false){
+        mensajeNombre.style.color = "red";
+        mensajeNombre.innerHTML = "Nombre Incorrecto";
+    }else{
+        mensajeNombre.style.color = "green";
+        mensajeNombre.innerHTML = "Nombre Correcto";
+    }
+});
+
+correo.addEventListener('input', function(){
+    if (validarCorreo(correo.value) === false){
+        mensajeEmail.style.color = "red";
+        mensajeEmail.innerHTML = "Correo Incorrecto";
+    }else{
+        mensajeEmail.style.color = "green";
+        mensajeEmail.innerHTML = "Correo Correcto";
+    }
+});
+
 contrasena.addEventListener('input', function(){
     comprobarContrasena(contrasena.value);
 });
 
-btnregistro.addEventListener('click', function(event){
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
-
-
-    var mensaje = ""; // Declarar mensaje antes de su uso
-    if (validarNombre(nombre.value) === false){
-        mensaje += "Nombre incorrecto \n";
-    }
-    if (validarCorreo(correo.value) === false){
-        mensaje += "Correo incorrecto \n";
-    }
-    if (comprobarContrasena(contrasena.value) === false){
-        mensaje += "Contraseña incorrecta \n";
-    }
-    if (confirmarContrasena(contrasena.value, repetirContrasena.value) === false){
-        mensaje += "Las contraseñas introducidas son diferentes";
-    }
-
-    // Hacer algo con el mensaje (mostrar alerta, enviar a un servidor, etc.)
-    if (mensaje === "") {
-        var registrarUsuario = new Users(nombre.value, email.value, rol.value, contrasena.value)
-        const url = 'http://127.0.0.1:8000/api/usuarios'
-        enviarDatos(registrarUsuario, url)
+repetirContrasena.addEventListener('input', function(){
+    var result = confirmarContrasena(contrasena.value, repetirContrasena.value)
+    console.log(result)
+    if(result === true){
+        mensajeContrasenaConfirmar.style.color = "green";
+        mensajeContrasenaConfirmar.innerHTML = "Las contraseñas coinciden";
     }else{
-        alert(mensaje);
+        mensajeContrasenaConfirmar.style.color = "red";
+        mensajeContrasenaConfirmar.innerHTML = "Las contraseñas no coinciden";
     }
 });
 
-async function enviarDatos(datos, ruta) {
-    try {
-      const respuesta = await fetch(ruta, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(datos),
-      });
-  
-      if (!respuesta.ok) {
-        throw new Error(`Error de red: ${respuesta.status}`);
-      }
-  
-      window.location.href="../index.html"
-    } catch (error) {
-      console.error('Error al enviar los datos:', error.message);
-    }
-  }
+
+btnregistro.addEventListener('click', function(event){
+    event.preventDefault();
+    var nuevoUsuario = new Users(nombre.value, correo.value, contrasena.value); 
+    console.log(JSON.stringify(nuevoUsuario))
+    const url = 'http://127.0.0.1:8000/api/usuarios';
+    var colorNombre = comprobarColor(mensajeNombre)
+    var colorCorreo = comprobarColor(mensajeEmail)
+    var colorContrasena = comprobarColor(mensajeContrasena)
+    var colorConfirmar = comprobarColor(mensajeContrasenaConfirmar)
+    var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
+    if(sumatorio == 4){
+            enviarDatos(nuevoUsuario, url).then(function(){
+            window.location.href="../index.html";
+        });
+        
+    }    
+});
+
+
+
