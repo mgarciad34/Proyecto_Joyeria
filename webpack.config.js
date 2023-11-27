@@ -2,10 +2,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 module.exports = {
-    entry: {
-        registro: './frontend/src/js/registro.js',
-        login: './frontend/src/js/login.js',
-        appClasificador: './frontend/src/js/appClasificador.js',
+  entry: {
+    registro: './frontend/src/js/registro.js',
+    login: './frontend/src/js/login.js',
+    appClasificador: './frontend/src/js/appClasificador.js',
         appLote: './frontend/src/js/appLote.js',
         appDesignjoya: './frontend/src/js/appDesignJoya.js',
         appListadoJoyas: './frontend/src/js/appListadoJoyas.js',
@@ -20,8 +20,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
       },
       devServer: {
-        static: path.resolve(__dirname, './'), 
-        port: 8080, 
+        static: path.resolve(__dirname, './frontend/src'), 
+        port: 8090, 
         open: true,
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -31,21 +31,21 @@ module.exports = {
    
 
 
+
+  //     plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: './frontend/src/index.html',
+  //     filename: 'index.html',
+  //   }),
+  //   new HtmlWebpackPlugin({
+  //     template: './frontend/src/views/registro.html',
+  //     filename: 'views/registro.html',
+  //   }),
+  //   new HtmlWebpackPlugin({
+  //     template: './frontend/src/views/inicio.html',
+  //     filename: 'views/inicio.html',
+  //   }),
+  // ],
 };
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './frontend/src/index.html',
-      filename: 'index.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './frontend/src/views/registro.html',
-      filename: 'views/registro.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './frontend/src/views/inicio.html',
-      filename: 'views/inicio.html',
-    }),
-  ]
-};
 

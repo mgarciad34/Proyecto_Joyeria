@@ -4,28 +4,24 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev config": "webpack serve --config webpack.config.js --mode development"
+    "config": "webpack serve --config webpack.config.js --mode development",
     "start": "webpack --watch mode development",
     "dev": "webpack-dev-server --mode development"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-
-    "dev-server": "^0.2.0"
-
-    "html-webpack-plugin": "^5.5.3",
+    "dev-server": "^0.2.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
-
   }
 }
