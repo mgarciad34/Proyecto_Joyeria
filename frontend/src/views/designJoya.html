@@ -23,34 +23,69 @@
             
         }
     </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 </head>
 <body>
-    <nav><ul>
-        <li><a href="./listaJoyas.html">Joyas</a></li>
-        <li><a href="./listaJoyasUsuario.html">Tus Joyas</a></li>
-        <li><a href="./designJoya.html">Nueva Joya</a></li>
-        <li><a href="./fabricarJoyas.html">Fabricar</a></li>
-        <li><a href="./historialJoyas.html">Historial</a></li>
+    <header class="row bg-warning row-warning">
+   
+        <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyas.html">Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyasUsuario.html">Tus Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./designJoya.html">Nueva Joya</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./fabricarJoyas.html">Fabricar</a>
+                        </li>
+                         <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./historialJoyas.html">Historial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="text-center mb-3">
+        <h4> Crear nueva Joya</h4>
         
-    </ul></nav>
-    <h4>Inicio</h4>
-    <table>
-        <caption>Nueva joya</caption>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>foto</th>
-            </tr>
-        </thead>
-        <tbody id="tabla_joya">
-            <tr>
-                <td><input id="inputNombre" type="text"></td>
-                <th><input id="inputFoto" type="text"></th>
-            </tr>
-        </tbody>
-    </table>
-    <table>
-        <caption>Introduce una receta para la joya</caption>
+    </div>
+    <div class="container">
+        <caption>Datos principales</caption>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>foto</th>
+                </tr>
+            </thead>
+            <tbody id="tabla_joya">
+        <tr>
+            <td><input id="inputNombre" type="text"></td>
+            <th><input id="inputFoto" type="text"></th>
+        </tr>
+    </tbody>
+</table>
+<caption>Introduce una receta para la joya</caption>
+<table class="table">
         <thead>
             <tr>
                 <th>Componente necesario</th>
@@ -64,7 +99,7 @@
                         <option id="opcion-default" value="0" disabled selected>Selecciona un tipo</option>     
                     </select>
                 </td>
-            
+                
                 <td><input id="inputCantidad" min=0 type="number"></td>
                 <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
             </tr>
@@ -72,6 +107,10 @@
         <tbody id="detalle-receta"></tbody>
         <tfoot><tr><td><button id="btn-guardar" disabled>Crear joya</button></td></tr></tfoot>
     </table>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
     
     <script src="../../../dist/appDesignjoya.bundle.js"></script>
 </body>

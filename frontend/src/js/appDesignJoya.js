@@ -8,6 +8,8 @@ let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+btnAdd.disabled=true
+btnGuardar.disabled=true
 obtenerTipos().then(function (data) {
     let desplegable = document.getElementById('tipos-habilitados')
     console.log(data)
