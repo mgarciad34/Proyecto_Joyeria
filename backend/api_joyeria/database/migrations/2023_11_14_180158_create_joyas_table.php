@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('foto')->nullable();
+            $table->unsignedBigInteger('id_usuario')->default(1);
         });
     }
 

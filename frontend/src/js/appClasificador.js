@@ -1,7 +1,4 @@
-
-
-const apiUrl1 = 'http://127.0.0.1:8000/api/consultarLotes'
-
+import{obtenerLotes} from './http/http-Clasificador.js'
 
 obtenerLotes().then(function(data){
     pintarLotes(data)
@@ -11,21 +8,6 @@ obtenerLotes().then(function(data){
 
 })
 
-async function obtenerLotes() {
-    try {
-        const response = await fetch('http://127.0.0.1:8000/api/consultarLotes');
-        if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
-        }
-
-        const data = await response.json();
-        
-        return data
-
-    } catch (error) {
-        return false
-    }
-}
 
 
 function pintarLotes(lotes) {

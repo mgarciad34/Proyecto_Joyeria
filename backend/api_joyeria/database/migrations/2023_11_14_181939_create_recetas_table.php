@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('recetas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_usuario')->nullable();
-            $table->unsignedBigInteger('id_joya');
-        });
-    }
+    // public function up(): void
+    // {
+    //     Schema::create('recetas', function (Blueprint $table) {
+    //         // $table->id();
+    //         // $table->unsignedBigInteger('id_usuario')->nullable();
+    //         // $table->unsignedBigInteger('id_joya');
+    //     });
+    // }
 
     /**
      * Reverse the migrations.

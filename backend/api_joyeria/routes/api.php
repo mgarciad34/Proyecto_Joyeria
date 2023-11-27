@@ -9,7 +9,9 @@ use App\Http\Controllers\ControladorAuth;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
+use App\Http\Controllers\ControladorDespieceLotes;
 use App\Http\Controllers\ControladorJoya;
+use App\Http\Controllers\ControladorReceta;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,6 +40,27 @@ Route::get('consultarLotes',[ControladorLote::class,'consultarLotesNoClasificado
 Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
 Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
 
-Route::post('lote/clasificar/{id}',[ControladorComponentes::class,'guardarElementosLote']);
+Route::post('lote/clasificar/{id}',[ControladorDespieceLotes::class,'guardarElementosLote']);
 
 Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
+
+
+Route::put('joya/fabricar/{id}',[ControladorJoya::class,'fabricarJoya']);
+
+Route::get('joyas',[ControladorJoya::class,'getAllJoyas']);
+
+Route::get('joyas/usuario/{id}',[ControladorJoya::class,'getJoyaFromUsuario']);
+Route::get('/joyas/historial',[ControladorJoya::class,'getAllHistorial']);
+Route::delete('joyas/eliminar/{id}',[ControladorJoya::class,'deleteJoya']);
+Route::get('joyas/{id}',[ControladorJoya::class,'getJoyaById']);
+Route::put('joyas/{id}',[ControladorJoya::class,'updateJoya']);
+Route::get('joyas/owner/{id}/{id_usuario}',[ControladorJoya::class,'ownerJoya']);
+
+Route::get('joya/disponibles', [ControladorJoya::class, 'getDisponibles']);
+
+
+
+Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
+
+Route::post('receta/{id}',[ControladorReceta::class,'nuevaReceta']);
+

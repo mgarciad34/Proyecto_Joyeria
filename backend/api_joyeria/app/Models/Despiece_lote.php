@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Detalle_receta extends Model
+class Despiece_lote extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = ['id_joya', 'id_componente'];
-    public $incrementing = false; 
+    protected $fillable = [
+        'descripcion',
+        'tipo',
+        'cantidad',
+    ];
     public $timestamps = false;
-   protected $fillable=[
-        'cantidad'
-   ];
-
 }

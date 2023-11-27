@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipos_componentes', function (Blueprint $table) {
+        Schema::create('despiece_lotes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('cantidad')->default(0);
+            $table->text('descripcion');
+            $table->unsignedBigInteger('tipo');
+            $table->integer('cantidad');
+           
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos_componentes');
+        Schema::dropIfExists('table_despiece_lotes');
     }
 };
