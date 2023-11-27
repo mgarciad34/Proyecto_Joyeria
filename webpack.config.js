@@ -29,25 +29,9 @@ module.exports = {
           'Access-Control-Allow-Origin': '*',
           
         },
+        
       },
    
-
-
-
-  //     plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: './frontend/src/index.html',
-  //     filename: 'index.html',
-  //   }),
-  //   new HtmlWebpackPlugin({
-  //     template: './frontend/src/views/registro.html',
-  //     filename: 'views/registro.html',
-  //   }),
-  //   new HtmlWebpackPlugin({
-  //     template: './frontend/src/views/inicio.html',
-  //     filename: 'views/inicio.html',
-  //   }),
-  // ],
 };
 
 
