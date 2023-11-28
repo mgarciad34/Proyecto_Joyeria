@@ -1,6 +1,6 @@
 export async function obtenerDespiece(id) {
     
-    const url='http://127.0.0.1:8000/api/lote/despiece/'+id
+    const url='http://127.0.0.1:8000/api/despieces/lote/'+id
     try {
         const response = await fetch(url);
         if (!response.ok) {

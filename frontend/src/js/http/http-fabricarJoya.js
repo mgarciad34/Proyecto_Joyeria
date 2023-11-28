@@ -1,7 +1,7 @@
 
 export async function obtenerJoyas() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/joya/disponibles');
+        const response = await fetch('http://127.0.0.1:8000/api/joyas/disponibles/lista');
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
@@ -23,7 +23,7 @@ export async function fabricarJoya(joya,id_usuario) {
     json['id_usuario']=id_usuario
 
     try {
-        let url = 'http://127.0.0.1:8000/api/joya/fabricar/'+joya
+        let url = 'http://127.0.0.1:8000/api/joyas/fabricar/'+joya
         const options = {
             method: "PUT",
             headers: {

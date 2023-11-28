@@ -1,6 +1,6 @@
 export async function obtenerLotes() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/consultarLotes');
+        const response = await fetch('http://127.0.0.1:8000/api/lotes/entregados');
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }

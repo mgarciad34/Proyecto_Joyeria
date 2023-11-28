@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Lote;
 class ControladorLote extends Controller
 {
-    function consultarLotesNoClasificados(){
+    function consultarLotesEntregados(){
         $lotes = Lote::where('estado', '=','entregado')->get();
         $json['lotes']=$lotes;
         return response()->json([ $json]);
