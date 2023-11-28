@@ -25,6 +25,7 @@ class ControladorDespieceLotes extends Controller
             $tipo->cantidad+=$componente->cantidad;
             $tipo->save();
         }
+        $lote->id_clasificador=$idClasificador;
         $lote->estado='clasificado';
         $lote->save();
         return response()->json(['mensaje'=>'Lote clasificado correctamente']);

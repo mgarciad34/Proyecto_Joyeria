@@ -19,7 +19,7 @@ function pintarLotes(lotes) {
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
-            boton.textContent = 'Despiece'
+            boton.textContent = 'Clasificar'
             boton.setAttribute('id',lotes[0].lotes[i].id)
 
             let idCelda = document.createElement('td');
@@ -37,8 +37,8 @@ function pintarLotes(lotes) {
             ubicacion.textContent=lotes[0].lotes[i].ubicacion
 
             boton.addEventListener('click', function(event) {
-                sessionStorage.setItem('lote-clasificado',JSON.parse(boton.id))
-                window.location.href='./despieceLote.html'
+                sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
+                window.location.href='./indexLote.html'
                 
               });
 

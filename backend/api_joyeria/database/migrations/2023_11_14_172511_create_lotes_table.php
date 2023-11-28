@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_empresa');
             $table->string('ubicacion');
             $table->string('estado');
+            $table->unsignedBigInteger('id_clasificador')->default(0);
             
         });
     }
