@@ -11,7 +11,7 @@ use App\Http\Controllers\ControladorTipos;
 use App\Http\Controllers\ControladorComponentes;
 use App\Http\Controllers\ControladorDespieceLotes;
 use App\Http\Controllers\ControladorJoya;
-
+use App\Http\Controllers\ControladorRec;
 //Registro de usuarios
 Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
 
@@ -64,7 +64,7 @@ Route::get('joya/disponibles', [ControladorJoya::class, 'getDisponibles']);
 
 
 
-Route::get('recetas/{id}',[ControladorReceta::class,'getRecetaOfJoya']);
+Route::get('recetas/{id}',[ControladorRec::class,'getRecetaOfJoya']);
 
 Route::post('receta/{id}',[ControladorReceta::class,'nuevaReceta']);
 

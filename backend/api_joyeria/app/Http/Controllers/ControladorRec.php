@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Receta;
 use App\Models\Detalle_receta;
 use App\Models\Tipos_componente;
+use Illuminate\Http\Request;
 
-class ControladorReceta extends Controller
+class ControladorRec extends Controller
 {
     function getRecetaOfJoya($id){
        
