@@ -20,10 +20,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
       },
       devServer: {
-        static: path.resolve(__dirname, './frontend'), 
+        static: path.resolve(__dirname, './'), 
         port: 8090, 
         open: {
-          target: 'src/index.html',
+          target: 'frontend/src/index.html',
         },
         headers: {
           'Access-Control-Allow-Origin': '*',

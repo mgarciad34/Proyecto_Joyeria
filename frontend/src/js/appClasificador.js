@@ -12,25 +12,25 @@ obtenerLotes().then(function(data){
 
 function pintarLotes(lotes) {
     var tabla = document.getElementById('tabla_lotes');
-        console.log(lotes)
-        lotes.mensaje.forEach(function (lote) {
-            console.log(lote.id)
+        let lista =[lotes.mensaje]
+        for (let i=0;i<lista[0].length;i++){
+           
             let fila = document.createElement('tr');
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
             boton.textContent = 'hola'
-            boton.setAttribute('id',lote.id)
+            boton.setAttribute('id',lista[0][i].id)
 
             let idCelda = document.createElement('td');
 
             let id= document.createElement('span');
-            id.textContent=lote.id
+            id.textContent=lista[0][i].id
            
 
             let idEmpresaCelda = document.createElement('td');
             let idEmpresa= document.createElement('span');
-            idEmpresa.textContent=lote.id_empresa
+            idEmpresa.textContent=lista[0][i].id_empresa
            
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
@@ -47,6 +47,6 @@ function pintarLotes(lotes) {
             fila.appendChild(botonCelda);
             tabla.appendChild(fila);
         }
-        )
+        
         
     }

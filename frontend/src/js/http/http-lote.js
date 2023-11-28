@@ -3,6 +3,7 @@ const apiUrlEnviar='http://127.0.0.1:8000/api/lote/clasificar/'
 
 export async function guardarElementosBdd(elementos,idLote){
     let url=apiUrlEnviar+idLote
+ 
     const options={
         method: "POST",
         headers:{

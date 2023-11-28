@@ -16,7 +16,8 @@ return new class extends Migration
             $table->text('descripcion');
             $table->unsignedBigInteger('tipo');
             $table->integer('cantidad');
-           
+            $table->unsignedBigInteger('id_lote');
+           $table->unsignedBigInteger('id_clasificador');
         });
     }
 

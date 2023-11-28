@@ -10,10 +10,9 @@ let cabecera=document.getElementById('cabecera')
 let tablaInput=document.getElementById('tabla-input')
 let btnAdd=document.getElementById('btnAddElement')
 let btnGuardar= document.getElementById('btn-guardar')
-
+let usuario=sessionStorage.getItem('id-usuario')
 btnGuardar.disabled=true
-console.log(idLote)
-console.log(idLote)
+
 if (idLote==null){
     tablaInput.style.display='none'
     cabecera.textContent='No se ha cargado ningun lote'
@@ -105,7 +104,8 @@ btnGuardar.addEventListener('click',function(){
 
        componentes.lista.push(componente)
       }
-      
+      console.log('hola')
+      componentes.usuario=usuario
 guardarElementosBdd(componentes,idLote).then(function(data){
    alert('guardado correctamente')
    sessionStorage.removeItem('lote-a-clasificar')
