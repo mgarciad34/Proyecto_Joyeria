@@ -34,8 +34,7 @@ function pintarLotes(lotes) {
 
             let clasificadorCelda=document.createElement('td')
             let clasificador=document.createElement('span')
-            clasificador=lotes[0].lotes[i].id_clasificador
-
+            clasificador.textContent=lotes[0].lotes[i].id_clasificador
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('despiece-lote',JSON.parse(boton.id))
                 window.location.href='./despieceLote.html'
@@ -45,10 +44,11 @@ function pintarLotes(lotes) {
             idEmpresaCelda.appendChild(idEmpresa)
            botonCelda.appendChild(boton);
            ubicacionCelda.appendChild(ubicacion)
-           
+          clasificadorCelda.appendChild(clasificador)
            fila.appendChild(idCelda);
            fila.appendChild(idEmpresaCelda);
            fila.appendChild(ubicacionCelda)
+           fila.appendChild(clasificadorCelda)
             fila.appendChild(botonCelda);
          
             tabla.appendChild(fila);
