@@ -16,6 +16,7 @@ module.exports = {
     appFabricarJoyas: './frontend/src/js/appFabricarJoyas.js',
     appLotesClasificados:'./frontend/src/js/appLotesClasificados.js',
     appDespieceLote:'./frontend/src/js/appDespieceLote.js',
+    appComponentesClasificados:'./frontend/src/js/appComponentesClasificados.js',
   },
       output: {
         filename: '[name].bundle.js',
