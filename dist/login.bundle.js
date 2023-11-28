@@ -1,1 +1,0 @@
-btnLogin.addEventListener("click",(async()=>{await iniciarSesion()}));
