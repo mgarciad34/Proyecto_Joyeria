@@ -1,5 +1,6 @@
-import { obtenerLotes } from "./http/http-lotesClasificados";
-obtenerLotes.then(function(data){
+import { obtenerLotes } from "./http/http-lotesClasificados.js";
+obtenerLotes().then(function(data){
+    
     pintarLotes(data)
 
 })
@@ -14,7 +15,7 @@ function pintarLotes(lotes) {
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
-            boton.textContent = 'Clasificar'
+            boton.textContent = 'Despiece'
             boton.setAttribute('id',lotes[0].lotes[i].id)
 
             let idCelda = document.createElement('td');
@@ -32,12 +33,12 @@ function pintarLotes(lotes) {
             ubicacion.textContent=lotes[0].lotes[i].ubicacion
 
             let clasificadorCelda=document.createElement('td')
-            let clasificador=documetn.createElement('span')
+            let clasificador=document.createElement('span')
             clasificador=lotes[0].lotes[i].id_clasificador
 
             boton.addEventListener('click', function(event) {
-                sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
-                window.location.href='./indexLote.html'
+                sessionStorage.setItem('despiece-lote',JSON.parse(boton.id))
+                window.location.href='./despieceLote.html'
                 
               });
             idCelda.appendChild(id)

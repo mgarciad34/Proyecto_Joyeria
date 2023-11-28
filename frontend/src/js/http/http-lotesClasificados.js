@@ -6,7 +6,7 @@ export async function obtenerLotes() {
         }
 
         const data = await response.json();
-        
+        console.log('hola')
         return data
 
     } catch (error) {
