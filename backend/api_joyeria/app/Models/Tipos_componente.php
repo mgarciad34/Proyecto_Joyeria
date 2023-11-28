@@ -10,6 +10,9 @@ class Tipos_componente extends Model
     use HasFactory;
     protected $table='tipos_componentes';
     protected $fillable = [
-        'nombre'
+        'nombre',
+        'cantidad'
     ];
+    public $timestamps=false;
+
 }
