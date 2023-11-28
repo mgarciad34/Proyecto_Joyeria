@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ControladorUsuarios;
+use App\Http\Controllers\ControladorAdministrador;
 use App\Http\Controllers\ControladorAuth;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
