@@ -40,6 +40,9 @@ Route::put('modificar/estado/{id}',[ControladorLote::class,'cambiarEstadoLote'])
 Route::get('consultar/lotes',[ControladorLote::class,'consultarLotes']);
 //Consultar Lotes sin clasificar
 Route::get('consultarLotes',[ControladorLote::class,'consultarLotesNoClasificados']);
+
+Route::get('consultarLotes/clasificados',[ControladorLote::class,'consultarLotesClasificados']);
+
 Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
 
 Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);

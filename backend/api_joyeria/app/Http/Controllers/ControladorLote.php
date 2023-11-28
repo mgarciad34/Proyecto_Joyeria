@@ -15,6 +15,7 @@ class ControladorLote extends Controller
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
     }
+    
 
     function insertarLote(Request $request){
         $request->validate([
@@ -58,5 +59,9 @@ class ControladorLote extends Controller
         // Devolver una respuesta JSON con la lista de todos los lotes
         return response()->json(['mensaje' => $lotes]);
     }
-
+    function consultarLotesClasificados(){
+        $lotes = Lote::where('estado', '=','clasificado')->get();
+        $json['lotes']=$lotes;
+        return response()->json([ $json]);
+    }
 }
