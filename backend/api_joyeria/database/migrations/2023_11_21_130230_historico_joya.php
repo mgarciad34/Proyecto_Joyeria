@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 return new class extends Migration
 {
     /**
@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipos_componentes', function (Blueprint $table) {
+        Schema::create('historico_joyas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('cantidad')->default(0);
+            $table->unsignedBigInteger('id_joya');
+            $table->unsignedBigInteger('id_usuario');
+            $table->date('creado');
+           
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos_componentes');
+        //
     }
 };

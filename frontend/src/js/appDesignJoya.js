@@ -1,3 +1,4 @@
+import { obtenerTipos,guardarNuevaJoya } from "./http/http-designJoya.js"
 const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
 
 
@@ -6,7 +7,9 @@ let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
-
+let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+btnAdd.disabled=true
+btnGuardar.disabled=true
 obtenerTipos().then(function (data) {
     let desplegable = document.getElementById('tipos-habilitados')
     console.log(data)
@@ -55,10 +58,12 @@ inputFoto.addEventListener('input', function () {
 btnGuardar.addEventListener('click', function () {
     let tbody = document.getElementById('detalle-receta')
     let joya = {}
+    
     joya.nombre = inputNombre.value
     joya.foto = inputFoto.value
+    joya.id_usuario=usuario
     joya.detalle = []
-
+    
 
     for (let i = 0; i < tbody.rows.length; i++) {
         let fila = tbody.rows[i];
@@ -73,62 +78,26 @@ btnGuardar.addEventListener('click', function () {
     }
     var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
     if (resultado) {
+        console.log(JSON.stringify(joya))
         guardarNuevaJoya(joya).then(function () {
             document.getElementById('inputNombre').value=''
             document.getElementById('inputFoto').value=''
-            window.location.reload()
+            window.location.href='listaJoyas.html'
         })
 
     }
 })
 
 
-async function obtenerTipos() {
-    try {
-        const response = await fetch(apiUrl2);
-        if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
-        }
 
-        const data = await response.json();
-
-        return data
-    } catch (error) {
-        return error
-    }
-
-}
-
-async function guardarNuevaJoya(joya) {
-
-    try {
-        let url = 'http://127.0.0.1:8000/api/joya/nueva'
-        const options = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'aplication/json'
-            },
-            body: JSON.stringify(joya)
-        }
-        const response = await fetch(url, options);
-        if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
-        }
-
-        const data = await response.json();
-
-        return data
-    } catch (error) {
-        return error
-    }
-}
 
 btnAdd.addEventListener('click', function () {
     let inputTipo = document.getElementById('tipos-habilitados').value
 
     let inputCantidad = document.getElementById('inputCantidad').value
     let validaciones = [true]
-    let mensaje = ''
+    let mensaje =''
+   
     if (inputCantidad == ''|| inputCantidad.includes('-') ||inputCantidad=='0') {
         mensaje = mensaje + ' Debe introducir una cantidad \n'
         validaciones.push(false)

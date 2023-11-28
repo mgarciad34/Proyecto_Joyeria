@@ -6,23 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('componentes', function (Blueprint $table) {
-            $table->id();
-            $table->text('descripcion');
-            $table->unsignedBigInteger('tipo');
-            $table->integer('cantidad');
+//     /**
+//      * Run the migrations.
+//      */
+//     public function up(): void
+//     {
+//         Schema::create('componentes', function (Blueprint $table) {
+//             $table->unsignedBigInteger('tipo');
+//             $table->integer('cantidad');
            
-        });
-    }
+//         });
+//     }
 
-    /**
-     * Reverse the migrations.
-     */
+//     /**
+//      * Reverse the migrations.
+//      */
     public function down(): void
     {
         Schema::dropIfExists('componentes');

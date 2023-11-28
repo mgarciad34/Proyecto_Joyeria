@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Document</title>
     <style>
         /*temporal*/
         nav ul {
@@ -23,8 +23,8 @@
             
         }
     </style>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 </head>
 <body>
     <header class="row bg-warning row-warning">
@@ -63,55 +63,45 @@
             </div>
         </nav>
     </header>
-    <div class="text-center mb-3">
-        <h4> Crear nueva Joya</h4>
+    <div class=" col-12 mt-4 mb-4">
+
+       <span class="col 1"> 
+           Filtro
+
+       </span> 
+        <select class="col-2" id="opciones-filtrado">
+            <option value="1" selected>ID Joya</option>
+            <option value="2">ID Usuario</option>
+            <option value="3">Fecha</option>
+        </select>
         
+        <input type="number" min="1" id="barra_busqueda" placeholder="Buscar">
+        <input id="filtro-fecha" style="display: none;" type="date">
     </div>
     <div class="container">
-        <caption>Datos principales</caption>
-        
+
         <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>foto</th>
-                </tr>
-            </thead>
-            <tbody id="tabla_joya">
-        <tr>
-            <td><input id="inputNombre" type="text"></td>
-            <th><input id="inputFoto" type="text"></th>
-        </tr>
-    </tbody>
-</table>
-<caption>Introduce una receta para la joya</caption>
-<table class="table">
+            <caption>Historial</caption>
         <thead>
             <tr>
-                <th>Componente necesario</th>
-                <th>Cantidad</th>
+                <th>ID</th>
+                <th>Id Joya</th>
+                <th>Usuario </th>
+                <th>Fecha</th>
             </tr>
         </thead>
-        <tbody id="tabla_receta">
-            <tr>
-                <td>
-                    <select id="tipos-habilitados">    
-                        <option id="opcion-default" value="0" disabled selected>Selecciona un tipo</option>     
-                    </select>
-                </td>
-                
-                <td><input id="inputCantidad" min=0 type="number"></td>
-                <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
-            </tr>
+        <tbody id="tabla-alerta" style="display: none;">
+            <tr><td></td></tr>
+            <tr><td colspan="4">No se han encontrado resultados</td></tr>
         </tbody>
-        <tbody id="detalle-receta"></tbody>
-        <tfoot><tr><td><button id="btn-guardar" disabled>Crear joya</button></td></tr></tfoot>
+        <tbody id="tabla_historial">
+            
+        </tbody>
     </table>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    
-    <script src="../../dist/appDesignjoya.bundle.js"></script>
+    <script src="../../dist/appHistorialJoyas.bundle.js"></script>
 </body>
 </html>
