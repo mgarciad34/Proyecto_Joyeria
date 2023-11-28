@@ -7,9 +7,9 @@ use App\Models\Lote;
 class ControladorLote extends Controller
 {
     function consultarLotesNoClasificados(){
-        $lotes = Lote::all()->where('estado', '=','entregado');
-
-        return response()->json(['mensaje' => $lotes]);
+        $lotes = Lote::where('estado', '=','entregado')->get();
+        $json['lotes']=$lotes;
+        return response()->json([ $json]);
     }
     function consultarLote($id){
         $lotes = Lote::find($id);

@@ -12,25 +12,25 @@ obtenerLotes().then(function(data){
 
 function pintarLotes(lotes) {
     var tabla = document.getElementById('tabla_lotes');
-        let lista =[lotes.mensaje]
-        for (let i=0;i<lista[0].length;i++){
-           
+        // let lista =[lotes.mensaje]
+   
+        for (let i=0;i<lotes[0].lotes.length;i++){
             let fila = document.createElement('tr');
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
             boton.textContent = 'hola'
-            boton.setAttribute('id',lista[0][i].id)
+            boton.setAttribute('id',lotes[0].lotes[i].id)
 
             let idCelda = document.createElement('td');
 
             let id= document.createElement('span');
-            id.textContent=lista[0][i].id
+            id.textContent=lotes[0].lotes[i].id
            
 
             let idEmpresaCelda = document.createElement('td');
             let idEmpresa= document.createElement('span');
-            idEmpresa.textContent=lista[0][i].id_empresa
+            idEmpresa.textContent=lotes[0].lotes[i].id_empresa
            
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
