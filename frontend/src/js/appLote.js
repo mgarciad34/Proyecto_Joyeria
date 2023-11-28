@@ -38,7 +38,7 @@ let inputDescripcion=document.getElementById('inputDescripcion').value
 let inputCantidad=document.getElementById('inputCantidad').value
 let validaciones=[true]
 let mensaje=''
-if(inputCantidad==''){
+if(inputCantidad=='' ||inputCantidad<=0){
     mensaje=mensaje+' Debe introducir una cantidad \n'
     validaciones.push(false)
 
@@ -75,20 +75,34 @@ if(validaciones.includes(false)){
         let indiceSeleccionado = tipos.selectedIndex;
 
         let textoSeleccionado = tipos.options[indiceSeleccionado].textContent;
-        tipos.options[indiceSeleccionado].disabled=true
+        // tipos.options[indiceSeleccionado].disabled=true
         let tipo=document.createElement('span')
         tipo.textContent=textoSeleccionado
+
+        let botonEliminarCelda = document.createElement('td');
+            let botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar'
+            botonEliminar.style.background='red'
+        
+        botonEliminar.addEventListener('click',function(){
+            tablaElementosRegistrados.removeChild(fila)
+            if (tablaElementosRegistrados.children.length==0){
+                btnGuardar.disabled=true
+            }
+        })
+        
         celdaDescripcion.appendChild(descripcion)
         celdaCantidad.appendChild(cantidad)
         celdaTipo.appendChild(tipo);
-
+        botonEliminarCelda.appendChild(botonEliminar);
         fila.appendChild(celdaDescripcion);
         fila.appendChild(celdaCantidad);
         fila.appendChild(celdaTipo);
+        fila.appendChild(botonEliminarCelda)
         tablaElementosRegistrados.appendChild(fila);
         btnGuardar.disabled=false
 }
-document.getElementById('tipos-habilitados').value=0
+// document.getElementById('tipos-habilitados').value=0
 
 })
 btnGuardar.addEventListener('click',function(){
