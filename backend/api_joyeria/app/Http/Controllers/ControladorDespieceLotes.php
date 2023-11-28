@@ -30,4 +30,9 @@ class ControladorDespieceLotes extends Controller
         $lote->save();
         return response()->json(['mensaje'=>'Lote clasificado correctamente']);
        }
+       function getDespieceOfLote($id){
+        $despiece['despiece']=Despiece_lote::where('id_lote',$id)->get();
+
+        return response()->json([$despiece]);
+       }
 }

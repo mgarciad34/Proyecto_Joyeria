@@ -47,6 +47,8 @@ Route::get('consultarLoteId/{id}',[ControladorLote::class,'consultarLote']);
 
 Route::get('consultar/tipos',[ControladorTipos::class,'consultarTipos']);
 
+Route::get('lote/despiece/{id}',[ControladorDespieceLotes::class,'getDespieceOfLote']);
+
 Route::post('lote/clasificar/{id}',[ControladorDespieceLotes::class,'guardarElementosLote']);
 
 Route::post('joya/nueva',[ControladorJoya::class,'nuevaJoya']);
