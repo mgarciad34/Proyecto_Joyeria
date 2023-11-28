@@ -35,4 +35,9 @@ class ControladorDespieceLotes extends Controller
 
         return response()->json([$despiece]);
        }
+
+       function getAllDespieces(){
+        $despiece['componentes']=Despiece_lote::all();
+        return response()->json($despiece);
+       }
 }

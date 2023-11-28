@@ -73,3 +73,4 @@ Route::get('recetas/{id}',[ControladorRec::class,'getRecetaOfJoya']);
 
 Route::post('receta/{id}',[ControladorReceta::class,'nuevaReceta']);
 
+Route::get('lote/despiece',[ControladorDespieceLotes::class,'getAllDespieces']);
