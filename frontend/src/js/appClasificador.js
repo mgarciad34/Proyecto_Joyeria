@@ -12,7 +12,7 @@ obtenerLotes().then(function(data){
 
 function pintarLotes(lotes) {
     var tabla = document.getElementById('tabla_lotes');
-        console.log(lotes)
+        console.log(lotes.mensaje)
         lotes.mensaje.forEach(function (lote) {
             console.log(lote.id)
             let fila = document.createElement('tr');

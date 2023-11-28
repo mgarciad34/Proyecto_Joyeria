@@ -12,6 +12,7 @@ class Despiece_lote extends Model
         'descripcion',
         'tipo',
         'cantidad',
+        'id_clasificador'
     ];
     public $timestamps = false;
 }
