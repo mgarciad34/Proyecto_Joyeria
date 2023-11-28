@@ -1,13 +1,8 @@
-import{obtenerLotes} from './http/http-Clasificador.js'
-
-obtenerLotes().then(function(data){
+import { obtenerLotes } from "./http/http-lotesClasificados";
+obtenerLotes.then(function(data){
     pintarLotes(data)
-    if(data.mensaje==''){
-        alert('No hay lotes sin clasificar')
-    }
 
 })
-
 
 
 function pintarLotes(lotes) {
@@ -19,7 +14,7 @@ function pintarLotes(lotes) {
 
             let botonCelda = document.createElement('td');
             let boton = document.createElement('button');
-            boton.textContent = 'Despiece'
+            boton.textContent = 'Clasificar'
             boton.setAttribute('id',lotes[0].lotes[i].id)
 
             let idCelda = document.createElement('td');
@@ -36,12 +31,15 @@ function pintarLotes(lotes) {
             let ubicacion= document.createElement('span');
             ubicacion.textContent=lotes[0].lotes[i].ubicacion
 
+            let clasificadorCelda=document.createElement('td')
+            let clasificador=documetn.createElement('span')
+            clasificador=lotes[0].lotes[i].id_clasificador
+
             boton.addEventListener('click', function(event) {
-                sessionStorage.setItem('lote-clasificado',JSON.parse(boton.id))
-                window.location.href='./despieceLote.html'
+                sessionStorage.setItem('lote-a-clasificar',JSON.parse(boton.id))
+                window.location.href='./indexLote.html'
                 
               });
-
             idCelda.appendChild(id)
             idEmpresaCelda.appendChild(idEmpresa)
            botonCelda.appendChild(boton);
