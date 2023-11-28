@@ -9,23 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tipos_componentes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamps(); // Esto agrega las columnas created_at y updated_at
+            $table->string('nombre');
+            $table->integer('cantidad')->default(0);
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tipos_componentes');
     }
 };
