@@ -11,12 +11,22 @@
             font-size: 16px;
         }
 
+        form.formulario {
+            font-size: 16px;
+            margin: 20px;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
 
         button {
             font-size: 18px;
+        }
+
+        body{
+            background-color: #fafafa;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -77,24 +87,24 @@
 
     <div class="container mt-5 d-flex justify-content-center align-items-center flex-grow-1">
 
-        <form method="post">
+        <form method="post" class="col-md-6 formulario">
             <div class="form-group">
-                <label for="nombre" class="col-form-label">Nombre:</label>
+                <label for="nombre" class="col-form-label font-weight-bold">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
 
             <div class="form-group">
-                <label for="correo" class="col-form-label">Correo electrónico:</label>
+                <label for="correo" class="col-form-label font-weight-bold">Correo electrónico</label>
                 <input type="email" class="form-control" id="correo" name="correo" required>
             </div>
 
             <div class="form-group">
-                <label for="contrasena" class="col-form-label">Contraseña:</label>
+                <label for="contrasena" class="col-form-label font-weight-bold">Contraseña</label>
                 <input type="password" class="form-control" id="contrasena" name="contrasena" required>
             </div>
 
             <div class="form-group">
-                <label for="confirmar_contrasena" class="col-form-label">Confirmar Contraseña:</label>
+                <label for="confirmar_contrasena" class="col-form-label font-weight-bold">Confirmar Contraseña</label>
                 <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
             </div>
             <br>
@@ -114,7 +124,7 @@
                 <p>Cookies</p>
             </div>
             <div>
-                <p>Politica de privacidad</p>
+                <p>Política de privacidad</p>
             </div>
         </div>
     </footer>
