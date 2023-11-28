@@ -73,7 +73,9 @@ if(validaciones.includes(false)){
       
         let tipos= document.getElementById('tipos-habilitados')
         let indiceSeleccionado = tipos.selectedIndex;
+
         let textoSeleccionado = tipos.options[indiceSeleccionado].textContent;
+        tipos.options[indiceSeleccionado].disabled=true
         let tipo=document.createElement('span')
         tipo.textContent=textoSeleccionado
         celdaDescripcion.appendChild(descripcion)
@@ -86,6 +88,8 @@ if(validaciones.includes(false)){
         tablaElementosRegistrados.appendChild(fila);
         btnGuardar.disabled=false
 }
+document.getElementById('tipos-habilitados').value=0
+
 })
 btnGuardar.addEventListener('click',function(){
     let tbody=document.getElementById('elementos-registrados')
