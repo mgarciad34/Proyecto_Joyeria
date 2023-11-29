@@ -7,9 +7,10 @@ use App\Models\Rol;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class RolesFactory extends Factory
+class RolFactory extends Factory
 {
-    public $nombres=['Colaborador','Diseñador','Administrador'];
+    public $nombres=['Colaborador','Diseñador','Clasificador','Administrador'];
+    public $contador=0;
     /**
      * Define the model's default state.
      *
@@ -18,11 +19,10 @@ class RolesFactory extends Factory
     protected $model=Rol::class;
     public function definition(): array
     {
+        $this->contador++;
         return [
-            
+            'id'=>$this->contador,
             'nombre' =>array_pop($this->nombres),
-                
-            
         ];
     }
 }
