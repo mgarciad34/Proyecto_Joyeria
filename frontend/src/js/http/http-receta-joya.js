@@ -19,7 +19,7 @@ export async function fabricarJoya(joya,id_usuario) {
     json['id_usuario']=id_usuario
 
     try {
-        let url = 'http://127.0.0.1:8000/api/joya/fabricar/'+joya
+        let url = 'http://127.0.0.1:8000/api/joyas/fabricar/'+joya
         const options = {
             method: "PUT",
             headers: {
@@ -68,7 +68,7 @@ export async function isOwner(joya,id_usuario) {
 export async function eliminarJoya(joya) {
 
     try {
-        let url = 'http://127.0.0.1:8000/api/joyas/eliminar/'+joya
+        let url = 'http://127.0.0.1:8000/api/joyas/'+joya
         const options = {
             method: "DELETE",
             headers: {

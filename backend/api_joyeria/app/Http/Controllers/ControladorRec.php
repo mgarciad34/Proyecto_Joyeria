@@ -18,7 +18,7 @@ class ControladorRec extends Controller
             $info['detalle'][$i]['tipo']= $tipo->nombre;
             $info['detalle'][$i]['cantidad_necesaria']=$detalle[$i]->cantidad;
             $info['detalle'][$i]['cantidad_disponible']=$tipo->cantidad;
-       
+           
         }
        
         return response()->json($info);

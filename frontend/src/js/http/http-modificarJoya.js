@@ -1,6 +1,6 @@
 export async function obtenerTipos() {
     try {
-        const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
+        const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
         const response = await fetch(apiUrl2);
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');

@@ -208,6 +208,7 @@ function tablaVacia(tabla) {
 }
 function pintarRecetas(recetas) {
     let tabla = document.getElementById('detalle-receta');
+    console.log('entra')
     
     for (let i = 0; i < recetas.detalle.length; i++) {
         console.log(recetas.detalle[i])

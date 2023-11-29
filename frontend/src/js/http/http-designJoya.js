@@ -1,6 +1,6 @@
 export async function obtenerTipos() {
     try {
-        const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
+        const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
         const response = await fetch(apiUrl2);
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
@@ -18,7 +18,7 @@ export async function obtenerTipos() {
 export async function guardarNuevaJoya(joya) {
 
     try {
-        let url = 'http://127.0.0.1:8000/api/joya/nueva'
+        let url = 'http://127.0.0.1:8000/api/joyas/nueva'
         const options = {
             method: "POST",
             headers: {

@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\RolAsignado;
 
 class RolAsignado extends Model
 {
+
+    use HasFactory;
     protected $table = 'roles_asignados';
     protected $fillable = [
-        'idusuario',
-        'idrol',
+        'id_usuario',
+        'id_rol',
     ];
     public $timestamps = false;
 

@@ -16,7 +16,7 @@ export async function obtenerJoyas(id) {
 export async function eliminarJoya(joya) {
 
     try {
-        let url = 'http://127.0.0.1:8000/api/joyas/eliminar/'+joya
+        let url = 'http://127.0.0.1:8000/api/joyas/'+joya
         const options = {
             method: "DELETE",
             headers: {

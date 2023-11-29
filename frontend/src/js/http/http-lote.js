@@ -1,5 +1,5 @@
-const apiUrl2='http://127.0.0.1:8000/api/consultar/tipos'
-const apiUrlEnviar='http://127.0.0.1:8000/api/lote/clasificar/'
+const apiUrl2='http://127.0.0.1:8000/api/tipos'
+const apiUrlEnviar='http://127.0.0.1:8000/api/despieces/lote/clasificar/'
 
 export async function guardarElementosBdd(elementos,idLote){
     let url=apiUrlEnviar+idLote
