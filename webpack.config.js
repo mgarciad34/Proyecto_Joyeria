@@ -5,6 +5,10 @@ module.exports = {
   entry: {
     registro: './frontend/src/js/registro.js',
     login: './frontend/src/js/login.js',
+    insertarUsuarios: './frontend/src/js/insertarUsuarios.js',
+    consultarUsuarios: './frontend/src/js/consultarUsuarios.js',
+    insertarComponentes: './frontend/src/js/insertarComponentes.js',
+    consultarComponentes: './frontend/src/js/consultarComponentes.js',
     appClasificador: './frontend/src/js/appClasificador.js',
         appLote: './frontend/src/js/appLote.js',
         appDesignjoya: './frontend/src/js/appDesignJoya.js',
