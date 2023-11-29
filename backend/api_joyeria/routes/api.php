@@ -31,7 +31,7 @@ Route::prefix('administrador')->group(function () {
     Route::post('/crear/componente', [ControladorTipos::class, 'insertarComponente']);
     Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
     Route::put('/modificar/componente', [ControladorTipos::class, 'modificarComponente']);
-    Route::delete('/eliminar/componente', [ControladorTipos::class, 'eliminarComponente']);
+    Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

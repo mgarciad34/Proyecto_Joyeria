@@ -49,9 +49,9 @@ class ControladorTipos extends Controller
         return response()->json(['message' => 'Componente actualizado exitosamente'], 201);
     }
 
-    public function eliminarComponente(Request $request)
+    public function eliminarComponente($id)
     {
-        $tipoComponente = Tipos_componente::find($request->id);
+        $tipoComponente = Tipos_componente::find($id);
 
         if (!$tipoComponente) {
             return response()->json(['error' => 'Registro no encontrado'], 404);

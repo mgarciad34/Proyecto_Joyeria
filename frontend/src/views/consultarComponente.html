@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador - Usuarios</title>
+    <title>Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 </head>
@@ -21,7 +21,7 @@
                     <ul class="navbar-nav col-12">
                         <div class="col-1"></div>
                         <li class="nav-item">
-                            <a class="nav-link" href="administradorDashboard.html">Inicio</a>
+                            <a class="nav-link" href="indexAdministrador.html">Inicio</a>
                         </li>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
@@ -29,8 +29,9 @@
                                 Usuarios
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Usuario</a>
-                                <a class="dropdown-item" href="#">Eliminar Usuario</a>
+                                <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
+                                <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
+                                <a class="dropdown-item" href="eliminarUsuarios.html">Eliminar Usuario</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
@@ -39,8 +40,8 @@
                                 Roles
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Rol</a>
-                                <a class="dropdown-item" href="#">Eliminar Rol</a>
+                                <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
+                                <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
@@ -49,10 +50,10 @@
                                 Componentes
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Componente</a>
-                                <a class="dropdown-item" href="#">Consultar Componentes</a>
-                                <a class="dropdown-item" href="#">Modificar Componente</a>
-                                <a class="dropdown-item" href="#">Eliminar Componente</a>
+                                <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
+                                <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
+                                <a class="dropdown-item" href="modificarComponente.html">Modificar Componente</a>
+                                <a class="dropdown-item" href="eliminarComponente.html">Eliminar Componente</a>
                             </div>
                         </li>
                     </ul>
@@ -60,20 +61,28 @@
             </div>
         </nav>
     </header>
-
     
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody id="data">
+        </tbody>
+    </table>
+      
+    <div class="flex-grow-1"></div>
 
-  <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
+    <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
         <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
         <p>LOPD</p>
         <p>Cookies</p>
         <p>Politica de privacidad</p>
-  </footer>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    <script src="js/tema.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script type="module" src="../js/consultarComponentes.js"></script>
 </body>
 </html>
