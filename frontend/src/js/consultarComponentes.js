@@ -1,10 +1,13 @@
-import { obtenerDatos } from "./http/http-consultarUsuarios.js";
-import { eliminarUsuario } from "./http/http-eliminarUsuario.js";
+import { obtenerDatos } from "./http/http-consultarComponentes.js";
+import { eliminarComponente } from "./http/http-eliminarComponente.js";
+
 
 function mostrarDatosEnTabla() {
     obtenerDatos()
         .then(response => {
-            const data = response.usuarios;
+            const data = response.tipos;
+            
+            console.log(data)
             if (Array.isArray(data)) {
                 const tablaBody = document.getElementById('data');
                 tablaBody.innerHTML = '';
@@ -33,7 +36,7 @@ function mostrarDatosEnTabla() {
                     btnEliminar.textContent = 'Eliminar';
                     btnEliminar.style.background = 'Red';
                     btnEliminar.addEventListener('click', () => {
-                        eliminarUsuario(item.id);
+                        eliminarComponente(item.id)
                     });
 
                     const celdaBotones = document.createElement('td');

@@ -8,59 +8,56 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100" id="body">
-    <header class="row bg-warning row-warning">
-   
-        <nav class="navbar navbar-expand-lg p-6">
-            <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="../images/joya.png" alt="logo" style="width: 35px; height: 35px;"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="col-1"></div>
-                <div class="collapse navbar-collapse ps-4" id="navbarNav">
-                    <ul class="navbar-nav col-12">
-                        <div class="col-1"></div>
-                        <li class="nav-item">
-                            <a class="nav-link" href="administradorDashboard.html">Inicio</a>
-                        </li>
-                        <div class="col-1"></div>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Usuarios
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
-                                <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
-                                <a class="dropdown-item" href="eliminarUsuarios.html">Eliminar Usuario</a>
-                            </div>
-                        </li>
-                        <div class="col-1"></div>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Roles
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
-                                <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
-                            </div>
-                        </li>
-                        <div class="col-1"></div>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Componentes
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
-                                <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
-                                <a class="dropdown-item" href="modificarComponente.html">Modificar Componente</a>
-                                <a class="dropdown-item" href="eliminarComponente.html">Eliminar Componente</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header class="row bg-warning row-warning">
+    
+      <nav class="navbar navbar-expand-lg p-6">
+          <div class="container-fluid justify-content-center">
+              <a class="navbar-brand" href="#"><img src="../images/joya.png" alt="logo" style="width: 35px; height: 35px;"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="col-1"></div>
+              <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                  <ul class="navbar-nav col-12">
+                      <div class="col-1"></div>
+                      <li class="nav-item">
+                          <a class="nav-link" href="indexAdministrador.html">Inicio</a>
+                      </li>
+                      <div class="col-1"></div>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Usuarios
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
+                              <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
+                          </div>
+                      </li>
+                      <div class="col-1"></div>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Roles
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
+                              <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
+                          </div>
+                      </li>
+                      <div class="col-1"></div>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Componentes
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
+                              <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>
 
       
       <div class="container mt-5">
@@ -85,19 +82,6 @@
               </div>
             </div>
           </div>
-          
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Eliminacion de usuarios</h5>
-                <p class="card-text">En esta seccion podras eliminar un usuario</p>
-                <a href="eliminarUsuarios.html" class="btn btn-primary">Eliminar Usuario</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
       <br>
 
       <div class="container mt-5">
@@ -149,27 +133,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Modificar Componente</h5>
-                <p class="card-text">En esta seccion podras modificar tus componentes</p>
-                <a href="modificarComponente.html" class="btn btn-primary">Modificar componente</a>
-              </div>
-            </div>
-          </div>
-    
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Eliminar componente</h5>
-                <p class="card-text">En esta seccion podras eliminar tus componentes</p>
-                <a href="eliminarComponente.html" class="btn btn-primary">Eliminar componentes</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
