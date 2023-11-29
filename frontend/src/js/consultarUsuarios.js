@@ -24,12 +24,14 @@ function mostrarDatosEnTabla() {
                     //Botones
                     const btnModificar = document.createElement('button');
                     btnModificar.textContent = 'Modificar';
+                    btnModificar.style.background = 'Yellow';
                     btnModificar.addEventListener('click', () => {
                         console.log('Modificar', item);
                     });
 
                     const btnEliminar = document.createElement('button');
                     btnEliminar.textContent = 'Eliminar';
+                    btnEliminar.style.background = 'Red';
                     btnEliminar.addEventListener('click', () => {
                         eliminarUsuario(item.id);
                     });
