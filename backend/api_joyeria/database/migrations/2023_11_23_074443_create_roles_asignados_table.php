@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idrol');
 
             // Claves foráneas
-            $table->foreign('idusuario')->references('id')->on('usuarios');
+            $table->foreign('idusuario')->references('id')->on('users');
             $table->foreign('idrol')->references('id')->on('roles');
         });
     }
