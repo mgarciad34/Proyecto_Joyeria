@@ -21,7 +21,7 @@ if (idLote==null){
     cabecera.textContent='Clasificar elementos Lote Nº: '+idLote
     obtenerTipos().then(function(data){
         let desplegable=document.getElementById('tipos-habilitados')
-        console.log(data)
+        
         for (let i=0 ; i<data.tipos.length;i++){
             const opcion = document.createElement('option');
             opcion.value = data.tipos[i].id;
@@ -122,7 +122,7 @@ btnGuardar.addEventListener('click',function(){
 
        componentes.lista.push(componente)
       }
-      console.log('hola')
+    
       componentes.usuario=usuario
 guardarElementosBdd(componentes,idLote).then(function(data){
    alert('guardado correctamente')

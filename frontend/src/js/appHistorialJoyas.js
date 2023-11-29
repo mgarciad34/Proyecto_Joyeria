@@ -33,7 +33,7 @@ barraBusqueda.addEventListener('input',function(){
 })
 function pintarHistorial(datos) {
     var tabla = document.getElementById('tabla_historial');
-        console.log(datos)
+       
         for(let i=0;i<datos.historial.length;i++) {
             
             let fila = document.createElement('tr');

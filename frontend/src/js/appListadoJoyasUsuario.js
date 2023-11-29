@@ -8,9 +8,9 @@ obtenerJoyas(id).then(function(data){
 
 function pintarJoyas(joyas) {
     var tabla = document.getElementById('tabla_joyas');
-        console.log(joyas)
+        
         for(let i=0;i<joyas[0].length;i++) {
-            console.log(joyas[0][i])
+            
             let fila = document.createElement('tr');
 
             let botonCelda = document.createElement('td');

@@ -31,7 +31,7 @@ export function comprobarColor(etiquetap){
     var estilos = window.getComputedStyle(etiquetap);
     var colorTextoRGB = estilos.color;
     var colorTextoNombre = obtenerNombreColor(colorTextoRGB);
-    console.log(colorTextoNombre)
+   
     if(colorTextoNombre === "green"){
         return 1;
     }else{

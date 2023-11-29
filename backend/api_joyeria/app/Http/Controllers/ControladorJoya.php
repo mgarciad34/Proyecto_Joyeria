@@ -105,10 +105,14 @@ class ControladorJoya extends Controller
 
     function getDisponibles(){
         $disponibles=[];
-        $joyas=DB::select('SELECT DISTINCT j.id AS id_joya FROM joyas j 
-        JOIN detalle_recetas dr ON j.id = dr.id_joya 
-        JOIN tipos_componentes tc ON dr.id_componente = tc.id 
-        WHERE tc.cantidad >= dr.cantidad;');
+        $joyas=DB::select('SELECT j.id AS id_joya
+        FROM joyas j
+        JOIN detalle_recetas dr ON j.id = dr.id_joya
+        JOIN tipos_componentes tc ON dr.id_componente = tc.id
+        WHERE dr.cantidad <= tc.cantidad
+        GROUP BY j.id
+        HAVING COUNT(dr.id_componente) = (SELECT COUNT(*) FROM detalle_recetas WHERE id_joya = j.id);
+        ');
       for ($i=0;$i<count($joyas);$i++){
         $joya=Joya::find($joyas[$i]->id_joya);
         $disponibles[]=$joya;

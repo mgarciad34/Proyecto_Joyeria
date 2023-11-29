@@ -72,7 +72,7 @@ contrasena.addEventListener('input', function(){
 
 confirmaContrasena.addEventListener('input', function(){
     var result = confirmarContrasena(contrasena.value, confirmaContrasena.value);
-    console.log(result);
+    
 
     if(result === true){
         msgconfirmarContrasena.style.color = "green";
@@ -89,7 +89,7 @@ confirmaContrasena.addEventListener('input', function(){
 btnregistro.addEventListener('click', function(event){
     event.preventDefault();
     var nuevoUsuario = new UsersAdministrador(nombre.value, correo.value, contrasena.value, 4); 
-    console.log(JSON.stringify(nuevoUsuario))
+    
     const url = 'http://127.0.0.1:8000/api/administrador/crear/usuario';
     var colorNombre = comprobarColor(msgNombre);
     var colorCorreo = comprobarColor(msgCorreo);

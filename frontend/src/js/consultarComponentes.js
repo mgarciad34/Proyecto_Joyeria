@@ -7,7 +7,7 @@ function mostrarDatosEnTabla() {
         .then(response => {
             const data = response.tipos;
             
-            console.log(data)
+         
             if (Array.isArray(data)) {
                 const tablaBody = document.getElementById('data');
                 tablaBody.innerHTML = '';
@@ -29,7 +29,7 @@ function mostrarDatosEnTabla() {
                     btnModificar.textContent = 'Modificar';
                     btnModificar.style.background = 'Yellow';
                     btnModificar.addEventListener('click', () => {
-                        console.log('Modificar', item);
+                       
                     });
 
                     const btnEliminar = document.createElement('button');

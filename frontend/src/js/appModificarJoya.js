@@ -96,7 +96,7 @@ btnGuardar.addEventListener('click', function () {
             if (resultado) {
                
                let json={joya_original,joya}
-               console.log(JSON.stringify(json))
+              
                 actualizarJoya(idJoya,json).then(function () {
                     
                     window.location.href='listaJoyasUsuario.html'
@@ -208,10 +208,9 @@ function tablaVacia(tabla) {
 }
 function pintarRecetas(recetas) {
     let tabla = document.getElementById('detalle-receta');
-    console.log('entra')
-    
+   
     for (let i = 0; i < recetas.detalle.length; i++) {
-        console.log(recetas.detalle[i])
+       
         let fila = document.createElement('tr');
 
         let tipoCelda = document.createElement('td');
@@ -260,7 +259,7 @@ function pintarRecetas(recetas) {
 function revisarTipos(){
     for (let i = 1; i < desplegable.options.length; i++) {
         var opcion = desplegable.options[i];
-        console.log(tiposEnUso)
+        
        if(tiposEnUso.includes(parseInt(opcion.value))){
         opcion.disabled=true
        }else{
@@ -274,7 +273,7 @@ function eliminarFila(fila){
     document.getElementById('detalle-receta').removeChild(fila)
     let indice=tiposEnUso.indexOf(tipo)
     tiposEnUso.splice(indice)
-    console.log(tiposEnUso)
+    
 }
 
 function evaluarCantidades(array){

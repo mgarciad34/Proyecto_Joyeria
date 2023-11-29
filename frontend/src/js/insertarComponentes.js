@@ -34,7 +34,7 @@ nombre.addEventListener('input', function(){
 btnregistro.addEventListener('click', function(event){
     event.preventDefault();
     var nuevoComponente = new Componentes(nombre.value, cantidad.value); 
-    console.log(JSON.stringify(nuevoComponente))
+   
     const url = 'http://127.0.0.1:8000/api/administrador/crear/componente';
     var colorNombre = comprobarColor(msgNombre);
     var sumatorio = colorNombre
