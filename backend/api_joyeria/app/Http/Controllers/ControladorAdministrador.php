@@ -36,6 +36,18 @@ class ControladorAdministrador extends Controller
         }
     }
 
+    public function consultarUsuarios()
+    {
+        try {
+            $usuarios = User::all();
+
+            return response()->json(['usuarios' => $usuarios], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
 
     public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     {
