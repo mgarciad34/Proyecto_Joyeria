@@ -11,8 +11,9 @@ function mostrarDatosEnTabla() {
 
                 data.forEach(item => {
                     const fila = document.createElement('tr');
-                    fila.id = `fila-${item.id}`; // Agregar un ID único a cada fila
+                    fila.id = `fila-${item.id}`; // Interpolacion de cadenas
                     Object.entries(item).forEach(([key, value]) => {
+                        //Quitamos la fila id de la tabla
                         if (key !== 'id') {
                             const celda = document.createElement('td');
                             celda.textContent = value;
@@ -20,18 +21,16 @@ function mostrarDatosEnTabla() {
                         }
                     });
 
-                    // Agregar dos botones a la fila
+                    //Botones
                     const btnModificar = document.createElement('button');
                     btnModificar.textContent = 'Modificar';
                     btnModificar.addEventListener('click', () => {
-                        // Lógica para editar el elemento correspondiente
                         console.log('Modificar', item);
                     });
 
                     const btnEliminar = document.createElement('button');
                     btnEliminar.textContent = 'Eliminar';
                     btnEliminar.addEventListener('click', () => {
-                        // Lógica para eliminar el elemento correspondiente
                         eliminarUsuario(item.id);
                     });
 
