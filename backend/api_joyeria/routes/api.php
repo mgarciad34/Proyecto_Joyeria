@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ControladorUsuarios;
 use App\Http\Controllers\ControladorAdministrador;
+use App\Http\Controllers\ControladorRolAsignado;
 use App\Http\Controllers\ControladorAuth;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
@@ -35,6 +36,7 @@ Route::prefix('administrador')->group(function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('obtener/roles/{idUsuario}', [ControladorRolAsignado::class, 'obtenerRolesId']);
 
 Route::post('consultarlotes',[ControladorLote::class,'insertarLote']);
 Route::put('modificar/estado/{id}',[ControladorLote::class,'cambiarEstadoLote']);
