@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador - Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* Estilo adicional para aumentar el tamaño de la fuente y el espacio interno del formulario */
+        form {
+            font-size: 16px;
+        }
 
+        form.formulario {
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px;
+        }
+
+        body{
+            background-color: #fafafa;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100" id="body">
+
     <header class="row bg-warning row-warning">
    
         <nav class="navbar navbar-expand-lg p-6">
@@ -21,7 +45,7 @@
                     <ul class="navbar-nav col-12">
                         <div class="col-1"></div>
                         <li class="nav-item">
-                            <a class="nav-link" href="administradorDashboard.html">Inicio</a>
+                            <a class="nav-link text-dark" href="indexAdministrador.html">Inicio</a>
                         </li>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
@@ -29,8 +53,8 @@
                                 Usuarios
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Usuario</a>
-                                <a class="dropdown-item" href="#">Eliminar Usuario</a>
+                                <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
+                                <a class="dropdown-item" href="eliminarUsuarios.html">Eliminar Usuario</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
@@ -39,8 +63,8 @@
                                 Roles
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Rol</a>
-                                <a class="dropdown-item" href="#">Eliminar Rol</a>
+                                <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
+                                <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
@@ -49,10 +73,10 @@
                                 Componentes
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Añadir Componente</a>
-                                <a class="dropdown-item" href="#">Consultar Componentes</a>
-                                <a class="dropdown-item" href="#">Modificar Componente</a>
-                                <a class="dropdown-item" href="#">Eliminar Componente</a>
+                                <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
+                                <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
+                                <a class="dropdown-item" href="modificarComponente.html">Modificar Componente</a>
+                                <a class="dropdown-item" href="eliminarComponente.html">Eliminar Componente</a>
                             </div>
                         </li>
                     </ul>
@@ -61,19 +85,46 @@
         </nav>
     </header>
 
-    
+    <div class="container mt-5 d-flex justify-content-center align-items-center flex-grow-1">
 
-  <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
-        <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
-        <p>LOPD</p>
-        <p>Cookies</p>
-        <p>Politica de privacidad</p>
-  </footer>
+        <form method="post" class="col-md-6 formulario">
+            <div class="form-group">
+                <label for="txtnombre" class="col-form-label font-weight-bold">Nombre</label>
+                <input type="text" class="form-control" id="txtnombre" name="nombre" required>
+                <p id="mensajeNombre"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="txtcantidad" class="col-form-label font-weight-bold">Cantidad</label>
+                <input type="number" class="form-control" id="txtcantidad" name="cantidad" required>
+            </div>
+
+            <br>
+            <button id="btnregistrar" class="btn btn-primary">Registrarse</button>
+            <p id="mensajeBoton"></p>
+        </form>
+    </div>
+
+    <footer class="bg-warning text-dark text-center py-3 mt-5">
+        <div class="d-flex justify-content-around">
+            <div>
+                <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
+            </div>
+            <div>
+                <p>LOPD</p>
+            </div>
+            <div>
+                <p>Cookies</p>
+            </div>
+            <div>
+                <p>Política de privacidad</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    <script src="js/tema.js"></script>
-
+    <script type="module" src="../js/insertarComponentes.js"></script>
 </body>
 </html>
