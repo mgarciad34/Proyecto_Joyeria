@@ -312,3 +312,195 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **Método:** `GET`
 
 - **Descripción:** Obtiene la lista de joyas disponibles para fabricación.
+
+
+## Registro
+
+- **Ruta:** `http://127.0.0.1:8000/usuarios`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{name}`: Nombre del usuario.
+  - `{email}`: Correo electronico del usurio.
+  - `{password}`: Contraseña del usuario.
+
+- **Descripción:** Registramos a un nuevo usuario.
+
+- **JSON:**
+  ```json
+    {
+        "name": "Usuario4",
+        "email": "usuario4@gmail.com",
+        "password": "123456"
+    }
+
+## Login
+
+- **Ruta:** `http://127.0.0.1:8000/api/login`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{email}`: Correo electronico del usurio.
+  - `{password}`: Contraseña del usuario.
+
+- **Descripción:** Registramos a un nuevo usuario.
+
+- **JSON:**
+  ```json
+    {
+        "email": "usuario@correo.com",
+        "password": "contrasena"
+    }
+
+## Agregar nuevos usuarios desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/crear/usuario`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{name}`: Nombre del usuario.
+  - `{email}`: Correo electronico del usurio.
+  - `{password}`: Contraseña del usuario.
+  - `{rol}`: Rol del usuario.
+
+- **Descripción:** Registramos a un nuevo usuario desde el administrador, aqui podemos establecerle el rol que queramos desde el servidor pero en la interfaz de usuario esta establecida por defecto.
+
+- **JSON:**
+  ```json
+    {
+        "name": "Usuario4",
+        "email": "usuario4@gmail.com",
+        "password": "123456",
+        "rol": 4
+    }
+
+## Consultar usuarios desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/usuarios`
+
+- **Método:** `GET`
+
+- **Descripción:** Consultamos desde el administrador todos los usuarios que hay en nuestro SGDB.
+
+
+## Eliminar usuario desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/eliminar/usuario/{id}`
+
+- **Método:** `DELETE`
+
+- **Parámetros:**
+  - `{id}`: ID del usuario.
+
+- **Descripción:** Eliminamos un usuario de nuestro SGDB mediante su ID.
+
+## Agregar nuevo rol al usuario desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/agregar/rol/usuario`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{idUsuario}`: ID del usuario.
+  - `{idRol}`: Id del rol del usuario.
+
+- **Descripción:** Asignamos un nuevo rol a un usuario, desde nuestro administrador.
+
+- **JSON:**
+  ```json
+    {
+        "idUsuario": 44,
+        "idRol": 3
+    }
+
+## Elimina rol al usuario desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario`
+
+- **Método:** `DELETE`
+
+- **Parámetros:**
+  - `{idUsuario}`: ID del usuario.
+  - `{idRol}`: Id del rol del usuario.
+
+- **Descripción:** Asignamos un nuevo rol a un usuario, desde nuestro administrador.
+
+- **JSON:**
+  ```json
+    {
+        "idUsuario": 44,
+        "idRol": 1
+    }
+
+## Insertar nuevo componente desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/crear/componente`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{nombre}`: nombre del componente.
+  - `{cantidad}`: Cantidad del componete.
+
+- **Descripción:** Creamos un nuevo componente, desde nuestro administrador.
+
+- **JSON:**
+  ```json
+    {
+        "nombre": "Memoria RAM",
+        "cantidad": 30
+    }
+
+## Modificamos componente desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/componente`
+
+- **Método:** `PUT`
+
+- **Parámetros:**
+  - `{id}`: ID del componente.
+  - `{nombre}`: nombre del componente.
+  - `{cantidad}`: Cantidad del componete.
+
+- **Descripción:** Creamos un nuevo componente, desde nuestro administrador.
+
+- **JSON:**
+  ```json
+    {
+        "id": 1,
+        "nombre": "Memoria RAM",
+        "cantidad": 80
+    }
+
+## Obtener componentes desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/consultar/componentes`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtienemos todos los componentes, desde nuestro administrador.
+
+## Eliminar componente desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/eliminar/componente/{id}`
+
+- **Método:** `PUT`
+
+- **Parámetros:**
+  - `{id}`: ID del componente.
+  - `{nombre}`: nombre del componente.
+  - `{cantidad}`: Cantidad del componete.
+
+- **Descripción:** Creamos un nuevo componente, desde nuestro administrador.
+
+## Obtener roles del usuario (Para la pantalla que redirige)
+
+- **Ruta:** `http://127.0.0.1:8000/api/obtener/roles/{idUsuario}`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtienemos todos roles del usuario.
+
