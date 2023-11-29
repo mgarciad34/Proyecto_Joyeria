@@ -22,3 +22,13 @@ export async function obtenerDatos(correo, contrasena) {
         console.error('Error en la función obtenerDatos:', error);
     }
 }
+
+export function enviarSessionStorage(id, token){
+    try {
+      sessionStorage.setItem('id-usuario', id);
+      sessionStorage.setItem('token', token);
+      
+    } catch (error) {
+      console.error('Error al guardar datos en sessionStorage:', error);
+    }
+  }
