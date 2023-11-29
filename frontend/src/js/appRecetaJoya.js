@@ -14,7 +14,7 @@ obtenerRecetas(id_joya).then(function (data) {
     pintarRecetas(data)
 })
 isOwner(id_joya, usuario).then(function (data) {
-    console.log(data)
+    
     if (data.resultado) {
         addOwnerBotones()
         
@@ -39,7 +39,7 @@ function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
 
     for (let i = 0; i < recetas.detalle.length; i++) {
-        console.log(recetas.detalle[i])
+     
         let fila = document.createElement('tr');
 
         let idCelda = document.createElement('td');

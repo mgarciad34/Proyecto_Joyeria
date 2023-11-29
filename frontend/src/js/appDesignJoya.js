@@ -12,7 +12,7 @@ btnAdd.disabled=true
 btnGuardar.disabled=true
 obtenerTipos().then(function (data) {
     let desplegable = document.getElementById('tipos-habilitados')
-    console.log(data)
+    
     for (let i = 0; i < data.tipos.length; i++) {
         const opcion = document.createElement('option');
         opcion.value = data.tipos[i].id;
@@ -78,7 +78,7 @@ btnGuardar.addEventListener('click', function () {
     }
     var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
     if (resultado) {
-        console.log(JSON.stringify(joya))
+       
         guardarNuevaJoya(joya).then(function () {
             document.getElementById('inputNombre').value=''
             document.getElementById('inputFoto').value=''

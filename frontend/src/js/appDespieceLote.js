@@ -10,7 +10,7 @@ obtenerDespiece(idLote).then(function(data){
 
 
 function pintarDespiece(despiece) {
-    console.log(despiece)
+
     var tabla = document.getElementById('tabla_despiece');
     
         for (let i=0;i<despiece.length;i++){

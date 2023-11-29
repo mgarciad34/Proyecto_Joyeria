@@ -36,6 +36,18 @@ class ControladorAdministrador extends Controller
         }
     }
 
+    public function consultarUsuarios()
+    {
+        try {
+            $usuarios = User::all();
+
+            return response()->json(['usuarios' => $usuarios], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
 
     public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     {
@@ -117,6 +129,22 @@ class ControladorAdministrador extends Controller
             $rolAsignado->delete();
 
             return response()->json(['message' => 'Rol eliminado exitosamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function eliminarUsuarioId($id)
+    {
+        try {
+            $usuario = User::find($id);
+            
+            if (!$usuario) {
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+            $usuario->delete();
+
+            return response()->json(['message' => 'Usuario eliminado exitosamente'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

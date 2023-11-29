@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ControladorUsuarios;
+use App\Http\Controllers\ControladorAdministrador;
+use App\Http\Controllers\ControladorRolAsignado;
 use App\Http\Controllers\ControladorAuth;
 use App\Http\Controllers\ControladorLote;
 use App\Http\Controllers\ControladorTipos;
@@ -22,17 +24,20 @@ Route::post('logout', [ControladorAuth::class, 'logout']);
 //Rutas agrupadas del administrador
 Route::prefix('administrador')->group(function () {
     Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
+    Route::delete('/eliminar/usuario/{id}', [ControladorAdministrador::class, 'eliminarUsuarioId']);
+    Route::get('/usuarios', [ControladorAdministrador::class, 'consultarUsuarios']);
     Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);
     Route::delete('/eliminar/rol/usuario', [ControladorAdministrador::class, 'eliminarRol']);
     Route::post('/crear/componente', [ControladorTipos::class, 'insertarComponente']);
     Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
     Route::put('/modificar/componente', [ControladorTipos::class, 'modificarComponente']);
-    Route::delete('/eliminar/componente', [ControladorTipos::class, 'eliminarComponente']);
+    Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('obtener/roles/{idUsuario}', [ControladorRolAsignado::class, 'obtenerRolesId']);
 
 Route::prefix('lotes')->group(function () {
     Route::post('', [ControladorLote::class, 'insertarLote']);

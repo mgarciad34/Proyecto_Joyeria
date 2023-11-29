@@ -8,7 +8,7 @@ obtenerJoyas().then(function(data){
 
 function pintarJoyas(joyas) {
     var tabla = document.getElementById('tabla_joyas');
-        console.log(joyas)
+        
         for(let i=0;i<joyas[0].length;i++) {
            
             let fila = document.createElement('tr');
@@ -40,7 +40,7 @@ function pintarJoyas(joyas) {
 
             boton.addEventListener('click', function(event) {
                fabricarJoya(boton.id,usuario).then(function(){
-                console.log('hola')
+                
                 window.location.reload()
                })
                 

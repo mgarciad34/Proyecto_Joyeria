@@ -9,7 +9,7 @@ obtenerAllDespiece().then(function(data){
 
 
 function pintarDespiece(componentes) {
-    console.log(componentes)
+   
     var tabla = document.getElementById('tabla_componentes');
     
         for (let i=0;i<componentes.length;i++){

@@ -69,7 +69,7 @@ contrasena.addEventListener('input', function(){
 
 repetirContrasena.addEventListener('input', function(){
     var result = confirmarContrasena(contrasena.value, repetirContrasena.value)
-    console.log(result)
+   
     if(result === true){
         mensajeContrasenaConfirmar.style.color = "green";
         mensajeContrasenaConfirmar.innerHTML = "Las contraseñas coinciden";
@@ -83,7 +83,7 @@ repetirContrasena.addEventListener('input', function(){
 btnregistro.addEventListener('click', function(event){
     event.preventDefault();
     var nuevoUsuario = new Users(nombre.value, correo.value, contrasena.value); 
-    console.log(JSON.stringify(nuevoUsuario))
+  
     const url = 'http://127.0.0.1:8000/api/usuarios';
     var colorNombre = comprobarColor(mensajeNombre)
     var colorCorreo = comprobarColor(mensajeEmail)

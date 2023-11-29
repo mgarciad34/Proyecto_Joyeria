@@ -1,8 +1,15 @@
-export function validarNombre(nombreValue){
-    let nombreRegex=/^[A-Z]{1}[a-z]{1,19}$/
-    var result = nombreRegex.test(nombreValue)
-    return result
+export function validarNombre(nombreValue) {
+    // Expresión regular que permite solo letras minúsculas y hasta 20 caracteres.
+    const nombreRegex = /^[a-z]{1,20}$/;
+
+    if (nombreRegex.test(nombreValue)) {
+        const nombreCorregido = nombreValue.charAt(0).toUpperCase() + nombreValue.slice(1);
+        return nombreCorregido;
+    } else {
+        return null;
+    }
 }
+
 
 export function validarCorreo(emailValue) {
     const emailRegex = /^[A-Za-zñÑ0-9_]{2,15}@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
