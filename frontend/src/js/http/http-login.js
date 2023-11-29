@@ -1,34 +1,24 @@
-async function iniciarSesion(){
-    var email = emailEntrada.value
-    var contrasena = contraEntrada.value
-    var usuario = {
-        email: email,
-        contrasena: contrasena
-    }
+export async function obtenerDatos(correo, contrasena) {
+    let data = {
+        email: correo,
+        password: contrasena
+    };
 
-    const urlApi = constantes.urlApi
-    try{
-        const respuesta = await fetch(urlApi + 'login', {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(usuario)
-        })
+            body: JSON.stringify(data)
+        });
 
-        if (respuesta.ok) {
-            const datos = await respuesta.json();
-            const token = datos.token;
-
-            localStorage.setItem('token', token);
-
-            window.location.href='../../html/inicio.html'
-
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
         } else {
-           
+            return response.json();
         }
-
-    }catch(error){
-
+    } catch (error) {
+        console.error('Error en la función obtenerDatos:', error);
     }
 }

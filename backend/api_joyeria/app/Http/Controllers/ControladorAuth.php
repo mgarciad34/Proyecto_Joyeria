@@ -16,7 +16,7 @@ class ControladorAuth extends Controller
             $auth = Auth::user();
             //return $auth;
             $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken;
-            $success['name'] =  $auth->name;
+            $success['id-usuario'] =  $auth->id;
 
             return response()->json(["success"=>true,"data"=>$success, "message" => "User logged-in!"]);
         }

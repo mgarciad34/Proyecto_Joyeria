@@ -11,13 +11,11 @@ function mostrarDatosEnTabla() {
 
             data.forEach(item => {
                 const fila = document.createElement('tr');
-
                 Object.values(item).forEach(value => {
                     const celda = document.createElement('td');
                     celda.textContent = value;
                     fila.appendChild(celda);
                 });
-
                 tablaBody.appendChild(fila);
             });
         } else {
