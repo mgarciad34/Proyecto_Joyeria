@@ -1,10 +1,12 @@
 export function validarNombre(nombreValue) {
+    // Expresión regular que permite solo letras minúsculas y hasta 20 caracteres.
     const nombreRegex = /^[a-z]{1,20}$/;
+
     if (nombreRegex.test(nombreValue)) {
         const nombreCorregido = nombreValue.charAt(0).toUpperCase() + nombreValue.slice(1);
         return nombreCorregido;
     } else {
-        return false;
+        return null;
     }
 }
 
