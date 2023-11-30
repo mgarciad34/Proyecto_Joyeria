@@ -61,7 +61,11 @@ function pintarJoyas(joyas) {
               let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
               if(resultado){
-                eliminarJoya(joyas[0][i].id).then()
+                eliminarJoya(joyas[0][i].id).then(function(){
+
+                  window.location.reload()
+
+                })
               }
                 
               });
