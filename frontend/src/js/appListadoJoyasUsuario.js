@@ -9,6 +9,8 @@ obtenerJoyas(id).then(function(data){
 
 
 
+
+
 function pintarJoyas(joyas) {
     var tabla = document.getElementById('tabla_joyas');
         
