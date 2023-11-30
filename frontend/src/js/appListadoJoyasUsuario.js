@@ -4,6 +4,7 @@ let id=JSON.parse(sessionStorage.getItem('id-usuario'))
 obtenerJoyas(id).then(function(data){
     pintarJoyas(data)
 })
+/** */
 
 
 function pintarJoyas(joyas) {
