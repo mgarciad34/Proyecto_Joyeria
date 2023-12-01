@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'ColabMid'=> \App\Http\Middleware\ColabMid::class,
         'DesignMid'=> \App\Http\Middleware\DesignMid::class,
         'cors'=> \App\Http\Middleware\Cors::class,
+        'testing'=> \App\Http\Middleware\test::class,
     ];
 }

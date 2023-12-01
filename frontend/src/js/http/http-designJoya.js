@@ -4,7 +4,7 @@ export async function obtenerTipos() {
         const options = {
             method: "GET",
             headers: {
-                "Authorization": "Bearer"+token,
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'aplication/json'
             },
             
@@ -32,6 +32,7 @@ export async function guardarNuevaJoya(joya) {
         const options = {
             method: "POST",
             headers: {
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'aplication/json'
             },
             body: JSON.stringify(joya)

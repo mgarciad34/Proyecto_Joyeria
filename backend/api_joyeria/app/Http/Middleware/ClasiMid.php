@@ -15,7 +15,9 @@ class ClasiMid
      */
     public function handle(Request $request, Closure $next): Response
     {
+       
         $user = $request->user();
+       
         if ($user->tokenCan("Clasificador")) {
            return $next($request);
         }

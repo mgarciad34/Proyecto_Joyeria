@@ -181,7 +181,7 @@ btnAdd.addEventListener('click', function () {
    
 })
 function pintarTipos(data){
-   
+
     for (let i = 0; i < data.tipos.length; i++) {
         const opcion = document.createElement('option');
         opcion.value = data.tipos[i].id;

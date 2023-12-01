@@ -28,7 +28,9 @@ btnFabricar.addEventListener('click', function () {
         var resultado = confirm("¿Estás seguro de que deseas continuar?");
         if (resultado) {
 
+            
             fabricarJoya(id_joya, usuario).then(function (data) {
+               
                 window.location.reload()
             })
         }

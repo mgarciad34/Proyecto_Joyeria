@@ -1,10 +1,11 @@
 export async function obtenerLotes() {
     try {
+        let token=sessionStorage.getItem('token')
         const options = {
             method: "GET",
             headers: {
-                "Authorization": "Bearer"+token,
-                'Content-Type': 'aplication/json'
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'application/json'
             },
             
         }

@@ -5,7 +5,7 @@ export async function obtenerDespiece(id) {
     const options = {
         method: "GET",
         headers: {
-            "Authorization": "Bearer"+token,
+            "Authorization": "Bearer "+token,
             'Content-Type': 'aplication/json'
         },
         

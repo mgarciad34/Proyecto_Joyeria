@@ -6,7 +6,7 @@ export async function obtenerAllDespiece() {
         const options = {
             method: "GET",
             headers: {
-                "Authorization": "Bearer"+token,
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'aplication/json'
             },
             

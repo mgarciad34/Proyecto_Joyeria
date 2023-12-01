@@ -4,7 +4,7 @@ export async function obtenerLotes() {
         const options = {
             method: "GET",
             headers: {
-                "Authorization": "Bearer"+token,
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'aplication/json'
             },
             

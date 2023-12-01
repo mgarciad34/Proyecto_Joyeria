@@ -16,6 +16,7 @@ class DesignMid
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
+        
          if ($user->tokenCan("Diseñador")) {
             return $next($request);
          }

@@ -1,11 +1,12 @@
 export async function obtenerTipos() {
     try {
+        let token=sessionStorage.getItem('token')
         const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
         const options = {
             method: "GET",
             headers: {
                 "Authorization": "Bearer "+token,
-                'Content-Type': 'aplication/json'
+                'Content-Type': 'application/json'
             },
             
         }
@@ -24,6 +25,7 @@ export async function obtenerTipos() {
 }
 export async function obtenerJoya(id) {
     try {
+        let token=sessionStorage.getItem('token')
         const options = {
             method: "GET",
             headers: {

@@ -15,7 +15,8 @@ use App\Http\Controllers\ControladorDespieceLotes;
 use App\Http\Controllers\ControladorJoya;
 use App\Http\Controllers\ControladorRec;
 
-Route::group(['middleware' => ['cors']], function () {
+Route::middleware('cors')->group( function () {
+  
     
     //Registro de usuarios
     Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
@@ -44,15 +45,18 @@ Route::group(['middleware' => ['cors']], function () {
             Route::get('obtener/roles/{idUsuario}', [ControladorRolAsignado::class, 'obtenerRolesId']);
         });
     });
-    Route::middleware('ColabMid')->group(function () {
-        
-        Route::prefix('lotes')->group(function () {
-            Route::post('', [ControladorLote::class, 'insertarLote']);
-            Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote']);
-            Route::get('', [ControladorLote::class, 'consultarLotes']);
-            Route::get('{id}', [ControladorLote::class, 'consultarLote']);
+    
+  
+    Route::prefix('lotes')->group(function () {
+        Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
+            Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
+            Route::post('', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
+            Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
+            Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
+            Route::get('{id}', [ControladorLote::class, 'consultarLote'])->middleware('ColabMid');
+            
         });
-    });
+  
     //** Preguntar a Fernando como hacer que compruebe dos middleware pero que con uno pase */
     Route::prefix('tipos')->group(function () {
         Route::get('', [ControladorTipos::class, 'consultarTipos']);
@@ -63,10 +67,8 @@ Route::group(['middleware' => ['cors']], function () {
             Route::get('lote/{id}', [ControladorDespieceLotes::class, 'getDespieceOfLote']);
             Route::post('lote/clasificar/{id}', [ControladorDespieceLotes::class, 'guardarElementosLote']);
         });
-        Route::prefix('lotes')->group(function () {
-            Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados']);
-            Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados']);
-        });
+    
+        
     });
     Route::middleware('DesignMid')->group(function () {
         Route::prefix('joyas')->group(function () {
@@ -88,5 +90,6 @@ Route::group(['middleware' => ['cors']], function () {
         });
     });
 });
+
 
 });
