@@ -2,6 +2,7 @@ import{obtenerJoyas} from './http/http-listadoJoyas.js'
 
 
 obtenerJoyas().then(function(data){
+    console.log(data)
     pintarJoyas(data)
 })
 

@@ -14,18 +14,21 @@ use App\Http\Controllers\ControladorComponentes;
 use App\Http\Controllers\ControladorDespieceLotes;
 use App\Http\Controllers\ControladorJoya;
 use App\Http\Controllers\ControladorRec;
-//Registro de usuarios
-Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
 
-//Login y Logout usuario
-Route::post('login', [ControladorAuth::class, 'login']);
-Route::post('logout', [ControladorAuth::class, 'logout']);
-Route::get('', function () {
-    return response()->json("No autorizado", 203);
-})->name('nologin');
-
-//Rutas agrupadas del administrador
-Route::middleware('auth:sanctum')->group(function () {
+Route::group(['middleware' => ['cors']], function () {
+    
+    //Registro de usuarios
+    Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
+    
+    //Login y Logout usuario
+    Route::post('login', [ControladorAuth::class, 'login']);
+    Route::post('logout', [ControladorAuth::class, 'logout']);
+    Route::get('', function () {
+        return response()->json("No logeado", 203);
+    })->name('nologin');
+    
+    //Rutas agrupadas del administrador
+    Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
@@ -42,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
     Route::middleware('ColabMid')->group(function () {
-
+        
         Route::prefix('lotes')->group(function () {
             Route::post('', [ControladorLote::class, 'insertarLote']);
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote']);
@@ -84,4 +87,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('{id}', [ControladorRec::class, 'nuevaReceta']);
         });
     });
+});
+
 });

@@ -16,7 +16,7 @@ class AdminMid
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-         if ($user->tokenCan("administrador")) {
+         if ($user->tokenCan("Administrador")) {
             return $next($request);
          }
          else {

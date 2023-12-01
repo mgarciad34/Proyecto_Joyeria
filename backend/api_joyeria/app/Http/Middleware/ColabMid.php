@@ -16,7 +16,7 @@ class ColabMid
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-         if ($user->tokenCan("colaborador")) {
+         if ($user->tokenCan("Colaborador")) {
             return $next($request);
          }
          else {

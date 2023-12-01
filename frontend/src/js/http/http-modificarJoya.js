@@ -1,7 +1,15 @@
 export async function obtenerTipos() {
     try {
         const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
-        const response = await fetch(apiUrl2);
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'aplication/json'
+            },
+            
+        }
+        const response = await fetch(apiUrl2,options);
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
@@ -16,8 +24,16 @@ export async function obtenerTipos() {
 }
 export async function obtenerJoya(id) {
     try {
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'aplication/json'
+            },
+            
+        }
         const apiUrl2 = 'http://127.0.0.1:8000/api/joyas/'+id
-        const response = await fetch(apiUrl2);
+        const response = await fetch(apiUrl2, options);
         if (!response.ok) {
             throw new Error('No se pudo obtener la joya');
         }
@@ -31,7 +47,16 @@ export async function obtenerJoya(id) {
 }
     export async function obtenerRecetas(id) {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/recetas/'+id);
+            let token=sessionStorage.getItem('token')
+            const options = {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer "+token,
+                    'Content-Type': 'aplication/json'
+                },
+                
+            }
+            const response = await fetch('http://127.0.0.1:8000/api/recetas/'+id,options);
             if (!response.ok) {
                 throw new Error('No se pudo obtener las joyas');
             }
@@ -46,12 +71,14 @@ export async function obtenerJoya(id) {
     }
 
     export async function actualizarJoya(id,joyas) {
-      
+     
         try {
+            let token=sessionStorage.getItem('token')
             let url = 'http://127.0.0.1:8000/api/joyas/'+id
             const options = {
                 method: "PUT",
                 headers: {
+                    "Authorization":"Bearer "+token,
                     'Content-Type': 'aplication/json'
                 },
                 body: JSON.stringify(joyas)

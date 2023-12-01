@@ -1,6 +1,14 @@
 export async function obtenerRecetas(id) {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/recetas/'+id);
+    const options = {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer"+token,
+            'Content-Type': 'aplication/json'
+        },
+        
+    }
+        const response = await fetch('http://127.0.0.1:8000/api/recetas/'+id,options);
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
@@ -23,6 +31,7 @@ export async function fabricarJoya(joya,id_usuario) {
         const options = {
             method: "PUT",
             headers: {
+                "Athorization": "Bearer "+token,
                 'Content-Type': 'application/json'
             },
             body:  JSON.stringify(json)
@@ -48,6 +57,7 @@ export async function isOwner(joya,id_usuario) {
         const options = {
             method: "GET",
             headers: {
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'application/json'
             },
            
@@ -66,12 +76,13 @@ export async function isOwner(joya,id_usuario) {
     }
 }
 export async function eliminarJoya(joya) {
-
+ 
     try {
         let url = 'http://127.0.0.1:8000/api/joyas/'+joya
         const options = {
             method: "DELETE",
             headers: {
+                "Authorization": "Bearer "+token,
                 'Content-Type': 'aplication/json'
             },
             

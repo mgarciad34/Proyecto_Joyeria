@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClasiMid
+class Cors
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,13 @@ class ClasiMid
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = $request->user();
-        if ($user->tokenCan("Clasificador")) {
-           return $next($request);
-        }
-        else {
-            return response()->json(["success"=>false, "message" => "No autorizado"],202);
-        }
+        return $next($request)
+        
+       ->header("Access-Control-Allow-Origin", "*")
+     
+       ->header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+      
+       ->header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Token-Auth, Authorization"); 
+   }
     }
-}
+

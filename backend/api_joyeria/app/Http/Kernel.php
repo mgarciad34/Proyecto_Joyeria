@@ -64,9 +64,10 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'AdminMid' => \Illuminate\Http\Middleware\AdminMid::class,
-        'ClasiMid' => \Illuminate\Http\Middleware\ClasiMid::class,
-        'ColabMid'=> \Illuminate\Http\Middleware\ColabMid::class,
-        'DesignMid'=> \Illuminate\Http\Middleware\DesignMid::class,
+        'AdminMid' => \App\Http\Middleware\AdminMid::class,
+        'ClasiMid' => \App\Http\Middleware\ClasiMid::class,
+        'ColabMid'=> \App\Http\Middleware\ColabMid::class,
+        'DesignMid'=> \App\Http\Middleware\DesignMid::class,
+        'cors'=> \App\Http\Middleware\Cors::class,
     ];
 }
