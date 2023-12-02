@@ -1,12 +1,17 @@
 import { obtenerTipos,guardarNuevaJoya, subirFoto } from "./http/http-designJoya.js"
 const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
 
-let formData= new FormData()
+let formData= null
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+
+let carga= document.getElementById('carga')
+
+
+
 document.getElementById('formulario').reset()
 inputNombre.value=''
 btnAdd.disabled=true
@@ -39,7 +44,13 @@ inputNombre.addEventListener('input', function () {
 
 })
 
-inputFoto.addEventListener('input', function () {
+inputFoto.addEventListener('change', function () {
+    
+    carga.classList.remove('spinner');
+    void carga.offsetWidth;
+    carga.classList.add('spinner');
+    formData = new FormData(document.getElementById('formulario'));
+    console.log(formData)
     if (!elementoVacio(inputFoto.id)) {
         btnAdd.disabled = false
 
@@ -54,6 +65,7 @@ inputFoto.addEventListener('input', function () {
             btnGuardar.disabled = false
         }
     }
+
 
 })
 btnGuardar.addEventListener('click', function () {
@@ -92,12 +104,6 @@ btnGuardar.addEventListener('click', function () {
    
     
 })
-
-document.getElementById('formulario').addEventListener('submit', function (event) {
-    event.preventDefault();
-     formData = new FormData(this);
-});
-
 
 
 btnAdd.addEventListener('click', function () {

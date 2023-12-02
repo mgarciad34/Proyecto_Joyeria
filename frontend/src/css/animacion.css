@@ -1,0 +1,100 @@
+.spDefault{
+    border: 18px solid rgba(0,0,0,.1);
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+}
+.spinner {
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: aqua;
+    background-color: white;
+    font-size: 10px;
+    text-align: center;
+   
+    color: rgba(255, 0, 0, 0);
+    animation: completarYExpandir 5s ease forwards, mostrarBarra 5s ease forwards 5s; /* Ajusté los tiempos según tu necesidad */
+}
+.spinner::after{
+    content: 'Carga completa';
+    position: absolute;
+    font-size: 10px; /* Tamaño de fuente ajustable según tus necesidades */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes completarYExpandir {
+    0% {
+        transform: rotate(0deg);
+        width: 36px; /* Ancho inicial */
+        border-left-color: gold;
+        color: rgba(255, 0, 0, 0);
+        
+    }
+    25% {
+        transform: rotate(90deg);
+        width: 36px; /* Puedes ajustar el ancho en cada paso si es necesario */
+        border-left-color: gold;
+        color: rgba(255, 0, 0, 0);
+    }
+    50% {
+        transform: rotate(180deg);
+        width: 36px;
+        border-left-color: gold;
+        color: rgba(255, 0, 0, 0);
+    }
+    75% {
+        transform: rotate(270deg);
+        width: 36px;
+        border-left-color: gold;
+        color: rgba(255, 0, 0, 0);
+    }
+    100% {
+        transform: rotate(360deg);
+        width: 36px; /* Mantén el mismo ancho en el último paso */
+        border-left-color: gold;
+        color: rgba(255, 0, 0, 0);
+    }
+    
+}
+
+@keyframes mostrarBarra {
+    0% {
+        border-color: red;
+        width: 10px; /* Ancho inicial de la barra lateral */
+        border-radius: 10%;
+        
+       
+    }
+    25% {
+        border-color: red;
+        width: 100px; /* Ancho inicial de la barra lateral */
+        border-radius: 10%;
+
+    }
+    
+    50% {
+        width: 100px; /* Ancho inicial de la barra lateral */
+        border-radius: 10%;
+        border-left-color:greenyellow;
+        
+    }
+    75%{
+        width: 100px; /* Ancho inicial de la barra lateral */
+        border-radius: 10%;
+        border-top-color:greenyellow;
+        
+    }
+    100% {
+        width: 100px; /* Ancho final de la barra lateral */
+        border-radius: 10%;
+        border-color:greenyellow;
+        
+        color: rgba(0, 0, 0, 1);
+    }
+  
+}
+
