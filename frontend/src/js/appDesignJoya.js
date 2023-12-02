@@ -89,18 +89,8 @@ btnGuardar.addEventListener('click', function () {
 
         joya.detalle.push(componente)
     }
-    var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
-    if (resultado) {
-        guardarNuevaJoya(joya).then(function (data) {
-    let formulario=document.getElementById('formulario')
-            subirFoto(formulario,data.id).then(function(data){
-                console.log(data)
-                formulario.reset()
-                window.location.href='listaJoyas.html'
-            })
-        })
-
-    }
+   
+    lanzarModalGuardado(joya)
    
     
 })
@@ -126,7 +116,7 @@ btnAdd.addEventListener('click', function () {
     }
 
     if (validaciones.includes(false)) {
-        alert(mensaje)
+        lanzarModalErrores(mensaje)
     } else {
 
         let tablaElementosRegistrados = document.getElementById('detalle-receta')
@@ -174,4 +164,34 @@ function tablaVacia(tabla) {
         vacia = false
     }
     return vacia
+}
+function lanzarModalGuardado(joya){
+
+document.getElementById('modal').style.display = 'flex';
+  
+  
+  document.getElementById('cancelarGuardado').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'none';
+  });
+  
+  document.getElementById('confirmarGuardado').addEventListener('click', function() {
+    guardarNuevaJoya(joya).then(function (data) {
+        let formulario=document.getElementById('formulario')
+                subirFoto(formulario,data.id).then(function(data){
+                    console.log(data)
+                    formulario.reset()
+                    window.location.href='listaJoyas.html'
+                })
+            })
+    document.getElementById('modal').style.display = 'none';
+
+  });
+}
+
+function lanzarModalErrores(mensaje){
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').textContent=mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click',function(){
+        document.getElementById('modal-errores').style.display = 'none';
+    })
 }

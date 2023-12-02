@@ -4,27 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Receta</title>
-    <style>
-        /*temporal*/
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; 
-        }
-    
-        nav li {
-            margin-right: 10px; 
-        }
-    
-        nav a {
-            text-decoration: none;
-            color: black;
-            
-        }
+   
     </style>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+     <link rel="stylesheet" href="../css/animacion.css">
 </head>
 <body>
     <header class="row bg-warning row-warning">
@@ -63,6 +47,21 @@
             </div>
         </nav>
     </header>
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p>¿Estás seguro de que quieres guardar los cambios en esta  joya?</p>
+          <button id="confirmarGuardado">Confirmar</button>
+          <button id="cancelarGuardado">Cancelar</button>
+        </div>
+      </div>
+      <div id="modal-errores" class="modal">
+          <div class="modal-contenido">
+            <span class="cerrar-modal" id="cerrarModal">&times;</span>
+            <p id="mensajeErrores"></p>
+            <button id="cerrarModalErrores">Continuar</button>
+          </div>
+        </div>
     <div class="container">
         <div class="text-center mb-3">
             <h4> Modificar joya</h4>
@@ -79,7 +78,10 @@
             <tbody id="tabla_joya">
                 <tr>
                     <td><input id="inputNombre" type="text"></td>
-                    <th><input id="inputFoto" type="text"></th>
+                    <form id="formulario" action="http://localhost:8000/api/testing" method="post" enctype="multipart/form-data">
+                        <th><input type="file" id="inputFoto" name="foto" accept="image/*" value="1"></th>
+                    
+                        <th><div id='carga' class="spDefault" ></div></th>
                 </tr>
             </tbody>
         </table>

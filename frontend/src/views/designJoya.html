@@ -68,6 +68,21 @@
         <h4> Crear nueva Joya</h4>
         
     </div>
+    <div id="modal" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar-modal" id="cerrarModal">&times;</span>
+        <p>¿Estás seguro de que quieres guardar esta nueva joya?</p>
+        <button id="confirmarGuardado">Confirmar</button>
+        <button id="cancelarGuardado">Cancelar</button>
+      </div>
+    </div>
+    <div id="modal-errores" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p id="mensajeErrores"></p>
+          <button id="cerrarModalErrores">Continuar</button>
+        </div>
+      </div>
     <div class="container">
         <caption>Datos principales</caption>
         
@@ -83,7 +98,7 @@
             <td><input id="inputNombre" type="text"></td>
             <form id="formulario" action="http://localhost:8000/api/testing" method="post" enctype="multipart/form-data">
             <th><input type="file" id="inputFoto" name="foto" accept="image/*" value="1"></th>
-            <!-- <th><input type="submit" name="subir" id="botonSubir" value="Subir"> </th> -->
+        
             <th><div id='carga' class="spDefault" ></div></th>
            
             </form>

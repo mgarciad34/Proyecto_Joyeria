@@ -1,0 +1,187 @@
+
+a {
+    text-decoration: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.nav-item:hover{
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    border-radius: 20%;
+}
+body {
+    min-height: 100vh;
+    background: url(../images/estrellas3.jpg) center / cover;
+  
+}
+
+header{
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+}
+main.table2 {
+    margin-top: 40px;
+    width: 100%;
+    height: 80vh;
+    background-color: #fff5;
+    max-width: 100%;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
+
+.table__header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: .5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+   
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+    text-transform: capitalize;
+}
+
+
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+
+
+tbody tr:hover {
+    background-color: #fff6;
+}
+
+tbody tr td,
+tbody tr td p,
+tbody tr td img {
+    transition: .2s ease-in-out;
+}
+
+tbody tr.hide td,
+tbody tr.hide td p {
+    padding: 0;
+    font: 0 / 0 sans-serif;
+    transition: .2s ease-in-out .5s;
+}
+
+tbody tr.hide td img {
+    width: 0;
+    height: 0;
+    transition: .2s ease-in-out .5s;
+}
+.status.delivered:hover{
+    background-color:#fff5;
+    border-color: #006b21;
+    color:#006b21
+}
+.status.shipped:hover{
+    background-color:#fff5;
+    border-color: #6fcaea;
+    color:#6fcaea
+}
+
+.status {
+   color:rgba(25, 15, 15, 0.333);
+    padding: .6rem .5rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: small;
+    border-color: black;
+    backdrop-filter: blur(10px);
+}
+
+.status.delivered {
+    background-color: #b8f6c7;
+    backdrop-filter: blur(10px);
+}
+
+.status.cancelled {
+    background-color: #d893a3;
+    backdrop-filter: blur(10px);
+}
+.status.cancelled:hover{
+    background-color:#fff5;
+    border-color: #d893a3;
+    color:#d893a3
+}
+.status.pending {
+    background-color: #fed98f;
+    backdrop-filter: blur(10px);
+}
+.status.pending:hover{
+    background-color:#fff5;
+    border-color: #fed98f;
+    color:#fed98f
+}
+
+.status.shipped {
+    background-color: #6fcaea;
+    backdrop-filter: blur(10px);
+}
+
+
+
+
+
+

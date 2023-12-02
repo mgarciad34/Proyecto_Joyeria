@@ -86,23 +86,23 @@ btnGuardar.addEventListener('click', function () {
     }
     if(joya.detalle.length==0){
 
-        alert('No puedes guardar una joya sin receta')
+        lanzarModalErrores('No puedes guardar una joya sin receta')
 
     }else{
         if(!evaluarCantidades(cantidades)){
-            alert('Debes introducir cantidades correctas')
+           lanzarModalErrores('Debes introducir cantidades correctas')
         }else{
-            let resultado = window.confirm("¿Estás seguro de que deseas actualizar esta joya?");
-            if (resultado) {
+             lanzarModalGuardado()
+            // if (resultado) {
                
-               let json={joya_original,joya}
+            //    let json={joya_original,joya}
               
-                actualizarJoya(idJoya,json).then(function () {
+            //     actualizarJoya(idJoya,json).then(function () {
                     
-                    window.location.href='listaJoyasUsuario.html'
-                })
+            //         window.location.href='listaJoyasUsuario.html'
+            //     })
                 
-            }
+            // }
 
         }
     }
@@ -120,19 +120,19 @@ btnAdd.addEventListener('click', function () {
     let mensaje =''
    
     if (inputCantidad == ''|| inputCantidad.includes('-') ||inputCantidad=='0') {
-        mensaje = mensaje + ' Debe introducir una cantidad \n'
+        mensaje ='Debe introducir una cantidad <br> '
         validaciones.push(false)
 
     }
-
+  
     if (inputTipo == 0) {
-        mensaje = mensaje + ' Debe introducir elegir un tipo \n'
+        mensaje=mensaje+' Debe introducir elegir un tipo <br>'
         validaciones.push(false)
 
     }
 
     if (validaciones.includes(false)) {
-        alert(mensaje)
+       lanzarModalErrores(mensaje)
     } else {
 
         let tablaElementosRegistrados = document.getElementById('detalle-receta')
@@ -288,3 +288,35 @@ function evaluarCantidades(array){
     }
     return sigue
 }
+
+function lanzarModalGuardado(joya){
+
+    document.getElementById('modal').style.display = 'flex';
+      
+      
+      document.getElementById('cancelarGuardado').addEventListener('click', function() {
+        document.getElementById('modal').style.display = 'none';
+      });
+      
+      document.getElementById('confirmarGuardado').addEventListener('click', function() {
+        // guardarNuevaJoya(joya).then(function (data) {
+        //     let formulario=document.getElementById('formulario')
+        //             subirFoto(formulario,data.id).then(function(data){
+        //                 console.log(data)
+        //                 formulario.reset()
+        //                 window.location.href='listaJoyas.html'
+        //             })
+        //         })
+        document.getElementById('modal').style.display = 'none';
+    
+      });
+    }
+    
+    function lanzarModalErrores(mensaje){
+    
+        document.getElementById('modal-errores').style.display = 'flex';
+        document.getElementById('mensajeErrores').innerHTML=mensaje
+        document.getElementById('cerrarModalErrores').addEventListener('click',function(){
+            document.getElementById('modal-errores').style.display = 'none';
+        })
+    }
