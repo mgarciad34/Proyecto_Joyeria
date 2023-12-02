@@ -24,6 +24,7 @@ Route::post('logout', [ControladorAuth::class, 'logout']);
 //Rutas agrupadas del administrador
 Route::prefix('administrador')->group(function () {
     Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
+    Route::put('/modificar/usuario/{id}', [ControladorAdministrador::class, 'modificarUsuario']);
     Route::delete('/eliminar/usuario/{id}', [ControladorAdministrador::class, 'eliminarUsuarioId']);
     Route::get('/usuarios', [ControladorAdministrador::class, 'consultarUsuarios']);
     Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);

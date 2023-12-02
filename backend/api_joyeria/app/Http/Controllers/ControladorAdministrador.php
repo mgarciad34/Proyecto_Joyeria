@@ -47,7 +47,28 @@ class ControladorAdministrador extends Controller
         }
     }
 
+    public function modificarUsuario(Request $request, $id)
+{
+    try {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
 
+        $usuario = User::findOrFail($id);
+
+        $usuario->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ]);
+
+        return response()->json(['message' => 'Usuario modificado exitosamente'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
+    
 
     public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     {
