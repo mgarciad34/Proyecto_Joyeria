@@ -1,13 +1,14 @@
-import { obtenerTipos,guardarNuevaJoya } from "./http/http-designJoya.js"
+import { obtenerTipos,guardarNuevaJoya, subirFoto } from "./http/http-designJoya.js"
 const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
 
-
-
+let formData= new FormData()
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+document.getElementById('formulario').reset()
+inputNombre.value=''
 btnAdd.disabled=true
 btnGuardar.disabled=true
 obtenerTipos().then(function (data) {
@@ -78,16 +79,24 @@ btnGuardar.addEventListener('click', function () {
     }
     var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
     if (resultado) {
-       
-        guardarNuevaJoya(joya).then(function () {
-            document.getElementById('inputNombre').value=''
-            document.getElementById('inputFoto').value=''
-            window.location.href='listaJoyas.html'
+        guardarNuevaJoya(joya).then(function (data) {
+    let formulario=document.getElementById('formulario')
+            subirFoto(formulario,data.id).then(function(data){
+                console.log(data)
+                formulario.reset()
+                window.location.href='listaJoyas.html'
+            })
         })
 
     }
+   
+    
 })
 
+document.getElementById('formulario').addEventListener('submit', function (event) {
+    event.preventDefault();
+     formData = new FormData(this);
+});
 
 
 

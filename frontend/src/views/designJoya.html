@@ -80,7 +80,10 @@
             <tbody id="tabla_joya">
         <tr>
             <td><input id="inputNombre" type="text"></td>
-            <th><input id="inputFoto" type="text"></th>
+            <form id="formulario" action="http://localhost:8000/api/testing" method="post" enctype="multipart/form-data">
+            <th><input type="file" id="inputFoto" name="foto" accept="image/*" value="1"></th>
+            <th><input type="submit" name="subir" id="" value="Subir"></th>
+            </form>
         </tr>
     </tbody>
 </table>

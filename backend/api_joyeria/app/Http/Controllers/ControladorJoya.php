@@ -8,6 +8,7 @@ use App\Models\Joya;
 use App\Models\HistoricoJoya;
 use App\Models\Tipos_componente;
 use App\Models\Receta;
+use App\Http\Controllers\FotoControlador;
 use App\Http\Controllers\ControladorReceta;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -19,11 +20,12 @@ class ControladorJoya extends Controller
 
             $joya=new Joya();
             $joya->nombre=$request->get('nombre');
-            $joya->foto=$request->get('foto');
+            // $joya->foto=$request->get('foto');
             $joya->id_usuario=$request->get('id_usuario');
             $joya->save();
-            
-            
+
+             $joya->foto="https://jawa-oscar.s3.eu-west-3.amazonaws.com/perfiles/".$joya->id;
+            $joya->save();
             $detalle=$request->detalle;
             
             for ($i=0;$i<count($detalle);$i++) {
@@ -37,7 +39,7 @@ class ControladorJoya extends Controller
                 
             }
             
-            return response()->json(['Nueva joya registrada correctamente'],201);
+            return response()->json(['mensaje'=>'Nueva joya registrada correctamente','id'=>$joya->id],201);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al crear la joya'],400);
         }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FotoControlador;
 use App\Http\Controllers\ControladorUsuarios;
 use App\Http\Controllers\ControladorAdministrador;
 use App\Http\Controllers\ControladorRolAsignado;
@@ -93,3 +93,5 @@ Route::middleware('cors')->group( function () {
 
 
 });
+
+Route::post('testing/{id}',[FotoControlador::class,'cargarImagen']);
