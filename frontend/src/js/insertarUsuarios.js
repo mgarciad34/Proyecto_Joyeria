@@ -98,7 +98,6 @@ btnregistro.addEventListener('click', function(event){
     var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
         if(sumatorio == 4){
             enviarDatos(nuevoUsuario, url).then(function(){
-                //Aqui no consigue cambiar a la otra pantalla
             window.location.href="indexAdministrador.html";
         });
     

@@ -1,7 +1,13 @@
 import { obtenerDatos } from '../js/http/http-consultarUsuarios.js';
+import RolesAsignados from './clases/rolesAsignados.js';
+import { enviarDatos } from './http/http-insertarRol.js';
+
+var btnRegistrarRol = document.getElementById('btnInsertarRol');
+var mensajeBoton = document.getElementById('mensajeBoton');
 
 document.addEventListener('DOMContentLoaded', function () {
     var selUsuario = document.getElementById('selUsuario');
+    var selRol = document.getElementById('selRol');
 
     if (!selUsuario) {
         console.error('No se encontró el elemento con ID "selUsuario".');
@@ -30,4 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Error al cargar datos en el select:', error);
         });
+});
+
+btnRegistrarRol.addEventListener('click', function(event){
+    event.preventDefault();
+    var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
+    enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario');
+    window.location.href="indexAdministrador.html";
+
 });

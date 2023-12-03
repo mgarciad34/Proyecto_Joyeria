@@ -68,52 +68,50 @@ class ControladorAdministrador extends Controller
     }
 }
 
-    
-
-    public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
-    {
-        try {
-            if ($idUsuario !== null && $idRol !== null) {
-            } else {
-                $request->validate([
-                    'idUsuario' => 'required',
-                    'idRol' => 'required',
-                ]);
-
-                $idUsuario = $request->input('idUsuario');
-                $idRol = $request->input('idRol');
-            }
-
-            $registroExistente = RolAsignado::where('idusuario', $idUsuario)
-                                            ->where('idrol', $idRol)
-                                            ->exists();
-
-            if ($registroExistente) {
-                return response()->json(['message' => 'El rol ya está asignado al usuario'], 200);
-            }
-
-            $usuarioExistente = User::find($idUsuario);
-
-            if (!$usuarioExistente) {
-                return response()->json(['error' => 'El usuario no existe'], 404);
-            }
-
-            $rolExistente = Rol::where('id', $idRol)->exists();
-
-            if (!$rolExistente) {
-                return response()->json(['error' => 'El rol no existe'], 404);
-            }
-
-            RolAsignado::create([
-                'idusuario' => $idUsuario,
-                'idrol' => $idRol,
+public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
+{
+    try {
+        if ($idUsuario !== null && $idRol !== null) {
+        } else {
+            $request->validate([
+                'idUsuario' => 'required',
+                'idRol' => 'required',
             ]);
 
-            return response()->json(['message' => 'Rol asignado exitosamente'], 201);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            $idUsuario = $request->input('idUsuario');
+            $idRol = $request->input('idRol');
         }
+
+        $registroExistente = RolAsignado::where('idusuario', $idUsuario)
+                                        ->where('idrol', $idRol)
+                                        ->exists();
+
+        if ($registroExistente) {
+            return response()->json(['message' => 'El rol ya está asignado al usuario'], 200);
+        }
+
+        $usuarioExistente = User::find($idUsuario);
+
+        if (!$usuarioExistente) {
+            return response()->json(['error' => 'El usuario no existe'], 404);
+        }
+
+        $rolExistente = Rol::where('id', $idRol)->exists();
+
+        if (!$rolExistente) {
+            return response()->json(['error' => 'El rol no existe'], 404);
+        }
+
+        RolAsignado::create([
+            'idusuario' => $idUsuario,
+            'idrol' => $idRol,
+        ]);
+
+        return response()->json(['message' => 'Rol asignado exitosamente'], 201);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
 
 
     public function eliminarRol(Request $request)
