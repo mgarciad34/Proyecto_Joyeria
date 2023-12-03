@@ -132,9 +132,9 @@ class ControladorJoya extends Controller
                 $joya->nombre=$joyaUpdate['nombre'];
                 
             }
-            if($joyaOriginal['foto']!=$joyaUpdate['foto']){
-                $joya->foto=$joyaUpdate['foto'];
-            }
+            // if($joyaOriginal['foto']!=$joyaUpdate['foto']){
+            //     $joya->foto=$joyaUpdate['foto'];
+            // }
             $joya->save();
             if($joyaUpdate['detalle']!=$joyaOriginal['detalle']){
                 $c=new ControladorReceta;

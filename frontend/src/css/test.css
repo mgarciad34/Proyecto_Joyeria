@@ -101,44 +101,19 @@ thead th {
 
 
 
-tbody tr {
-    --delay: .1s;
-    transition: .5s ease-in-out var(--delay), background-color 0s;
-}
-
-
-
 tbody tr:hover {
     background-color: #fff6;
 }
 
-tbody tr td,
-tbody tr td p,
-tbody tr td img {
-    transition: .2s ease-in-out;
-}
 
-tbody tr.hide td,
-tbody tr.hide td p {
-    padding: 0;
-    font: 0 / 0 sans-serif;
-    transition: .2s ease-in-out .5s;
-}
-
-tbody tr.hide td img {
-    width: 0;
-    height: 0;
-    transition: .2s ease-in-out .5s;
-}
 .status.delivered:hover{
-    background-color:#fff5;
-    border-color: #006b21;
-    color:#006b21
+   
+    background-color: #b8f6c7;
+    backdrop-filter: blur(10px);
 }
 .status.shipped:hover{
-    background-color:#fff5;
-    border-color: #6fcaea;
-    color:#6fcaea
+    background-color: #6fcaea;
+    backdrop-filter: blur(10px);
 }
 
 .status {
@@ -152,32 +127,38 @@ tbody tr.hide td img {
 }
 
 .status.delivered {
-    background-color: #b8f6c7;
-    backdrop-filter: blur(10px);
+    background-color:#fff5;
+    border-color: #b8f6c7;
+    color:#006b21;
 }
 
 .status.cancelled {
-    background-color: #d893a3;
-    backdrop-filter: blur(10px);
-}
-.status.cancelled:hover{
+  
     background-color:#fff5;
     border-color: #d893a3;
     color:#d893a3
 }
+.status.cancelled:hover{
+    background-color: #d893a3;
+    backdrop-filter: blur(10px);
+    color:#71434e
+}
 .status.pending {
+    
+    background-color:#fff5;
+    border-color: #fed98f;
+    color:#ba9344
+}
+.status.pending:hover{
     background-color: #fed98f;
     backdrop-filter: blur(10px);
 }
-.status.pending:hover{
-    background-color:#fff5;
-    border-color: #fed98f;
-    color:#fed98f
-}
 
 .status.shipped {
-    background-color: #6fcaea;
-    backdrop-filter: blur(10px);
+   
+    background-color:#fff5;
+    border-color: #6fcaea;
+    color:#6fcaea
 }
 
 

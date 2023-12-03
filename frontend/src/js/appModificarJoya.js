@@ -1,4 +1,4 @@
-import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya } from "./http/http-modificarJoya.js";
+import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya,subirFoto } from "./http/http-modificarJoya.js";
 let idJoya=JSON.parse(sessionStorage.getItem('joya-guardada'))
 let tiposEnUso=[]
 let joya_original={
@@ -12,7 +12,7 @@ let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 let desplegable = document.getElementById('tipos-habilitados')
-
+let formData=false
 obtenerJoya(idJoya).then(function(data){
     inputNombre.value=data.nombre
     inputFoto.value=data.foto
@@ -46,6 +46,9 @@ inputNombre.addEventListener('input', function () {
 })
 
 inputFoto.addEventListener('input', function () {
+    carga.classList.remove('spinner');
+    void carga.offsetWidth;
+    carga.classList.add('spinner');
     if (!elementoVacio(inputFoto.id)) {
         btnAdd.disabled = false
 
@@ -67,7 +70,7 @@ btnGuardar.addEventListener('click', function () {
     let joya = {}
     let cantidades=[]
     joya.nombre = inputNombre.value
-    joya.foto = inputFoto.value
+    joya.foto = ''
     joya.id_usuario=usuario
     joya.detalle = []
     
@@ -92,18 +95,8 @@ btnGuardar.addEventListener('click', function () {
         if(!evaluarCantidades(cantidades)){
            lanzarModalErrores('Debes introducir cantidades correctas')
         }else{
-             lanzarModalGuardado()
-            // if (resultado) {
-               
-            //    let json={joya_original,joya}
-              
-            //     actualizarJoya(idJoya,json).then(function () {
-                    
-            //         window.location.href='listaJoyasUsuario.html'
-            //     })
-                
-            // }
-
+            let json={joya_original,joya}
+             lanzarModalGuardado(json,idJoya)
         }
     }
 
@@ -180,6 +173,13 @@ btnAdd.addEventListener('click', function () {
     }
    
 })
+// document.getElementById('inputFoto').addEventListener('click', function(){
+//     formData=document.getElementById('formulario')
+//     console.log(formData)
+//     if(inputFoto.files.length>0){
+//         console.log('llega')
+//     }
+// })
 function pintarTipos(data){
 
     for (let i = 0; i < data.tipos.length; i++) {
@@ -289,7 +289,7 @@ function evaluarCantidades(array){
     return sigue
 }
 
-function lanzarModalGuardado(joya){
+function lanzarModalGuardado(json,idJoya){
 
     document.getElementById('modal').style.display = 'flex';
       
@@ -299,14 +299,16 @@ function lanzarModalGuardado(joya){
       });
       
       document.getElementById('confirmarGuardado').addEventListener('click', function() {
-        // guardarNuevaJoya(joya).then(function (data) {
-        //     let formulario=document.getElementById('formulario')
-        //             subirFoto(formulario,data.id).then(function(data){
-        //                 console.log(data)
-        //                 formulario.reset()
-        //                 window.location.href='listaJoyas.html'
-        //             })
-        //         })
+        actualizarJoya(idJoya,json).then(function () {
+                    if(inputFoto.files.length>0){
+                        subirFoto(document.getElementById('formulario'),idJoya).then(function(data){
+                            
+                            window.location.href='listaJoyasUsuario.html'
+                        })
+                    }else{
+                        window.location.href='listaJoyasUsuario.html'
+                    }
+                })
         document.getElementById('modal').style.display = 'none';
     
       });
@@ -320,3 +322,4 @@ function lanzarModalGuardado(joya){
             document.getElementById('modal-errores').style.display = 'none';
         })
     }
+   
