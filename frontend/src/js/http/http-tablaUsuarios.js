@@ -66,6 +66,7 @@ export function mostrarModal(usuarios, modificar, cerrar) {
         var modificarUsuario = new modificarUsers(usuarios.name, usuarios.email);
         enviarDatos(modificarUsuario, url);
         myModal.hide();
+        window.location.href="indexAdministrador.html";
     })
     
     cerrar.addEventListener("click", function () {
