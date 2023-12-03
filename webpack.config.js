@@ -9,6 +9,7 @@ module.exports = {
     consultarUsuarios: './frontend/src/js/consultarUsuarios.js',
     insertarComponentes: './frontend/src/js/insertarComponentes.js',
     insertarRol: './frontend/src/js/insertarRol.js',
+    eliminarRol: './frontend/src/js/eliminarRol.js',
     consultarComponentes: './frontend/src/js/consultarComponentes.js',
     appClasificador: './frontend/src/js/appClasificador.js',
     appLote: './frontend/src/js/appLote.js',
