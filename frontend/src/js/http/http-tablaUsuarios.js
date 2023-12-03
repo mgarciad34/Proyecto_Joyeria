@@ -1,3 +1,8 @@
+//Importamos las validaciones
+import { validarNombre,validarCorreo } from "../validaciones.js";
+import { enviarDatos } from "../http/http-modificarUsuario.js";
+import modificarUsers from '../clases/modificarUsers.js';
+
 export function crearCelda(valor) {
     const celda = document.createElement('td');
     celda.textContent = valor;
@@ -14,17 +19,16 @@ export function crearBoton(texto, color, clickHandler) {
 }
 
 
-export function mostrarModal(usuarios, modificar, cerrar, nombre) {
+export function mostrarModal(usuarios, modificar, cerrar) {
     console.log(usuarios)
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const myInputNombre = document.getElementById('txtnombre');
     const myInputEmail = document.getElementById('txtemail');
-    // Otros campos según sea necesario
+    var msgNombre = document.getElementById('mensajeNombre');
+    var msgCorreo = document.getElementById('mensajeCorreo');
 
-    // Llenar los campos del formulario con los datos del usuario
     myInputNombre.value = usuarios.name;
     myInputEmail.value = usuarios.email;
-    // Otros campos según sea necesario
     
 
     myModal.show();
@@ -35,14 +39,36 @@ export function mostrarModal(usuarios, modificar, cerrar, nombre) {
 
     });
     
-    modificar.addEventListener("click", function () {
-        console.log('Guardar')
+    myInputNombre.addEventListener('input', function(){
+        if (validarNombre(myInputNombre.value) === false){
+            msgNombre.style.color = "red";
+            msgNombre.innerHTML = "Nombre Incorrecto";
+        }else{
+            msgNombre.style.color = "green";
+            msgNombre.innerHTML = "Nombre Correcto";
+            usuarios.name = myInputNombre.value;
+        }
     });
 
+    myInputEmail.addEventListener('input', function(){
+        if (validarCorreo(myInputEmail.value) === false){
+            msgCorreo.style.color = "red";
+            msgCorreo.innerHTML = "Correo Incorrecto";
+        }else{
+            msgCorreo.style.color = "green";
+            msgCorreo.innerHTML = "Correo Correcto";
+            usuarios.email = myInputEmail.value
+        }
+    });
+
+    modificar.addEventListener("click", function () {
+        var url = 'http://127.0.0.1:8000/api/administrador/modificar/usuario/'+usuarios.id;
+        var modificarUsuario = new modificarUsers(usuarios.name, usuarios.email);
+        enviarDatos(modificarUsuario, url);
+        myModal.hide();
+    })
+    
     cerrar.addEventListener("click", function () {
         myModal.hide();
     });
 }
-
-
-

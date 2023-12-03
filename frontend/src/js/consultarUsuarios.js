@@ -25,11 +25,9 @@ function mostrarDatosEnTabla() {
 
                 const btnModificar = crearBoton('Modificar', 'warning', () => {
                     var btnGuardar = document.getElementById('btnGuardar');
-                    var btnCerrar = document.getElementById('btnCerrar');   
-                     var nombre = document.getElementById('txtnombre').value;
+                    var btnCerrar = document.getElementById('btnCerrar');  
 
-                    mostrarModal(item, btnGuardar, btnCerrar, nombre);
-                    
+                    mostrarModal(item, btnGuardar, btnCerrar);
                 });
 
                 const btnEliminar = crearBoton('Eliminar', 'danger', () => {
