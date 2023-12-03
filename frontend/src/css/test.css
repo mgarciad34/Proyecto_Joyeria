@@ -158,7 +158,7 @@ tbody tr:hover {
   
     background-color:rgba(0,0,0,.1);
     border-color: #d893a3;
-    color:#d893a3
+    color:#4f353b
 }
 .status.cancelled:hover{
     background-color: #d893a3;

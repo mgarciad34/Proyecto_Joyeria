@@ -69,7 +69,25 @@ function pintarRecetas(recetas) {
             btnFabricar.disabled = true
         }
 
+        let rellenoCelda = document.createElement('td')
+        let relleno=document.createElement('span')
+        relleno.textContent=''
+        rellenoCelda.appendChild(relleno)
 
+        let rellenoCelda2 = document.createElement('td')
+        let relleno2=document.createElement('span')
+        relleno2.textContent=''
+        rellenoCelda2.appendChild(relleno2)
+
+        let rellenoCelda3 = document.createElement('td')
+        let relleno3=document.createElement('span')
+        relleno3.textContent=''
+        rellenoCelda3.appendChild(relleno3)
+
+        let rellenoCelda4 = document.createElement('td')
+        let relleno4=document.createElement('span')
+        relleno4.textContent=''
+        rellenoCelda4.appendChild(relleno4)
 
         idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
@@ -80,7 +98,10 @@ function pintarRecetas(recetas) {
         fila.appendChild(tipoCelda);
         fila.appendChild(cNecesariaCelda);
         fila.appendChild(cDisponibleCelda);
-
+        fila.appendChild(rellenoCelda)
+        fila.appendChild(rellenoCelda2)
+        fila.appendChild(rellenoCelda3)
+        fila.appendChild(rellenoCelda4)
         tabla.appendChild(fila);
     }
 
@@ -89,11 +110,13 @@ function pintarRecetas(recetas) {
 
 function addOwnerBotones() {
 
-    let botonEliminarCelda = document.createElement('td');
+    let botonEliminarCelda = document.createElement('th');
     let botonEliminar = document.createElement('button');
     botonEliminar.textContent = 'Eliminar'
     botonEliminar.setAttribute('id',id_joya)
-    botonEliminar.style.backgroundColor = ' red'
+    botonEliminar.classList.add('status')
+    botonEliminar.classList.add('cancelled')
+
     botonEliminar.addEventListener('click', function (event) {
 
         let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
@@ -107,11 +130,13 @@ function addOwnerBotones() {
 
     });
 
-    let botonModificarCelda = document.createElement('td');
+    let botonModificarCelda = document.createElement('th');
     let botonModificar = document.createElement('button');
     botonModificar.textContent = 'Modificar'
     botonModificar.setAttribute('id',id_joya)
-    botonModificar.style.backgroundColor = ' orange'
+    botonModificar.classList.add('status')
+    botonModificar.classList.add('pending')
+
     botonModificar.addEventListener('click', function (event) {
         sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
        window.location.href='./modificarJoya.html'
