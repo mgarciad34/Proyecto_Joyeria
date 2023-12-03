@@ -172,6 +172,9 @@ btnAdd.addEventListener('click', function () {
     }
    
 })
+document.getElementById('formulario').addEventListener('click submit change', function(event){
+    event.preventDefault
+})
 function pintarTipos(data){
 
     for (let i = 0; i < data.tipos.length; i++) {
