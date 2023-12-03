@@ -31,7 +31,7 @@ Route::prefix('administrador')->group(function () {
     Route::delete('/eliminar/rol/usuario', [ControladorAdministrador::class, 'eliminarRol']);
     Route::post('/crear/componente', [ControladorTipos::class, 'insertarComponente']);
     Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
-    Route::put('/modificar/componente', [ControladorTipos::class, 'modificarComponente']);
+    Route::put('/modificar/componente/{id}', [ControladorTipos::class, 'modificarComponente']);
     Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
 });
 

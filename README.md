@@ -474,7 +474,7 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 
 ## Modificamos componente desde el administrador
 
-- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/componente`
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/componente/{id}`
 
 - **Método:** `PUT`
 
@@ -488,7 +488,6 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **JSON:**
   ```json
     {
-        "id": 1,
         "nombre": "Memoria RAM",
         "cantidad": 80
     }
