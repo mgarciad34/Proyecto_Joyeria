@@ -1,7 +1,7 @@
 export async function enviarDatos(datos, ruta) {
     try {
         const respuesta = await fetch(ruta, {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },

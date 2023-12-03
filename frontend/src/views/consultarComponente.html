@@ -72,6 +72,34 @@
       
     <div class="flex-grow-1"></div>
 
+    <div id="myModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">¿Quieres modificar tu usuario?</h5>
+            </div>
+            <div class="modal-body">
+                <form >
+                    <div class="form-group">
+                        <label for="txtnombre">Nombre</label>
+                        <input type="text" class="form-control" id="txtnombre" name="nombre">
+                        <p id="mensajeNombre"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtnumero">Cantidad</label>
+                        <input type="number" class="form-control" id="txtnumero" name="numero">
+                        <p id="mensajeNumero"></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button"  id="btnGuardar" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" class="btn btn-secondary" id="btnCerrar" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
         <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
         <p>LOPD</p>

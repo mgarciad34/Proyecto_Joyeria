@@ -34,15 +34,14 @@ class ControladorTipos extends Controller
         return response()->json(['message' => 'Componente creado exitosamente'], 201);
     }
 
-    public function modificarComponente(Request $request)
+    public function modificarComponente(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required|exists:tipos_componentes,id',
             'nombre' => 'required',
             'cantidad' => 'required|numeric',
         ]);
 
-        $tipoComponente = Tipos_componente::find($request->id);
+        $tipoComponente = Tipos_componente::find($id);
 
         if (!$tipoComponente) {
             return response()->json(['error' => 'Registro no encontrado'], 404);

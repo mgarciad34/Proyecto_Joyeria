@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('roles_asignados', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_rol');
+            $table->unsignedBigInteger('idusuario');
+            $table->unsignedBigInteger('idrol');
 
             // Claves foráneas
-            $table->foreign('id_usuario')->references('id')->on('users');
-            $table->foreign('id_rol')->references('id')->on('roles');
+            $table->foreign('idusuario')->references('id')->on('users');
+            $table->foreign('idrol')->references('id')->on('roles');
         });
     }
 
