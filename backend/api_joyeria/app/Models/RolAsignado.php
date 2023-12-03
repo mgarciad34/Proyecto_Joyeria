@@ -11,8 +11,8 @@ class RolAsignado extends Model
     use HasFactory;
     protected $table = 'roles_asignados';
     protected $fillable = [
-        'id_usuario',
-        'id_rol',
+        'idusuario',
+        'idrol',
     ];
     public $timestamps = false;
 

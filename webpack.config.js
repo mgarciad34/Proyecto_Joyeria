@@ -8,6 +8,7 @@ module.exports = {
     insertarUsuarios: './frontend/src/js/insertarUsuarios.js',
     consultarUsuarios: './frontend/src/js/consultarUsuarios.js',
     insertarComponentes: './frontend/src/js/insertarComponentes.js',
+    insertarRol: './frontend/src/js/insertarRol.js',
     consultarComponentes: './frontend/src/js/consultarComponentes.js',
     appClasificador: './frontend/src/js/appClasificador.js',
     appLote: './frontend/src/js/appLote.js',
