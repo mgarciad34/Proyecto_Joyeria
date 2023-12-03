@@ -103,6 +103,7 @@ class ControladorJoya extends Controller
                     $usuario=User::find($historico['h'][$i]->id_usuario);
                     $historico['h'][$i]->creador=$usuario->name;
                     $historico['h'][$i]->nombre_joya=$joya->nombre;
+                    $historico['h'][$i]->foto=$joya->foto;
                     $enviar['historial'][]=$historico['h'][$i];
                 }else{
                     

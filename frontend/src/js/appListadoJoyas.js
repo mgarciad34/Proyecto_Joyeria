@@ -18,7 +18,8 @@ function pintarJoyas(joyas) {
             let boton = document.createElement('button');
             boton.textContent = 'recetas'
             boton.setAttribute('id',joyas[0][i].id)
-
+            boton.classList.add('status')
+            boton.classList.add('shipped')
             let idCelda = document.createElement('td');
 
             let id= document.createElement('span');

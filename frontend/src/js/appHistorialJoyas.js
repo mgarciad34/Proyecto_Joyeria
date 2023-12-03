@@ -56,14 +56,19 @@ function pintarHistorial(datos) {
             let usuario=document.createElement('span')
             usuario.textContent=datos.historial[i].creador
           
+            let fotoCelda=document.createElement('td')
+            let foto=document.createElement('img')
+            foto.src=datos.historial[i].foto
 
             idCelda.appendChild(id)
             fechaCelda.appendChild(fecha)
             usuarioCelda.appendChild(usuario)
            joyaCelda.appendChild(joya);
+            fotoCelda.appendChild(foto)
 
            fila.appendChild(idCelda);
            fila.appendChild(joyaCelda);
+           fila.appendChild(fotoCelda)
            fila.appendChild(usuarioCelda)
             fila.appendChild(fechaCelda);
 

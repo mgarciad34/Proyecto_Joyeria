@@ -6,6 +6,7 @@ let joya_original={
     foto:'',
     detalle: [],
 }
+
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
@@ -49,13 +50,8 @@ inputFoto.addEventListener('input', function () {
     carga.classList.remove('spinner');
     void carga.offsetWidth;
     carga.classList.add('spinner');
-    if (!elementoVacio(inputFoto.id)) {
-        btnAdd.disabled = false
-
-    } else {
-        btnAdd.disabled = true
-    }
-    if (elementoVacio(inputFoto.id) || elementoVacio(inputNombre.id)) {
+    formData=true
+    if ( elementoVacio(inputNombre.id)) {
         btnAdd.disabled = true
         btnGuardar.disabled = true
     } else {
@@ -137,6 +133,8 @@ btnAdd.addEventListener('click', function () {
         cantidad.setAttribute('type','number')
         cantidad.setAttribute('min','1')
         cantidad.value = inputCantidad
+        cantidad.classList.add('status')
+        cantidad.classList.add('shipped')
 
         let celdaTipo = document.createElement('td');
 
@@ -146,7 +144,8 @@ btnAdd.addEventListener('click', function () {
         let eliminarCelda=document.createElement('td')
         let eliminar=document.createElement('button')
         eliminar.textContent='Eliminar'
-        eliminar.style.backgroundColor='red'
+        eliminar.classList.add('status')
+        eliminar.classList.add('cancelled')
         eliminar.addEventListener('click',function(){
             eliminarFila(fila)
             revisarTipos()
@@ -173,13 +172,6 @@ btnAdd.addEventListener('click', function () {
     }
    
 })
-// document.getElementById('inputFoto').addEventListener('click', function(){
-//     formData=document.getElementById('formulario')
-//     console.log(formData)
-//     if(inputFoto.files.length>0){
-//         console.log('llega')
-//     }
-// })
 function pintarTipos(data){
 
     for (let i = 0; i < data.tipos.length; i++) {
@@ -222,11 +214,14 @@ function pintarRecetas(recetas) {
         cantidadNecesaria.value=recetas.detalle[i].cantidad_necesaria
         cantidadNecesaria.setAttribute('type','number')
         cantidadNecesaria.setAttribute('min','1')
+        cantidadNecesaria.classList.add('status')
+        cantidadNecesaria.classList.add('shipped')
 
         let eliminarCelda=document.createElement('td')
         let eliminar=document.createElement('button')
         eliminar.textContent='Eliminar'
-        eliminar.style.backgroundColor='red'
+        eliminar.classList.add('status')
+        eliminar.classList.add('cancelled')
         eliminar.addEventListener('click',function(){
             eliminarFila(fila)
             revisarTipos()
@@ -300,7 +295,7 @@ function lanzarModalGuardado(json,idJoya){
       
       document.getElementById('confirmarGuardado').addEventListener('click', function() {
         actualizarJoya(idJoya,json).then(function () {
-                    if(inputFoto.files.length>0){
+                    if(formData==true){
                         subirFoto(document.getElementById('formulario'),idJoya).then(function(data){
                             
                             window.location.href='listaJoyasUsuario.html'
