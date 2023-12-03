@@ -84,10 +84,7 @@ function pintarRecetas(recetas) {
         relleno3.textContent=''
         rellenoCelda3.appendChild(relleno3)
 
-        let rellenoCelda4 = document.createElement('td')
-        let relleno4=document.createElement('span')
-        relleno4.textContent=''
-        rellenoCelda4.appendChild(relleno4)
+  
 
         idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
@@ -101,7 +98,7 @@ function pintarRecetas(recetas) {
         fila.appendChild(rellenoCelda)
         fila.appendChild(rellenoCelda2)
         fila.appendChild(rellenoCelda3)
-        fila.appendChild(rellenoCelda4)
+        
         tabla.appendChild(fila);
     }
 
@@ -110,7 +107,7 @@ function pintarRecetas(recetas) {
 
 function addOwnerBotones() {
 
-    let botonEliminarCelda = document.createElement('th');
+    let botonEliminarCelda = document.getElementById('botonEliminarOculto');
     let botonEliminar = document.createElement('button');
     botonEliminar.textContent = 'Eliminar'
     botonEliminar.setAttribute('id',id_joya)
@@ -130,7 +127,7 @@ function addOwnerBotones() {
 
     });
 
-    let botonModificarCelda = document.createElement('th');
+    let botonModificarCelda = document.getElementById('botonModificarOculto');
     let botonModificar = document.createElement('button');
     botonModificar.textContent = 'Modificar'
     botonModificar.setAttribute('id',id_joya)
@@ -145,7 +142,5 @@ function addOwnerBotones() {
     botonEliminarCelda.appendChild(botonEliminar)
     botonModificarCelda.appendChild(botonModificar)
 
-    botones.appendChild(botonEliminarCelda)
-    botones.appendChild(botonModificarCelda)
 
 }
