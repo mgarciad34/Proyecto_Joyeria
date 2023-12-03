@@ -36,7 +36,7 @@ function pintarJoyas(joyas) {
             
             let creadorCelda=document.createElement('td')
             let creador=document.createElement('span')
-            creador.textContent=joyas[0][i].id_usuario
+            creador.textContent=joyas[0][i].creador
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
                 window.location.href='./receta-joya.html'

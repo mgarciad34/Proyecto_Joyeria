@@ -45,7 +45,7 @@ function pintarHistorial(datos) {
 
             let joyaCelda = document.createElement('td');
             let joya= document.createElement('span');
-            joya.textContent=datos.historial[i].id_joya
+            joya.textContent=datos.historial[i].nombre_joya
            
 
             let fechaCelda = document.createElement('td');
@@ -54,7 +54,7 @@ function pintarHistorial(datos) {
             
             let usuarioCelda=document.createElement('td')
             let usuario=document.createElement('span')
-            usuario.textContent=datos.historial[i].id_usuario
+            usuario.textContent=datos.historial[i].creador
           
 
             idCelda.appendChild(id)
@@ -89,7 +89,7 @@ function pintarHistorial(datos) {
                 tabla.rows[i].style.display=''
                 contador++
             }else{
-                if(tabla.rows[i].cells[indice].textContent!=filtro){
+                if(!tabla.rows[i].cells[indice].textContent.toLowerCase().includes(filtro.toLowerCase())){
                     tabla.rows[i].style.display='none'
                    }else{
                     tabla.rows[i].style.display=''

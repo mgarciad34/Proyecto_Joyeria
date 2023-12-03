@@ -51,7 +51,7 @@ main.table2 {
 .table__body {
     width: 95%;
     max-height: calc(89% - 1.6rem);
-    background-color: #fffb;
+    background-color: rgba(174, 164, 164, 0.733);
     margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
@@ -122,19 +122,19 @@ tbody tr:hover {
     border-radius: 1rem;
     text-align: center;
     font-size: small;
-    border-color: black;
+    border: 0px;
     backdrop-filter: blur(10px);
 }
 
 .status.delivered {
-    background-color:#fff5;
-    border-color: #b8f6c7;
-    color:#006b21;
+    background-color:rgba(0, 0, 0, 0.333);
+   
+    color:#004315;
 }
 
 .status.cancelled {
   
-    background-color:#fff5;
+    background-color:rgba(0, 0, 0, 0.333);
     border-color: #d893a3;
     color:#d893a3
 }
@@ -145,7 +145,7 @@ tbody tr:hover {
 }
 .status.pending {
     
-    background-color:#fff5;
+    background-color:rgba(0, 0, 0, 0.333);
     border-color: #fed98f;
     color:#ba9344
 }
@@ -156,9 +156,12 @@ tbody tr:hover {
 
 .status.shipped {
    
-    background-color:#fff5;
-    border-color: #6fcaea;
-    color:#6fcaea
+    background-color:rgba(0, 0, 0, 0.333);
+    border-color: #004a65;
+    color:#00384d
+}
+.status.shipped a{
+    color:black
 }
 
 

@@ -9,6 +9,7 @@ use App\Models\HistoricoJoya;
 use App\Models\Tipos_componente;
 use App\Models\Receta;
 use App\Http\Controllers\FotoControlador;
+use App\Models\User;
 use App\Http\Controllers\ControladorReceta;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,11 @@ class ControladorJoya extends Controller
         try{
 
             $joyas=Joya::all();
-            
+            for($i=0;$i<count($joyas);$i++){
+                $usuario=User::find($joyas[$i]->id_usuario);
+                $joyas[$i]->creador=$usuario->name;
+            }
+           
             return response()->json([$joyas],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener las joyas'],500);
@@ -90,10 +95,23 @@ class ControladorJoya extends Controller
     function getAllHistorial(){
         try{
 
-            $historial['historial']=HistoricoJoya::all();
-            return response()->json([$historial],200);
+            $historico['h']=HistoricoJoya::all();
+            $enviar=[];
+            for($i=0;$i<count($historico['h']);$i++){
+                $joya=Joya::find($historico['h'][$i]->id_joya);
+                if($joya){
+                    $usuario=User::find($historico['h'][$i]->id_usuario);
+                    $historico['h'][$i]->creador=$usuario->name;
+                    $historico['h'][$i]->nombre_joya=$joya->nombre;
+                    $enviar['historial'][]=$historico['h'][$i];
+                }else{
+                    
+                }
+             
+            }
+             return response()->json([$enviar],200);
         }catch(Exception $e){
-            return response()->json(['mensaje'=>'Error al obtener el historial'],500);
+            return response()->json(['mensaje'=>'Error al obtener el historial','error'=>$e->getMessage()],500);
         }
     }
     /**Óscar */
@@ -161,16 +179,20 @@ class ControladorJoya extends Controller
         try{
 
             $disponibles=[];
-            $joyas=DB::select('SELECT j.id AS id_joya
-        FROM joyas j
-        JOIN detalle_recetas dr ON j.id = dr.id_joya
-        JOIN tipos_componentes tc ON dr.id_componente = tc.id
-        WHERE dr.cantidad <= tc.cantidad
-        GROUP BY j.id
-        HAVING COUNT(dr.id_componente) = (SELECT COUNT(*) FROM detalle_recetas WHERE id_joya = j.id);
+            $joyas=DB::select('SELECT j.id AS id_joya,
+            FLOOR(MIN(tc.cantidad / dr.cantidad))
+            AS veces_fabricacion FROM joyas j
+            JOIN detalle_recetas dr ON j.id = dr.id_joya
+            JOIN tipos_componentes tc ON dr.id_componente = tc.id
+            GROUP BY j.id HAVING COUNT(dr.id_componente) =
+            (SELECT COUNT(*) FROM detalle_recetas WHERE id_joya = j.id)
+            AND MIN(tc.cantidad / dr.cantidad)>=1
         ');
       for ($i=0;$i<count($joyas);$i++){
           $joya=Joya::find($joyas[$i]->id_joya);
+          $usuario=User::find($joya->id_usuario);
+          $joya->creador=$usuario->name;
+          $joya->fabricaciones=$joyas[$i]->veces_fabricacion;
           $disponibles[]=$joya;
           
         }

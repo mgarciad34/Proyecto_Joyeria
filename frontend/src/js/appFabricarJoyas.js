@@ -35,8 +35,11 @@ function pintarJoyas(joyas) {
 
             let creadorCelda=document.createElement('td')
             let creador=document.createElement('span')
-            creador.textContent=joyas[0][i].id_usuario
+            creador.textContent=joyas[0][i].creador
 
+            let fabricacionesCelda=document.createElement('td')
+            let fabricaciones=document.createElement('span')
+            fabricaciones.textContent=joyas[0][i].fabricaciones
 
             boton.addEventListener('click', function(event) {
                fabricarJoya(boton.id,usuario).then(function(){
@@ -51,11 +54,13 @@ function pintarJoyas(joyas) {
             fotoCelda.appendChild(foto)
             creadorCelda.appendChild(creador)
            botonCelda.appendChild(boton);
+           fabricacionesCelda.appendChild(fabricaciones)
 
            fila.appendChild(idCelda);
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
            fila.appendChild(creadorCelda)
+           fila.appendChild(fabricacionesCelda)
             fila.appendChild(botonCelda);
 
             tabla.appendChild(fila);
