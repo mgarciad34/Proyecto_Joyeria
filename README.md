@@ -397,6 +397,24 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 
 - **Descripción:** Eliminamos un usuario de nuestro SGDB mediante su ID.
 
+## Modificar usuario desde el administrador
+
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/usuario/{id}`
+
+- **Método:** `PUT`
+
+- **Parámetros:**
+  - `{id}`: ID del usuario.
+
+- **Descripción:** Modificamos un usuario de nuestro SGDB desde el administrador mediante su ID.
+
+- **JSON:**
+  ```json
+    {
+        "name": "NuevoNombre",
+        "email": "nuevo@email.com"
+    }
+
 ## Agregar nuevo rol al usuario desde el administrador
 
 - **Ruta:** `http://127.0.0.1:8000/api/administrador/agregar/rol/usuario`
@@ -456,7 +474,7 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 
 ## Modificamos componente desde el administrador
 
-- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/componente`
+- **Ruta:** `http://127.0.0.1:8000/api/administrador/modificar/componente/{id}`
 
 - **Método:** `PUT`
 
@@ -470,7 +488,6 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **JSON:**
   ```json
     {
-        "id": 1,
         "nombre": "Memoria RAM",
         "cantidad": 80
     }
