@@ -19,6 +19,28 @@ body {
     background: url(../images/estrellas3.jpg) center / cover;
   
 }
+main.table3 {
+    width: 82vw;
+    height: 65vh;
+    background-color: #fff5;
+    margin-top:200px;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    position: fixed;
+    overflow: hidden;
+}
+main.table4 {
+    width: 82vw;
+    height: 20vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
+
 
 header{
     background-color: #fff5;
@@ -127,14 +149,14 @@ tbody tr:hover {
 }
 
 .status.delivered {
-    background-color:rgba(0, 0, 0, 0.333);
+    background-color:rgba(0,0,0,.1);
    
     color:#004315;
 }
 
 .status.cancelled {
   
-    background-color:rgba(0, 0, 0, 0.333);
+    background-color:rgba(0,0,0,.1);
     border-color: #d893a3;
     color:#d893a3
 }
@@ -145,7 +167,7 @@ tbody tr:hover {
 }
 .status.pending {
     
-    background-color:rgba(0, 0, 0, 0.333);
+    background-color:rgba(0,0,0,.1);
     border-color: #fed98f;
     color:#ba9344
 }
@@ -156,7 +178,7 @@ tbody tr:hover {
 
 .status.shipped {
    
-    background-color:rgba(0, 0, 0, 0.333);
+    background-color:rgba(0,0,0,.1);
     border-color: #004a65;
     color:#00384d
 }
