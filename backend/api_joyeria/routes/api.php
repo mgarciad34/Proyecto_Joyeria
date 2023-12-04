@@ -31,18 +31,19 @@ Route::middleware('cors')->group( function () {
     //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
 
+
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
-            Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
-            Route::delete('/eliminar/usuario/{id}', [ControladorAdministrador::class, 'eliminarUsuarioId']);
-            Route::get('/usuarios', [ControladorAdministrador::class, 'consultarUsuarios']);
-            Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);
-            Route::delete('/eliminar/rol/usuario', [ControladorAdministrador::class, 'eliminarRol']);
-            Route::post('/crear/componente', [ControladorTipos::class, 'insertarComponente']);
-            Route::get('/consultar/componentes', [ControladorTipos::class, 'consultarTipos']);
-            Route::put('/modificar/componente', [ControladorTipos::class, 'modificarComponente']);
-            Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
-            Route::get('obtener/roles/{idUsuario}', [ControladorRolAsignado::class, 'obtenerRolesId']);
+          Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
+          Route::put('/modificar/usuario/{id}', [ControladorAdministrador::class, 'modificarUsuario']);
+          Route::delete('/eliminar/usuario/{id}', [ControladorAdministrador::class, 'eliminarUsuarioId']);
+          Route::get('/usuarios', [ControladorAdministrador::class, 'consultarUsuarios']);
+          Route::post('/agregar/rol/usuario', [ControladorAdministrador::class, 'insertarRol']);
+          Route::delete('/eliminar/rol/usuario', [ControladorAdministrador::class, 'eliminarRol']);
+          Route::post('/crear/componente', [ControladorTipos::class, 'insertarComponente']);
+          Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
+          Route::put('/modificar/componente/{id}', [ControladorTipos::class, 'modificarComponente']);
+          Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
         });
     });
     
@@ -53,7 +54,7 @@ Route::middleware('cors')->group( function () {
             Route::post('', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
-            Route::get('{id}', [ControladorLote::class, 'consultarLote'])->middleware('ColabMid');
+            Route::get('{id}', [Contr−3oladorLote::class, 'consultarLote'])->middleware('ColabMid');
             
         });
   

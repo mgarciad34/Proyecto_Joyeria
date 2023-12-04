@@ -1,53 +1,47 @@
 import { obtenerDatos } from "./http/http-consultarComponentes.js";
 import { eliminarComponente } from "./http/http-eliminarComponente.js";
-
+import { crearCelda, crearBoton, mostrarModal } from "./http/http-tablaComponente.js";
 
 function mostrarDatosEnTabla() {
     obtenerDatos()
         .then(response => {
             const data = response.tipos;
+            const tablaBody = document.getElementById('data');
+            tablaBody.innerHTML = '';
             
-         
-            if (Array.isArray(data)) {
-                const tablaBody = document.getElementById('data');
-                tablaBody.innerHTML = '';
+            for (let i = 0; i < data.length; i++) {
+                const item = data[i];
+                
+                const nuevaFila = document.createElement('tr');
+                
+                nuevaFila.id = `fila-${item.id}`;
 
-                data.forEach(item => {
-                    const fila = document.createElement('tr');
-                    fila.id = `fila-${item.id}`; // Interpolacion de cadenas
-                    Object.entries(item).forEach(([key, value]) => {
-                        //Quitamos la fila id de la tabla
-                        if (key !== 'id') {
-                            const celda = document.createElement('td');
-                            celda.textContent = value;
-                            fila.appendChild(celda);
-                        }
-                    });
+                for (const key in item) {
+                    //Hacemos que la ID no aparezca en la tabla
+                    if (key !== 'id') {
+                        nuevaFila.appendChild(crearCelda(item[key]));
+                    }
+                }
 
-                    //Botones
-                    const btnModificar = document.createElement('button');
-                    btnModificar.textContent = 'Modificar';
-                    btnModificar.style.background = 'Yellow';
-                    btnModificar.addEventListener('click', () => {
-                       
-                    });
+                const btnModificar = crearBoton('Modificar', 'warning', () => {
+                    var btnGuardar = document.getElementById('btnGuardar');
+                    var btnCerrar = document.getElementById('btnCerrar');  
 
-                    const btnEliminar = document.createElement('button');
-                    btnEliminar.textContent = 'Eliminar';
-                    btnEliminar.style.background = 'Red';
-                    btnEliminar.addEventListener('click', () => {
-                        eliminarComponente(item.id)
-                    });
-
-                    const celdaBotones = document.createElement('td');
-                    celdaBotones.appendChild(btnModificar);
-                    celdaBotones.appendChild(btnEliminar);
-                    fila.appendChild(celdaBotones);
-
-                    tablaBody.appendChild(fila);
+                    mostrarModal(item, btnGuardar, btnCerrar);
                 });
-            } else {
-                console.error('Los datos obtenidos no son un array:', data);
+
+                const btnEliminar = crearBoton('Eliminar', 'danger', () => {
+                    eliminarComponente(item.id);
+                });
+
+                //Celdas de botones por fila
+                const celdaBotones = document.createElement('td');
+                celdaBotones.appendChild(btnModificar);
+                celdaBotones.appendChild(btnEliminar);
+                nuevaFila.appendChild(celdaBotones);
+
+                //Agregamos la fila a la tabla
+                tablaBody.appendChild(nuevaFila);
             }
         })
         .catch(error => {
