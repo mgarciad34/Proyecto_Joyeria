@@ -16,7 +16,7 @@ let desplegable = document.getElementById('tipos-habilitados')
 let formData=false
 obtenerJoya(idJoya).then(function(data){
     inputNombre.value=data.nombre
-    inputFoto.value=data.foto
+ 
     joya_original.nombre=data.nombre
     joya_original.foto=data.foto
 })
@@ -35,7 +35,7 @@ inputNombre.addEventListener('input', function () {
     } else {
         btnAdd.disabled = true
     }
-    if (elementoVacio(inputFoto.id) || elementoVacio(inputNombre.id)) {
+    if ( elementoVacio(inputNombre.id)) {
         btnAdd.disabled = true
         btnGuardar.disabled = true
     } else {

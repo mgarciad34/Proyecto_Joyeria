@@ -55,7 +55,7 @@ class ControladorRec extends Controller
                             
                         }
                     }
-                    
+                    $x++;
                 }
                 
             }else{

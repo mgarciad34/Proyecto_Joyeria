@@ -11,6 +11,7 @@ use App\Models\Receta;
 use App\Http\Controllers\FotoControlador;
 use App\Models\User;
 use App\Http\Controllers\ControladorReceta;
+use App\Http\Controllers\ControladorRec;
 use Exception;
 use Illuminate\Support\Facades\DB;
 class ControladorJoya extends Controller
@@ -156,7 +157,7 @@ class ControladorJoya extends Controller
             // }
             $joya->save();
             if($joyaUpdate['detalle']!=$joyaOriginal['detalle']){
-                $c=new ControladorReceta;
+                $c=new ControladorRec;
                 $c->updateReceta($id,$joyaOriginal['detalle'],$joyaUpdate['detalle']);
             }
             return response()->json(['mensaje'=>'Actualizado correctamente'],200);
