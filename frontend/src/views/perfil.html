@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+        <link rel="stylesheet" href="../css/animacion.css">
+        <link rel="stylesheet" href="../css/test.css">
+    
+</head>
+<body>
+    <header class="row ">
+   
+        <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyas.html">Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyasUsuario.html">Tus Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./designJoya.html">Nueva Joya</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./fabricarJoyas.html">Fabricar</a>
+                        </li>
+                         <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./historialJoyas.html">Historial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="modal-foto" class="modal">
+
+        <div class="modal-contenido">
+                <div class="container col-11">
+                    <form action="">
+                        <label id="lblFoto" class="fotoModal" for="inputFoto"></label>
+                        <input type="file" id="inputFoto" name="fileInput" />
+                    </form>
+            
+            </div>
+            <p>Selecciona una nueva foto</p>
+                <button  id="confirmarGuardado">Confirmar</button>
+                <button id="cancelarGuardado">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div id="modal-errores" class="modal">
+        <div class="modal-contenido">
+          
+          <p id="mensajeErrores"></p>
+          <button id="cerrarModalErrores">Continuar</button>
+        </div>
+      </div>
+    <div class="container">
+        <main class="table4" style="position:fixed; margin-top: 0px;">
+            <section class="table__header">
+                <h5>Perfil</h5>
+            </section>
+            
+            <section class="table__body" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th> <button id="btnFoto" class="fotoPerfil"></button><span id="txtNombre">Nombre</span></th>
+                           <th></th>
+                            <th> <button class="status shipped"> Cambiar email</button> </th>
+                            <th> <button class="status shipped"> Cambiar Contraseña</button> </th>
+                            
+                        </tr>
+                      
+                    </thead>
+                       
+                </table>
+            </section>
+        </main>
+        <main class="table3">
+            <section class="table__header">
+                <h4>Peticiones realizadas</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                   
+                    <thead id="">
+                        <tr>
+                            <th>Tipo de Peticion</th>
+                            <th>Solicitado</th>
+                            <th> Estado </th>
+                            <th><button id="btnSolicitud" class="status shipped">Nueva Solicitud</button></th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_peticiones">
+                       <tr><td colspan="4" id="tabla-vacia"> No hay peticiones</td></td></tr> 
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+    
+    <script src="../js/appPerfilUsuario.js"></script>
+</body>
+</html>

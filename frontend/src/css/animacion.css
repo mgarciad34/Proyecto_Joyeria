@@ -16,7 +16,7 @@
     background-color: #fff5;
     backdrop-filter: blur(7px);
     color: rgba(255, 0, 0, 0);
-    animation: completarYExpandir 5s ease forwards, mostrarBarra 5s ease forwards 5s; /* Ajusté los tiempos según tu necesidad */
+    animation: completarYExpandir 5s ease forwards, mostrarBarra 5s ease forwards 5s; 
 }
 .spinner::after{
     content: 'Carga completa';
@@ -98,6 +98,81 @@
     }
   
 }
+
+.spinner2 {
+  width: 13vw;
+  height: 29vh;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: solid black 2px;
+  color: rgba(255, 0, 0, 0);
+  animation: completarYExpandir2 3s ease forwards, siguienteAnimacion 2s forwards 2s;
+}
+.spinner2::after{
+  content: 'Actualizar';
+
+  font-size: 10px; 
+}
+@keyframes completarYExpandir2 {
+  0% {
+      width: 13vw;
+      height: 29vh;
+      border-left-color: rgb(255, 0, 0);
+      color: rgba(255, 0, 0, 0);
+  }
+  25% {
+      width: 13vw;
+      height: 29vh;
+      border-left-color: rgb(255, 0, 0);
+      border-top-color: rgb(255, 0, 0);
+      color: rgba(255, 0, 0, 0);
+  }
+  50% {
+      width: 13vw;
+      height: 29vh;
+      border-left-color: rgb(255, 0, 0);
+      border-top-color: rgb(255, 0, 0);
+      border-right-color: rgb(255, 0, 0);
+      color: rgba(255, 0, 0, 0);
+  }
+  75% {
+      width: 13vw;
+      height: 29vh;
+      border-left-color: rgb(255, 0, 0);
+      border-top-color: rgb(255, 0, 0);
+      border-right-color: rgb(255, 0, 0);
+      border-bottom-color: rgb(255, 0, 0);
+      color: rgba(255, 0, 0, 0);
+      
+  }
+  100% {
+      width: 13vw;
+      height: 26vh;
+      border-left-color: rgb(56, 255, 6);
+      border-top-color: rgb(56, 255, 6);
+      border-right-color: rgb(56, 255, 6);
+      border-bottom-color: rgb(56, 255, 6);
+      color: rgba(255, 0, 0, 0);
+      
+  }
+}
+
+@keyframes siguienteAnimacion {
+  0% {
+      opacity: 0;
+       background: url(../images/espacio.jpg) center / cover;
+       color: rgba(255, 0, 0, 0);
+  }
+  100% {
+      opacity: 0.1;
+      background: url(../images/espacio.jpg) center / cover;
+      content:"actualizar";
+      color: rgba(255, 0, 0);
+  }
+}
+
 
 body {
     font-family: Arial, sans-serif;

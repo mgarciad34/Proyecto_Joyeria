@@ -5,6 +5,28 @@
     border-radius: 50%;
     vertical-align: middle;
 }
+.fotoPerfil{
+    width: 5vw;
+    height: 8vh;
+    margin-right: .5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    background: url(../images/alien.jpg) center / cover;
+}
+.fotoModal{
+    width: 13vw;
+    height: 26vh;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    background:url(../images/alien.jpg) center / cover;
+    border: none;
+    font-size: 16px;
+}
+input[type="file"] {
+   display: none;
+ }
 a {
     text-decoration: none;
 }
@@ -31,7 +53,7 @@ body {
 }
 main.table3 {
     width: 82vw;
-    height: 65vh;
+    height: 60vh;
     background-color: #fff5;
     margin-top:150px;
     backdrop-filter: blur(7px);
