@@ -1,5 +1,5 @@
 import {
-    obtenerTipos
+    obtenerTipos,registrarComponente
 } from "./http/http-crearTiposClasificador.js";
 
 let tabla = document.getElementById('tabla_tipos');
@@ -90,10 +90,17 @@ function lanzarModalGuardado(json) {
         document.getElementById('modal').style.display = 'none';
     });
     document.getElementById('confirmarGuardado').addEventListener('click', function () {
-        registrarComponente(json).then(function () {
+        console.log(JSON.stringify(json))
+        registrarComponente(json).then(function (data) {
+            document.getElementById('modal').style.display = 'none';
+            console.log(data.message)
+            if(data.codigo==400){
+                lanzarModalErrores(data.message)
+            }else{
 
-        })
-        document.getElementById('modal').style.display = 'none';
+                lanzarModalPeticion(data.message)
+            }
+        })  
 
     });
 }
@@ -104,5 +111,15 @@ function lanzarModalErrores(mensaje) {
     document.getElementById('mensajeErrores').innerHTML = mensaje
     document.getElementById('cerrarModalErrores').addEventListener('click', function () {
         document.getElementById('modal-errores').style.display = 'none';
+    })
+}
+
+function lanzarModalPeticion(mensaje) {
+
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').innerHTML = mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click', function () {
+        document.getElementById('modal-errores').style.display = 'none';
+        window.location.reload(true)
     })
 }

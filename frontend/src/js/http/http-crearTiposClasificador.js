@@ -24,7 +24,7 @@ export async function obtenerTipos() {
 
 }
 
-export async function obtenerTipos(componente) {
+export async function registrarComponente(componente) {
     try {
         let token=sessionStorage.getItem('token')
         const options = {
