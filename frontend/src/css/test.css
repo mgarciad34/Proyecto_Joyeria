@@ -2,6 +2,10 @@
 a {
     text-decoration: none;
 }
+.cabecera{
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+}
 * {
     margin: 0;
     padding: 0;
@@ -169,7 +173,7 @@ tbody tr:hover {
     
     background-color:rgba(0,0,0,.1);
     border-color: #fed98f;
-    color:#ba9344
+    color:#55411b
 }
 .status.pending:hover{
     background-color: #fed98f;
