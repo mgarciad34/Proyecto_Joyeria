@@ -173,7 +173,7 @@ btnAdd.addEventListener('click', function () {
    
 })
 document.getElementById('formulario').addEventListener('click submit change', function(event){
-    event.preventDefault
+    event.preventDefault()
 })
 function pintarTipos(data){
 
