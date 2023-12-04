@@ -23,6 +23,7 @@ module.exports = {
     appLotesClasificados:'./frontend/src/js/appLotesClasificados.js',
     appDespieceLote:'./frontend/src/js/appDespieceLote.js',
     appComponentesClasificados:'./frontend/src/js/appComponentesClasificados.js',
+    appClasificadorCrearTipo:'./frontend/src/js/appClasificadorCrearTipo.js',
   },
       output: {
         filename: '[name].bundle.js',
