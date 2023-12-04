@@ -6,9 +6,10 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="../css/test.css">
 </head>
 <body>
-    <header class="row bg-warning row-warning">
+    <header class="row">
    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
@@ -38,29 +39,34 @@
             </div>
         </nav>
     </header>
-    <div class="text-center mb-3">
-        <h4> Componentes Clasificados</h4>
-        
-    </div>
-    <div class="container col-12">
-        <div class="row col-12">
-
-            <caption>Listado de componentes</caption>
-           
-            <table class="table col-12 ">
-                <thead>
-                    <tr>
-                        <th class="col-1">Descripcion</th>
-                        <th class="col-1"></th>
-                        <th class="col-1">Tipo</th>
-                        <th class="col-1"> Cantidad</th>
-                        <th class="col-1"> ID Lote</th>
-                        <th class="col-1"> ID Clasificador</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla_componentes">
-                </tbody>
-            </table>
+  
+    <div class="container ">
+      
+        <main class="table2">
+            <section class="table__header">
+                <h4>Componentes Clasificados</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                   
+                    <thead id="">
+                        <tr>
+                            <th> Descipcion</th>
+                            <th></th>
+                            <th> Tipo </th>
+                            <th> Cantidad</th>
+                            <th>Nº Lote</th>
+                            <th> Clasificador </th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_componentes">
+    
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
         </div>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

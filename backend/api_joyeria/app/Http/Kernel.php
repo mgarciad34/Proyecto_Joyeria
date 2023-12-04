@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -64,5 +64,11 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'AdminMid' => \App\Http\Middleware\AdminMid::class,
+        'ClasiMid' => \App\Http\Middleware\ClasiMid::class,
+        'ColabMid'=> \App\Http\Middleware\ColabMid::class,
+        'DesignMid'=> \App\Http\Middleware\DesignMid::class,
+        'cors'=> \App\Http\Middleware\Cors::class,
+        'testing'=> \App\Http\Middleware\test::class,
     ];
 }

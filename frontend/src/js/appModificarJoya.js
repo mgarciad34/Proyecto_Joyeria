@@ -1,4 +1,4 @@
-import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya } from "./http/http-modificarJoya.js";
+import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya,subirFoto } from "./http/http-modificarJoya.js";
 let idJoya=JSON.parse(sessionStorage.getItem('joya-guardada'))
 let tiposEnUso=[]
 let joya_original={
@@ -6,16 +6,17 @@ let joya_original={
     foto:'',
     detalle: [],
 }
+
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 let desplegable = document.getElementById('tipos-habilitados')
-
+let formData=false
 obtenerJoya(idJoya).then(function(data){
     inputNombre.value=data.nombre
-    inputFoto.value=data.foto
+ 
     joya_original.nombre=data.nombre
     joya_original.foto=data.foto
 })
@@ -34,7 +35,7 @@ inputNombre.addEventListener('input', function () {
     } else {
         btnAdd.disabled = true
     }
-    if (elementoVacio(inputFoto.id) || elementoVacio(inputNombre.id)) {
+    if ( elementoVacio(inputNombre.id)) {
         btnAdd.disabled = true
         btnGuardar.disabled = true
     } else {
@@ -46,13 +47,11 @@ inputNombre.addEventListener('input', function () {
 })
 
 inputFoto.addEventListener('input', function () {
-    if (!elementoVacio(inputFoto.id)) {
-        btnAdd.disabled = false
-
-    } else {
-        btnAdd.disabled = true
-    }
-    if (elementoVacio(inputFoto.id) || elementoVacio(inputNombre.id)) {
+    carga.classList.remove('spinner');
+    void carga.offsetWidth;
+    carga.classList.add('spinner');
+    formData=true
+    if ( elementoVacio(inputNombre.id)) {
         btnAdd.disabled = true
         btnGuardar.disabled = true
     } else {
@@ -67,7 +66,7 @@ btnGuardar.addEventListener('click', function () {
     let joya = {}
     let cantidades=[]
     joya.nombre = inputNombre.value
-    joya.foto = inputFoto.value
+    joya.foto = ''
     joya.id_usuario=usuario
     joya.detalle = []
     
@@ -86,24 +85,14 @@ btnGuardar.addEventListener('click', function () {
     }
     if(joya.detalle.length==0){
 
-        alert('No puedes guardar una joya sin receta')
+        lanzarModalErrores('No puedes guardar una joya sin receta')
 
     }else{
         if(!evaluarCantidades(cantidades)){
-            alert('Debes introducir cantidades correctas')
+           lanzarModalErrores('Debes introducir cantidades correctas')
         }else{
-            let resultado = window.confirm("¿Estás seguro de que deseas actualizar esta joya?");
-            if (resultado) {
-               
-               let json={joya_original,joya}
-              
-                actualizarJoya(idJoya,json).then(function () {
-                    
-                    window.location.href='listaJoyasUsuario.html'
-                })
-                
-            }
-
+            let json={joya_original,joya}
+             lanzarModalGuardado(json,idJoya)
         }
     }
 
@@ -120,19 +109,19 @@ btnAdd.addEventListener('click', function () {
     let mensaje =''
    
     if (inputCantidad == ''|| inputCantidad.includes('-') ||inputCantidad=='0') {
-        mensaje = mensaje + ' Debe introducir una cantidad \n'
+        mensaje ='Debe introducir una cantidad <br> '
         validaciones.push(false)
 
     }
-
+  
     if (inputTipo == 0) {
-        mensaje = mensaje + ' Debe introducir elegir un tipo \n'
+        mensaje=mensaje+' Debe introducir elegir un tipo <br>'
         validaciones.push(false)
 
     }
 
     if (validaciones.includes(false)) {
-        alert(mensaje)
+       lanzarModalErrores(mensaje)
     } else {
 
         let tablaElementosRegistrados = document.getElementById('detalle-receta')
@@ -144,6 +133,8 @@ btnAdd.addEventListener('click', function () {
         cantidad.setAttribute('type','number')
         cantidad.setAttribute('min','1')
         cantidad.value = inputCantidad
+        cantidad.classList.add('status')
+        cantidad.classList.add('shipped')
 
         let celdaTipo = document.createElement('td');
 
@@ -153,7 +144,8 @@ btnAdd.addEventListener('click', function () {
         let eliminarCelda=document.createElement('td')
         let eliminar=document.createElement('button')
         eliminar.textContent='Eliminar'
-        eliminar.style.backgroundColor='red'
+        eliminar.classList.add('status')
+        eliminar.classList.add('cancelled')
         eliminar.addEventListener('click',function(){
             eliminarFila(fila)
             revisarTipos()
@@ -180,8 +172,11 @@ btnAdd.addEventListener('click', function () {
     }
    
 })
+document.getElementById('formulario').addEventListener('click submit change', function(event){
+    event.preventDefault()
+})
 function pintarTipos(data){
-   
+
     for (let i = 0; i < data.tipos.length; i++) {
         const opcion = document.createElement('option');
         opcion.value = data.tipos[i].id;
@@ -222,11 +217,14 @@ function pintarRecetas(recetas) {
         cantidadNecesaria.value=recetas.detalle[i].cantidad_necesaria
         cantidadNecesaria.setAttribute('type','number')
         cantidadNecesaria.setAttribute('min','1')
+        cantidadNecesaria.classList.add('status')
+        cantidadNecesaria.classList.add('shipped')
 
         let eliminarCelda=document.createElement('td')
         let eliminar=document.createElement('button')
         eliminar.textContent='Eliminar'
-        eliminar.style.backgroundColor='red'
+        eliminar.classList.add('status')
+        eliminar.classList.add('cancelled')
         eliminar.addEventListener('click',function(){
             eliminarFila(fila)
             revisarTipos()
@@ -288,3 +286,38 @@ function evaluarCantidades(array){
     }
     return sigue
 }
+
+function lanzarModalGuardado(json,idJoya){
+
+    document.getElementById('modal').style.display = 'flex';
+      
+      
+      document.getElementById('cancelarGuardado').addEventListener('click', function() {
+        document.getElementById('modal').style.display = 'none';
+      });
+      
+      document.getElementById('confirmarGuardado').addEventListener('click', function() {
+        actualizarJoya(idJoya,json).then(function () {
+                    if(formData==true){
+                        subirFoto(document.getElementById('formulario'),idJoya).then(function(data){
+                            
+                            window.location.href='listaJoyasUsuario.html'
+                        })
+                    }else{
+                        window.location.href='listaJoyasUsuario.html'
+                    }
+                })
+        document.getElementById('modal').style.display = 'none';
+    
+      });
+    }
+    
+    function lanzarModalErrores(mensaje){
+    
+        document.getElementById('modal-errores').style.display = 'flex';
+        document.getElementById('mensajeErrores').innerHTML=mensaje
+        document.getElementById('cerrarModalErrores').addEventListener('click',function(){
+            document.getElementById('modal-errores').style.display = 'none';
+        })
+    }
+   

@@ -1,9 +1,15 @@
 import{obtenerJoyas,eliminarJoya} from './http/http-listadoJoyasUsuario.js'
+
 let id=JSON.parse(sessionStorage.getItem('id-usuario'))
 
 obtenerJoyas(id).then(function(data){
     pintarJoyas(data)
 })
+
+
+
+
+
 
 
 function pintarJoyas(joyas) {
@@ -17,18 +23,22 @@ function pintarJoyas(joyas) {
             let boton = document.createElement('button');
             boton.textContent = 'receta'
             boton.setAttribute('id',joyas[0][i].id)
-
+            boton.classList.add('status')
+            boton.classList.add('delivered')
             let botonEliminarCelda = document.createElement('td');
             let botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar'
             botonEliminar.setAttribute('id',joyas[0][i].id)
-            botonEliminar.style.backgroundColor=' red'
+            botonEliminar.classList.add('status')
+            botonEliminar.classList.add('cancelled')
+           
 
             let botonModificarCelda = document.createElement('td');
             let botonModificar = document.createElement('button');
             botonModificar.textContent = 'Modificar'
             botonModificar.setAttribute('id',joyas[0][i].id)
-            botonModificar.style.backgroundColor=' orange'
+            botonModificar.classList.add('status')
+            botonModificar.classList.add('pending')
 
             let idCelda = document.createElement('td');
 
@@ -42,8 +52,8 @@ function pintarJoyas(joyas) {
            
 
             let fotoCelda = document.createElement('td');
-            let foto= document.createElement('span');
-            foto.textContent=joyas[0][i].foto
+            let foto= document.createElement('img');
+            foto.src=joyas[0][i].foto
 
             botonModificar.addEventListener('click',function(){
               sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
@@ -61,7 +71,11 @@ function pintarJoyas(joyas) {
               let resultado=  confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
               if(resultado){
-                eliminarJoya(joyas[0][i].id).then()
+                eliminarJoya(joyas[0][i].id).then(function(){
+
+                  window.location.reload()
+
+                })
               }
                 
               });
@@ -79,8 +93,8 @@ function pintarJoyas(joyas) {
            fila.appendChild(nombreCelda);
            fila.appendChild(fotoCelda)
             fila.appendChild(botonCelda);
-            fila.appendChild(botonEliminarCelda);
             fila.appendChild(botonModificarCelda)
+            fila.appendChild(botonEliminarCelda);
             
             tabla.appendChild(fila);
         }

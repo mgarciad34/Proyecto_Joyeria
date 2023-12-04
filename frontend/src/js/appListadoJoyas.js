@@ -2,6 +2,7 @@ import{obtenerJoyas} from './http/http-listadoJoyas.js'
 
 
 obtenerJoyas().then(function(data){
+    console.log(data)
     pintarJoyas(data)
 })
 
@@ -17,7 +18,8 @@ function pintarJoyas(joyas) {
             let boton = document.createElement('button');
             boton.textContent = 'recetas'
             boton.setAttribute('id',joyas[0][i].id)
-
+            boton.classList.add('status')
+            boton.classList.add('shipped')
             let idCelda = document.createElement('td');
 
             let id= document.createElement('span');
@@ -30,12 +32,12 @@ function pintarJoyas(joyas) {
            
 
             let fotoCelda = document.createElement('td');
-            let foto= document.createElement('span');
-            foto.textContent=joyas[0][i].foto
+            let foto= document.createElement('img');
+            foto.src=joyas[0][i].foto
             
             let creadorCelda=document.createElement('td')
             let creador=document.createElement('span')
-            creador.textContent=joyas[0][i].id_usuario
+            creador.textContent=joyas[0][i].creador
             boton.addEventListener('click', function(event) {
                 sessionStorage.setItem('joya-guardada',JSON.parse(boton.id))
                 window.location.href='./receta-joya.html'

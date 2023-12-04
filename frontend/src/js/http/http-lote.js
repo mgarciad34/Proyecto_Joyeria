@@ -3,10 +3,11 @@ const apiUrlEnviar='http://127.0.0.1:8000/api/despieces/lote/clasificar/'
 
 export async function guardarElementosBdd(elementos,idLote){
     let url=apiUrlEnviar+idLote
- 
+    let token=sessionStorage.getItem('token')
     const options={
         method: "POST",
         headers:{
+           "Authorization": "Bearer "+token,
             'Content-Type' : 'aplication/json'
       },
       body: JSON.stringify(elementos)
@@ -29,7 +30,15 @@ export async function guardarElementosBdd(elementos,idLote){
 
 export async function obtenerTipos(){
     try {
-                const response = await fetch(apiUrl2);
+        let token=sessionStorage.getItem('token')
+        const options={
+            method: "GET",
+            headers:{
+               "Authorization": "Bearer "+token,
+                'Content-Type' : 'aplication/json'
+          },
+        }
+                const response = await fetch(apiUrl2,options);
                 if (!response.ok) {
                     throw new Error('No se pudo obtener las categorias');
                 }

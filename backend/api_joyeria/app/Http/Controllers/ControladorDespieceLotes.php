@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Despiece_lote;
 use App\Models\Lote;
 use App\Models\Tipos_componente;
-
+use Exception;
+/**Óscar */
 class ControladorDespieceLotes extends Controller
 {
     function guardarElementosLote($id, Request $request){
-        // $datosJSON = $request->json()->all();
+       
+        try{
+
         $lote=Lote::find($id);
         $idClasificador=$request->usuario;
         $lista=$request->get('lista');
@@ -28,16 +31,30 @@ class ControladorDespieceLotes extends Controller
         $lote->id_clasificador=$idClasificador;
         $lote->estado='clasificado';
         $lote->save();
-        return response()->json(['mensaje'=>'Lote clasificado correctamente']);
+        return response()->json(['mensaje'=>'Lote clasificado correctamente'],200);
+    }catch(Exception $e){
+        return response()->json(['mensaje'=>'Error al clasificar'],500);
+    }
        }
+       /**Óscar */
        function getDespieceOfLote($id){
-        $despiece['despiece']=Despiece_lote::where('id_lote',$id)->get();
+        try{
 
-        return response()->json([$despiece]);
+            $despiece['despiece']=Despiece_lote::where('id_lote',$id)->get();
+            
+            return response()->json([$despiece],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'No se encuentro el despiece'],404);
+        }
        }
-
+/**Óscar */
        function getAllDespieces(){
-        $despiece['componentes']=Despiece_lote::all();
-        return response()->json($despiece);
+        try{
+
+            $despiece['componentes']=Despiece_lote::all();
+            return response()->json($despiece,200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al obtener los despieces'],404);
+        }
        }
 }
