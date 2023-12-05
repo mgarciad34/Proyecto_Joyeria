@@ -1,7 +1,16 @@
 
 export async function obtenerJoyas() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/joyas/disponibles/lista');
+        let token=sessionStorage.getItem('token')
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'aplication/json'
+            },
+            
+        }
+        const response = await fetch('http://127.0.0.1:8000/api/joyas/disponibles/lista',options);
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
@@ -19,14 +28,15 @@ export async function obtenerJoyas() {
 
 
 export async function fabricarJoya(joya,id_usuario) {
+    try {
     let json={}
     json['id_usuario']=id_usuario
-
-    try {
+    let token=sessionStorage.getItem('token')
         let url = 'http://127.0.0.1:8000/api/joyas/fabricar/'+joya
         const options = {
             method: "PUT",
             headers: {
+               "Authorization" : "Bearer "+token,
                 'Content-Type': 'application/json'
             },
             body:  JSON.stringify(json)

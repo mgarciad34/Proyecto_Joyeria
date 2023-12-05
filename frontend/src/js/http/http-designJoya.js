@@ -1,7 +1,16 @@
 export async function obtenerTipos() {
     try {
+        let token=sessionStorage.getItem('token')
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'aplication/json'
+            },
+            
+        }
         const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
-        const response = await fetch(apiUrl2);
+        const response = await fetch(apiUrl2,options);
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
@@ -18,17 +27,19 @@ export async function obtenerTipos() {
 export async function guardarNuevaJoya(joya) {
 
     try {
+        let token=sessionStorage.getItem('token')
         let url = 'http://127.0.0.1:8000/api/joyas/nueva'
         const options = {
             method: "POST",
             headers: {
-                'Content-Type': 'aplication/json'
+                "Authorization": "Bearer "+token,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(joya)
         }
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
+            throw new Error('No se pudo guardar la joya');
         }
 
         const data = await response.json();
@@ -37,4 +48,27 @@ export async function guardarNuevaJoya(joya) {
     } catch (error) {
         return error
     }
-}
+}    
+    export async function subirFoto(formulario, id) {
+        try {
+            let fData = new FormData(formulario);
+            let token = sessionStorage.getItem('token');
+            let url = 'http://127.0.0.1:8000/api/testing/' + id;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                },
+                body: fData,
+            };
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error('No se pudo subir la foto');
+            }
+    
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            return error;
+        }
+    }

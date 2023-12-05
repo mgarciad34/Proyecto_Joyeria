@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lote;
+use Exception;
+
 class ControladorLote extends Controller
 {
+    /**Oscar */
     function consultarLotesEntregados(){
-        $lotes = Lote::where('estado', '=','entregado')->get();
-        $json['lotes']=$lotes;
-        return response()->json([ $json]);
-    }
+        try{
+
+            $lotes = Lote::where('estado', '=','entregado')->get();
+            $json['lotes']=$lotes;
+            return response()->json([ $json],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
+        }
+        }
+
     function consultarLote($id){
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
@@ -61,9 +70,16 @@ class ControladorLote extends Controller
         // Devolver una respuesta JSON con la lista de todos los lotes
         return response()->json(['mensaje' => $lotes]);
     }
+
+    /**Oscar */
     function consultarLotesClasificados(){
-        $lotes = Lote::where('estado', '=','clasificado')->get();
-        $json['lotes']=$lotes;
-        return response()->json([ $json]);
+        try{
+
+            $lotes = Lote::where('estado', '=','clasificado')->get();
+            $json['lotes']=$lotes;
+            return response()->json([ $json],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
+        }
     }
 }

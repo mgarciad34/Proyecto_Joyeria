@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tipos_componente;
+use Exception;
 
 class ControladorTipos extends Controller
 {
+    /**Óscar */
     function consultarTipos(){
-        $tipos = Tipos_componente::all();
-        return response()->json(['tipos' => $tipos]);
+        try{
+
+            $tipos = Tipos_componente::all();
+            return response()->json(['tipos' => $tipos],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al obtener los tipos'],500);
+        }
     }
 
     function insertarComponente(Request $request)

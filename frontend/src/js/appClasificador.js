@@ -21,7 +21,8 @@ function pintarLotes(lotes) {
             let boton = document.createElement('button');
             boton.textContent = 'Clasificar'
             boton.setAttribute('id',lotes[0].lotes[i].id)
-
+            boton.classList.add('status')
+            boton.classList.add('shipped')
             let idCelda = document.createElement('td');
 
             let id= document.createElement('span');

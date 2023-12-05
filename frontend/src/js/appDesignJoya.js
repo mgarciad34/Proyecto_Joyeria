@@ -1,13 +1,19 @@
-import { obtenerTipos,guardarNuevaJoya } from "./http/http-designJoya.js"
+import { obtenerTipos,guardarNuevaJoya, subirFoto } from "./http/http-designJoya.js"
 const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
 
-
-
+let formData= null
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+
+let carga= document.getElementById('carga')
+
+
+
+document.getElementById('formulario').reset()
+inputNombre.value=''
 btnAdd.disabled=true
 btnGuardar.disabled=true
 obtenerTipos().then(function (data) {
@@ -38,7 +44,13 @@ inputNombre.addEventListener('input', function () {
 
 })
 
-inputFoto.addEventListener('input', function () {
+inputFoto.addEventListener('change', function () {
+    
+    carga.classList.remove('spinner');
+    void carga.offsetWidth;
+    carga.classList.add('spinner');
+    formData = new FormData(document.getElementById('formulario'));
+    console.log(formData)
     if (!elementoVacio(inputFoto.id)) {
         btnAdd.disabled = false
 
@@ -53,6 +65,7 @@ inputFoto.addEventListener('input', function () {
             btnGuardar.disabled = false
         }
     }
+
 
 })
 btnGuardar.addEventListener('click', function () {
@@ -76,19 +89,11 @@ btnGuardar.addEventListener('click', function () {
 
         joya.detalle.push(componente)
     }
-    var resultado = window.confirm("¿Estás seguro de que deseas guardar esta joya?");
-    if (resultado) {
-       
-        guardarNuevaJoya(joya).then(function () {
-            document.getElementById('inputNombre').value=''
-            document.getElementById('inputFoto').value=''
-            window.location.href='listaJoyas.html'
-        })
-
-    }
+   
+    lanzarModalGuardado(joya)
+   
+    
 })
-
-
 
 
 btnAdd.addEventListener('click', function () {
@@ -111,7 +116,7 @@ btnAdd.addEventListener('click', function () {
     }
 
     if (validaciones.includes(false)) {
-        alert(mensaje)
+        lanzarModalErrores(mensaje)
     } else {
 
         let tablaElementosRegistrados = document.getElementById('detalle-receta')
@@ -159,4 +164,34 @@ function tablaVacia(tabla) {
         vacia = false
     }
     return vacia
+}
+function lanzarModalGuardado(joya){
+
+document.getElementById('modal').style.display = 'flex';
+  
+  
+  document.getElementById('cancelarGuardado').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'none';
+  });
+  
+  document.getElementById('confirmarGuardado').addEventListener('click', function() {
+    guardarNuevaJoya(joya).then(function (data) {
+        let formulario=document.getElementById('formulario')
+                subirFoto(formulario,data.id).then(function(data){
+                    console.log(data)
+                    formulario.reset()
+                    window.location.href='listaJoyas.html'
+                })
+            })
+    document.getElementById('modal').style.display = 'none';
+
+  });
+}
+
+function lanzarModalErrores(mensaje){
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').textContent=mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click',function(){
+        document.getElementById('modal-errores').style.display = 'none';
+    })
 }
