@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('foto')->default('https://jawa-oscar.s3.eu-west-3.amazonaws.com/perfiles/default');
             $table->rememberToken();
         });
     }

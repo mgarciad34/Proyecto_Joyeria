@@ -27,6 +27,8 @@ class ControladorAuth extends Controller
                 }
             }
             }
+            $success['nombre']=$auth->name;
+            $success['foto']=$auth->foto;
             $success['token'] =  $auth->createToken('access_token',$permisos)->plainTextToken;
             $success['id'] =  $auth->id;
 

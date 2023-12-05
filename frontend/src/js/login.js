@@ -15,6 +15,8 @@ btnlogin.addEventListener('click', function(event){
           message.textContent = '';
           var token = data.data.token;
           var id = data.data.id;
+          sessionStorage.setItem('foto-url',data.data.foto)
+          sessionStorage.setItem('username',data.data.nombre)
           enviarSessionStorage(id, token)
           window.location.href='views/redirect.html';
       })

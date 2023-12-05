@@ -110,11 +110,7 @@
   color: rgba(255, 0, 0, 0);
   animation: completarYExpandir2 3s ease forwards, siguienteAnimacion 2s forwards 2s;
 }
-.spinner2::after{
-  content: 'Actualizar';
 
-  font-size: 10px; 
-}
 @keyframes completarYExpandir2 {
   0% {
       width: 13vw;
@@ -162,12 +158,10 @@
 @keyframes siguienteAnimacion {
   0% {
       opacity: 0;
-       background: url(../images/espacio.jpg) center / cover;
        color: rgba(255, 0, 0, 0);
   }
   100% {
       opacity: 1;
-      background: url(../images/espacio.jpg) center / cover;
       content:"actualizar";
       color: rgba(255, 0, 0);
   }

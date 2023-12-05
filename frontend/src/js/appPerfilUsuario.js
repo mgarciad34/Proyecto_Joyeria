@@ -1,11 +1,34 @@
 import { validarCorreo,validarContrasena } from "./validaciones.js"
 import { actualizarEmail,actualizarPassword,cerrarSesion } from "./http/http-perfilUsuario.js"
 // const bcrypt = require('bcrypt');
+
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('btnFoto').style.background='url('+fotoUrl+') center / cover'
+let lblFoto=document.getElementById('lblFoto')
+lblFoto.style.background='url('+fotoUrl+') center / cover'
+
+let inputFoto=document.getElementById('inputFoto')
+let formularioFoto=document.getElementById('formularioFoto')
+
+document.getElementById('txtNombre').textContent=sessionStorage.getItem('username')
+
 let btnFoto=document.getElementById('btnFoto')
 let btnEmail=document.getElementById('btnEmail')
 let btnPassword=document.getElementById('btnPassword')
 let btnOut=document.getElementById('btnOut')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+
+inputFoto.addEventListener('change',function(event){
+    var input = event.target;
+            
+    if (input.files && input.files[0]) {
+        var fotoUrl2 = URL.createObjectURL(input.files[0]);
+        console.log('URL local de la foto:', fotoUrl2);
+    }
+   document.getElementById('lblFoto').style.background='url('+fotoUrl2+') center / cover'
+    sessionStorage.setItem('nueva-foto',JSON.stringify(fotoUrl2))
+    document.getElementById('confirmarGuardado').style.display=''
+})
 
 btnEmail.addEventListener('click',function(){
     lanzarModalEmail()
@@ -30,6 +53,7 @@ function lanzarModalGuardado() {
 
     document.getElementById('cancelarGuardado').addEventListener('click', function () {
         document.getElementById('modal-foto').style.display = 'none';
+        lblFoto.style.background='url('+fotoUrl+') center / cover'
     });
 
     document.getElementById('confirmarGuardado').addEventListener('click', function () {
@@ -38,22 +62,27 @@ function lanzarModalGuardado() {
         lbl2.setAttribute('for', 'inputFoto');
         lbl2.setAttribute('id', 'lblFoto');
 
-        lblFoto.replaceWith(lbl2);
         lbl2.classList.remove('spinner2');
         lbl2.classList.add('spinner2');
-       
+        
         document.getElementById('cancelarGuardado').style.display = 'none';
+        
+        lbl2.style.background='url('+sessionStorage.getItem('nueva-foto')+') center / cover'
+        lbl2.id=lblFoto.id
+        lblFoto.replaceWith(lbl2);
+        document.getElementById('inputFoto').disabled=true
+        document.getElementById('confirmarGuardado').style.display = 'none';
 
-        lblFoto.style.background='url(https://jawa-oscar.s3.eu-west-3.amazonaws.com/perfiles/50) center / cover'
-        this.style.display = 'none';
+
         setTimeout(() => {
             this.textContent = 'Continuar';
             this.style.display = ''; 
             this.addEventListener('click', function () {
                 document.getElementById('modal-foto').style.display = 'none';
+              window.location.reload(true)
             });
         }, 2000);
-        this.style.display = '';
+        
     });
 }
 
