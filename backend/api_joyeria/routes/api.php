@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('obtener/roles/{idUsuario}', [ControladorRolAsignado::class, 'obtenerRolesId']);
 
 Route::prefix('lotes')->group(function () {
-    Route::post('', [ControladorLote::class, 'insertarLote']);
+    Route::post('agregar/lote', [ControladorLote::class, 'insertarLote']);
     Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote']);
     Route::get('', [ControladorLote::class, 'consultarLotes']);
     Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados']);

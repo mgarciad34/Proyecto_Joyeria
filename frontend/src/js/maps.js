@@ -3,9 +3,10 @@ let map;
 let marker;
 
 async function initMap() {
-  // The location of Uluru
-  var initialPosition = { lat: 38.69296294925023, lng: -4.10863995552063 };
 
+  var initialPosition = { lat: 38.69296294925023, lng: -4.10863995552063 };
+  sessionStorage.setItem('Latitud', 38.69296294925023);
+  sessionStorage.setItem('Longitud', -4.10863995552063);
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
@@ -43,9 +44,10 @@ function updateMarkerPosition(latLng) {
   marker.setPosition(latLng);
   map.panTo(latLng);
 
-  // Mostrar latitud y longitud en la consola
-  console.log("Latitud:", latLng.lat(), "Longitud:", latLng.lng());
+  sessionStorage.setItem('Latitud', latLng.lat());
+  sessionStorage.setItem('Longitud', latLng.lng());
   initialPosition = { lat:  latLng.lat(), lng: latLng.lng() };
+  
   
 }
 
