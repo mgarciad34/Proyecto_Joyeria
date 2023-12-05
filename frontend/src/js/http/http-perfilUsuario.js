@@ -2,18 +2,21 @@
 export async function actualizarEmail(id,json) {
      
     try {
+        
         let token=sessionStorage.getItem('token')
-        let url = 'http://127.0.0.1:8000/usuario/email/'+id
+        let url = 'http://127.0.0.1:8000/api/usuarios/email/'+id
         const options = {
             method: "PUT",
             headers: {
                 "Authorization":"Bearer "+token,
-                'Content-Type': 'aplication/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(json)
         }
+ 
         const response = await fetch(url, options);
         if (!response.ok) {
+    
             throw new Error('No se pudo actualizar');
         }
 

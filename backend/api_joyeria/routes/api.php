@@ -30,7 +30,10 @@ Route::middleware('cors')->group( function () {
     
     //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
+        Route::prefix('usuarios')->group(function(){
+            Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
 
+        });
 
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {

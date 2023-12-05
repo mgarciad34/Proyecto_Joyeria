@@ -1,4 +1,5 @@
 import { validarCorreo } from "./validaciones.js"
+import { actualizarEmail } from "./http/http-perfilUsuario.js"
 let btnFoto=document.getElementById('btnFoto')
 let btnEmail=document.getElementById('btnEmail')
 let btnPassword=document.getElementById('btnPassword')
@@ -58,25 +59,40 @@ function lanzarModalGuardado() {
     }
 
     function lanzarModalEmail() {
+        let confirmar=document.getElementById('confirmarEmail')
+        let cancelar=document.getElementById('cancelarEmail')
+        let alerta=document.getElementById('alertaEmail')
         document.getElementById('modal-email').style.display = 'flex';
     
-        document.getElementById('cancelarEmail').addEventListener('click', function () {
+        cancelar.addEventListener('click', function () {
             document.getElementById('modal-email').style.display = 'none';
         });
     
-        document.getElementById('confirmarEmail').addEventListener('click', function () {
+        confirmar.addEventListener('click', function () {
             let input1=document.getElementById('inputEmail').value
             let input2=document.getElementById('inputEmail2').value
 
             if(input1!=input2){
-                document.getElementById('alertaEmail').textContent='La direccion de correo electronico no coincide'
+                alerta.textContent='La direccion de correo electronico no coincide'
             }else{
               if(!validarCorreo(input1)){
-                document.getElementById('alertaEmail').textContent='Formato de email incorrecto'
+                alerta.textContent='Formato de email incorrecto'
               }else{
-                // actualizarEmail().then(function(data){
-                //     if()
-                // })
+                let json={}
+                json['email']=input1
+           
+                actualizarEmail(usuario,json).then(function(data){
+                   
+                   alerta.textContent=data.mensaje
+                   confirmar.textContent='Continuar'
+                   cancelar.style.display='none'
+                   alerta.style.color='green'
+                   confirmar.addEventListener('click', function(){
+                        input1.value=''
+                        input2.value=''
+                        window.location.reload(true)
+                    })
+                })
               }
             }
             // guardarNuevoEmail(inputEmail.value)

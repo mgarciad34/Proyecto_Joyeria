@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
-
+use Exception;
 
 class ControladorUsuarios extends Controller
 {
@@ -47,6 +47,19 @@ class ControladorUsuarios extends Controller
             return response()->json(['message' => 'Rol asignado exitosamente'], 201);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+/**Óscar */
+    public function updateEmail(Request $request,$id){
+        try{
+          
+            $nuevo=$request->get('email');
+            $usuario=User::find($id);
+            $usuario->email=$nuevo;
+            $usuario->save();
+            return response()->json(['mensaje'=>'Actualización de email exitosa'],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje' =>'Error al actualizar el email'], 409);
         }
     }
 }
