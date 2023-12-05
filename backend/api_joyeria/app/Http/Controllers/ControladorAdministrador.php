@@ -9,6 +9,8 @@ use App\Models\Rol;
 
 class ControladorAdministrador extends Controller
 {
+    /*Manuel
+    */
     //
     //Funcion para crear el usuario
     //En esta funcion puedes añadir 1 solo rol pero el que querramos

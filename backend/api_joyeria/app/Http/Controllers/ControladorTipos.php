@@ -8,7 +8,7 @@ use Exception;
 
 class ControladorTipos extends Controller
 {
-    /**Óscar */
+    /*Manuel, Óscar */
     function consultarTipos(){
         try{
 
