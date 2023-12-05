@@ -62,4 +62,21 @@ class ControladorUsuarios extends Controller
             return response()->json(['mensaje' =>'Error al actualizar el email'], 409);
         }
     }
+
+/**Óscar */
+public function actualizarPassword(Request $request,$id){
+    try{
+      
+        $nuevo=$request->get('password');
+        $usuario=User::find($id);
+        $usuario->password=bcrypt($nuevo);
+        $usuario->save();
+        return response()->json(['mensaje'=>'Actualización de contraseña exitosa'],200);
+    }catch(Exception $e){
+        return response()->json(['mensaje' =>'Error al actualizar la contraseña'], 409);
+    }
 }
+
+
+}
+

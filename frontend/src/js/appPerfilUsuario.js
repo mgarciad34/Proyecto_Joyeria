@@ -1,9 +1,10 @@
 import { validarCorreo,validarContrasena } from "./validaciones.js"
-import { actualizarEmail,actualizarPassword } from "./http/http-perfilUsuario.js"
+import { actualizarEmail,actualizarPassword,cerrarSesion } from "./http/http-perfilUsuario.js"
+// const bcrypt = require('bcrypt');
 let btnFoto=document.getElementById('btnFoto')
 let btnEmail=document.getElementById('btnEmail')
 let btnPassword=document.getElementById('btnPassword')
-
+let btnOut=document.getElementById('btnOut')
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 
 btnEmail.addEventListener('click',function(){
@@ -13,7 +14,9 @@ btnEmail.addEventListener('click',function(){
 btnPassword.addEventListener('click',function(){
     lanzarModalPassword()
 })
-
+btnOut.addEventListener('click',function(){
+    lanzarModalOut()
+})
 
 
 btnFoto.addEventListener('click',function(){
@@ -99,8 +102,7 @@ function lanzarModalGuardado() {
                 })
               }
             }
-            // guardarNuevoEmail(inputEmail.value)
-            // this.style.display = '';
+            
         });
     }
 
@@ -126,7 +128,7 @@ function lanzarModalGuardado() {
               }else{
                 let json={}
                 json['password']=input1
-           
+                console.log(json)
                 actualizarPassword(usuario,json).then(function(data){
                    
                    alerta.textContent=data.mensaje
@@ -134,14 +136,34 @@ function lanzarModalGuardado() {
                    cancelar.style.display='none'
                    alerta.style.color='green'
                    confirmar.addEventListener('click', function(){
-                        input1.value=''
-                        input2.value=''
+                    document.getElementById('inputPassword1').value=''
+                    document.getElementById('inputPassword2').value=''
                         window.location.reload(true)
                     })
                 })
               }
             }
-            // guardarNuevoEmail(inputEmail.value)
-            // this.style.display = '';
+      
+        });
+    }
+
+    function lanzarModalOut() {
+        let confirmar=document.getElementById('confirmarOut')
+        let cancelar=document.getElementById('cancelarOut')
+        let alerta=document.getElementById('alertaOut')
+        document.getElementById('modal-out').style.display = 'flex';
+    
+        cancelar.addEventListener('click', function () {
+            document.getElementById('modal-out').style.display = 'none';
+        });
+    
+        confirmar.addEventListener('click', function () {
+       
+                alerta.textContent='Cerrando sesion...'
+                sessionStorage.clear()
+                cerrarSesion(usuario).then(function(){
+                    window.location.href='../index.html'
+                })
+      
         });
     }

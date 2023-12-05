@@ -36,11 +36,12 @@ class ControladorAuth extends Controller
             return response()->json("Unauthorised",204);
         }
     }
-    public function logout(Request $request)
+    public function logout($id)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $cantidad = Auth::user()->tokens()->delete();
-            return response()->json(["success"=>true, "message" => "Tokens Revoked: ".$cantidad],200);
+        $user=User::find($id);
+        if($user){
+            $user->tokens()->delete();
+            return response()->json(["success"=>true, "message" => "Tokens Revoked: "],200);
         }
         else {
             return response()->json("Unauthorised",204);

@@ -54,3 +54,28 @@ export async function actualizarPassword(id,json) {
         return error
     }
 }
+
+export async function cerrarSesion(id) {
+     
+    try {
+        
+        let token=sessionStorage.getItem('token')
+        let url = 'http://127.0.0.1:8000/api/logout/'+id
+        const options = {
+            method: "POST",
+            headers: {
+                "Authorization":"Bearer "+token,
+                'Content-Type': 'application/json'
+            },
+        }
+ 
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error('No se pudo cerrar sesión');
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}

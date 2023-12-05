@@ -23,7 +23,8 @@ Route::middleware('cors')->group( function () {
     
     //Login y Logout usuario
     Route::post('login', [ControladorAuth::class, 'login']);
-    Route::post('logout', [ControladorAuth::class, 'logout']);
+    Route::post('logout/{id}', [ControladorAuth::class, 'logout']);
+
     Route::get('', function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
@@ -32,6 +33,7 @@ Route::middleware('cors')->group( function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
+            Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
 
         });
 

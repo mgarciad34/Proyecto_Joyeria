@@ -63,6 +63,8 @@
                 <button id="cancelarGuardado">Cancelar</button>
             </div>
         </div>
+        
+        
 
         <div class="modal" id="modal-email">
             <div class="modal-contenido">
@@ -81,7 +83,20 @@
             <button id="cancelarEmail">Cancelar</button>
        
         </div>
-    </div>
+        </div>
+
+        <div class="modal" id="modal-out">
+            <div class="modal-contenido">
+                <div class=" col-11">
+                </div>
+        <p id="alertaOut">¿Estas seguro que quieres cerrar sesion?</p>
+    
+            <button  id="confirmarOut">Confirmar</button>
+            <button id="cancelarOut">Cancelar</button>
+       
+        </div>
+        </div>
+
     <div class="modal" id="modal-password">
         <div class="modal-contenido">
             <div class=" col-11">
@@ -119,10 +134,11 @@
                     <thead>
                         <tr>
                             <th> <button id="btnFoto" class="fotoPerfil"></button><span id="txtNombre">Nombre</span></th>
-                           <th></th>
+                            <th></th>
                             <th> <button id="btnEmail" class="status shipped"> Cambiar email</button> </th>
                             <th> <button id="btnPassword" class="status shipped"> Cambiar Contraseña</button> </th>
-                            
+                            <th></th>
+                            <th> <button id="btnOut" class="status shipped">Cerrar sesion</button> </th>
                         </tr>
                       
                     </thead>
