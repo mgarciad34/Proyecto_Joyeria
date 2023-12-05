@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ControladorRolAsignado extends Controller
 {
+    /*Manuel */
         public function InsertarRolConValidacion($idUsuario, $idRol)
         {
             try {

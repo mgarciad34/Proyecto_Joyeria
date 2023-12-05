@@ -8,7 +8,7 @@ use Exception;
 
 class ControladorLote extends Controller
 {
-    /**Oscar */
+    /** Manuel, Oscar */
     function consultarLotesEntregados(){
         try{
 
