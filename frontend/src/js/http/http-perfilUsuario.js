@@ -84,7 +84,7 @@ export async function subirFoto(formulario, id) {
     try {
         let fData = new FormData(formulario);
         let token = sessionStorage.getItem('token');
-        let url = 'http://127.0.0.1:8000/api/testing/' + id;
+        let url = 'http://127.0.0.1:8000/api/usuarios/foto/'+ id;
         const options = {
             method: 'POST',
             headers: {
@@ -98,6 +98,7 @@ export async function subirFoto(formulario, id) {
         }
 
         const data = await response.json();
+        sessionStorage.setItem('foto-url',(data.url))
         return data;
     } catch (error) {
         return error;

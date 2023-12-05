@@ -24,7 +24,7 @@ Route::middleware('cors')->group( function () {
     //Login y Logout usuario
     Route::post('login', [ControladorAuth::class, 'login']);
     Route::post('logout/{id}', [ControladorAuth::class, 'logout']);
-
+    
     Route::get('', function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
@@ -32,6 +32,7 @@ Route::middleware('cors')->group( function () {
     //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){
+            Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
             Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
 
@@ -79,6 +80,7 @@ Route::middleware('cors')->group( function () {
     });
     Route::middleware('DesignMid')->group(function () {
         Route::prefix('joyas')->group(function () {
+            Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::post('nueva', [ControladorJoya::class, 'nuevaJoya']);
             Route::put('fabricar/{id}', [ControladorJoya::class, 'fabricarJoya']);
             Route::get('', [ControladorJoya::class, 'getAllJoyas']);
@@ -101,4 +103,4 @@ Route::middleware('cors')->group( function () {
 
 });
 
-Route::post('testing/{id}',[FotoControlador::class,'cargarImagen']);
+Route::post('usuario/foto/{id}',[FotoControlador::class,'cargarImagen']);

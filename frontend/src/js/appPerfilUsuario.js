@@ -64,12 +64,12 @@ function lanzarModalGuardado() {
 
     document.getElementById('confirmarGuardado').addEventListener('click', function () {
         let formData=document.getElementById('formularioFoto')
-        subirFoto(formData,usuario).then(function(){
-
+        subirFoto(formData,usuario).then(function(data){
             let lblFoto = document.getElementById('lblFoto');
             let lbl2 = document.createElement('label');
             lbl2.setAttribute('for', 'inputFoto');
-        lbl2.setAttribute('id', 'lblFoto');
+            lbl2.setAttribute('id', 'lblFoto');
+            
 
         lbl2.classList.remove('spinner2');
         lbl2.classList.add('spinner2');
@@ -88,7 +88,7 @@ function lanzarModalGuardado() {
             document.getElementById('confirmarGuardado').style.display = ''; 
             document.getElementById('alertaFoto').textContent='Foto actualizada correctamente'
             document.getElementById('confirmarGuardado').addEventListener('click', function () {
-                document.getElementById('modal-foto').style.display = 'none';
+            document.getElementById('modal-foto').style.display = 'none';
               window.location.reload(true)
             });
         }, 2000);
@@ -175,6 +175,7 @@ function lanzarModalErrores(mensaje){
                    confirmar.textContent='Continuar'
                    cancelar.style.display='none'
                    alerta.style.color='green'
+                
                    confirmar.addEventListener('click', function(){
                     document.getElementById('inputPassword1').value=''
                     document.getElementById('inputPassword2').value=''
