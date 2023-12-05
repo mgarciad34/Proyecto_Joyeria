@@ -1,14 +1,18 @@
-import { validarCorreo } from "./validaciones.js"
-import { actualizarEmail } from "./http/http-perfilUsuario.js"
+import { validarCorreo,validarContrasena } from "./validaciones.js"
+import { actualizarEmail,actualizarPassword } from "./http/http-perfilUsuario.js"
 let btnFoto=document.getElementById('btnFoto')
 let btnEmail=document.getElementById('btnEmail')
 let btnPassword=document.getElementById('btnPassword')
+
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 
 btnEmail.addEventListener('click',function(){
     lanzarModalEmail()
 })
 
+btnPassword.addEventListener('click',function(){
+    lanzarModalPassword()
+})
 
 
 
@@ -82,6 +86,48 @@ function lanzarModalGuardado() {
                 json['email']=input1
            
                 actualizarEmail(usuario,json).then(function(data){
+                   
+                   alerta.textContent=data.mensaje
+                   confirmar.textContent='Continuar'
+                   cancelar.style.display='none'
+                   alerta.style.color='green'
+                   confirmar.addEventListener('click', function(){
+                        input1.value=''
+                        input2.value=''
+                        window.location.reload(true)
+                    })
+                })
+              }
+            }
+            // guardarNuevoEmail(inputEmail.value)
+            // this.style.display = '';
+        });
+    }
+
+    function lanzarModalPassword() {
+        let confirmar=document.getElementById('confirmarPassword')
+        let cancelar=document.getElementById('cancelarPassword')
+        let alerta=document.getElementById('alertaPassword')
+        document.getElementById('modal-password').style.display = 'flex';
+    
+        cancelar.addEventListener('click', function () {
+            document.getElementById('modal-password').style.display = 'none';
+        });
+    
+        confirmar.addEventListener('click', function () {
+            let input1=document.getElementById('inputPassword1').value
+            let input2=document.getElementById('inputPassword2').value
+
+            if(input1!=input2){
+                alerta.textContent='Las contraseñas no coinciden'
+            }else{
+              if(!validarContrasena(input1)){
+                alerta.textContent='Formato de contraseña incorrecto'
+              }else{
+                let json={}
+                json['password']=input1
+           
+                actualizarPassword(usuario,json).then(function(data){
                    
                    alerta.textContent=data.mensaje
                    confirmar.textContent='Continuar'

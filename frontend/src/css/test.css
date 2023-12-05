@@ -288,3 +288,15 @@ body {
     color: white;
     border: none;
   }
+
+  #confirmarPassword{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  #cancelarPassword{
+    background-color: #f44336;
+    color: white;
+    border: none;
+  }
