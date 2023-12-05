@@ -1,12 +1,12 @@
 //Manuel
-export function obtenerDatos(token) {
+export function obtenerDatos() {
     let url = 'http://127.0.0.1:8000/api/administrador/usuarios';
-
+    var token = sessionStorage.getItem("token")
     return fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Añade el token al encabezado
+            'Authorization': `Bearer ${token}`,
         },
     })
         .then(response => {

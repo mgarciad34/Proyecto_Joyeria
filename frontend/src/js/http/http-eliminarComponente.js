@@ -15,10 +15,13 @@ export function eliminarComponente(id) {
 
 export async function eliminarDatosComponente(id) {
     try {
+        const token = sessionStorage.getItem('token')
+
         const response = await fetch(`http://127.0.0.1:8000/api/administrador/eliminar/componente/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
         });
 
