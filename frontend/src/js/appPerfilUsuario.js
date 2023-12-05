@@ -1,5 +1,5 @@
 import { validarCorreo,validarContrasena } from "./validaciones.js"
-import { actualizarEmail,actualizarPassword,cerrarSesion } from "./http/http-perfilUsuario.js"
+import { actualizarEmail,actualizarPassword,cerrarSesion,subirFoto } from "./http/http-perfilUsuario.js"
 // const bcrypt = require('bcrypt');
 
 let fotoUrl=sessionStorage.getItem('foto-url')
@@ -23,11 +23,12 @@ inputFoto.addEventListener('change',function(event){
             
     if (input.files && input.files[0]) {
         var fotoUrl2 = URL.createObjectURL(input.files[0]);
-        console.log('URL local de la foto:', fotoUrl2);
+       
     }
    document.getElementById('lblFoto').style.background='url('+fotoUrl2+') center / cover'
     sessionStorage.setItem('nueva-foto',JSON.stringify(fotoUrl2))
     document.getElementById('confirmarGuardado').style.display=''
+    document.getElementById('alertaFoto').textContent='¿Estas seguro que deseas guardar esta foto?'
 })
 
 btnEmail.addEventListener('click',function(){
@@ -48,18 +49,26 @@ lanzarModalGuardado()
 
 
 })
+document.getElementById('formularioFoto').addEventListener('click submit change', function(event){
+    event.preventDefault()
+})
+
 function lanzarModalGuardado() {
     document.getElementById('modal-foto').style.display = 'flex';
 
     document.getElementById('cancelarGuardado').addEventListener('click', function () {
         document.getElementById('modal-foto').style.display = 'none';
         lblFoto.style.background='url('+fotoUrl+') center / cover'
+        document.getElementById('alertaFoto').textContent='Selecciona una nueva foto'
     });
 
     document.getElementById('confirmarGuardado').addEventListener('click', function () {
-        let lblFoto = document.getElementById('lblFoto');
-        let lbl2 = document.createElement('label');
-        lbl2.setAttribute('for', 'inputFoto');
+        let formData=document.getElementById('formularioFoto')
+        subirFoto(formData,usuario).then(function(){
+
+            let lblFoto = document.getElementById('lblFoto');
+            let lbl2 = document.createElement('label');
+            lbl2.setAttribute('for', 'inputFoto');
         lbl2.setAttribute('id', 'lblFoto');
 
         lbl2.classList.remove('spinner2');
@@ -72,21 +81,23 @@ function lanzarModalGuardado() {
         lblFoto.replaceWith(lbl2);
         document.getElementById('inputFoto').disabled=true
         document.getElementById('confirmarGuardado').style.display = 'none';
-
-
+        
+        document.getElementById('alertaFoto').textContent='Guardando foto...'
         setTimeout(() => {
-            this.textContent = 'Continuar';
-            this.style.display = ''; 
-            this.addEventListener('click', function () {
+            document.getElementById('confirmarGuardado').textContent = 'Continuar';
+            document.getElementById('confirmarGuardado').style.display = ''; 
+            document.getElementById('alertaFoto').textContent='Foto actualizada correctamente'
+            document.getElementById('confirmarGuardado').addEventListener('click', function () {
                 document.getElementById('modal-foto').style.display = 'none';
               window.location.reload(true)
             });
         }, 2000);
+    })
         
     });
 }
 
-    function lanzarModalErrores(mensaje){
+function lanzarModalErrores(mensaje){
         document.getElementById('modal-errores').style.display = 'flex';
         document.getElementById('mensajeErrores').textContent=mensaje
         document.getElementById('cerrarModalErrores').addEventListener('click',function(){

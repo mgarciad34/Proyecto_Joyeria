@@ -300,7 +300,6 @@ function lanzarModalGuardado(json,idJoya){
         actualizarJoya(idJoya,json).then(function () {
                     if(formData==true){
                         subirFoto(document.getElementById('formulario'),idJoya).then(function(data){
-                            
                             window.location.href='listaJoyasUsuario.html'
                         })
                     }else{
