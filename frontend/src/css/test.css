@@ -277,3 +277,14 @@ body {
     border: none;
   }
 
+  #confirmarEmail {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  #cancelarEmail{
+    background-color: #f44336;
+    color: white;
+    border: none;
+  }

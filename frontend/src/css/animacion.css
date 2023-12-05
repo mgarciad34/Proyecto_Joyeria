@@ -166,7 +166,7 @@
        color: rgba(255, 0, 0, 0);
   }
   100% {
-      opacity: 0.1;
+      opacity: 1;
       background: url(../images/espacio.jpg) center / cover;
       content:"actualizar";
       color: rgba(255, 0, 0);

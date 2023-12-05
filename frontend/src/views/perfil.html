@@ -48,7 +48,7 @@
             </div>
         </nav>
     </header>
-    <div id="modal-foto" class="modal">
+        <div id="modal-foto" class="modal">
 
         <div class="modal-contenido">
                 <div class="container col-11">
@@ -63,7 +63,26 @@
                 <button id="cancelarGuardado">Cancelar</button>
             </div>
         </div>
+
+        <div class="modal" id="modal-email">
+            <div class="modal-contenido">
+                <div class=" col-11">
+                </div>
+        <p>Escribe el nuevo  email</p>
+      
+        <input type="email" name="" id="inputEmail"> <br><br>
+        <p>Confirma tu nuevo email</p>
+      
+        <input type="email" name="" id="inputEmail2"> <br>
+              
+        <p id="alertaEmail" style="margin-top: 20px; font-size: x-small; color: red;"></p><br><br>
+
+            <button  id="confirmarEmail">Confirmar</button>
+            <button id="cancelarEmail">Cancelar</button>
+       
+        </div>
     </div>
+
     <div id="modal-errores" class="modal">
         <div class="modal-contenido">
           
@@ -83,8 +102,8 @@
                         <tr>
                             <th> <button id="btnFoto" class="fotoPerfil"></button><span id="txtNombre">Nombre</span></th>
                            <th></th>
-                            <th> <button class="status shipped"> Cambiar email</button> </th>
-                            <th> <button class="status shipped"> Cambiar Contraseña</button> </th>
+                            <th> <button id="btnEmail" class="status shipped"> Cambiar email</button> </th>
+                            <th> <button id="btnPassword" class="status shipped"> Cambiar Contraseña</button> </th>
                             
                         </tr>
                       
@@ -121,6 +140,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
     
-    <script src="../js/appPerfilUsuario.js"></script>
+    <script type="module" src="../js/appPerfilUsuario.js"></script>
 </body>
 </html>
