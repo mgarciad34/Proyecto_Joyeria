@@ -44,7 +44,7 @@ function updateMarkerPosition(latLng) {
   map.panTo(latLng);
 
   // Mostrar latitud y longitud en la consola
-  //console.log("Latitud:", latLng.lat(), "Longitud:", latLng.lng());
+  console.log("Latitud:", latLng.lat(), "Longitud:", latLng.lng());
   initialPosition = { lat:  latLng.lat(), lng: latLng.lng() };
   
 }

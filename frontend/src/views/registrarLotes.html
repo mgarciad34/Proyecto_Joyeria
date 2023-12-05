@@ -1,20 +1,86 @@
 <html>
   <head>
-    <title>Add Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style>
-        #map {
-            height: 50%;
-            width: 50%;
-        }
-
-    </style>
-
-    <script type="module" src="../js/maps.js"></script>
-  </head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Añadir Lotes</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+        <script type="module" src="../js/maps.js"></script>
+    </head>
   <body>
-    <div id="map"></div>
+    <header class="row bg-warning row-warning">
+        <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                      
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./indexClasificador.html">Lotes sin clasificar</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./lotesClasificados.html">Lotes clasificados</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./componentesClasificados.html">Componentes clasificados</a>
+                        </li>
+                     
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <div class="container mt-5 d-flex justify-content-center align-items-center flex-grow-1">
+
+        <form method="post" class="col-md-6 formulario">
+            <div class="form-group">
+                <label for="txtnombre" class="col-form-label font-weight-bold">Empresa</label>
+                <input type="text" class="form-control" id="txtnombre" name="nombre" required>
+                <p id="mensajeNombre"></p>
+            </div>
+    
+            <div class="form-group">
+                <label for="txtcantidad" class="col-form-label font-weight-bold">Selecciona tu ubicación</label>
+                <div id="map" class="form-control" style="width: 100%; height: 300px;"></div>
+            </div>
+    
+            <br>
+            
+            <button id="btnregistrar" class="btn btn-primary">Añadir Lote</button>
+            <p id="mensajeBoton"></p>
+        </form>
+    </div>
+    
+
+    <footer class="bg-warning text-dark text-center py-3 mt-5">
+        <div class="d-flex justify-content-around">
+            <div>
+                <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
+            </div>
+            <div>
+                <p>LOPD</p>
+            </div>
+            <div>
+                <p>Cookies</p>
+            </div>
+            <div>
+                <p>Política de privacidad</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
     <!-- prettier-ignore -->
     <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
         ({key: "AIzaSyAIZBiRIRDGomNJvXRY_hQ4cjEjdE3J1XM", v: "beta"});</script>
