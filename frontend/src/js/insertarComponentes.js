@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las clases que vamos a usar
 import { validarNombre } from './validaciones.js';
 import { comprobarColor } from './http/http-registro.js';

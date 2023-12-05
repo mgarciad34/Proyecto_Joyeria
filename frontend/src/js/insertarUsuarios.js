@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las clases que vamos a usar
 import UsersAdministrador from '../js/clases/UsersAdministrador.js';
 import { validarNombre, validarCorreo, validarContrasena, confirmarContrasena } from './validaciones.js';

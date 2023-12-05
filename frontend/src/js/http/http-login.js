@@ -1,3 +1,4 @@
+//Manuel
 export async function obtenerDatos(correo, contrasena) {
     let data = {
         email: correo,

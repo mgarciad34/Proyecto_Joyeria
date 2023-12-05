@@ -1,3 +1,4 @@
+//Manuel
 export async function enviarDatos(datos, ruta) {
     try {
         const respuesta = await fetch(ruta, {

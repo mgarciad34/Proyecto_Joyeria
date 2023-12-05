@@ -1,3 +1,4 @@
+//Manuel
 export async function obtenerLotes() {
     try {
         let token=sessionStorage.getItem('token')

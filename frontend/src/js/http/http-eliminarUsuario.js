@@ -1,3 +1,4 @@
+//Manuel
 export function eliminarUsuario(id) {
     eliminarDatos(id)
         .then(() => {

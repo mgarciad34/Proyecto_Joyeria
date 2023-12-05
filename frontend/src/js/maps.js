@@ -1,3 +1,4 @@
+//Manuel
 // Initialize and add the map
 let map;
 let marker;

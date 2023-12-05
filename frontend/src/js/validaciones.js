@@ -1,3 +1,4 @@
+//Manuel, Óscar
 export function validarNombre(nombreValue) {
     const regex = /\b(?:[a-z][A-Za-z]{2,}|[A-Z][A-Za-z]{2,}|\b[A-Z][a-z]{2,}\b)\b/;
     if(regex.test(nombreValue) == true){

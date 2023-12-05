@@ -1,3 +1,4 @@
+//Manuel
 export function eliminarComponente(id) {
     eliminarDatosComponente(id)
         .then(() => {
