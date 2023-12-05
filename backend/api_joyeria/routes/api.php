@@ -31,7 +31,6 @@ Route::middleware('cors')->group( function () {
     //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
 
-
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
           Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
@@ -51,7 +50,7 @@ Route::middleware('cors')->group( function () {
     Route::prefix('lotes')->group(function () {
         Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
-            Route::post('', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
+            Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
             Route::get('{id}', [Contr−3oladorLote::class, 'consultarLote'])->middleware('ColabMid');

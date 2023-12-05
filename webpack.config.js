@@ -8,6 +8,7 @@ module.exports = {
     insertarUsuarios: './frontend/src/js/insertarUsuarios.js',
     consultarUsuarios: './frontend/src/js/consultarUsuarios.js',
     insertarComponentes: './frontend/src/js/insertarComponentes.js',
+    insertarLote: './frontend/src/js/insertarLote.js',
     insertarRol: './frontend/src/js/insertarRol.js',
     eliminarRol: './frontend/src/js/eliminarRol.js',
     consultarComponentes: './frontend/src/js/consultarComponentes.js',

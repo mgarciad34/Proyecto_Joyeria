@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las validaciones
 import Componentes from "../clases/Componentes.js";
 import { validarNombre,validarCorreo } from "../validaciones.js";

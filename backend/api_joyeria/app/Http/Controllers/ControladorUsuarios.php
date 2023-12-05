@@ -9,7 +9,7 @@ use App\Models\RolAsignado;
 
 class ControladorUsuarios extends Controller
 {
-    // ...
+    /* Manuel */
 
     public function crearUsuario(Request $request)
     {

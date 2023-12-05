@@ -8,7 +8,7 @@ use Exception;
 
 class ControladorLote extends Controller
 {
-    /**Oscar */
+    /** Manuel, Oscar */
     function consultarLotesEntregados(){
         try{
 
@@ -29,13 +29,15 @@ class ControladorLote extends Controller
     function insertarLote(Request $request){
         $request->validate([
             'id_empresa' => 'required',
-            'ubicacion' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required',
             'estado' => 'required',
         ]);
 
         $nuevoLote = new Lote();
         $nuevoLote->id_empresa = $request->input('id_empresa');
-        $nuevoLote->ubicacion = $request->input('ubicacion');
+        $nuevoLote->latitud = $request->input('latitud');
+        $nuevoLote->longitud = $request->input('longitud');
         $nuevoLote->estado = $request->input('estado');
         $nuevoLote->save();
 

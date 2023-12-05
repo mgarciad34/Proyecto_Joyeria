@@ -15,7 +15,8 @@ return new class extends Migration
     
             $table->id()->unique();
             $table->unsignedBigInteger('id_empresa');
-            $table->string('ubicacion');
+            $table->string('latitud');
+            $table->string('longitud');
             $table->string('estado');
             $table->unsignedBigInteger('id_clasificador')->default(0);
             

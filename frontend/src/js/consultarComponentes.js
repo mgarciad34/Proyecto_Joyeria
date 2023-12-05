@@ -1,3 +1,4 @@
+//Manuel
 import { obtenerDatos } from "./http/http-consultarComponentes.js";
 import { eliminarComponente } from "./http/http-eliminarComponente.js";
 import { crearCelda, crearBoton, mostrarModal } from "./http/http-tablaComponente.js";
