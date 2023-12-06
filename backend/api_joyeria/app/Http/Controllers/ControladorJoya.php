@@ -25,8 +25,7 @@ class ControladorJoya extends Controller
             // $joya->foto=$request->get('foto');
             $joya->id_usuario=$request->get('id_usuario');
             $joya->save();
-
-             $joya->foto="https://jawa-oscar.s3.eu-west-3.amazonaws.com/perfiles/".$joya->id;
+            $joya->foto="https://jawa-oscar.s3.eu-west-3.amazonaws.com/joyas/".$joya->id;
             $joya->save();
             $detalle=$request->detalle;
             

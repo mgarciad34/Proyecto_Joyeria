@@ -53,7 +53,7 @@ export async function guardarNuevaJoya(joya) {
         try {
             let fData = new FormData(formulario);
             let token = sessionStorage.getItem('token');
-            let url = 'http://127.0.0.1:8000/api/testing/' + id;
+            let url = 'http://127.0.0.1:8000/api/joyas/foto/' + id;
             const options = {
                 method: 'POST',
                 headers: {

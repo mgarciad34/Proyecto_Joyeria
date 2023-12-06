@@ -1,5 +1,9 @@
 import{obtenerJoyas,eliminarJoya} from './http/http-listadoJoyasUsuario.js'
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+
 let id=JSON.parse(sessionStorage.getItem('id-usuario'))
 
 obtenerJoyas(id).then(function(data){

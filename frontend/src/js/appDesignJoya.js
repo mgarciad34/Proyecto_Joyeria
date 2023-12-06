@@ -1,5 +1,9 @@
 import { obtenerTipos,guardarNuevaJoya, subirFoto } from "./http/http-designJoya.js"
-const apiUrl2 = 'http://127.0.0.1:8000/api/consultar/tipos'
+
+
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
 
 let formData= null
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
@@ -44,8 +48,15 @@ inputNombre.addEventListener('input', function () {
 
 })
 
-inputFoto.addEventListener('change', function () {
-    
+inputFoto.addEventListener('change', function (event) {
+    var input = event.target;
+            
+    if (input.files && input.files[0]) {
+        var fotoUrl2 = URL.createObjectURL(input.files[0]);
+        document.getElementById('lblFoto').style.background='url('+fotoUrl2+') center / cover'
+        sessionStorage.setItem('nueva-foto',JSON.stringify(fotoUrl2))
+
+    }
     carga.classList.remove('spinner');
     void carga.offsetWidth;
     carga.classList.add('spinner');

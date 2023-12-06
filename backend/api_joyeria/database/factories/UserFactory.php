@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'name' =>$n,
             'email' => $lower.'@jawas.com',
             'password' => bcrypt($lower),
-         
         ];
     }
 

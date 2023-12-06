@@ -4,6 +4,10 @@ import {
     isOwner,
     eliminarJoya
 } from './http/http-receta-joya.js'
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+
 let id_joya = JSON.parse(sessionStorage.getItem('joya-guardada'));
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let botones = document.getElementById('botones')

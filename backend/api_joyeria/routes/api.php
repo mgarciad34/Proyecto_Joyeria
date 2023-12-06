@@ -23,13 +23,20 @@ Route::middleware('cors')->group( function () {
     
     //Login y Logout usuario
     Route::post('login', [ControladorAuth::class, 'login']);
-    Route::post('logout', [ControladorAuth::class, 'logout']);
+    Route::post('logout/{id}', [ControladorAuth::class, 'logout']);
+    
     Route::get('', function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
     
     //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
+        Route::prefix('usuarios')->group(function(){
+            Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
+            Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
+            Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
+
+        });
 
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
@@ -50,7 +57,7 @@ Route::middleware('cors')->group( function () {
     Route::prefix('lotes')->group(function () {
         Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
-            Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
+            Route::post('', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
             Route::get('{id}', [Contr−3oladorLote::class, 'consultarLote'])->middleware('ColabMid');
@@ -60,6 +67,7 @@ Route::middleware('cors')->group( function () {
     //** Preguntar a Fernando como hacer que compruebe dos middleware pero que con uno pase */
     Route::prefix('tipos')->group(function () {
         Route::get('', [ControladorTipos::class, 'consultarTipos']);
+        Route::post('', [ControladorTipos::class, 'insertarComponente']);
     });
     Route::middleware('ClasiMid')->group(function () {
         Route::prefix('despieces')->group(function () {
@@ -72,6 +80,7 @@ Route::middleware('cors')->group( function () {
     });
     Route::middleware('DesignMid')->group(function () {
         Route::prefix('joyas')->group(function () {
+            Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::post('nueva', [ControladorJoya::class, 'nuevaJoya']);
             Route::put('fabricar/{id}', [ControladorJoya::class, 'fabricarJoya']);
             Route::get('', [ControladorJoya::class, 'getAllJoyas']);
@@ -94,4 +103,3 @@ Route::middleware('cors')->group( function () {
 
 });
 
-Route::post('testing/{id}',[FotoControlador::class,'cargarImagen']);
