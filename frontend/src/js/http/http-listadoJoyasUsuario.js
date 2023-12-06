@@ -15,7 +15,9 @@ export async function obtenerJoyas(id) {
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
         
         return data
@@ -39,9 +41,11 @@ export async function eliminarJoya(joya) {
         }
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
+            throw new Error('Error al eliminar la joya');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data

@@ -13,7 +13,9 @@ export async function obtenerRecetas(id) {
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
         
         return data
@@ -43,7 +45,9 @@ export async function fabricarJoya(joya,id_usuario) {
         if (!response.ok) {
             throw new Error('No se pudo fabricar la joya');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -69,7 +73,9 @@ export async function isOwner(joya,id_usuario) {
         if (!response.ok) {
             throw new Error('No se pudo obtener el valor');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
        
         return data
@@ -93,7 +99,9 @@ export async function eliminarJoya(joya) {
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data

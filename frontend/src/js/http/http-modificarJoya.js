@@ -14,7 +14,9 @@ export async function obtenerTipos() {
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -39,7 +41,9 @@ export async function obtenerJoya(id) {
         if (!response.ok) {
             throw new Error('No se pudo obtener la joya');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -62,7 +66,9 @@ export async function obtenerJoya(id) {
             if (!response.ok) {
                 throw new Error('No se pudo obtener las joyas');
             }
-    
+            if(response.status==202){
+                window.location.href='./redirect.html'
+            }
             const data = await response.json();
             
             return data
@@ -89,7 +95,9 @@ export async function obtenerJoya(id) {
             if (!response.ok) {
                 throw new Error('No se pudo actualizar');
             }
-    
+            if(response.status==202){
+                window.location.href='./redirect.html'
+            }
             const data = await response.json();
     
             return data
@@ -114,7 +122,9 @@ export async function obtenerJoya(id) {
             if (!response.ok) {
                 throw new Error('No se pudo subir la foto');
             }
-    
+            if(response.status==202){
+                window.location.href='./redirect.html'
+            }
             const data = await response.json();
             return data;
         } catch (error) {

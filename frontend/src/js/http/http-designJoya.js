@@ -1,3 +1,4 @@
+//Óscar
 export async function obtenerTipos() {
     try {
         let token=sessionStorage.getItem('token')
@@ -14,7 +15,9 @@ export async function obtenerTipos() {
         if (!response.ok) {
             throw new Error('No se pudo obtener las categorias');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -41,7 +44,9 @@ export async function guardarNuevaJoya(joya) {
         if (!response.ok) {
             throw new Error('No se pudo guardar la joya');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -64,6 +69,9 @@ export async function guardarNuevaJoya(joya) {
             const response = await fetch(url, options);
             if (!response.ok) {
                 throw new Error('No se pudo subir la foto');
+            }
+            if(response.status==202){
+                window.location.href='./redirect.html'
             }
     
             const data = await response.json();

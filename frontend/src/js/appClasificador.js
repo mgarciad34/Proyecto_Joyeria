@@ -1,15 +1,35 @@
 import{obtenerLotes} from './http/http-Clasificador.js'
+
+obtenerLotes().then(function(data) {
+
+    if(data[0].lotes==null){
+        window.location.href='../index.html'
+    }     
+    console.log(data)
+    // if (!data) {
+
+//     window.location.href = '/pagina-de-error';
+// } else {
+    
+    //     pintarLotes(data);
+    //     if (data.mensaje === '') {
+        //         alert('No hay lotes sin clasificar');
+        //     }
+        // }
+        
+      
+}).catch(function(error) {
+    console.log(error)
+    console.log(error)
+    if(data[0]==null){
+        window.location.href='index.html'
+    }
+});
+    
+
 let fotoUrl=sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src=fotoUrl
 sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
-obtenerLotes().then(function(data){
-    pintarLotes(data)
-    if(data.mensaje==''){
-        alert('No hay lotes sin clasificar')
-    }
-
-})
-
 
 
 function pintarLotes(lotes) {

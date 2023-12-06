@@ -12,9 +12,11 @@ export async function obtenerTipos() {
         const apiUrl2 = 'http://127.0.0.1:8000/api/tipos'
         const response = await fetch(apiUrl2,options);
         if (!response.ok) {
-            throw new Error('No se pudo obtener las categorias');
+            throw new Error('No se pudo obtener los tipos');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data
@@ -41,7 +43,9 @@ export async function registrarComponente(componente) {
         if (!response.ok) {
             throw new Error('No se pudo guardar el componente');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data

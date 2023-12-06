@@ -1,4 +1,4 @@
-
+//OScar
 export async function obtenerJoyas() {
     try {
         let token=sessionStorage.getItem('token')
@@ -16,7 +16,9 @@ export async function obtenerJoyas() {
         }
 
         const data = await response.json();
-        
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         return data
 
     } catch (error) {
@@ -46,7 +48,9 @@ export async function fabricarJoya(joya,id_usuario) {
         if (!response.ok) {
             throw new Error('No se pudo fabricar la joya');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
 
         return data

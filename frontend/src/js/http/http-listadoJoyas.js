@@ -13,7 +13,9 @@ export async function obtenerJoyas() {
         if (!response.ok) {
             throw new Error('No se pudo obtener las joyas');
         }
-
+        if(response.status==202){
+            window.location.href='./redirect.html'
+        }
         const data = await response.json();
         
         return data
