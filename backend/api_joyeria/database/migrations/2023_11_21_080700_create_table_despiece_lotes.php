@@ -18,6 +18,9 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->unsignedBigInteger('id_lote');
            $table->unsignedBigInteger('id_clasificador');
+
+           $table->foreign('id_clasificador')->references('id')->on('users');
+           $table->foreign('id_lote')->references('id')->on('lotes');
         });
     }
 

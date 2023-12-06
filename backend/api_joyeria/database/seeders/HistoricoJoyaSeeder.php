@@ -4,14 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Tipos_componente;
-class Tipos_componenteSeeder extends Seeder
+
+class HistoricoJoyaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        \App\Models\Tipos_componente::factory(9)->create();
+        \App\Models\HistoricoJoya::factory(2)->create();
     }
 }

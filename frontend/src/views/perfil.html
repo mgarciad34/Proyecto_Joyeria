@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+        <link rel="stylesheet" href="../css/animacion.css">
+        <link rel="stylesheet" href="../css/test.css">
+    
+</head>
+<body>
+    <header id="cabecera" class="row ">
+   
+     
+    </header>
+        <div id="modal-foto" class="modal">
+
+        <div class="modal-contenido">
+                <div class="container col-11">
+                    <form id="formularioFoto" action="">
+                        <label id="lblFoto" class="fotoModal" for="inputFoto"></label>
+                        <input type="file" id="inputFoto" name="foto" accept="image/*" value="1"/>
+                    </form>
+            
+            </div>
+            <p id="alertaFoto">Selecciona una nueva foto</p>
+                <button style="display: none;" id="confirmarGuardado">Confirmar</button>
+                <button id="cancelarGuardado">Cancelar</button>
+            </div>
+        </div>
+        
+        
+
+        <div class="modal" id="modal-email">
+            <div class="modal-contenido">
+                <div class=" col-11">
+                </div>
+        <p>Escribe el nuevo  email</p>
+      
+        <input type="email" name="" id="inputEmail"> <br><br>
+        <p>Confirma tu nuevo email</p>
+      
+        <input type="email" name="" id="inputEmail2"> <br>
+              
+        <p id="alertaEmail" style="margin-top: 20px; font-size: x-small; color: red;"></p><br><br>
+
+            <button  id="confirmarEmail">Confirmar</button>
+            <button id="cancelarEmail">Cancelar</button>
+       
+        </div>
+        </div>
+
+        <div class="modal" id="modal-out">
+            <div class="modal-contenido">
+                <div class=" col-11">
+                </div>
+        <p id="alertaOut">¿Estas seguro que quieres cerrar sesion?</p>
+    
+            <button  id="confirmarOut">Confirmar</button>
+            <button id="cancelarOut">Cancelar</button>
+       
+        </div>
+        </div>
+
+    <div class="modal" id="modal-password">
+        <div class="modal-contenido">
+            <div class=" col-11">
+            </div>
+    <p>Escribe la nueva contraseña</p>
+  
+    <input type="password" name="" id="inputPassword1"> <br><br>
+    <p>Confirma tu nueva contraseña</p>
+  
+    <input type="password" name="" id="inputPassword2"> <br>
+          
+    <p id="alertaPassword" style="margin-top: 20px; font-size: x-small; color: red;"></p><br><br>
+
+        <button  id="confirmarPassword">Confirmar</button>
+        <button id="cancelarPassword">Cancelar</button>
+   
+    </div>
+</div>
+
+    <div id="modal-errores" class="modal">
+        <div class="modal-contenido">
+          
+          <p id="mensajeErrores"></p>
+          <button id="cerrarModalErrores">Continuar</button>
+        </div>
+      </div>
+    <div class="container">
+        <main class="table4">
+            <section class="table__header">
+                <h5>Perfil</h5>
+            </section>
+            
+            <section class="table__body" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th> <button id="btnFoto" class="fotoPerfil"></button></th>
+                            <th><span id="txtNombre">Nombre</span></th>
+                            <th> <button id="btnEmail" class="status shipped"> Cambiar email</button> </th>
+                            <th> <button id="btnPassword" class="status shipped"> Cambiar Contraseña</button> </th>
+                            <th></th>
+                            <th> <button id="btnOut" class="status shipped">Cerrar sesion</button> </th>
+                        </tr>
+                      
+                    </thead>
+                       
+                </table>
+            </section>
+        </main>
+        <main class="table3">
+            <section class="table__header">
+                <h4>Peticiones realizadas</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                   
+                    <thead id="">
+                        <tr>
+                            <th>Tipo de Peticion</th>
+                            <th>Solicitado</th>
+                            <th> Estado </th>
+                            <th><button id="btnSolicitud" class="status shipped">Nueva Solicitud</button></th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_peticiones">
+                       <tr><td colspan="4" id="tabla-vacia"> No hay peticiones</td></td></tr> 
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+    
+    <script type="module" src="../js/appPerfilUsuario.js"></script>
+</body>
+</html>
