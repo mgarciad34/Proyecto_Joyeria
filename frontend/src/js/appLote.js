@@ -2,7 +2,7 @@ import { guardarElementosBdd,obtenerTipos } from "./http/http-lote.js";
 
 let fotoUrl=sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src=fotoUrl
-sessionStorage.setItem('ultimo-acceso',JSON.parse('clasificador'))
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
 
 
 let idLote=JSON.parse(sessionStorage.getItem('lote-a-clasificar'));

@@ -12,6 +12,6 @@ class Tipos_componenteSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Tipos_componente::factory(5)->create();
+        \App\Models\Tipos_componente::factory(9)->create();
     }
 }

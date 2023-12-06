@@ -16,13 +16,16 @@ class LoteFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model=Lote::class;
-    public $estados=['entregado','clasificado','cancelado','creado'];
+    public $estados=['entregado','clasificado','cancelado'];
     public function definition(): array
+    
     {
         return [
             'estado' =>array_pop($this->estados),
-            'ubicacion'=>strval(rand(0,10000)),
+            'latitud'=>strval(rand(0,10000)),
+            'longitud'=>strval(rand(0,10000)),
             'id_empresa'=>1,
+            
         ];
     }
 }
