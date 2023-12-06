@@ -35,7 +35,9 @@ Route::middleware('cors')->group( function () {
             Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
             Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
-          
+
+        });
+
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
           Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
@@ -55,7 +57,7 @@ Route::middleware('cors')->group( function () {
     Route::prefix('lotes')->group(function () {
         Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
-            Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
+            Route::post('', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
             Route::get('{id}', [Contr−3oladorLote::class, 'consultarLote'])->middleware('ColabMid');
@@ -101,4 +103,3 @@ Route::middleware('cors')->group( function () {
 
 });
 
-Route::post('usuario/foto/{id}',[FotoControlador::class,'cargarImagen']);
