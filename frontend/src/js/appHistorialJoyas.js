@@ -19,7 +19,7 @@ obtenerHistorial().then(function(data){
 })
 opcionesFiltrado.addEventListener('change',function(){
     opcion=opcionesFiltrado.value
-    if(opcion==3){
+    if(opcion==4){
         filtroFecha.style.display=''
         filtroFecha.value=''
         barraBusqueda.style.display='none'
@@ -87,7 +87,7 @@ function pintarHistorial(datos) {
     function filtrarHistorial(indice) {
         let barraBusqueda = document.getElementById('barra_busqueda');
         let filtro
-        if(indice==3){
+        if(indice==4){
            filtro = filtroFecha.value;
         }else{
             filtro = barraBusqueda.value;
