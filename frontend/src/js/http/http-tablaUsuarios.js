@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las validaciones
 import { validarNombre,validarCorreo } from "../validaciones.js";
 import { enviarDatos } from "../http/http-modificarUsuario.js";

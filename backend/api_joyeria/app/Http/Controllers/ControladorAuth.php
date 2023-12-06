@@ -11,12 +11,13 @@ use App\Models\RolAsignado;
 use App\Models\Rol;
 class ControladorAuth extends Controller
 {
-    /**Óscar */
+    /* Manuel, Óscar */
     public function login(Request $request)
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $auth = Auth::user();
             //return $auth;
+
            $rolesAsignados=RolAsignado::where('id_usuario','=',$auth->id)->get('id_rol');
            $permisos=[];
            $rolesTotales=Rol::all();

@@ -9,7 +9,7 @@ use Exception;
 
 class ControladorUsuarios extends Controller
 {
-    // ...
+    /* Manuel */
 
     public function crearUsuario(Request $request)
     {
