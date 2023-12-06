@@ -17,11 +17,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(4)->create();
         \App\Models\RolAsignado::factory(4)->create();
         \App\Models\Lote::factory(3)->create();
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\Despiece_lote::factory(3)->create();
+        \App\Models\Joya::factory(2)->create();
     }
 }
