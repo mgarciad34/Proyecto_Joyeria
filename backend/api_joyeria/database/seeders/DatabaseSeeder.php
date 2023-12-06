@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Despiece_lote::factory(3)->create();
         \App\Models\Joya::factory(2)->create();
         \App\Models\Detalle_receta::factory(2)->create();
+        \App\Models\HistoricoJoya::factory(2)->create();
     }
 }
