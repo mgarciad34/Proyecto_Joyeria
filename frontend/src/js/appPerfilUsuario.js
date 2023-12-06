@@ -218,7 +218,7 @@ function lanzarModalErrores(mensaje){
             diseñador: `
             <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+            <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
