@@ -2,6 +2,10 @@ import {
     obtenerTipos,registrarComponente
 } from "./http/http-crearTiposClasificador.js";
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
+
 let tabla = document.getElementById('tabla_tipos');
 let inputNombre = document.getElementById('inputNombre');
 let inputCantidad = document.getElementById('inputCantidad')

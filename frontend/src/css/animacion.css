@@ -16,7 +16,7 @@
     background-color: #fff5;
     backdrop-filter: blur(7px);
     color: rgba(255, 0, 0, 0);
-    animation: completarYExpandir 5s ease forwards, mostrarBarra 5s ease forwards 5s; 
+    animation: completarYExpandir 3s ease forwards, mostrarBarra 3s ease forwards 3s; 
 }
 .spinner::after{
     content: 'Carga completa';
@@ -59,6 +59,7 @@
         border-left-color: rgb(255, 0, 0);
         color: rgba(255, 0, 0, 0);
     }
+    
     
 }
 

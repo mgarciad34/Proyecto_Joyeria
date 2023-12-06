@@ -7,13 +7,20 @@
 }
 .fotoPerfil{
     width: 5vw;
+    content: 'hhhhhhh0';
+    color: white;
     height: 8vh;
     margin-right: .5rem;
     border-radius: 50%;
     vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: center;
     /* background: url(../images/alien.jpg) center / cover; */
+    background-color: black;
 }
 .fotoModal{
+    border: 20px;
     width: 13vw;
     height: 26vh;
     border-radius: 50%;

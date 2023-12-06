@@ -1,6 +1,8 @@
 import { validarCorreo,validarContrasena } from "./validaciones.js"
 import { actualizarEmail,actualizarPassword,cerrarSesion,subirFoto } from "./http/http-perfilUsuario.js"
 // const bcrypt = require('bcrypt');
+let cabecera = document.getElementById('cabecera');
+insertarCabecera()
 
 let fotoUrl=sessionStorage.getItem('foto-url')
 document.getElementById('btnFoto').style.background='url('+fotoUrl+') center / cover'
@@ -207,4 +209,84 @@ function lanzarModalErrores(mensaje){
                 })
       
         });
+    }
+
+
+    function insertarCabecera(){
+        let ultimoAcceso=JSON.parse(sessionStorage.getItem('ultimo-acceso'))
+        const cabeceras = {
+            diseñador: `
+            <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyas.html">Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./listaJoyasUsuario.html">Tus Joyas</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./designJoya.html">Nueva Joya</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./fabricarJoyas.html">Fabricar</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./historialJoyas.html">Historial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+            `,
+            clasificador: `
+            <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                      
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="./indexClasificador.html">Lotes sin clasificar</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./lotesClasificados.html">Lotes clasificados</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./componentesClasificados.html">Componentes clasificados</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./clasificadorCrearTipo.html">Crear Tipo</a>
+                        </li>
+                        <div class="col-1"></div>
+                                            
+                     
+                    </ul>
+                </div>
+            </div>
+        </nav>
+            `,
+       
+        };
+        cabecera.innerHTML = cabeceras[ultimoAcceso]
+        
     }

@@ -1,9 +1,9 @@
 import { guardarElementosBdd,obtenerTipos } from "./http/http-lote.js";
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.parse('clasificador'))
 
-const apiUrl='http://127.0.0.1:8000/api/consultarLoteId/'
-const apiUrl2='http://127.0.0.1:8000/api/consultar/tipos'
-const apiUrlEnviar='http://127.0.0.1:8000/api/lote/clasificar/'
 
 let idLote=JSON.parse(sessionStorage.getItem('lote-a-clasificar'));
 let cabecera=document.getElementById('cabecera')

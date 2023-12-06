@@ -1,5 +1,9 @@
 import{obtenerAllDespiece} from './http/http-componentesClasificados.js'
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
+
 obtenerAllDespiece().then(function(data){
     pintarDespiece(data.componentes)
     

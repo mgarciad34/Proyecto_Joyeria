@@ -1,5 +1,10 @@
 import { obtenerTipos,obtenerJoya,obtenerRecetas,actualizarJoya,subirFoto } from "./http/http-modificarJoya.js";
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
 let idJoya=JSON.parse(sessionStorage.getItem('joya-guardada'))
+let lblFoto=document.getElementById('lblFoto')
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+
 let tiposEnUso=[]
 let joya_original={
     nombre:'',
@@ -16,9 +21,11 @@ let desplegable = document.getElementById('tipos-habilitados')
 let formData=false
 obtenerJoya(idJoya).then(function(data){
     inputNombre.value=data.nombre
- 
+    
     joya_original.nombre=data.nombre
-    joya_original.foto=data.foto
+  
+     lblFoto.style.background='url('+data.foto+') center / cover'
+   
 })
 obtenerRecetas(idJoya).then(function(data){
     pintarRecetas(data)
@@ -46,7 +53,15 @@ inputNombre.addEventListener('input', function () {
 
 })
 
-inputFoto.addEventListener('input', function () {
+inputFoto.addEventListener('input', function (event) {
+    var input = event.target;
+            
+    if (input.files && input.files[0]) {
+        var fotoUrl2 = URL.createObjectURL(input.files[0]);
+        document.getElementById('lblFoto').style.background='url('+fotoUrl2+') center / cover'
+        sessionStorage.setItem('nueva-foto',JSON.stringify(fotoUrl2))
+
+    }
     carga.classList.remove('spinner');
     void carga.offsetWidth;
     carga.classList.add('spinner');

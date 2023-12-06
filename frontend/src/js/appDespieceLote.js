@@ -1,6 +1,11 @@
 import{obtenerDespiece} from './http/http-despieceLote.js'
 let idLote=JSON.parse(sessionStorage.getItem('despiece-lote'))
 
+
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
+
 obtenerDespiece(idLote).then(function(data){
     pintarDespiece(data[0].despiece)
     

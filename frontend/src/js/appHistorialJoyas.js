@@ -1,6 +1,9 @@
 import { obtenerHistorial } from "./http/http-historialJoyas.js";
+
 let fotoUrl=sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+
 
 let barraBusqueda=document.getElementById('barra_busqueda')
 let opcionesFiltrado=document.getElementById('opciones-filtrado')

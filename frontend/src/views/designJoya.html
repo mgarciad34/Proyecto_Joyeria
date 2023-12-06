@@ -42,6 +42,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./historialJoyas.html">Historial</a>
                         </li>
+                        <div class="col-1"></div>
+                       
+                        <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                     
                     </ul>
                 </div>
             </div>
@@ -77,7 +81,13 @@
                             <th>  </th>
                             <th> Foto</th>
                             <form id="formulario" action="http://localhost:8000/api/testing" method="post" enctype="multipart/form-data">
-                                <th><input class="status shipped" type="file" id="inputFoto" name="foto" accept="image/*" value="1"></th>
+                                <th>
+                                 
+
+                                        <label id="lblFoto" class=" status shipped fotoPerfil"  for="inputFoto"></label>
+                                        <input class="" type="file" id="inputFoto" name="foto" accept="image/*" value="1">
+                                  
+                                </th>
                             </form>
                            <th><div id='carga' class="spDefault" ></div></th>
                         </tr>
