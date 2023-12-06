@@ -1,4 +1,9 @@
 import { obtenerLotes } from "./http/http-lotesClasificados.js";
+
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
+
 obtenerLotes().then(function(data){
     
     pintarLotes(data)

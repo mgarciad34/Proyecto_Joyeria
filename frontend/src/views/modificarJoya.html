@@ -16,8 +16,7 @@
    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-1"></div>
@@ -43,6 +42,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./historialJoyas.html">Historial</a>
                         </li>
+                        <div class="col-1"></div>
+                       
+                        <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                     
                     </ul>
                 </div>
             </div>
@@ -64,7 +67,7 @@
           </div>
         </div>
     <div class="container">
-        <main class="table4" style="position:fixed; margin-top: 10px ;  height: 20vh">
+        <main class="table4" >
             <section class="table__header">
                 <h4>Modificar Joya</h4>
             </section>
@@ -76,9 +79,16 @@
                             <th> Nombre </th>
                             <th> <input class="status shipped" id="inputNombre" type="text"></th>
                             <th>  </th>
-                            <th> Foto</th>
+                            <th> </th>
                             <form id="formulario">
-                                <th><input class="status shipped" type="file" id="inputFoto" name="foto" accept="image/*" value="1"></th>
+                                <th>
+                                    <div class="fotoPerfil">
+
+                                        <label id="lblFoto" class=" fotoPerfil" for="inputFoto"></label>
+                                        
+                                        <input class="" type="file" id="inputFoto" name="foto" accept="image/*" value="1">
+                                    </div>
+                                </th>
                             </form>
                            <th><div id='carga' class="spDefault" ></div></th>
                         </tr>

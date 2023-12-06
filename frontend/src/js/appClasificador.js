@@ -1,5 +1,7 @@
 import{obtenerLotes} from './http/http-Clasificador.js'
-
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
 obtenerLotes().then(function(data){
     pintarLotes(data)
     if(data.mensaje==''){

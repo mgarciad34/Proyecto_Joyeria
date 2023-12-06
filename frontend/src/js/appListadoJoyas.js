@@ -1,5 +1,8 @@
 import{obtenerJoyas} from './http/http-listadoJoyas.js'
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
 
 obtenerJoyas().then(function(data){
     console.log(data)

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
-
+use Exception;
 
 class ControladorUsuarios extends Controller
 {
@@ -49,4 +49,34 @@ class ControladorUsuarios extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+/**Óscar */
+    public function updateEmail(Request $request,$id){
+        try{
+          
+            $nuevo=$request->get('email');
+            $usuario=User::find($id);
+            $usuario->email=$nuevo;
+            $usuario->save();
+            return response()->json(['mensaje'=>'Actualización de email exitosa'],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje' =>'Error al actualizar el email'], 409);
+        }
+    }
+
+/**Óscar */
+public function actualizarPassword(Request $request,$id){
+    try{
+      
+        $nuevo=$request->get('password');
+        $usuario=User::find($id);
+        $usuario->password=bcrypt($nuevo);
+        $usuario->save();
+        return response()->json(['mensaje'=>'Actualización de contraseña exitosa'],200);
+    }catch(Exception $e){
+        return response()->json(['mensaje' =>'Error al actualizar la contraseña'], 409);
+    }
 }
+
+
+}
+

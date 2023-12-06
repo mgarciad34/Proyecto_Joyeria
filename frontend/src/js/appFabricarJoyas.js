@@ -1,6 +1,10 @@
 import{obtenerJoyas,fabricarJoya} from './http/http-fabricarJoya.js'
 let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
 
+let fotoUrl=sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src=fotoUrl
+sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+
 obtenerJoyas().then(function(data){
     pintarJoyas(data)
 })
