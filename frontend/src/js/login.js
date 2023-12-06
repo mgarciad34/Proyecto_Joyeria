@@ -1,3 +1,4 @@
+//Manuel
 import { obtenerDatos, enviarSessionStorage } from "./http/http-login.js";
 
 //Variables a utilizar

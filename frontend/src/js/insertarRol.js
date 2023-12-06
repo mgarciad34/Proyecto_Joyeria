@@ -1,3 +1,4 @@
+//Manuel
 import { obtenerDatos } from '../js/http/http-consultarUsuarios.js';
 import RolesAsignados from './clases/rolesAsignados.js';
 import { enviarDatos } from './http/http-insertarRol.js';

@@ -1,3 +1,4 @@
+//Manuel
 import { crearBoton, crearCelda, mostrarModal} from "./http/http-tablaUsuarios.js";
 import { obtenerDatos } from "./http/http-consultarUsuarios.js";
 import { eliminarUsuario } from "./http/http-eliminarUsuario.js";

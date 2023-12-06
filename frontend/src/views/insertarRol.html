@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador - Roles</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/test.css">
     <style>
         /* Estilo adicional para aumentar el tamaño de la fuente y el espacio interno del formulario */
         form {
@@ -32,7 +33,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100" id="body">
 
-    <header class="row bg-warning row-warning">
+    <header class="row cabecera">
     
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
@@ -83,32 +84,39 @@
         </nav>
     </header>
 
-    <div class="container mt-5 d-flex justify-content-center align-items-center flex-grow-1">
-        <form class="col-md-6 formulario">
-            <div class="form-group">
-                <label for="selUsuario" class="col-form-label font-weight-bold">Usuario</label>
-                <select class="form-control" id="selUsuario" name="rol" required>
-                </select>                
-            </div>
+    <div class="container mt-5 flex-grow-1" id="contenido">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card cabecera" style="margin-top: 40px;">
+                    <div class="card-body">
+                        <form class="col-md-6 formulario">
+                            <div class="form-group">
+                                <label for="selUsuario">Usuario</label>
+                                <select class="form-control status cancelled" id="selUsuario" name="rol" required>
+                                </select>                
+                            </div>
 
-            <div class="form-group">
-                <label for="selRol" class="col-form-label font-weight-bold">Rol</label>
-                <select class="form-control" id="selRol" name="rol" required>
-                    <option value="1">Administrador</option>
-                    <option value="2">Clasificador</option>
-                    <option value="3">Diseñador</option>
-                    <option value="4">Colaborador</option>
-                </select>
+                            <div class="form-group">
+                                <label for="selRol">Rol</label>
+                                <select class="form-control status cancelled" id="selRol" name="rol" required>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Clasificador</option>
+                                    <option value="3">Diseñador</option>
+                                    <option value="4">Colaborador</option>
+                                </select>
+                            </div>
+                            
+                            <br>
+                            <button id="btnInsertarRol" class="btn status cancelled">Agregar Rol</button>
+                            <p id="mensajeBoton"></p>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
-            <br>
-            <button id="btnInsertarRol" class="btn btn-primary">Agregar Rol</button>
-            <p id="mensajeBoton"></p>
-        </form>
-    </div>
+        </div>
     </div>
     
-    <footer class="bg-warning text-dark text-center py-3 mt-5">
+    <footer class="text-dark text-center py-3 mt-5 cabecera">
         <div class="d-flex justify-content-around">
             <div>
                 <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
