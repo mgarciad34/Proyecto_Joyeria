@@ -115,7 +115,7 @@ class ControladorJoya extends Controller
                 $tipo->cantidad-=$receta[$i]->cantidad;
                 $tipo->save();
             }
-            return response()->json(['Fabricado correctamente'],200);
+            return response()->json(['mensaje'=>'Fabricado correctamente'],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al fabricar la joya'],404);
         }
@@ -162,7 +162,7 @@ class ControladorJoya extends Controller
             $joya->delete();
             $detalle=Detalle_receta::where('id_joya',$id);
             $detalle->delete();
-            return response()->json(['Eliminado correctamente']);
+            return response()->json(['Eliminado correctamente'],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al eliminar la joya'],404);
         }
@@ -171,7 +171,8 @@ class ControladorJoya extends Controller
     function getJoyaById($id){
         try{
 
-            $joya=Joya::find($id);
+            $joya = Joya::findOrFail($id);
+          
             return response()->json($joya,200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener la joya'],404);
@@ -185,20 +186,20 @@ class ControladorJoya extends Controller
                 'joya_original.nombre.required' => 'El campo :attribute es obligatorio.',
                 'joya_original.nombre.string' => 'El campo :attribute debe ser una cadena de texto.',
                 'joya_original.nombre.max' => 'El campo :attribute no debe exceder los 255 caracteres.',
-                'joya_update.nombre.required' => 'El campo :attribute es obligatorio.',
-                'joya_update.nombre.string' => 'El campo :attribute debe ser una cadena de texto.',
-                'joya_update.nombre.max' => 'El campo :attribute no debe exceder los 255 caracteres.',
+                'joya.nombre.required' => 'El campo :attribute es obligatorio.',
+                'joya.nombre.string' => 'El campo :attribute debe ser una cadena de texto.',
+                'joya.nombre.max' => 'El campo :attribute no debe exceder los 255 caracteres.',
                 'joya_original.detalle.required' => 'El campo :attribute es obligatorio.',
                 'joya_original.detalle.array' => 'El campo :attribute debe tener un formato correcto.',
-                'joya_update.detalle.required' => 'El campo :attribute es obligatorio.',
-                'joya_update.detalle.array' => 'El campo :attribute debe tener un formato correcto.',
+                'joya.detalle.required' => 'El campo :attribute es obligatorio.',
+                'joya.detalle.array' => 'El campo :attribute debe tener un formato correcto.',
             ];
     
             $validator = Validator::make($request->all(),[
                 'joya_original.nombre' => 'required|string|max:255',
-                'joya_update.nombre' => 'required|string|max:255',
+                'joya.nombre' => 'required|string|max:255',
                 'joya_original.detalle' => 'required|array',
-                'joya_update.detalle' => 'required|array',
+                'joya.detalle' => 'required|array',
             ], $mensajes);
     
        
