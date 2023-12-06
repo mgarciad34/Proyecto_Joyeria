@@ -12,7 +12,7 @@ class JoyaFactory extends Factory
     public $nombres=[' Collar','Pendientes'];
     public  $fotos=['https://jawa-oscar.s3.eu-west-3.amazonaws.com/joyas/2',
     'https://jawa-oscar.s3.eu-west-3.amazonaws.com/joyas/1'];
-
+    public $model=Joya::class;
     /**
      * Define the model's default state.
      *
