@@ -1,52 +1,57 @@
-const apiUrl2='http://127.0.0.1:8000/api/tipos'
-const apiUrlEnviar='http://127.0.0.1:8000/api/despieces/lote/clasificar/'
+const apiUrl2 = 'http://127.0.0.1:8000/api/despieces/tipos'
+const apiUrlEnviar = 'http://127.0.0.1:8000/api/despieces/lote/clasificar/'
 
-export async function guardarElementosBdd(elementos,idLote){
-    let url=apiUrlEnviar+idLote
-    let token=sessionStorage.getItem('token')
-    const options={
+export async function guardarElementosBdd(elementos, idLote) {
+    let url = apiUrlEnviar + idLote
+    let token = sessionStorage.getItem('token')
+    const options = {
         method: "POST",
-        headers:{
-           "Authorization": "Bearer "+token,
-            'Content-Type' : 'aplication/json'
-      },
-      body: JSON.stringify(elementos)
+        headers: {
+            "Authorization": "Bearer " + token,
+            'Content-Type': 'aplication/json'
+        },
+        body: JSON.stringify(elementos)
     }
     try {
-       
-        const response = await fetch(url,options);
-       
+
+        const response = await fetch(url, options);
+
         if (!response.ok) {
             throw new Error('No se pudo guardar la clasificacion');
         }
 
         const data = await response.json();
-        
+
         return data
     } catch (error) {
         return error
     }
 }
 
-export async function obtenerTipos(){
+export async function obtenerTipos() {
     try {
-        let token=sessionStorage.getItem('token')
-        const options={
+        let token = sessionStorage.getItem('token')
+        const options = {
             method: "GET",
-            headers:{
-               "Authorization": "Bearer "+token,
-                'Content-Type' : 'aplication/json'
-          },
+            headers: {
+                "Authorization": "Bearer " + token,
+                'Content-Type': 'aplication/json'
+            },
         }
-                const response = await fetch(apiUrl2,options);
-                if (!response.ok) {
-                    throw new Error('No se pudo obtener las categorias');
-                }
-        
-                const data = await response.json();
-                
-                return data
-            } catch (error) {
-                return error
-            }
+        const response = await fetch(apiUrl2, options);
+        if (!response.ok) {
+            throw new Error('No se pudo obtener las categorias');
+        }
+        if (response.status == 202) {
+            return 202
+
+        }
+        const data = await response.json();
+        if (response.ok) {
+
+            return data
+        }
+    } catch (error) {
+        return 302
+    }
 }

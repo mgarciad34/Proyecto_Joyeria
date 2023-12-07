@@ -4,9 +4,9 @@ import {
     isOwner,
     eliminarJoya
 } from './http/http-receta-joya.js'
-let fotoUrl=sessionStorage.getItem('foto-url')
-document.getElementById('fotoNav').src=fotoUrl
-sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
 
 let id_joya = JSON.parse(sessionStorage.getItem('joya-guardada'));
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
@@ -15,13 +15,28 @@ let btnFabricar = document.getElementById('btnFabricar')
 let disponible = true
 
 obtenerRecetas(id_joya).then(function (data) {
-    pintarRecetas(data)
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+    } else {
+
+        pintarRecetas(data)
+    }
 })
 isOwner(id_joya, usuario).then(function (data) {
-    
-    if (data.resultado) {
-        addOwnerBotones()
-        
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+    } else {
+        if (data.resultado) {
+            addOwnerBotones()
+        }
     }
 
 })
@@ -32,9 +47,9 @@ btnFabricar.addEventListener('click', function () {
         var resultado = confirm("¿Estás seguro de que deseas continuar?");
         if (resultado) {
 
-            
+
             fabricarJoya(id_joya, usuario).then(function (data) {
-               
+
                 window.location.reload()
             })
         }
@@ -45,7 +60,7 @@ function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
 
     for (let i = 0; i < recetas.detalle.length; i++) {
-     
+
         let fila = document.createElement('tr');
 
         let idCelda = document.createElement('td');
@@ -74,21 +89,21 @@ function pintarRecetas(recetas) {
         }
 
         let rellenoCelda = document.createElement('td')
-        let relleno=document.createElement('span')
-        relleno.textContent=''
+        let relleno = document.createElement('span')
+        relleno.textContent = ''
         rellenoCelda.appendChild(relleno)
 
         let rellenoCelda2 = document.createElement('td')
-        let relleno2=document.createElement('span')
-        relleno2.textContent=''
+        let relleno2 = document.createElement('span')
+        relleno2.textContent = ''
         rellenoCelda2.appendChild(relleno2)
 
         let rellenoCelda3 = document.createElement('td')
-        let relleno3=document.createElement('span')
-        relleno3.textContent=''
+        let relleno3 = document.createElement('span')
+        relleno3.textContent = ''
         rellenoCelda3.appendChild(relleno3)
 
-  
+
 
         idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
@@ -102,7 +117,7 @@ function pintarRecetas(recetas) {
         fila.appendChild(rellenoCelda)
         fila.appendChild(rellenoCelda2)
         fila.appendChild(rellenoCelda3)
-        
+
         tabla.appendChild(fila);
     }
 
@@ -114,7 +129,7 @@ function addOwnerBotones() {
     let botonEliminarCelda = document.getElementById('botonEliminarOculto');
     let botonEliminar = document.createElement('button');
     botonEliminar.textContent = 'Eliminar'
-    botonEliminar.setAttribute('id',id_joya)
+    botonEliminar.setAttribute('id', id_joya)
     botonEliminar.classList.add('status')
     botonEliminar.classList.add('cancelled')
 
@@ -123,8 +138,8 @@ function addOwnerBotones() {
         let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
 
         if (resultado) {
-            eliminarJoya(id_joya).then(function(){
-                window.location.href='./listaJoyas.html'
+            eliminarJoya(id_joya).then(function () {
+                window.location.href = './listaJoyas.html'
 
             })
         }
@@ -134,13 +149,13 @@ function addOwnerBotones() {
     let botonModificarCelda = document.getElementById('botonModificarOculto');
     let botonModificar = document.createElement('button');
     botonModificar.textContent = 'Modificar'
-    botonModificar.setAttribute('id',id_joya)
+    botonModificar.setAttribute('id', id_joya)
     botonModificar.classList.add('status')
     botonModificar.classList.add('pending')
 
     botonModificar.addEventListener('click', function (event) {
-        sessionStorage.setItem('joya-guardada',JSON.parse(botonModificar.id))
-       window.location.href='./modificarJoya.html'
+        sessionStorage.setItem('joya-guardada', JSON.parse(botonModificar.id))
+        window.location.href = './modificarJoya.html'
 
     });
     botonEliminarCelda.appendChild(botonEliminar)
