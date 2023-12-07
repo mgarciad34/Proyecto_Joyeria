@@ -4,28 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lote;
+use App\Models\User;
 use Exception;
 
 class ControladorLote extends Controller
 {
-    /** Manuel, Oscar */
+    /**  Óscar */
     function consultarLotesEntregados(){
         try{
 
             $lotes = Lote::where('estado', '=','entregado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
         }
         }
-
+        /**Manuel */
     function consultarLote($id){
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
     }
     
-
+    /**Manuel */
     function insertarLote(Request $request){
         $request->validate([
             'id_empresa' => 'required',
@@ -43,7 +48,7 @@ class ControladorLote extends Controller
 
         return response()->json(['mensaje' => 'Lote insertado correctamente']);
     }
-
+    /**Manuel */
     function cambiarEstadoLote(Request $request, $id){
         $request->validate([
             'estado' => 'required',
@@ -57,7 +62,7 @@ class ControladorLote extends Controller
         $lote->save();
         return response()->json(['mensaje' => 'Estado del lote actualizado correctamente']);
     }
-
+    /**Manuel */
     function consultarLotes(Request $request){
         // Obtener todos los lotes
         $lotes = Lote::all();
@@ -76,6 +81,12 @@ class ControladorLote extends Controller
         try{
 
             $lotes = Lote::where('estado', '=','clasificado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+                $clasificador=User::find($lotes[$i]->id_clasificador);
+                $lotes[$i]->clasificador=$clasificador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){
