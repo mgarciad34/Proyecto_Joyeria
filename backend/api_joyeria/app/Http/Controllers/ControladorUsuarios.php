@@ -40,8 +40,8 @@ class ControladorUsuarios extends Controller
 
 
             RolAsignado::create([
-                'idusuario' => $idUsuario,
-                'idrol' => $idRol,
+                'id_usuario' => $idUsuario,
+                'id_rol' => $idRol,
             ]);
 
             return response()->json(['message' => 'Rol asignado exitosamente'], 201);

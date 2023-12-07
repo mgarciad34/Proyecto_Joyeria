@@ -93,6 +93,8 @@ btnregistro.addEventListener('click', function(event){
     var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
     if(sumatorio == 4){
             enviarDatos(nuevoUsuario, url).then(function(){
+            
+            
             window.location.href="../index.html";
         });
         

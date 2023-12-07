@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     registro: './frontend/src/js/registro.js',
     login: './frontend/src/js/login.js',
+    obtenerRoles: './frontend/src/js/obtenerRoles.js',
     insertarUsuarios: './frontend/src/js/insertarUsuarios.js',
     consultarUsuarios: './frontend/src/js/consultarUsuarios.js',
     insertarComponentes: './frontend/src/js/insertarComponentes.js',

@@ -17,18 +17,18 @@ return new class extends Migration
         });
 
         //Inserción de datos
-        DB::table('roles')->insert([
-            'nombre' => 'Administrador',
-        ]);
-        DB::table('roles')->insert([
-            'nombre' => 'Clasificador',
-        ]);
-        DB::table('roles')->insert([
-            'nombre' => 'Usuario',
-        ]);
-        DB::table('roles')->insert([
-            'nombre' => 'Colaborador',
-        ]);
+        // DB::table('roles')->insert([
+        //     'nombre' => 'Administrador',
+        // ]);
+        // DB::table('roles')->insert([
+        //     'nombre' => 'Clasificador',
+        // ]);
+        // DB::table('roles')->insert([
+        //     'nombre' => 'Usuario',
+        // ]);
+        // DB::table('roles')->insert([
+        //     'nombre' => 'Colaborador',
+        // ]);
     }
     /**
      * Reverse the migrations.

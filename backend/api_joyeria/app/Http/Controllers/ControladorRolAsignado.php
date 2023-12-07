@@ -42,7 +42,7 @@ class ControladorRolAsignado extends Controller
                     return response()->json(['error' => $validator->errors()], 400);
                 }
 
-                $rolesAsignados = RolAsignado::where('idusuario', $idUsuario)->get();
+                $rolesAsignados = RolAsignado::where('id_usuario', $idUsuario)->get();
 
                 if ($rolesAsignados->isEmpty()) {
                     return response()->json(['message' => 'El usuario no tiene roles asignados'], 404);
@@ -52,8 +52,8 @@ class ControladorRolAsignado extends Controller
                     $rol = RolAsignado::find($rolAsignado->id);
                     if ($rol) {
                         $roles[] = [
-                            'idusuario' => $rol->idusuario,
-                            'idrol' => $rol->idrol,
+                            'id_usuario' => $rol->id_usuario,
+                            'id_rol' => $rol->id_rol,
                         ];
                     }
                 }
