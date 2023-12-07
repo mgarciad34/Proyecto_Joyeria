@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         obtenerRoles(id)
             .then(result => {
-                // Verificar si result es un objeto con una clave numérica
+                // Comprobamos que es un objeto con una clave numérica
                 if (result && typeof result === 'object' && Object.keys(result).length === 1) {
-                    // Obtener la primera clave numérica del objeto (asumiendo que solo hay una)
+                    // Obtener la primera clave numérica del objeto
                     var id_usuario = Object.keys(result)[0];
 
                     if (Array.isArray(result[id_usuario])) {
