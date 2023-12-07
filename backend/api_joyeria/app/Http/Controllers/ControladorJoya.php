@@ -160,9 +160,7 @@ class ControladorJoya extends Controller
 
             $joya=Joya::find($id);
             $joya->delete();
-            $detalle=Detalle_receta::where('id_joya',$id);
-            $detalle->delete();
-            return response()->json(['Eliminado correctamente'],200);
+            return response()->json(['mensaje'=>'Eliminado correctamente'],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al eliminar la joya'],404);
         }

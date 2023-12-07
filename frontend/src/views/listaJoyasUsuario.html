@@ -49,6 +49,14 @@
             </div>
         </nav>
     </header>
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p id="alertaGuardado">¿Estás seguro de que quieres borrar esta joya?</p>
+          <button id="confirmarGuardado">Confirmar</button>
+          <button id="cancelarGuardado">Cancelar</button>
+        </div>
+      </div>
     <div class="container">
         <main class="table2">
             <section class="table__header">
@@ -85,7 +93,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
 
 
-    <script src="../../../dist/appListadoJoyasUsuario.bundle.js"></script>
+    <script type="module" src="../js/appListadoJoyasUsuario.js"></script>
 </body>
 </html>
 

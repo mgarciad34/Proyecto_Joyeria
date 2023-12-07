@@ -42,17 +42,10 @@ isOwner(id_joya, usuario).then(function (data) {
 })
 btnFabricar.addEventListener('click', function () {
     if (!disponible) {
-        alert('Recursos insuficientes')
+        lanzarModalErrores('Recursos insuficientes')
     } else {
-        var resultado = confirm("¿Estás seguro de que deseas continuar?");
-        if (resultado) {
+        lanzarModal(1);
 
-
-            fabricarJoya(id_joya, usuario).then(function (data) {
-
-                window.location.reload()
-            })
-        }
     }
 })
 
@@ -135,14 +128,8 @@ function addOwnerBotones() {
 
     botonEliminar.addEventListener('click', function (event) {
 
-        let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
+         lanzarModal(2)
 
-        if (resultado) {
-            eliminarJoya(id_joya).then(function () {
-                window.location.href = './listaJoyas.html'
-
-            })
-        }
 
     });
 
@@ -162,4 +149,69 @@ function addOwnerBotones() {
     botonModificarCelda.appendChild(botonModificar)
 
 
+}
+
+function lanzarModal(accion) {
+    let alerta = document.getElementById('alertaModal')
+    let confirmar = document.getElementById('confirmarGuardado')
+    let cancelar = document.getElementById('cancelarGuardado')
+    document.getElementById('modal').style.display = 'flex';
+
+
+    cancelar.addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+    });
+    if (accion == 1) {
+        alerta.textContent = '¿Esta seguro que desea continuar?.'
+        confirmar.addEventListener('click', function () {
+            cancelar.style.display = 'none'
+            alerta.textContent = 'Fabricando...'
+            fabricarJoya(id_joya, usuario).then(function (data) {
+
+                alerta.textContent = 'Fabricado correctamente'
+                confirmar.textContent = 'Continuar'
+                confirmar.addEventListener('click', function () {
+
+                    document.getElementById('modal').style.display = 'none';
+                    window.location.reload()
+
+                })
+
+            })
+
+
+        });
+
+
+
+    } else {
+        alerta.textContent = '¿Esta seguro que desea eliminar la joya?.'
+        confirmar.addEventListener('click', function () {
+            cancelar.style.display = 'none'
+            alerta.textContent = 'Eliminando joya..'
+            eliminarJoya(id_joya).then(function (data) {
+
+                alerta.textContent = data.mensaje
+                confirmar.textContent = 'Continuar'
+                confirmar.addEventListener('click', function () {
+
+                    document.getElementById('modal').style.display = 'none';
+                    window.location.reload()
+
+                })
+
+            })
+
+
+        });
+
+    }
+}
+
+function lanzarModalErrores(mensaje) {
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').innerHTML = mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click', function () {
+        document.getElementById('modal-errores').style.display = 'none';
+    })
 }

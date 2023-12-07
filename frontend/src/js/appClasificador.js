@@ -3,7 +3,7 @@ import {
 } from './http/http-Clasificador.js'
 
 obtenerLotes().then(function (data) {
-    console.log(data)
+    
     if (data == 202 || data == 302) {
         if (data == 202) {
             window.location.href = './redirect.html'
@@ -12,9 +12,7 @@ obtenerLotes().then(function (data) {
         }
     } else {
         pintarLotes(data);
-        if (data.mensaje === '') {
-            alert('No hay lotes sin clasificar');
-        }
+
     }
 })
 
@@ -27,9 +25,10 @@ sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))
 
 function pintarLotes(lotes) {
     var tabla = document.getElementById('tabla_lotes');
-    // let lista =[lotes.mensaje]
+   
 
     for (let i = 0; i < lotes[0].lotes.length; i++) {
+        document.getElementById('vacio').style.display='none'
         let fila = document.createElement('tr');
 
         let botonCelda = document.createElement('td');
