@@ -64,11 +64,7 @@ Route::middleware('cors')->group( function () {
             
         });
   
-    //** Preguntar a Fernando como hacer que compruebe dos middleware pero que con uno pase */
-    Route::prefix('tipos')->group(function () {
-        Route::get('', [ControladorTipos::class, 'consultarTipos']);
-        Route::post('', [ControladorTipos::class, 'insertarComponente']);
-    });
+   
     Route::middleware('ClasiMid')->group(function () {
         Route::prefix('despieces')->group(function () {
             Route::get('', [ControladorDespieceLotes::class, 'getAllDespieces']);
@@ -77,12 +73,17 @@ Route::middleware('cors')->group( function () {
                 Route::get('{id}', [ControladorDespieceLotes::class, 'getDespieceOfLote']);
                 Route::post('clasificar/{id}', [ControladorDespieceLotes::class, 'guardarElementosLote']);
             });
+            Route::prefix('tipos')->group(function () {
+                Route::get('', [ControladorTipos::class, 'consultarTipos']);
+                Route::post('', [ControladorTipos::class, 'insertarComponente']);
+            });
         });
     
         
     });
     Route::middleware('DesignMid')->group(function () {
         Route::prefix('joyas')->group(function () {
+            Route::get('tipos', [ControladorTipos::class, 'consultarTipos']);
             Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::post('nueva', [ControladorJoya::class, 'nuevaJoya']);
             Route::put('fabricar/{id}', [ControladorJoya::class, 'fabricarJoya']);

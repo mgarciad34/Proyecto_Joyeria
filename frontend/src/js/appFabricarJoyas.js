@@ -1,75 +1,88 @@
-import{obtenerJoyas,fabricarJoya} from './http/http-fabricarJoya.js'
-let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+import {
+    obtenerJoyas,
+    fabricarJoya
+} from './http/http-fabricarJoya.js'
+let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 
-let fotoUrl=sessionStorage.getItem('foto-url')
-document.getElementById('fotoNav').src=fotoUrl
-sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
 
-obtenerJoyas().then(function(data){
-    pintarJoyas(data)
+obtenerJoyas().then(function (data) {
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+    } else {
+        pintarJoyas(data)
+    }
 })
 
 
 function pintarJoyas(joyas) {
     var tabla = document.getElementById('tabla_joyas');
-        
-        for(let i=0;i<joyas[0].length;i++) {
-           
-            let fila = document.createElement('tr');
 
-            let botonCelda = document.createElement('td');
-            let boton = document.createElement('button');
-            boton.textContent = 'Fabricar'
-            boton.setAttribute('id',joyas[0][i].id)
-            boton.classList.add('status')
-            boton.classList.add('shipped')
-            let idCelda = document.createElement('td');
+    for (let i = 0; i < joyas[0].length; i++) {
 
-            let id= document.createElement('span');
-            id.textContent=joyas[0][i].id
-           
+        let fila = document.createElement('tr');
 
-            let nombreCelda = document.createElement('td');
-            let nombre= document.createElement('span');
-            nombre.textContent=joyas[0][i].nombre
-           
+        let botonCelda = document.createElement('td');
+        let boton = document.createElement('button');
+        boton.textContent = 'Fabricar'
+        boton.setAttribute('id', joyas[0][i].id)
+        boton.classList.add('status')
+        boton.classList.add('shipped')
+        let idCelda = document.createElement('td');
 
-            let fotoCelda = document.createElement('td');
-            let foto= document.createElement('img');
-            foto.src=joyas[0][i].foto
+        let id = document.createElement('span');
+        id.textContent = joyas[0][i].id
 
-            let creadorCelda=document.createElement('td')
-            let creador=document.createElement('span')
-            creador.textContent=joyas[0][i].creador
 
-            let fabricacionesCelda=document.createElement('td')
-            let fabricaciones=document.createElement('span')
-            fabricaciones.textContent=joyas[0][i].fabricaciones
+        let nombreCelda = document.createElement('td');
+        let nombre = document.createElement('span');
+        nombre.textContent = joyas[0][i].nombre
 
-            boton.addEventListener('click', function(event) {
-               fabricarJoya(boton.id,usuario).then(function(){
-                
+
+        let fotoCelda = document.createElement('td');
+        let foto = document.createElement('img');
+        foto.src = joyas[0][i].foto
+
+        let creadorCelda = document.createElement('td')
+        let creador = document.createElement('span')
+        creador.textContent = joyas[0][i].creador
+
+        let fabricacionesCelda = document.createElement('td')
+        let fabricaciones = document.createElement('span')
+        fabricaciones.textContent = joyas[0][i].fabricaciones
+
+        boton.addEventListener('click', function (event) {
+            fabricarJoya(boton.id, usuario).then(function () {
+
                 window.location.reload()
-               })
-                
-              });
+            }).catch(function (error) {
+                window.location.href = '../index.html'
+            });
 
-            idCelda.appendChild(id)
-            nombreCelda.appendChild(nombre)
-            fotoCelda.appendChild(foto)
-            creadorCelda.appendChild(creador)
-           botonCelda.appendChild(boton);
-           fabricacionesCelda.appendChild(fabricaciones)
+        });
 
-           fila.appendChild(idCelda);
-           fila.appendChild(nombreCelda);
-           fila.appendChild(fotoCelda)
-           fila.appendChild(creadorCelda)
-           fila.appendChild(fabricacionesCelda)
-            fila.appendChild(botonCelda);
+        idCelda.appendChild(id)
+        nombreCelda.appendChild(nombre)
+        fotoCelda.appendChild(foto)
+        creadorCelda.appendChild(creador)
+        botonCelda.appendChild(boton);
+        fabricacionesCelda.appendChild(fabricaciones)
 
-            tabla.appendChild(fila);
-        }
-        
-        
+        fila.appendChild(idCelda);
+        fila.appendChild(nombreCelda);
+        fila.appendChild(fotoCelda)
+        fila.appendChild(creadorCelda)
+        fila.appendChild(fabricacionesCelda)
+        fila.appendChild(botonCelda);
+
+        tabla.appendChild(fila);
     }
+
+
+}
