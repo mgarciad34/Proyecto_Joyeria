@@ -75,8 +75,11 @@ Route::middleware('cors')->group( function () {
     Route::middleware('ClasiMid')->group(function () {
         Route::prefix('despieces')->group(function () {
             Route::get('', [ControladorDespieceLotes::class, 'getAllDespieces']);
-            Route::get('lote/{id}', [ControladorDespieceLotes::class, 'getDespieceOfLote']);
-            Route::post('lote/clasificar/{id}', [ControladorDespieceLotes::class, 'guardarElementosLote']);
+            
+            Route::prefix('lote')->group(function () {
+                Route::get('{id}', [ControladorDespieceLotes::class, 'getDespieceOfLote']);
+                Route::post('clasificar/{id}', [ControladorDespieceLotes::class, 'guardarElementosLote']);
+            });
         });
     
         
@@ -98,7 +101,6 @@ Route::middleware('cors')->group( function () {
 
         Route::prefix('recetas')->group(function () {
             Route::get('{id}', [ControladorRec::class, 'getRecetaOfJoya']);
-            Route::post('{id}', [ControladorRec::class, 'nuevaReceta']);
         });
     });
 });

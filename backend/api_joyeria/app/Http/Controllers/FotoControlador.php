@@ -24,7 +24,7 @@ class FotoControlador extends Controller
         }
         
         $messages = [
-            'max' => 'El campo se excede del tamaño máximo'
+            'max' => 'La foto se excede del tamaño máximo'
         ];
 
         $validator = Validator::make($request->all(), [

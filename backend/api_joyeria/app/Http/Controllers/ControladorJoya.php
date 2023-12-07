@@ -14,11 +14,39 @@ use App\Http\Controllers\ControladorReceta;
 use App\Http\Controllers\ControladorRec;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 class ControladorJoya extends Controller
 {
     /**Óscar */
     function nuevaJoya(Request $request){
         try{
+            $mensajes = [
+                'nombre.required' => 'El campo nombre es obligatorio.',
+                'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
+                'nombre.max' => 'El campo nombre no debe exceder los 255 caracteres.',
+                'id_usuario.required' => 'El campo id_usuario es obligatorio.',
+                'id_usuario.integer' => 'El campo id_usuario debe ser un número entero.',
+                'detalle.required' => 'El campo detalle es obligatorio.',
+                'detalle.array' => 'El campo detalle debe tener un formato correcto.',
+                'detalle.*.tipo.required' => 'El campo tipo en detalle es obligatorio.',
+                'detalle.*.tipo.integer' => 'El campo tipo en detalle debe ser un número entero.',
+                'detalle.*.cantidad.required' => 'El campo cantidad en detalle es obligatorio.',
+                'detalle.*.cantidad.integer' => 'El campo cantidad en detalle debe ser un número entero.',
+            ];
+    
+           
+            $validator = Validator::make($request->all(), [
+                'nombre' => 'required|string|max:255',
+                'id_usuario' => 'required|integer',
+                'detalle' => 'required|array',
+                'detalle.*.tipo' => 'required|integer',
+                'detalle.*.cantidad' => 'required|integer',
+            ], $mensajes);
+    
+            if ($validator->fails()) {
+                return response()->json(['mensaje' => 'Error en la validación', 'errores' => $validator->errors()], 400);
+            }
 
             $joya=new Joya();
             $joya->nombre=$request->get('nombre');
@@ -63,6 +91,17 @@ class ControladorJoya extends Controller
     /**Óscar */
     function fabricarJoya($id, Request $request){
         try{
+            $mensajes = [
+                'id_usuario.required' => 'El campo :attribute es obligatorio.',
+                'id_usuario.integer' => 'El campo :attribute debe ser un número entero.',
+            ];
+            $validator = Validator::make($request->all(), [
+                'id_usuario' => 'required|integer',
+            ], $mensajes);
+    
+            if ($validator->fails()) {
+                return response()->json(['mensaje' => 'Error en la validación', 'errores' => $validator->errors()], 400);
+            }
 
             $historico= new HistoricoJoya();
             $historico->id_joya=$id;
@@ -76,7 +115,7 @@ class ControladorJoya extends Controller
                 $tipo->cantidad-=$receta[$i]->cantidad;
                 $tipo->save();
             }
-            return response()->json(['Fabricado correctamente'],200);
+            return response()->json(['mensaje'=>'Fabricado correctamente'],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al fabricar la joya'],404);
         }
@@ -123,7 +162,7 @@ class ControladorJoya extends Controller
             $joya->delete();
             $detalle=Detalle_receta::where('id_joya',$id);
             $detalle->delete();
-            return response()->json(['Eliminado correctamente']);
+            return response()->json(['Eliminado correctamente'],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al eliminar la joya'],404);
         }
@@ -132,7 +171,8 @@ class ControladorJoya extends Controller
     function getJoyaById($id){
         try{
 
-            $joya=Joya::find($id);
+            $joya = Joya::findOrFail($id);
+          
             return response()->json($joya,200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener la joya'],404);
@@ -141,6 +181,31 @@ class ControladorJoya extends Controller
     /**Óscar */
     function updateJoya($id,Request $request){
         try{
+          
+            $mensajes = [
+                'joya_original.nombre.required' => 'El campo :attribute es obligatorio.',
+                'joya_original.nombre.string' => 'El campo :attribute debe ser una cadena de texto.',
+                'joya_original.nombre.max' => 'El campo :attribute no debe exceder los 255 caracteres.',
+                'joya.nombre.required' => 'El campo :attribute es obligatorio.',
+                'joya.nombre.string' => 'El campo :attribute debe ser una cadena de texto.',
+                'joya.nombre.max' => 'El campo :attribute no debe exceder los 255 caracteres.',
+                'joya_original.detalle.required' => 'El campo :attribute es obligatorio.',
+                'joya_original.detalle.array' => 'El campo :attribute debe tener un formato correcto.',
+                'joya.detalle.required' => 'El campo :attribute es obligatorio.',
+                'joya.detalle.array' => 'El campo :attribute debe tener un formato correcto.',
+            ];
+    
+            $validator = Validator::make($request->all(),[
+                'joya_original.nombre' => 'required|string|max:255',
+                'joya.nombre' => 'required|string|max:255',
+                'joya_original.detalle' => 'required|array',
+                'joya.detalle' => 'required|array',
+            ], $mensajes);
+    
+       
+            if ($validator->fails()) {
+                return response()->json(['mensaje' => 'Error en la validación', 'errores' => $validator->errors()], 400);
+            }
 
             $joya=Joya::find($id);
             $detalle=Detalle_receta::where('id_joya','=',$id)->get();
@@ -151,9 +216,6 @@ class ControladorJoya extends Controller
                 $joya->nombre=$joyaUpdate['nombre'];
                 
             }
-            // if($joyaOriginal['foto']!=$joyaUpdate['foto']){
-            //     $joya->foto=$joyaUpdate['foto'];
-            // }
             $joya->save();
             if($joyaUpdate['detalle']!=$joyaOriginal['detalle']){
                 $c=new ControladorRec;
