@@ -1,55 +1,47 @@
-//Manuel
-import { obtenerDatos } from "./http/http-consultarLotesUsuario.js";
-import { eliminarComponente } from "./http/http-eliminarComponente.js";
-import { crearCelda, crearBoton, mostrarModal } from "./http/http-tablaComponente.js";
+// http-consultarLotesUsuario.js
 
-function mostrarDatosEnTabla() {
-    obtenerDatos(sessionStorage.getItem('token'))
-        .then(response => {
-            const data = response.tipos;
-            const tablaBody = document.getElementById('data');
-            tablaBody.innerHTML = '';
-            
-            for (let i = 0; i < data.length; i++) {
-                const item = data[i];
-                
-                const nuevaFila = document.createElement('tr');
-                
-                nuevaFila.id = `fila-${item.id}`;
+import { obtenerDatos } from './http/http-consultarLotesUsuario.js';
 
-                for (const key in item) {
-                    //Hacemos que la ID no aparezca en la tabla
-                    if (key !== 'id') {
-                        nuevaFila.appendChild(crearCelda(item[key]));
-                    }
+document.addEventListener('DOMContentLoaded', () => {
+    var id = sessionStorage.getItem('id-usuario');
+
+    obtenerDatos(id)
+        .then(responseArray => {
+            // Verifica si la respuestaArray tiene al menos un elemento
+            if (Array.isArray(responseArray) && responseArray.length > 0) {
+                const response = responseArray[0];
+
+                if (response && response.lotes && Array.isArray(response.lotes)) {
+                    const lotes = response.lotes;
+                    const tbody = document.getElementById('data');
+
+                    tbody.innerHTML = '';
+
+                    lotes.forEach(item => {
+                        const fila = document.createElement('tr');
+
+                        const columna1 = document.createElement('td');
+                        columna1.textContent = item.id; // Ajusta según la propiedad real en tu objeto
+                        fila.appendChild(columna1);
+
+                        const columna2 = document.createElement('td');
+                        columna2.textContent = item.id_empresa; // Ajusta según la propiedad real en tu objeto
+                        fila.appendChild(columna2);
+
+                        const columna3 = document.createElement('td');
+                        columna3.textContent = item.estado;
+                        fila.appendChild(columna3);
+
+                        tbody.appendChild(fila);
+                    });
+                } else {
+                    console.error('La respuesta de la API no tiene la estructura esperada:', response);
                 }
-
-                const btnModificar = crearBoton('Modificar', 'warning', () => {
-                    var btnGuardar = document.getElementById('btnGuardar');
-                    var btnCerrar = document.getElementById('btnCerrar');  
-
-                    mostrarModal(item, btnGuardar, btnCerrar);
-                });
-
-                const btnEliminar = crearBoton('Eliminar', 'danger', () => {
-                    eliminarComponente(item.id);
-                });
-
-                //Celdas de botones por fila
-                const celdaBotones = document.createElement('td');
-                celdaBotones.appendChild(btnModificar);
-                celdaBotones.appendChild(btnEliminar);
-                nuevaFila.appendChild(celdaBotones);
-
-                //Agregamos la fila a la tabla
-                tablaBody.appendChild(nuevaFila);
+            } else {
+                console.error('La respuesta de la API está vacía o no es un array:', responseArray);
             }
         })
         .catch(error => {
             console.error('Error al obtener datos:', error);
         });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    mostrarDatosEnTabla();
 });
