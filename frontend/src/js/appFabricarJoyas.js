@@ -1,13 +1,14 @@
 import {
     obtenerJoyas,
-    fabricarJoya
+    fabricarJoya,
+    recomendacionesJoya
 } from './http/http-fabricarJoya.js'
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
-
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
-
+let recomendador=document.getElementById('btnRecomendador')
+let parametros=document.getElementById('parametros')
 obtenerJoyas().then(function (data) {
     if (data == 202 || data == 302) {
         if (data == 202) {
@@ -19,7 +20,9 @@ obtenerJoyas().then(function (data) {
         pintarJoyas(data)
     }
 })
-
+recomendador.addEventListener('click',function(){
+    lanzarModalRecomendador()
+})
 
 function pintarJoyas(joyas) {
     var tabla = document.getElementById('tabla_joyas');
@@ -86,3 +89,25 @@ function pintarJoyas(joyas) {
 
 
 }
+
+function lanzarModalRecomendador() {
+
+    document.getElementById('modal').style.display = 'flex';
+
+
+    document.getElementById('cancelarGuardado').addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    document.getElementById('confirmarGuardado').addEventListener('click', function () {
+        let parametro = parametros.value 
+        console.log(parametro)
+        recomendacionesJoya(parametro).then(function(data){
+            
+        })
+
+        document.getElementById('modal').style.display = 'none';
+
+    });
+}
+
