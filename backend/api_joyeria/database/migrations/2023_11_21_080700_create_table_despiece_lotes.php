@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_lote');
            $table->unsignedBigInteger('id_clasificador');
 
-           $table->foreign('id_clasificador')->references('id')->on('users');
-           $table->foreign('id_lote')->references('id')->on('lotes');
+           $table->foreign('id_clasificador')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('id_lote')->references('id')->on('lotes')->onDelete('cascade');
         });
     }
 

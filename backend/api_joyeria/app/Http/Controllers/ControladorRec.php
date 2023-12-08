@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Detalle_receta;
+use App\Models\Joya;
 use App\Models\Tipos_componente;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,7 +24,9 @@ class ControladorRec extends Controller
                 $info['detalle'][$i]['cantidad_disponible']=$tipo->cantidad;
                 
             }
-            
+           $joya=Joya::find($id);
+           $info['nombre']=$joya->nombre;
+        
             return response()->json($info,200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener la receta'],404);

@@ -3,6 +3,7 @@ import {
 } from './http/http-Clasificador.js'
 
 obtenerLotes().then(function (data) {
+    
     if (data == 202 || data == 302) {
         if (data == 202) {
             window.location.href = './redirect.html'
@@ -11,9 +12,7 @@ obtenerLotes().then(function (data) {
         }
     } else {
         pintarLotes(data);
-        if (data.mensaje === '') {
-            alert('No hay lotes sin clasificar');
-        }
+
     }
 })
 
@@ -26,9 +25,10 @@ sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))
 
 function pintarLotes(lotes) {
     var tabla = document.getElementById('tabla_lotes');
-    // let lista =[lotes.mensaje]
+   
 
     for (let i = 0; i < lotes[0].lotes.length; i++) {
+        document.getElementById('vacio').style.display='none'
         let fila = document.createElement('tr');
 
         let botonCelda = document.createElement('td');
@@ -45,11 +45,16 @@ function pintarLotes(lotes) {
 
         let idEmpresaCelda = document.createElement('td');
         let idEmpresa = document.createElement('span');
-        idEmpresa.textContent = lotes[0].lotes[i].id_empresa
+        idEmpresa.textContent = lotes[0].lotes[i].colaborador
 
         let ubicacionCelda = document.createElement('td');
-        let ubicacion = document.createElement('span');
-        ubicacion.textContent = lotes[0].lotes[i].ubicacion
+        let ubicacion = document.createElement('a');
+        let direccion = lotes[0].lotes[i].latitud + ',' + lotes[0].lotes[i].longitud;
+        ubicacion.href = 'https://www.google.com/maps?q=' + direccion;
+        ubicacion.target = '_blank';
+        ubicacion.textContent = direccion;
+
+
 
         boton.addEventListener('click', function (event) {
             sessionStorage.setItem('lote-a-clasificar', JSON.parse(boton.id))

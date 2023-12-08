@@ -99,7 +99,11 @@ Route::middleware('cors')->group( function () {
             Route::get('{id}', [ControladorJoya::class, 'getJoyaById']);
             Route::put('{id}', [ControladorJoya::class, 'updateJoya']);
             Route::get('owner/{id}/{id_usuario}', [ControladorJoya::class, 'ownerJoya']);
-            Route::get('/disponibles/lista', [ControladorJoya::class, 'getDisponibles']);
+            Route::prefix('/disponibles')->group(function () {
+                Route::get('/lista', [ControladorJoya::class, 'getDisponibles']);
+                Route::get('/recomendaciones/{parametro}', [ControladorJoya::class, 'getRecomendaciones']);
+            });
+            
         });
 
         Route::prefix('recetas')->group(function () {

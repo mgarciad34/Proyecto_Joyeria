@@ -16,9 +16,9 @@ obtenerAllDespiece().then(function (data) {
 
     } else {
 
-        pintarDespiece(data.componentes)
     }
-
+    pintarDespiece(data.componentes)
+    
 
 })
 
@@ -41,19 +41,24 @@ function pintarDespiece(componentes) {
 
         let tipoCelda = document.createElement('td');
         let tipo = document.createElement('span');
-        tipo.textContent = componentes[i].tipo
+        tipo.textContent = componentes[i].categoria
 
         let cantidadCelda = document.createElement('td');
         let cantidad = document.createElement('span');
         cantidad.textContent = componentes[i].cantidad
 
         let idLoteCelda = document.createElement('td');
-        let idLote = document.createElement('span');
+        let idLote = document.createElement('a');
         idLote.textContent = componentes[i].id_lote
-
+        idLote.href='./despieceLote.html'
+        idLote.addEventListener('click',function(event){
+            event.preventDefault()
+            sessionStorage.setItem('despiece-lote', componentes[i].id_lote)
+            window.location.href='./despieceLote.html'
+        })
         let idClasificadorCelda = document.createElement('td');
         let idClasificador = document.createElement('span');
-        idClasificador.textContent = componentes[i].id_clasificador
+        idClasificador.textContent = componentes[i].clasificador
 
         descripcionCelda.appendChild(descripcion)
         idEmpresaCelda.appendChild(idEmpresa)

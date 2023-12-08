@@ -8,6 +8,7 @@ use App\Models\Despiece_lote;
 use App\Models\Lote;
 use App\Models\Tipos_componente;
 use Exception;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 class ControladorDespieceLotes extends Controller
 {
@@ -84,8 +85,20 @@ class ControladorDespieceLotes extends Controller
        function getAllDespieces(){
         try{
 
-            $despiece['componentes']=Despiece_lote::all();
-            return response()->json($despiece,200);
+            $despiece=Despiece_lote::all();
+         
+            for($i=0;$i<count($despiece);$i++){
+                $tipo=Tipos_componente::find($despiece[$i]->tipo);
+                $clasificador=User::find($despiece[$i]->id_clasificador);
+            
+                $despiece[$i]->clasificador=$clasificador->name;
+                
+                $despiece[$i]->categoria=$tipo->nombre;
+            }
+
+            $json['componentes']=$despiece;
+         
+            return response()->json($json,200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener los despieces'],404);
         }

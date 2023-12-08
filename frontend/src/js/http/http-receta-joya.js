@@ -33,7 +33,7 @@ export async function fabricarJoya(joya, id_usuario) {
         json['id_usuario'] = id_usuario
         let token = sessionStorage.getItem('token')
         let url = 'http://127.0.0.1:8000/api/joyas/fabricar/' + joya
-        console.log(url)
+     
         const options = {
             method: "PUT",
             headers: {

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('solicitante');
             $table->unsignedBigInteger('solicitado');
             $table->string('estado')->default('pendiente');
-            $table->foreign('solicitante')->references('id')->on('users');
-            $table->foreign('solicitado')->references('id')->on('roles');
+            $table->foreign('solicitante')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('solicitado')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 
