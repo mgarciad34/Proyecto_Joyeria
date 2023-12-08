@@ -12,6 +12,7 @@ module.exports = {
     insertarLote: './frontend/src/js/insertarLote.js',
     insertarRol: './frontend/src/js/insertarRol.js',
     eliminarRol: './frontend/src/js/eliminarRol.js',
+    consultaLotesUsuario: './frontend/src/js/consultarLotesUsuario.js',
     consultarComponentes: './frontend/src/js/consultarComponentes.js',
     appClasificador: './frontend/src/js/appClasificador.js',
     appLote: './frontend/src/js/appLote.js',

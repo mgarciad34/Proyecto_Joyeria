@@ -58,12 +58,14 @@ Route::middleware('cors')->group( function () {
     
   
     Route::prefix('lotes')->group(function () {
-        Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
+            Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
+            Route::get('entregados/{id}', [ControladorLote::class, 'consultarLotesEntregadosID'])->middleware('ClasiMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
             Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
-            Route::get('', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
-            Route::get('{id}', [Contr−3oladorLote::class, 'consultarLote'])->middleware('ColabMid');
+            Route::get('consultar', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
+            Route::delete('/eliminar/{id}', [ControladorLote::class, 'eliminarLote'])->middleware('ColabMid');
+            Route::get('consultar/{id}', [ControladorLote::class, 'consultarLote'])->middleware('ColabMid');
             
         });
   

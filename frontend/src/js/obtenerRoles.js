@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         window.location.href = './listaJoyas.html';
                                         break;
                                     case 4:
-                                        window.location.href = './pantalla-rol-2.html';
+                                        window.location.href = './IndexColaborador.html';
                                         break;
                                 }
                             });
