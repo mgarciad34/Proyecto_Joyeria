@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lote;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Exception;
 
 class ControladorLote extends Controller
@@ -23,8 +24,37 @@ class ControladorLote extends Controller
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
         }
+    }
+
+    function eliminarLote($id) {
+        try {
+            $lote = Lote::find($id);
+            if ($lote) {
+                $lote->delete();
+    
+                return response()->json(['mensaje' => 'Lote eliminado correctamente'], 200);
+            } else {
+                return response()->json(['mensaje' => 'Lote no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al eliminar el lote'], 500);
         }
-        /**Manuel */
+    }
+    
+
+    function consultarLotesEntregadosID($id_empresa){
+        try{
+            $lotes = Lote::where('estado', '=', 'entregado')
+                          ->where('id_empresa', '=', $id_empresa)
+                          ->get();
+    
+            $json['lotes'] = $lotes;
+            return response()->json([$json], 200);
+        } catch(Exception $e){
+            return response()->json(['mensaje' => 'Error al obtener los lotes'], 500);
+        }
+    }
+  /**Manuel */
     function consultarLote($id){
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
@@ -64,19 +94,15 @@ class ControladorLote extends Controller
     }
     /**Manuel */
     function consultarLotes(Request $request){
-        // Obtener todos los lotes
         $lotes = Lote::all();
 
-        // Verificar si se encontraron lotes
         if ($lotes->isEmpty()) {
             return response()->json(['mensaje' => 'No se encontraron lotes'], 404);
         }
 
-        // Devolver una respuesta JSON con la lista de todos los lotes
         return response()->json(['mensaje' => $lotes]);
     }
 
-    /**Oscar */
     function consultarLotesClasificados(){
         try{
 
