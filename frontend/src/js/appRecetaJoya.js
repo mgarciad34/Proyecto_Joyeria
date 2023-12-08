@@ -22,7 +22,7 @@ obtenerRecetas(id_joya).then(function (data) {
             window.location.href = '../index.html'
         }
     } else {
-
+        document.getElementById('nombreJoya').textContent=data.nombre
         pintarRecetas(data)
     }
 })
@@ -51,15 +51,9 @@ btnFabricar.addEventListener('click', function () {
 
 function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
-
     for (let i = 0; i < recetas.detalle.length; i++) {
 
         let fila = document.createElement('tr');
-
-        let idCelda = document.createElement('td');
-        let id = document.createElement('span');
-        id.textContent = recetas.detalle[i].id_componente
-
 
         let tipoCelda = document.createElement('td');
         let tipo = document.createElement('span');
@@ -81,35 +75,15 @@ function pintarRecetas(recetas) {
             btnFabricar.disabled = true
         }
 
-        let rellenoCelda = document.createElement('td')
-        let relleno = document.createElement('span')
-        relleno.textContent = ''
-        rellenoCelda.appendChild(relleno)
-
-        let rellenoCelda2 = document.createElement('td')
-        let relleno2 = document.createElement('span')
-        relleno2.textContent = ''
-        rellenoCelda2.appendChild(relleno2)
-
-        let rellenoCelda3 = document.createElement('td')
-        let relleno3 = document.createElement('span')
-        relleno3.textContent = ''
-        rellenoCelda3.appendChild(relleno3)
-
-
-
-        idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
         cNecesariaCelda.appendChild(cantidadNecesaria);
         cDisponibleCelda.appendChild(cantidadDisponible);
-
-        fila.appendChild(idCelda);
+        cDisponibleCelda.setAttribute('colspan','4')
+      
         fila.appendChild(tipoCelda);
         fila.appendChild(cNecesariaCelda);
         fila.appendChild(cDisponibleCelda);
-        fila.appendChild(rellenoCelda)
-        fila.appendChild(rellenoCelda2)
-        fila.appendChild(rellenoCelda3)
+
 
         tabla.appendChild(fila);
     }

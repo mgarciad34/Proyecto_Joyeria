@@ -98,12 +98,16 @@ function lanzarModalRecomendador() {
     let foto= document.getElementById('fotoJoya')
     let enlace=document.getElementById('enlaceReceta')
     document.getElementById('modal').style.display = 'flex';
-
+    alerta.textContent='Establece el parametro para la recomendacion'
 
     cancelar.addEventListener('click', function () {
         document.getElementById('modal').style.display = 'none';
         enlace.href=''
         foto.style.display='none'
+        cargar.style.display='none'
+        confirmar.style.display=''
+        cargar.textContent='Recomendacion'
+        parametros.style.display=''
     });
 
     confirmar.addEventListener('click', function () {
@@ -119,27 +123,20 @@ function lanzarModalRecomendador() {
             
             let i=0
             cargar.addEventListener('click',function(){
+                cargar.textContent='Nueva recomendación'
                 foto.style.display=''
                 foto.src=recomendaciones[i].foto
-                let r=recomendaciones[i]
-                alerta.textContent=recomendaciones[i].id
+                alerta.textContent=recomendaciones[i].nombre
+                let id=recomendaciones[i].id
                 enlace.addEventListener('click',function(){
-                    
-                    sessionStorage.setItem('joya-guardada',recomendaciones[i].id)
-                    
+                    sessionStorage.setItem('joya-guardada',id)
                     window.location.href='./receta-joya.html'
                 })
-                cargar.addEventListener('click',function(){
-                    i++
-                    if(i==recomendaciones.length){
-                        i=0
-                    }
-                })
-
-
+                i++
+                if(i==recomendaciones.length){
+                    i=0
+                }
             })
-           
-           
         })
 
         // document.getElementById('modal').style.display = 'none';
