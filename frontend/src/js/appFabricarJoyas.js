@@ -91,22 +91,58 @@ function pintarJoyas(joyas) {
 }
 
 function lanzarModalRecomendador() {
-
+    let alerta=document.getElementById('alertaRecomendacion')
+    let cancelar=document.getElementById('cancelarRecomendacion')
+    let confirmar=document.getElementById('confirmarRecomendacion')
+    let cargar=document.getElementById('cargarRecomendacion')
+    let foto= document.getElementById('fotoJoya')
+    let enlace=document.getElementById('enlaceReceta')
     document.getElementById('modal').style.display = 'flex';
 
 
-    document.getElementById('cancelarGuardado').addEventListener('click', function () {
+    cancelar.addEventListener('click', function () {
         document.getElementById('modal').style.display = 'none';
+        enlace.href=''
+        foto.style.display='none'
     });
 
-    document.getElementById('confirmarGuardado').addEventListener('click', function () {
+    confirmar.addEventListener('click', function () {
         let parametro = parametros.value 
-        console.log(parametro)
+        parametros.style.display='none'
+        alerta.textContent='Cargando recomendaciones...'
+        confirmar.style.display='none'
         recomendacionesJoya(parametro).then(function(data){
+            cargar.style.display=''
+            cancelar.textContent='Cerrar'
+            let recomendaciones=data[0]
+            alerta.textContent='Recomendaciones cargadas'
             
+            let i=0
+            cargar.addEventListener('click',function(){
+                foto.style.display=''
+                foto.src=recomendaciones[i].foto
+                let r=recomendaciones[i]
+                alerta.textContent=recomendaciones[i].id
+                enlace.addEventListener('click',function(){
+                    
+                    sessionStorage.setItem('joya-guardada',recomendaciones[i].id)
+                    
+                    window.location.href='./receta-joya.html'
+                })
+                cargar.addEventListener('click',function(){
+                    i++
+                    if(i==recomendaciones.length){
+                        i=0
+                    }
+                })
+
+
+            })
+           
+           
         })
 
-        document.getElementById('modal').style.display = 'none';
+        // document.getElementById('modal').style.display = 'none';
 
     });
 }

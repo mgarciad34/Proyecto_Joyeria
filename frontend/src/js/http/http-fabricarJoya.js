@@ -65,9 +65,9 @@ export async function recomendacionesJoya(parametro) {
     try {
 
         let token = sessionStorage.getItem('token')
-        let url = 'http://127.0.0.1:8000/api/joyas/fabricar/' + parametro
+        let url = 'http://127.0.0.1:8000/api/joyas/disponibles/recomendaciones/'+parametro
         const options = {
-            method: "PUT",
+            method: "GET",
             headers: {
                 "Authorization": "Bearer " + token,
                 'Content-Type': 'application/json'

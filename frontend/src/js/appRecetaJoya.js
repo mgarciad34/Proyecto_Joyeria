@@ -13,7 +13,7 @@ let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let botones = document.getElementById('botones')
 let btnFabricar = document.getElementById('btnFabricar')
 let disponible = true
-
+console.log(id_joya)
 obtenerRecetas(id_joya).then(function (data) {
     if (data == 202 || data == 302) {
         if (data == 202) {

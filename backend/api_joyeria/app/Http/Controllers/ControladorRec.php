@@ -23,7 +23,7 @@ class ControladorRec extends Controller
                 $info['detalle'][$i]['cantidad_disponible']=$tipo->cantidad;
                 
             }
-            
+        
             return response()->json($info,200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener la receta'],404);

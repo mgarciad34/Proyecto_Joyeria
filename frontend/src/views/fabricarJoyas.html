@@ -51,7 +51,7 @@
     <div id="modal" class="modal">
         <div class="modal-contenido">
           <span class="cerrar-modal" id="cerrarModal">&times;</span>
-          <p>Establece el parametro para la recomendacion</p>
+          <p id="alertaRecomendacion">Establece el parametro para la recomendacion</p>
           <select id="parametros">
             <option selected value="1">Mas fabricadas</option>
             <option value="2">Menos fabricadas</option>
@@ -59,14 +59,15 @@
             <option value="4"> Mas nuevas</option>
           </select>
           <div class="container col-11">
-                <a>
+                <a id="enlaceReceta">
                     <img id="fotoJoya" style="display: none;" src="../images/alien2.jpg" class="fotoModal col-7" for="inputFoto">
                 </a>
         </div>
         <br>
         <br>
-          <button id="confirmarGuardado">Confirmar</button>
-          <button id="cancelarGuardado">Cancelar</button>
+        <button style="display: none;" id="cargarRecomendacion">Recomendación</button> <br><br>
+          <button id="confirmarRecomendacion">Confirmar</button>
+          <button id="cancelarRecomendacion">Cancelar</button>
         </div>
       </div>
     
