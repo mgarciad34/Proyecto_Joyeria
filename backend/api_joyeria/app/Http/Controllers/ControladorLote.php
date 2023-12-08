@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lote;
+use Illuminate\Database\QueryException;
 use Exception;
 
 class ControladorLote extends Controller
@@ -19,6 +20,22 @@ class ControladorLote extends Controller
             return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
         }
     }
+
+    function eliminarLote($id) {
+        try {
+            $lote = Lote::find($id);
+            if ($lote) {
+                $lote->delete();
+    
+                return response()->json(['mensaje' => 'Lote eliminado correctamente'], 200);
+            } else {
+                return response()->json(['mensaje' => 'Lote no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al eliminar el lote'], 500);
+        }
+    }
+    
 
     function consultarLotesEntregadosID($id_empresa){
         try{

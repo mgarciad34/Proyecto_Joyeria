@@ -1,4 +1,7 @@
+//Manuel
+import { cancelarLote } from './http/http-cancelarLote.js';
 import { obtenerDatos } from './http/http-consultarLotesUsuario.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     var id = sessionStorage.getItem('id-usuario');
@@ -36,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         btnEditar.textContent = 'Mostrar Mapa';
                         btnEditar.className = 'btn btn status cancelled';
                         btnEditar.addEventListener('click', function(){
-                            // Abre el mapa en una nueva ventana o pestaña
                             window.open('https://www.google.com/maps?q=' + item.latitud + ',' + item.longitud, '_blank');
                         });
 
@@ -45,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const btnEliminar = document.createElement('button');
                         btnEliminar.textContent = 'Cancelar Entrega';
                         btnEliminar.className = 'btn btn status cancelled';
+                        btnEliminar.addEventListener('click', function(){
+                            cancelarLote(item.id)
+                            window.location.href="IndexColaborador.html";
+                        })
                         columnaBotones.appendChild(btnEliminar);
 
                         fila.appendChild(columnaBotones);

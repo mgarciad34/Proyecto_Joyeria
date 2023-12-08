@@ -64,6 +64,7 @@ Route::middleware('cors')->group( function () {
             Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('consultar', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
+            Route::delete('/eliminar/{id}', [ControladorLote::class, 'eliminarLote'])->middleware('ColabMid');
             Route::get('consultar/{id}', [ControladorLote::class, 'consultarLote'])->middleware('ColabMid');
             
         });
