@@ -19,6 +19,9 @@
     /* background: url(../images/alien.jpg) center / cover; */
     background-color: black;
 }
+.divFoto{
+    margin-left: 20px;
+}
 .fotoModal{
     border: 20px;
     width: 100%;

@@ -52,23 +52,23 @@ btnAdd.addEventListener('click', function () {
     let validaciones = [true]
     let mensaje = ''
     if (inputCantidad == '' || inputCantidad <= 0) {
-        mensaje = mensaje + ' Debe introducir una cantidad \n'
+        mensaje = mensaje + ' Debe introducir una cantidad <br>'
         validaciones.push(false)
 
     }
     if (inputDescripcion == '') {
-        mensaje = mensaje + ' Debe introducir una descripcion \n'
+        mensaje = mensaje + ' Debe introducir una descripción <br>'
         validaciones.push(false)
 
     }
     if (inputTipo == 0) {
-        mensaje = mensaje + ' Debe introducir elegir un tipo \n'
+        mensaje = mensaje + ' Debe introducir elegir un tipo <br>'
         validaciones.push(false)
 
     }
 
     if (validaciones.includes(false)) {
-        alert(mensaje)
+        lanzarModalErrores(mensaje)
     } else {
 
         let tablaElementosRegistrados = document.getElementById('elementos-registrados')
@@ -119,29 +119,63 @@ btnAdd.addEventListener('click', function () {
 
 })
 btnGuardar.addEventListener('click', function () {
-    let tbody = document.getElementById('elementos-registrados')
-    let componentes = {}
-    componentes.lista = []
-    for (let i = 0; i < tbody.rows.length; i++) {
-        let fila = tbody.rows[i];
-        let descripcion = fila.cells[0].textContent
-        let cantidad = fila.cells[1].textContent
-        let tipo = fila.cells[2].textContent
-
-        let componente = {}
-        componente['descripcion'] = descripcion
-        componente['cantidad'] = cantidad
-        componente['tipo'] = tipo.split('.')[0]
-
-        componentes.lista.push(componente)
-    }
-
-    componentes.usuario = usuario
-    guardarElementosBdd(componentes, idLote).then(function (data) {
-        alert('guardado correctamente')
-        sessionStorage.removeItem('lote-a-clasificar')
-        window.location.href = './indexClasificador.html'
-
-    })
+    lanzarModalGuardado()
 
 })
+
+function lanzarModalGuardado() {
+    let alerta=document.getElementById('alertaGuardado')
+    let confirmar=document.getElementById('confirmarGuardado')
+    let cancelar=document.getElementById('cancelarGuardado')
+    document.getElementById('modal').style.display = 'flex';
+
+
+    cancelar.addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    confirmar.addEventListener('click', function () {
+        let tbody = document.getElementById('elementos-registrados')
+        let componentes = {}
+        componentes.lista = []
+        for (let i = 0; i < tbody.rows.length; i++) {
+            let fila = tbody.rows[i];
+            let descripcion = fila.cells[0].textContent
+            let cantidad = fila.cells[1].textContent
+            let tipo = fila.cells[2].textContent
+    
+            let componente = {}
+            componente['descripcion'] = descripcion
+            componente['cantidad'] = cantidad
+            componente['tipo'] = tipo.split('.')[0]
+    
+            componentes.lista.push(componente)
+        }
+        componentes.usuario = usuario
+        cancelar.style.display='none'
+        alerta.textContent='Guardando lote...'
+        guardarElementosBdd(componentes, idLote).then(function (data) {
+     
+            alerta.textContent=data.mensaje
+            confirmar.textContent='continuar'
+            confirmar.addEventListener('click',function(){
+
+                sessionStorage.removeItem('lote-a-clasificar')
+                document.getElementById('modal').style.display = 'none';
+                window.location.href = './indexClasificador.html'
+
+            })
+    
+        })
+     
+
+    });
+}
+
+function lanzarModalErrores(mensaje) {
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').innerHTML = mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click', function () {
+        document.getElementById('modal-errores').style.display = 'none';
+    })
+}

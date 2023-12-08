@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('foto')->nullable();
             $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

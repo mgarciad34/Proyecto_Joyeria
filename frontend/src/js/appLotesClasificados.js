@@ -44,15 +44,19 @@ function pintarLotes(lotes) {
 
         let idEmpresaCelda = document.createElement('td');
         let idEmpresa = document.createElement('span');
-        idEmpresa.textContent = lotes[0].lotes[i].id_empresa
+        idEmpresa.textContent = lotes[0].lotes[i].colaborador
 
         let ubicacionCelda = document.createElement('td');
-        let ubicacion = document.createElement('span');
-        ubicacion.textContent = lotes[0].lotes[i].ubicacion
+        let ubicacion = document.createElement('a');
+        let direccion = lotes[0].lotes[i].latitud + ',' + lotes[0].lotes[i].longitud;
+        ubicacion.href = 'https://www.google.com/maps?q=' + direccion;
+        ubicacion.target = '_blank';
+        ubicacion.textContent = direccion;
+
 
         let clasificadorCelda = document.createElement('td')
         let clasificador = document.createElement('span')
-        clasificador.textContent = lotes[0].lotes[i].id_clasificador
+        clasificador.textContent = lotes[0].lotes[i].clasificador
         boton.addEventListener('click', function (event) {
             sessionStorage.setItem('despiece-lote', JSON.parse(boton.id))
             window.location.href = './despieceLote.html'

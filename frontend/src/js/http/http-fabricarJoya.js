@@ -60,3 +60,32 @@ export async function fabricarJoya(joya, id_usuario) {
         return error
     }
 }
+
+export async function recomendacionesJoya(parametro) {
+    try {
+
+        let token = sessionStorage.getItem('token')
+        let url = 'http://127.0.0.1:8000/api/joyas/disponibles/recomendaciones/'+parametro
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token,
+                'Content-Type': 'application/json'
+            },
+       
+        }
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+            throw new Error('No se pudo fabricar la joya');
+        }
+        if (response.status == 202) {
+            window.location.href = './redirect.html'
+        }
+        const data = await response.json();
+
+        return data
+    } catch (error) {
+        return error
+    }
+}
