@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RolAsignado;
 use App\Models\Rol;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class ControladorRolAsignado extends Controller
@@ -65,5 +66,35 @@ class ControladorRolAsignado extends Controller
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }
+        /**Óscar */
+        public function obtenerRolesPeticion($id){
+            try{
 
-}
+                $rolesId=RolAsignado::where('id_usuario', $id)->get();
+                $roles=Rol::all();
+                $json=[];
+                for($i=0;$i<count($roles);$i++){
+                $x=0;
+                $asignado=false;
+                while($x<count($rolesId)  && $asignado==false){
+                    if($rolesId[$x]->id_rol==$roles[$i]->id){
+                        $asignado=true;
+                    }else{
+                        $x++;
+                    }
+                }
+                if($asignado){
+                    $json['asignados'][]=$roles[$i];
+                }else{
+                    $json['no_asignados'][]=$roles[$i];
+                }
+                
+            }
+            return response()->json([$json],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'No se puedo obtener los roles'],500);
+        }
+            
+        }
+        
+    }

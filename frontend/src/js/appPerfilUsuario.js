@@ -6,7 +6,8 @@ import {
     actualizarEmail,
     actualizarPassword,
     cerrarSesion,
-    subirFoto
+    subirFoto,
+    obtenerRolesAsignados
 } from "./http/http-perfilUsuario.js"
 // const bcrypt = require('bcrypt');
 let cabecera = document.getElementById('cabecera');
@@ -310,41 +311,15 @@ function lanzarModalPeticion() {
     let cancelar = document.getElementById('cancelarPeticion')
     let alerta = document.getElementById('alertaPeticion')
     document.getElementById('modal-peticion').style.display = 'flex';
-
+    obtenerRolesAsignados(usuario).then(function(data){
+        console.log(data)
+    })
     cancelar.addEventListener('click', function () {
         document.getElementById('modal-peticion').style.display = 'none';
     });
 
     confirmar.addEventListener('click', function () {
-        let input1 = document.getElementById('inputPassword1').value
-        let input2 = document.getElementById('inputPassword2').value
-
-        if (input1 != input2) {
-            alerta.textContent = 'Las contraseñas no coinciden'
-        } else {
-            if (!validarContrasena(input1)) {
-                alerta.textContent = 'Formato de contraseña incorrecto'
-            } else {
-                let json = {}
-                json['password'] = input1
-                console.log(json)
-                actualizarPassword(usuario, json).then(function (data) {
-
-                    alerta.textContent = data.mensaje
-                    confirmar.textContent = 'Continuar'
-                    cancelar.style.display = 'none'
-                    alerta.style.color = 'green'
-
-                    confirmar.addEventListener('click', function () {
-                        document.getElementById('inputPassword1').value = ''
-                        document.getElementById('inputPassword2').value = ''
-                        window.location.reload(true)
-                    })
-                }).catch(function (error) {
-                    window.location.href = '../index.html'
-                });
-            }
-        }
+        
 
     });
 }
