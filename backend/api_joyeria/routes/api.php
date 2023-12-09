@@ -38,6 +38,7 @@ Route::middleware('cors')->group( function () {
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
             Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
             Route::get('/roles/{id}', [ControladorRolAsignado::class, 'obtenerRolesPeticion']);
+            Route::post('{id}/peticion',[ControladorUsuarios::class,'nuevaPeticion']);
         });
         
         //Rutas agrupadas del administrador

@@ -9,6 +9,6 @@ class Peticion extends Model
 {
     use HasFactory;
     protected $table = 'peticiones';
-    protected $fillable = ['id', 'solicitante', 'solicitado', 'estado'];
+    protected $fillable = ['solicitud','solicitado'];
     public $timestamps = false;
 }

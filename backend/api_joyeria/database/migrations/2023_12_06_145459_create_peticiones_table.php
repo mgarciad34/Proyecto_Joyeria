@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('peticiones', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('solicitante');
+            $table->unsignedBigInteger('solicitud');
             $table->unsignedBigInteger('solicitado');
             $table->string('estado')->default('pendiente');
             $table->foreign('solicitante')->references('id')->on('users')->onDelete('cascade');

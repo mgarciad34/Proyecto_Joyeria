@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
+use App\Models\Peticion;
 use Exception;
 
 class ControladorUsuarios extends Controller
@@ -76,7 +77,18 @@ public function actualizarPassword(Request $request,$id){
         return response()->json(['mensaje' =>'Error al actualizar la contraseña'], 409);
     }
 }
+public function nuevaPeticion(Request $request,$id){
+    try{
 
+        $peticion=new Peticion;
+        $peticion->fill($request->all());
+        $peticion->solicitante=$id;
+        $peticion->save();
+        return response()->json(['mensaje'=>'Solicitud realizada correctamente'],200);
+    }catch(Exception $e){
+        return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
+    }
+}
 
 }
 
