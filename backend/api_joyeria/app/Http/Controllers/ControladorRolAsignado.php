@@ -88,7 +88,7 @@ class ControladorRolAsignado extends Controller
                 }else{
                     $json['no_asignados'][]=$roles[$i];
                 }
-                
+
             }
             return response()->json([$json],200);
         }catch(Exception $e){

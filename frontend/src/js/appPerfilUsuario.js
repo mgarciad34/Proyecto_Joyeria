@@ -7,7 +7,8 @@ import {
     actualizarPassword,
     cerrarSesion,
     subirFoto,
-    obtenerRolesAsignados
+    obtenerRolesAsignados,
+    enviarSolicitud
 } from "./http/http-perfilUsuario.js"
 // const bcrypt = require('bcrypt');
 let cabecera = document.getElementById('cabecera');
@@ -307,19 +308,63 @@ function insertarCabecera() {
 }
 
 function lanzarModalPeticion() {
-    let confirmar = document.getElementById('confirmarPeticion')
-    let cancelar = document.getElementById('cancelarPeticion')
-    let alerta = document.getElementById('alertaPeticion')
-    document.getElementById('modal-peticion').style.display = 'flex';
     obtenerRolesAsignados(usuario).then(function(data){
-        console.log(data)
-    })
-    cancelar.addEventListener('click', function () {
-        document.getElementById('modal-peticion').style.display = 'none';
-    });
-
-    confirmar.addEventListener('click', function () {
+        rellenarRoles(1,data[0].no_asignados)
+        rellenarRoles(2,data[0].asignados)
+        let rolesAlta=document.getElementById('rolesAlta')
+        let rolesBaja=document.getElementById('rolesBaja')
+        let parametros=document.getElementById('parametrosPeticion')
+        let confirmar = document.getElementById('confirmarPeticion')
+        let cancelar = document.getElementById('cancelarPeticion')
+        let alerta = document.getElementById('alertaPeticion')
+        parametros.addEventListener('click',function(){
+            confirmar.style.display=''
+            if(parametros.value==1){
+                rolesBaja.style.display='none'
+                rolesAlta.style.display=''
+            }else{
+                rolesBaja.style.display=''
+                rolesAlta.style.display='none'
+            }
+        })
+        document.getElementById('modal-peticion').style.display = 'flex';
         
+        cancelar.addEventListener('click', function () {
+            document.getElementById('modal-peticion').style.display = 'none';
+        });
+        
+        confirmar.addEventListener('click', function () {
+          let json={}
+          json['solicitud']=parametros.value
+            if(json['solicitud']==1){
+                json['solicitado']=rolesAlta.value
+            }else{
+                json['solicitado']=rolesBaja.value
+            }
+            
+            console.log(JSON.stringify(json))
+            
+        });
+    })
+}
 
-    });
+function rellenarRoles(parametro,roles){
+    if(parametro==1){
+        let seleccion=document.getElementById('rolesAlta')
+        for(let i=0;i<roles.length;i++){
+           let rol=document.createElement('option')
+           rol.id=roles[i].id
+            rol.textContent=roles[i].nombre
+           seleccion.appendChild(rol)
+        }
+    }
+    if(parametro==2){
+        let seleccion=document.getElementById('rolesBaja')
+        for(let i=0;i<roles.length;i++){
+           let rol=document.createElement('option')
+           rol.id=roles[i].id
+            rol.textContent=roles[i].nombre
+           seleccion.appendChild(rol)
+        }
+    }
 }
