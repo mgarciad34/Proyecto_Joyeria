@@ -32,15 +32,15 @@ Route::middleware('cors')->group( function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
     
-    //Rutas agrupadas del administrador
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){
             Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
             Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
-
+            Route::get('/roles/{id}', [ControladorRolAsignado::class, 'obtenerRolesId']);
         });
-
+        
+        //Rutas agrupadas del administrador
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
           Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);

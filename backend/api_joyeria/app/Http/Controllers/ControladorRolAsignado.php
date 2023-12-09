@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RolAsignado;
-use App\Http\Controllers\ControladorRolAsignado;
+use App\Models\Rol;
 use Illuminate\Support\Facades\Validator;
 
 class ControladorRolAsignado extends Controller
@@ -50,10 +50,12 @@ class ControladorRolAsignado extends Controller
                 $roles = [];
                 foreach ($rolesAsignados as $rolAsignado) {
                     $rol = RolAsignado::find($rolAsignado->id);
+                    $nombre=Rol::find($rol);
                     if ($rol) {
                         $roles[] = [
                             'id_usuario' => $rol->id_usuario,
                             'id_rol' => $rol->id_rol,
+                            'nombre'=>$nombre[0]->nombre,
                         ];
                     }
                 }
