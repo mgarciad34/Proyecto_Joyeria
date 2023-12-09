@@ -178,11 +178,16 @@ export async function obtenerSolicitudes(id) {
     
             throw new Error('No se pudo actualizar');
         }
+        if (response.status == 202) {
+            return 202
 
+        }
         const data = await response.json();
+        if (response.ok) {
 
-        return data
+            return data
+        }
     } catch (error) {
-        return error
+        return 302
     }
 }

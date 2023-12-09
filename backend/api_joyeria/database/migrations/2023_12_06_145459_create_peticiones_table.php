@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('estado')->default('pendiente');
             $table->foreign('solicitante')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('solicitado')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('solicitud')->references('id')->on('tipos_peticiones')->onDelete('cascade');
         });
     }
 

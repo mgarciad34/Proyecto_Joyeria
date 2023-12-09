@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
 use App\Models\Peticion;
+use App\Models\TipoPeticion;
+use App\Models\Rol;
 use Exception;
 
 class ControladorUsuarios extends Controller
@@ -91,8 +93,17 @@ public function nuevaPeticion(Request $request,$id){
 }
 public function getPeticionesUsuario($id){
     try{
-
+        $json=[];
         $peticion=Peticion::where('solicitante','=',$id)->get();
+        for ($i=0;$i<count($peticion);$i++){
+    
+            $tipo=TipoPeticion::find($peticion[$i]->solicitado);
+            $peticion[$i]->nombre_peticion=$tipo->nombre;
+            if($tipo->id==1 ||$tipo->id==2){
+                $rol=Rol::find($peticion[$i]->solicitado);
+                $peticion[$i]->nombre_solicitado=$rol->nombre;
+            }
+        }
         $json['peticiones']=$peticion;
         return response()->json([$json],200);
     }catch(Exception $e){

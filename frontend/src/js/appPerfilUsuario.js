@@ -8,11 +8,9 @@ import {
     cerrarSesion,
     subirFoto,
     obtenerRolesAsignados,
-    enviarSolicitud
+    enviarSolicitud,
+    obtenerSolicitudes,
 } from "./http/http-perfilUsuario.js"
-// const bcrypt = require('bcrypt');
-let cabecera = document.getElementById('cabecera');
-insertarCabecera()
 
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('btnFoto').style.background = 'url(' + fotoUrl + ') center / cover'
@@ -29,7 +27,24 @@ let btnEmail = document.getElementById('btnEmail')
 let btnPassword = document.getElementById('btnPassword')
 let btnOut = document.getElementById('btnOut')
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
-let btnPeticion=document.getElementById('btnPeticion')
+let btnPeticion = document.getElementById('btnPeticion')
+let cabecera = document.getElementById('cabecera');
+obtenerSolicitudes(usuario).then(function (data) {
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+    } else {
+
+        pintarPeticiones(data[0].peticiones)
+    }
+})
+
+insertarCabecera()
+
+
 inputFoto.addEventListener('change', function (event) {
     var input = event.target;
 
@@ -64,9 +79,10 @@ btnFoto.addEventListener('click', function () {
 document.getElementById('formularioFoto').addEventListener('click submit change', function (event) {
     event.preventDefault()
 })
-btnPeticion.addEventListener('click',function(){
+btnPeticion.addEventListener('click', function () {
     lanzarModalPeticion()
 })
+
 function lanzarModalGuardado() {
     document.getElementById('modal-foto').style.display = 'flex';
 
@@ -308,67 +324,98 @@ function insertarCabecera() {
 }
 
 function lanzarModalPeticion() {
-    obtenerRolesAsignados(usuario).then(function(data){
-        rellenarRoles(1,data[0].no_asignados)
-        rellenarRoles(2,data[0].asignados)
-        let rolesAlta=document.getElementById('rolesAlta')
-        let rolesBaja=document.getElementById('rolesBaja')
-        let parametros=document.getElementById('parametrosPeticion')
+    obtenerRolesAsignados(usuario).then(function (data) {
+        rellenarRoles(1, data[0].no_asignados)
+        rellenarRoles(2, data[0].asignados)
+        let rolesAlta = document.getElementById('rolesAlta')
+        let rolesBaja = document.getElementById('rolesBaja')
+        let parametros = document.getElementById('parametrosPeticion')
         let confirmar = document.getElementById('confirmarPeticion')
         let cancelar = document.getElementById('cancelarPeticion')
         let alerta = document.getElementById('alertaPeticion')
-        parametros.addEventListener('click',function(){
-            confirmar.style.display=''
-            if(parametros.value==1){
-                rolesBaja.style.display='none'
-                rolesAlta.style.display=''
-            }else{
-                rolesBaja.style.display=''
-                rolesAlta.style.display='none'
+        parametros.addEventListener('click', function () {
+            confirmar.style.display = ''
+            if (parametros.value == 1) {
+                rolesBaja.style.display = 'none'
+                rolesAlta.style.display = ''
+            } else {
+                rolesBaja.style.display = ''
+                rolesAlta.style.display = 'none'
             }
         })
         document.getElementById('modal-peticion').style.display = 'flex';
-        
+
         cancelar.addEventListener('click', function () {
             document.getElementById('modal-peticion').style.display = 'none';
         });
-        
+
         confirmar.addEventListener('click', function () {
-          let json={}
-          json['solicitud']=parametros.value
-            if(json['solicitud']==1){
+            let json = {}
+            json['solicitud'] = parametros.value
+            if (json['solicitud'] == 1) {
                 console.log(rolesAlta.value)
-                json['solicitado']=rolesAlta.value
-            }else{
-                json['solicitado']=rolesBaja.value
+                json['solicitado'] = rolesAlta.value
+            } else {
+                json['solicitado'] = rolesBaja.value
             }
-            
-            enviarSolicitud(usuario,JSON.stringify(json)).then(function(data){
-                alerta.textContent=data.mensaje
+
+            enviarSolicitud(usuario, JSON.stringify(json)).then(function (data) {
+                alerta.textContent = data.mensaje
                 window.location.reload()
             })
-            
+
         });
     })
 }
 
-function rellenarRoles(parametro,roles){
-    if(parametro==1){
-        let seleccion=document.getElementById('rolesAlta')
-        for(let i=0;i<roles.length;i++){
-           let rol=document.createElement('option')
-           rol.value=roles[i].id
-            rol.textContent=roles[i].nombre
-           seleccion.appendChild(rol)
+function rellenarRoles(parametro, roles) {
+    if (parametro == 1) {
+        let seleccion = document.getElementById('rolesAlta')
+        for (let i = 0; i < roles.length; i++) {
+            let rol = document.createElement('option')
+            rol.value = roles[i].id
+            rol.textContent = roles[i].nombre
+            seleccion.appendChild(rol)
         }
     }
-    if(parametro==2){
-        let seleccion=document.getElementById('rolesBaja')
-        for(let i=0;i<roles.length;i++){
-           let rol=document.createElement('option')
-           rol.value=roles[i].id
-            rol.textContent=roles[i].nombre
-           seleccion.appendChild(rol)
+    if (parametro == 2) {
+        let seleccion = document.getElementById('rolesBaja')
+        for (let i = 0; i < roles.length; i++) {
+            let rol = document.createElement('option')
+            rol.value = roles[i].id
+            rol.textContent = roles[i].nombre
+            seleccion.appendChild(rol)
         }
+    }
+}
+
+function pintarPeticiones(peticiones){
+    let tabla=document.getElementById('tabla_peticiones')
+    for (let i=0;i<peticiones.length;i++){
+        document.getElementById('tabla-vacia').style.display='none'
+
+        let fila=document.createElement('tr')
+
+        let celdaTipo=document.createElement('td')
+        let tipo=document.createElement('span')
+         tipo.textContent=peticiones[i].nombre_peticion
+        
+        let celdaSolicitado=document.createElement('td')
+        let solicitado=document.createElement('span')
+        solicitado.textContent=peticiones[i].nombre_solicitado
+        
+        let celdaEstado=document.createElement('td')
+        let estado=document.createElement('span')
+         estado.textContent=peticiones[i].estado
+
+        celdaTipo.appendChild(tipo)
+        celdaSolicitado.appendChild(solicitado)
+        celdaEstado.appendChild(estado)
+
+        fila.appendChild(celdaTipo)
+        fila.appendChild(celdaSolicitado)
+        fila.appendChild(celdaEstado)
+        
+        tabla.appendChild(fila)
     }
 }
