@@ -89,6 +89,16 @@ public function nuevaPeticion(Request $request,$id){
         return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
     }
 }
+public function getPeticionesUsuario($id){
+    try{
+
+        $peticion=Peticion::where('solicitante','=',$id)->get();
+        $json['peticiones']=$peticion;
+        return response()->json([$json],200);
+    }catch(Exception $e){
+        return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
+    }
+}
 
 }
 

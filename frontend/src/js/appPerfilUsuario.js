@@ -337,12 +337,16 @@ function lanzarModalPeticion() {
           let json={}
           json['solicitud']=parametros.value
             if(json['solicitud']==1){
+                console.log(rolesAlta.value)
                 json['solicitado']=rolesAlta.value
             }else{
                 json['solicitado']=rolesBaja.value
             }
             
-            console.log(JSON.stringify(json))
+            enviarSolicitud(usuario,JSON.stringify(json)).then(function(data){
+                alerta.textContent=data.mensaje
+                window.location.reload()
+            })
             
         });
     })
@@ -353,7 +357,7 @@ function rellenarRoles(parametro,roles){
         let seleccion=document.getElementById('rolesAlta')
         for(let i=0;i<roles.length;i++){
            let rol=document.createElement('option')
-           rol.id=roles[i].id
+           rol.value=roles[i].id
             rol.textContent=roles[i].nombre
            seleccion.appendChild(rol)
         }
@@ -362,7 +366,7 @@ function rellenarRoles(parametro,roles){
         let seleccion=document.getElementById('rolesBaja')
         for(let i=0;i<roles.length;i++){
            let rol=document.createElement('option')
-           rol.id=roles[i].id
+           rol.value=roles[i].id
             rol.textContent=roles[i].nombre
            seleccion.appendChild(rol)
         }
