@@ -84,15 +84,7 @@ function pintarJoyas(joyas) {
 
     botonEliminar.addEventListener('click', function (event) {
 
-      let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
-
-      if (resultado) {
-        eliminarJoya(joyas[0][i].id).then(function () {
-
-          window.location.reload()
-
-        })
-      }
+        lanzarModalBorrado(joyas[0][i].id)
 
     });
 
@@ -116,4 +108,35 @@ function pintarJoyas(joyas) {
   }
 
 
+}
+function lanzarModalBorrado(joya) {
+  let alerta=document.getElementById('alertaGuardado')
+  let confirmar=document.getElementById('confirmarGuardado')
+  let cancelar=document.getElementById('cancelarGuardado')
+  document.getElementById('modal').style.display = 'flex';
+
+  cancelar.addEventListener('click', function () {
+      document.getElementById('modal').style.display = 'none';
+  });
+
+  confirmar.addEventListener('click', function () {
+
+      cancelar.style.display='none'
+      alerta.textContent='Boraando joya...'
+      eliminarJoya(joya).then(function (data) {
+   
+          alerta.textContent=data.mensaje
+          console.log(data)
+          confirmar.textContent='Continuar'
+          confirmar.addEventListener('click',function(){
+
+              document.getElementById('modal').style.display = 'none';
+              window.location.reload()
+
+          })
+  
+      })
+   
+
+  });
 }

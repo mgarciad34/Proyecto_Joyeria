@@ -13,7 +13,7 @@ let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let botones = document.getElementById('botones')
 let btnFabricar = document.getElementById('btnFabricar')
 let disponible = true
-
+console.log(id_joya)
 obtenerRecetas(id_joya).then(function (data) {
     if (data == 202 || data == 302) {
         if (data == 202) {
@@ -22,7 +22,7 @@ obtenerRecetas(id_joya).then(function (data) {
             window.location.href = '../index.html'
         }
     } else {
-
+        document.getElementById('nombreJoya').textContent=data.nombre
         pintarRecetas(data)
     }
 })
@@ -42,31 +42,18 @@ isOwner(id_joya, usuario).then(function (data) {
 })
 btnFabricar.addEventListener('click', function () {
     if (!disponible) {
-        alert('Recursos insuficientes')
+        lanzarModalErrores('Recursos insuficientes')
     } else {
-        var resultado = confirm("¿Estás seguro de que deseas continuar?");
-        if (resultado) {
+        lanzarModal(1);
 
-
-            fabricarJoya(id_joya, usuario).then(function (data) {
-
-                window.location.reload()
-            })
-        }
     }
 })
 
 function pintarRecetas(recetas) {
     let tabla = document.getElementById('tabla_receta');
-
     for (let i = 0; i < recetas.detalle.length; i++) {
 
         let fila = document.createElement('tr');
-
-        let idCelda = document.createElement('td');
-        let id = document.createElement('span');
-        id.textContent = recetas.detalle[i].id_componente
-
 
         let tipoCelda = document.createElement('td');
         let tipo = document.createElement('span');
@@ -88,35 +75,15 @@ function pintarRecetas(recetas) {
             btnFabricar.disabled = true
         }
 
-        let rellenoCelda = document.createElement('td')
-        let relleno = document.createElement('span')
-        relleno.textContent = ''
-        rellenoCelda.appendChild(relleno)
-
-        let rellenoCelda2 = document.createElement('td')
-        let relleno2 = document.createElement('span')
-        relleno2.textContent = ''
-        rellenoCelda2.appendChild(relleno2)
-
-        let rellenoCelda3 = document.createElement('td')
-        let relleno3 = document.createElement('span')
-        relleno3.textContent = ''
-        rellenoCelda3.appendChild(relleno3)
-
-
-
-        idCelda.appendChild(id)
         tipoCelda.appendChild(tipo)
         cNecesariaCelda.appendChild(cantidadNecesaria);
         cDisponibleCelda.appendChild(cantidadDisponible);
-
-        fila.appendChild(idCelda);
+        cDisponibleCelda.setAttribute('colspan','4')
+      
         fila.appendChild(tipoCelda);
         fila.appendChild(cNecesariaCelda);
         fila.appendChild(cDisponibleCelda);
-        fila.appendChild(rellenoCelda)
-        fila.appendChild(rellenoCelda2)
-        fila.appendChild(rellenoCelda3)
+
 
         tabla.appendChild(fila);
     }
@@ -135,14 +102,8 @@ function addOwnerBotones() {
 
     botonEliminar.addEventListener('click', function (event) {
 
-        let resultado = confirm('¿Estas seguro que deseas eliminar esta joya? ')
+         lanzarModal(2)
 
-        if (resultado) {
-            eliminarJoya(id_joya).then(function () {
-                window.location.href = './listaJoyas.html'
-
-            })
-        }
 
     });
 
@@ -162,4 +123,69 @@ function addOwnerBotones() {
     botonModificarCelda.appendChild(botonModificar)
 
 
+}
+
+function lanzarModal(accion) {
+    let alerta = document.getElementById('alertaModal')
+    let confirmar = document.getElementById('confirmarGuardado')
+    let cancelar = document.getElementById('cancelarGuardado')
+    document.getElementById('modal').style.display = 'flex';
+
+
+    cancelar.addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+    });
+    if (accion == 1) {
+        alerta.textContent = '¿Esta seguro que desea continuar?.'
+        confirmar.addEventListener('click', function () {
+            cancelar.style.display = 'none'
+            alerta.textContent = 'Fabricando...'
+            fabricarJoya(id_joya, usuario).then(function (data) {
+
+                alerta.textContent = 'Fabricado correctamente'
+                confirmar.textContent = 'Continuar'
+                confirmar.addEventListener('click', function () {
+
+                    document.getElementById('modal').style.display = 'none';
+                    window.location.reload()
+
+                })
+
+            })
+
+
+        });
+
+
+
+    } else {
+        alerta.textContent = '¿Esta seguro que desea eliminar la joya?.'
+        confirmar.addEventListener('click', function () {
+            cancelar.style.display = 'none'
+            alerta.textContent = 'Eliminando joya..'
+            eliminarJoya(id_joya).then(function (data) {
+
+                alerta.textContent = data.mensaje
+                confirmar.textContent = 'Continuar'
+                confirmar.addEventListener('click', function () {
+
+                    document.getElementById('modal').style.display = 'none';
+                    window.location.reload()
+
+                })
+
+            })
+
+
+        });
+
+    }
+}
+
+function lanzarModalErrores(mensaje) {
+    document.getElementById('modal-errores').style.display = 'flex';
+    document.getElementById('mensajeErrores').innerHTML = mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click', function () {
+        document.getElementById('modal-errores').style.display = 'none';
+    })
 }

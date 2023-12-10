@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('longitud');
             $table->string('estado');
             $table->unsignedBigInteger('id_clasificador')->default(0);
-            $table->foreign('id_empresa')->references('id')->on('users');
+            $table->foreign('id_empresa')->references('id')->on('users')->onDelete('cascade');
             
         });
     }
