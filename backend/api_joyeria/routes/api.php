@@ -55,6 +55,7 @@ Route::middleware('cors')->group( function () {
           Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
           Route::put('/modificar/componente/{id}', [ControladorTipos::class, 'modificarComponente']);
           Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
+          Route::get('/peticiones', [ControladorAdministrador::class, 'consultarPeticiones']);
         });
     });
     

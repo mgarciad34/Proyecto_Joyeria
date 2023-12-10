@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
 use App\Models\Rol;
+use App\Models\Peticion;
 
 class ControladorAdministrador extends Controller
 {
@@ -171,4 +172,8 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
         }
     }
 
+    public function consultarPeticiones(){
+        $peticiones=Peticion::all();
+        return response()->json(['peticiones'=>$peticiones]);
+    }
 }
