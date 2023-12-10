@@ -1,10 +1,11 @@
 import {
-    obtenerTipos,registrarComponente
+    obtenerTipos,
+    registrarComponente
 } from "./http/http-crearTiposClasificador.js";
 
-let fotoUrl=sessionStorage.getItem('foto-url')
-document.getElementById('fotoNav').src=fotoUrl
-sessionStorage.setItem('ultimo-acceso',JSON.stringify('clasificador'))
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))
 
 let tabla = document.getElementById('tabla_tipos');
 let inputNombre = document.getElementById('inputNombre');
@@ -15,7 +16,18 @@ inputCantidad.value = 0
 inputNombre.value = ''
 
 obtenerTipos().then(function (data) {
-    pintarTipos(data);
+    console.log(data)
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+
+    } else {
+
+        pintarTipos(data);
+    }
 
 });
 btnAdd.addEventListener('click', function () {
@@ -98,13 +110,13 @@ function lanzarModalGuardado(json) {
         registrarComponente(json).then(function (data) {
             document.getElementById('modal').style.display = 'none';
             console.log(data.message)
-            if(data.codigo==400){
+            if (data.codigo == 400) {
                 lanzarModalErrores(data.message)
-            }else{
+            } else {
 
                 lanzarModalPeticion(data.message)
             }
-        })  
+        })
 
     });
 }

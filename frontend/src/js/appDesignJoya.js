@@ -1,33 +1,48 @@
-import { obtenerTipos,guardarNuevaJoya, subirFoto } from "./http/http-designJoya.js"
+import {
+    obtenerTipos,
+    guardarNuevaJoya,
+    subirFoto
+} from "./http/http-designJoya.js"
 
 
-let fotoUrl=sessionStorage.getItem('foto-url')
-document.getElementById('fotoNav').src=fotoUrl
-sessionStorage.setItem('ultimo-acceso',JSON.stringify('diseñador'))
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
 
-let formData= null
+let formData = null
 let btnAdd = document.getElementById('btnNuevoElementoReceta')
 let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
-let usuario=JSON.parse(sessionStorage.getItem('id-usuario'))
+let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 
-let carga= document.getElementById('carga')
+let carga = document.getElementById('carga')
 
 
 
 document.getElementById('formulario').reset()
-inputNombre.value=''
-btnAdd.disabled=true
-btnGuardar.disabled=true
+inputNombre.value = ''
+btnAdd.disabled = true
+btnGuardar.disabled = true
 obtenerTipos().then(function (data) {
-    let desplegable = document.getElementById('tipos-habilitados')
-    
-    for (let i = 0; i < data.tipos.length; i++) {
-        const opcion = document.createElement('option');
-        opcion.value = data.tipos[i].id;
-        opcion.textContent = opcion.value + '. ' + data.tipos[i].nombre;
-        desplegable.appendChild(opcion)
+
+    if (data == 202 || data == 302) {
+        if (data == 202) {
+            window.location.href = './redirect.html'
+        } else {
+            window.location.href = '../index.html'
+        }
+
+    } else {
+
+        let desplegable = document.getElementById('tipos-habilitados')
+
+        for (let i = 0; i < data.tipos.length; i++) {
+            const opcion = document.createElement('option');
+            opcion.value = data.tipos[i].id;
+            opcion.textContent = opcion.value + '. ' + data.tipos[i].nombre;
+            desplegable.appendChild(opcion)
+        }
     }
 
 })
@@ -50,11 +65,11 @@ inputNombre.addEventListener('input', function () {
 
 inputFoto.addEventListener('change', function (event) {
     var input = event.target;
-            
+
     if (input.files && input.files[0]) {
         var fotoUrl2 = URL.createObjectURL(input.files[0]);
-        document.getElementById('lblFoto').style.background='url('+fotoUrl2+') center / cover'
-        sessionStorage.setItem('nueva-foto',JSON.stringify(fotoUrl2))
+        document.getElementById('lblFoto').style.background = 'url(' + fotoUrl2 + ') center / cover'
+        sessionStorage.setItem('nueva-foto', JSON.stringify(fotoUrl2))
 
     }
     carga.classList.remove('spinner');
@@ -82,12 +97,12 @@ inputFoto.addEventListener('change', function (event) {
 btnGuardar.addEventListener('click', function () {
     let tbody = document.getElementById('detalle-receta')
     let joya = {}
-    
+
     joya.nombre = inputNombre.value
     joya.foto = inputFoto.value
-    joya.id_usuario=usuario
+    joya.id_usuario = usuario
     joya.detalle = []
-    
+
 
     for (let i = 0; i < tbody.rows.length; i++) {
         let fila = tbody.rows[i];
@@ -100,10 +115,10 @@ btnGuardar.addEventListener('click', function () {
 
         joya.detalle.push(componente)
     }
-   
+
     lanzarModalGuardado(joya)
-   
-    
+
+
 })
 
 
@@ -112,9 +127,9 @@ btnAdd.addEventListener('click', function () {
 
     let inputCantidad = document.getElementById('inputCantidad').value
     let validaciones = [true]
-    let mensaje =''
-   
-    if (inputCantidad == ''|| inputCantidad.includes('-') ||inputCantidad=='0') {
+    let mensaje = ''
+
+    if (inputCantidad == '' || inputCantidad.includes('-') || inputCantidad == '0') {
         mensaje = mensaje + ' Debe introducir una cantidad \n'
         validaciones.push(false)
 
@@ -176,33 +191,44 @@ function tablaVacia(tabla) {
     }
     return vacia
 }
-function lanzarModalGuardado(joya){
 
-document.getElementById('modal').style.display = 'flex';
-  
-  
-  document.getElementById('cancelarGuardado').addEventListener('click', function() {
-    document.getElementById('modal').style.display = 'none';
-  });
-  
-  document.getElementById('confirmarGuardado').addEventListener('click', function() {
-    guardarNuevaJoya(joya).then(function (data) {
-        let formulario=document.getElementById('formulario')
-                subirFoto(formulario,data.id).then(function(data){
+function lanzarModalGuardado(joya) {
+
+    document.getElementById('modal').style.display = 'flex';
+
+
+    document.getElementById('cancelarGuardado').addEventListener('click', function () {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    document.getElementById('confirmarGuardado').addEventListener('click', function () {
+        guardarNuevaJoya(joya).then(function (data) {
+            if (data == 202 || data == 302) {
+                if (data == 202) {
+                    window.location.href = './redirect.html'
+                } else {
+                    window.location.href = '../index.html'
+                }
+
+            } else {
+
+                let formulario = document.getElementById('formulario')
+                subirFoto(formulario, data.id).then(function (data) {
                     console.log(data)
                     formulario.reset()
-                    window.location.href='listaJoyas.html'
+                    window.location.href = 'listaJoyas.html'
                 })
-            })
-    document.getElementById('modal').style.display = 'none';
+            }
+        })
+        document.getElementById('modal').style.display = 'none';
 
-  });
+    });
 }
 
-function lanzarModalErrores(mensaje){
+function lanzarModalErrores(mensaje) {
     document.getElementById('modal-errores').style.display = 'flex';
-    document.getElementById('mensajeErrores').textContent=mensaje
-    document.getElementById('cerrarModalErrores').addEventListener('click',function(){
+    document.getElementById('mensajeErrores').textContent = mensaje
+    document.getElementById('cerrarModalErrores').addEventListener('click', function () {
         document.getElementById('modal-errores').style.display = 'none';
     })
 }

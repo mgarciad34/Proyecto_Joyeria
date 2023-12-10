@@ -20,12 +20,16 @@ class LoteFactory extends Factory
     public function definition(): array
     
     {
+        $clasificador=0;
+        if(count($this->estados)==2){
+            $clasificador=2;
+        }
         return [
             'estado' =>array_pop($this->estados),
             'latitud'=>strval(rand(0,10000)),
             'longitud'=>strval(rand(0,10000)),
             'id_empresa'=>1,
-            
+            'id_clasificador'=>$clasificador
         ];
     }
 }

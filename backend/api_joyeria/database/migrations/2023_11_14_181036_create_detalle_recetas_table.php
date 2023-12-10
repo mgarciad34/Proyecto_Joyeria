@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_componente');
             $table->integer('cantidad');
           
-            $table->foreign('id_joya')->references('id')->on('joyas');
-            $table->foreign('id_componente')->references('id')->on('tipos_componentes');
+            $table->foreign('id_joya')->references('id')->on('joyas')->onDelete('cascade');
+            $table->foreign('id_componente')->references('id')->on('tipos_componentes')->onDelete('cascade');
             
         });
     }
