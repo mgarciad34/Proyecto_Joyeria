@@ -26,7 +26,7 @@ class ControladorLote extends Controller
             $lote = Lote::find($id);
             if ($lote) {
                 $lote->delete();
-    
+
                 return response()->json(['mensaje' => 'Lote eliminado correctamente'], 200);
             } else {
                 return response()->json(['mensaje' => 'Lote no encontrado'], 404);
@@ -35,14 +35,14 @@ class ControladorLote extends Controller
             return response()->json(['mensaje' => 'Error al eliminar el lote'], 500);
         }
     }
-    
+
 
     function consultarLotesEntregadosID($id_empresa){
         try{
             $lotes = Lote::where('estado', '=', 'entregado')
                           ->where('id_empresa', '=', $id_empresa)
                           ->get();
-    
+
             $json['lotes'] = $lotes;
             return response()->json([$json], 200);
         } catch(Exception $e){
@@ -54,7 +54,7 @@ class ControladorLote extends Controller
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
     }
-    
+
 
     function insertarLote(Request $request){
         $request->validate([
