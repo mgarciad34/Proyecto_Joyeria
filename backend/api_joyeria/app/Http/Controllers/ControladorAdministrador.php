@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\RolAsignado;
 use App\Models\Rol;
 use App\Models\Peticion;
+use App\Models\TipoPeticion;
+use Exception;
 
 class ControladorAdministrador extends Controller
 {
@@ -173,7 +175,51 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     }
 
     public function consultarPeticiones(){
-        $peticiones=Peticion::all();
-        return response()->json(['peticiones'=>$peticiones]);
+        try{
+
+            
+            $peticiones=Peticion::all();
+            for($i=0;$i<count($peticiones);$i++){
+                
+                $tipos=TipoPeticion::find($peticiones[$i]->solicitud);
+                
+                $usuario=User::find($peticiones[$i]->solicitante);
+                $peticiones[$i]->solicitante_nombre=$usuario->name;
+                $peticiones[$i]->solicitud_nombre=$tipos->nombre;
+                if($peticiones[$i]->solicitud==1||$peticiones[$i]->solicitud==2){
+                    $rol=Rol::find($peticiones[$i]->solicitado);
+                    $peticiones[$i]->solicitado_nombre=$rol->nombre;
+                }
+            }
+            return response()->json(['peticiones'=>$peticiones],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al obtener las peticiones',400]);
+        }
+        }
+    public function actualizarPeticion($id,Request $request){
+        try{
+
+            $peticion=Peticion::find($id);
+            $estado=$request->get('estado');
+            if($estado=='aceptado'){
+                
+                if($peticion->solicitud==1){
+                    $asignacion=new RolAsignado();
+                    $asignacion->id_rol=$peticion->solicitado;
+                    $asignacion->id_usuario=$peticion->solicitante;
+                    $asignacion->save();
+                }
+                if($peticion->solicitud==2){
+                    $asignacion=RolAsignado::where('id_usuario','=',$peticion->solicitante)->where('id_rol','=',$peticion->solicitado);
+                    $asignacion->delete();
+                }
+                
+            }
+            $peticion->estado=$estado;
+            $peticion->save();
+            return response()->json(['mensaje'=>'Actualizado correctamente'],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'Error al actualizar la peticion',200]);
+        }
     }
 }
