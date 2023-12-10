@@ -59,7 +59,7 @@ Route::middleware('cors')->group( function () {
 
     Route::prefix('lotes')->group(function () {
             Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
-            Route::get('entregados/{id}', [ControladorLote::class, 'consultarLotesEntregadosID']);
+            Route::get('entregados/{id}', [ControladorLote::class, 'consultarLotesEntregadosID'])->middleware('ColabMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
             Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
