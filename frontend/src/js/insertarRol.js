@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('No se encontró el elemento con ID "selUsuario".');
             return;
         }
-        if (sessionStorage.getItem("acceso") == "Administrador") {
+        if (sessionStorage.getItem("ultimo-acceso") == "Administrador") {
             obtenerDatos()
                 .then(response => {
                     const usuarios = response.usuarios;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
-    if (sessionStorage.getItem("acceso") == "Administrador") {
+    if (sessionStorage.getItem("ultimo-acceso") == "administrador") {
         var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
         enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario');
         window.location.href = "indexAdministrador.html";

@@ -102,7 +102,7 @@ btnregistro.addEventListener('click', function (event) {
         if (token != null) {
             enviarDatos(nuevoUsuario, url)
                 .then(function () {
-                    if (sessionStorage.getItem("acceso") == "Administrador") {
+                    if (sessionStorage.getItem("ultimo-acceso") == "administrador") {
                         window.location.href = "indexAdministrador.html";
                     } else {
                         window.location.href = 'redirect.html';
