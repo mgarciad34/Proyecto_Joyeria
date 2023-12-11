@@ -2,69 +2,66 @@
 import { cancelarLote } from './http/http-cancelarLote.js';
 import { obtenerDatos } from './http/http-consultarLotesUsuario.js';
 
-
 document.addEventListener('DOMContentLoaded', () => {
     var id = sessionStorage.getItem('id-usuario');
 
     obtenerDatos(id)
         .then(responseArray => {
-            
-            if (Array.isArray(responseArray) && responseArray.length > 0) {
-                const response = responseArray[0];
+            if (sessionStorage.getItem("token") != null) {
+                if (Array.isArray(responseArray) && responseArray.length > 0) {
+                    const response = responseArray[0];
 
-                if (response && response.lotes && Array.isArray(response.lotes)) {
-                    const lotes = response.lotes;
-                    const tbody = document.getElementById('data');
+                    if (response && response.lotes && Array.isArray(response.lotes)) {
+                        const lotes = response.lotes;
+                        const tbody = document.getElementById('data');
 
-                    tbody.innerHTML = '';
+                        tbody.innerHTML = '';
 
-                    lotes.forEach(item => {
-                        const fila = document.createElement('tr');
+                        lotes.forEach(item => {
+                            const fila = document.createElement('tr');
 
-                        const columna1 = document.createElement('td');
-                        columna1.textContent = item.id; 
-                        fila.appendChild(columna1);
+                            const columnas = ['id', 'id_empresa', 'estado'];
+                            columnas.forEach(columna => {
+                                const nuevaColumna = document.createElement('td');
+                                nuevaColumna.textContent = item[columna];
+                                fila.appendChild(nuevaColumna);
+                            });
 
-                        const columna2 = document.createElement('td');
-                        columna2.textContent = item.id_empresa; 
-                        fila.appendChild(columna2);
+                            const columnaBotones = document.createElement('td');
 
-                        const columna3 = document.createElement('td');
-                        columna3.textContent = item.estado;
-                        fila.appendChild(columna3);
+                            const crearBoton = (texto, className, clickHandler) => {
+                                const boton = document.createElement('button');
+                                boton.textContent = texto;
+                                boton.className = `btn btn status ${className}`;
+                                boton.addEventListener('click', clickHandler);
+                                return boton;
+                            };
 
-                        const columnaBotones = document.createElement('td');
+                            const btnEditar = crearBoton('Mostrar Mapa', 'cancelled', function () {
+                                window.open(`https://www.google.com/maps?q=${item.latitud},${item.longitud}`, '_blank');
+                            });
 
-                        const btnEditar = document.createElement('button');
-                        btnEditar.textContent = 'Mostrar Mapa';
-                        btnEditar.className = 'btn btn status cancelled';
-                        btnEditar.addEventListener('click', function(){
-                            window.open('https://www.google.com/maps?q=' + item.latitud + ',' + item.longitud, '_blank');
+                            const btnEliminar = crearBoton('Cancelar Entrega', 'cancelled', function () {
+                                cancelarLote(item.id);
+                                window.location.href = 'IndexColaborador.html';
+                            });
+
+                            columnaBotones.appendChild(btnEditar);
+                            columnaBotones.appendChild(btnEliminar);
+
+                            fila.appendChild(columnaBotones);
+
+                            tbody.appendChild(fila);
                         });
-
-                        columnaBotones.appendChild(btnEditar);
-
-                        const btnEliminar = document.createElement('button');
-                        btnEliminar.textContent = 'Cancelar Entrega';
-                        btnEliminar.className = 'btn btn status cancelled';
-                        btnEliminar.addEventListener('click', function(){
-                            cancelarLote(item.id)
-                            window.location.href="IndexColaborador.html";
-                        })
-                        columnaBotones.appendChild(btnEliminar);
-
-                        fila.appendChild(columnaBotones);
-
-                        tbody.appendChild(fila);
-                    });
+                    } else {
+                        console.error('La respuesta de la API no tiene la estructura esperada:', response);
+                    }
                 } else {
-                    console.error('La respuesta de la API no tiene la estructura esperada:', response);
+                    window.location.href='redirect.html';
                 }
-            } else {
-                console.error('La respuesta de la API está vacía o no es un array:', responseArray);
             }
         })
         .catch(error => {
-            console.error('Error al obtener datos:', error);
+            window.location.href='redirect.html';
         });
 });

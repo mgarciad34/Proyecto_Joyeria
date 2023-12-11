@@ -16,22 +16,24 @@ use App\Http\Controllers\ControladorJoya;
 use App\Http\Controllers\ControladorRec;
 
 Route::middleware('cors')->group( function () {
-  
-    
+
+
     //Registro de usuarios
     Route::post('/usuarios', [ControladorUsuarios::class, 'crearUsuario']);
-    
+
     //Login y Logout usuario
     Route::post('login', [ControladorAuth::class, 'login']);
     Route::post('logout/{id}', [ControladorAuth::class, 'logout']);
 
     //Obtener roles por id
     Route::get('/roles/{id}', [ControladorRolAsignado::class, 'obtenerRolesId']);
-    
+
     Route::get('', function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
-    
+
+    //Rutas agrupadas del administrador
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){
             Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
@@ -59,21 +61,27 @@ Route::middleware('cors')->group( function () {
           Route::put('/peticiones/{id}', [ControladorAdministrador::class, 'actualizarPeticion']);
         });
     });
-    
-  
+
+
     Route::prefix('lotes')->group(function () {
             Route::get('entregados', [ControladorLote::class, 'consultarLotesEntregados'])->middleware('ClasiMid');
-            Route::get('entregados/{id}', [ControladorLote::class, 'consultarLotesEntregadosID'])->middleware('ClasiMid');
+            Route::get('entregados/{id}', [ControladorLote::class, 'consultarLotesEntregadosID'])->middleware('ColabMid');
             Route::get('clasificados', [ControladorLote::class, 'consultarLotesClasificados'])->middleware('ClasiMid');
             Route::post('agregar/lote', [ControladorLote::class, 'insertarLote'])->middleware('ColabMid');
             Route::put('modificar/estado/{id}', [ControladorLote::class, 'cambiarEstadoLote'])->middleware('ColabMid');
             Route::get('consultar', [ControladorLote::class, 'consultarLotes'])->middleware('ColabMid');
             Route::delete('/eliminar/{id}', [ControladorLote::class, 'eliminarLote'])->middleware('ColabMid');
             Route::get('consultar/{id}', [ControladorLote::class, 'consultarLote'])->middleware('ColabMid');
-            
+
         });
-  
-   
+
+    //** Preguntar a Fernando como hacer que compruebe dos middleware pero que con uno pase */
+    Route::prefix('tipos')->group(function () {
+        Route::get('', [ControladorTipos::class, 'consultarTipos']);
+        Route::post('', [ControladorTipos::class, 'insertarComponente']);
+    });
+      
+      
     Route::middleware('ClasiMid')->group(function () {
         Route::prefix('despieces')->group(function () {
             Route::get('', [ControladorDespieceLotes::class, 'getAllDespieces']);
@@ -87,8 +95,8 @@ Route::middleware('cors')->group( function () {
                 Route::post('', [ControladorTipos::class, 'insertarComponente']);
             });
         });
-    
-        
+
+
     });
     Route::middleware('DesignMid')->group(function () {
         Route::prefix('joyas')->group(function () {

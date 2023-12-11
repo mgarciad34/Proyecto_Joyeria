@@ -87,8 +87,8 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             $idRol = $request->input('idRol');
         }
 
-        $registroExistente = RolAsignado::where('idusuario', $idUsuario)
-                                        ->where('idrol', $idRol)
+        $registroExistente = RolAsignado::where('id_usuario', $idUsuario)
+                                        ->where('id_rol', $idRol)
                                         ->exists();
 
         if ($registroExistente) {
@@ -108,8 +108,8 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
         }
 
         RolAsignado::create([
-            'idusuario' => $idUsuario,
-            'idrol' => $idRol,
+            'id_usuario' => $idUsuario,
+            'id_rol' => $idRol,
         ]);
 
         return response()->json(['message' => 'Rol asignado exitosamente'], 201);
@@ -143,8 +143,8 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
                 return response()->json(['error' => 'El rol no existe'], 404);
             }
 
-            $rolAsignado = RolAsignado::where('idusuario', $idUsuario)
-            ->where('idrol', $idRol)->first();
+            $rolAsignado = RolAsignado::where('id_usuario', $idUsuario)
+            ->where('id_rol', $idRol)->first();
 
             if (!$rolAsignado) {
                 return response()->json(['error' => 'El rol no está asignado al usuario'], 404);
