@@ -191,9 +191,10 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
                     $peticiones[$i]->solicitado_nombre=$rol->nombre;
                 }
             }
-            return response()->json(['peticiones'=>$peticiones],200);
+            $json['peticiones']=$peticiones;
+            return response()->json([$json],200);
         }catch(Exception $e){
-            return response()->json(['mensaje'=>'Error al obtener las peticiones',400]);
+            return response()->json(['mensaje'=>'Error al obtener las peticiones','error'=>$e->getMessage(),400]);
         }
         }
     public function actualizarPeticion($id,Request $request){

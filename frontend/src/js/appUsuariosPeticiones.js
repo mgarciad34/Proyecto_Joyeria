@@ -3,7 +3,8 @@ import { obtenerSolicitudes,actualizarPeticion } from "./http/http-peticionesUsu
 let tabla = document.getElementById('tabla_peticiones')
 
 obtenerSolicitudes().then(function(data){
-   pintarSolicitudes(data.peticiones)
+   
+   pintarSolicitudes(data[0].peticiones)
 })
 
 function pintarSolicitudes(solicitudes){

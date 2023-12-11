@@ -361,7 +361,11 @@ function lanzarModalPeticion() {
 
             enviarSolicitud(usuario, JSON.stringify(json)).then(function (data) {
                 alerta.textContent = data.mensaje
-                window.location.reload()
+                confirmar.style.display='none'
+                cancelar.textContent='Continuar'
+                cancelar.addEventListener('click',function(){
+                    window.location.reload()
+                })
             })
 
         });
