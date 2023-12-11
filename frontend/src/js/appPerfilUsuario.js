@@ -47,6 +47,7 @@ insertarCabecera()
 
 inputFoto.addEventListener('change', function (event) {
     var input = event.target;
+    document.getElementById('lblFoto').classList.remove('fotoModal')
 
     if (input.files && input.files[0]) {
         var fotoUrl2 = URL.createObjectURL(input.files[0]);
@@ -56,6 +57,7 @@ inputFoto.addEventListener('change', function (event) {
     sessionStorage.setItem('nueva-foto', JSON.stringify(fotoUrl2))
     document.getElementById('confirmarGuardado').style.display = ''
     document.getElementById('alertaFoto').textContent = '¿Estas seguro que deseas guardar esta foto?'
+    document.getElementById('lblFoto').classList.add('fotoModal2')
 })
 
 btnEmail.addEventListener('click', function () {
@@ -91,6 +93,8 @@ function lanzarModalGuardado() {
         lblFoto.style.background = 'url(' + fotoUrl + ') center / cover'
         document.getElementById('alertaFoto').textContent = 'Selecciona una nueva foto'
     });
+    lblFoto.classList.remove('fotoModal')
+    lblFoto.classList.add('fotoModal')
 
     document.getElementById('confirmarGuardado').addEventListener('click', function () {
         let formData = document.getElementById('formularioFoto')
@@ -122,9 +126,7 @@ function lanzarModalGuardado() {
                     window.location.reload(true)
                 });
             }, 2000);
-        }).catch(function (error) {
-            window.location.href = '../index.html'
-        });
+        })
 
     });
 }
