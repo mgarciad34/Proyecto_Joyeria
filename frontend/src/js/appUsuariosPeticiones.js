@@ -64,6 +64,12 @@ function pintarSolicitudes(solicitudes){
                 lanzarModalActualizacion(solicitudes[i].id,json)
                
             })
+            botonRechazar.addEventListener('click',function(){
+                let json={}
+                json['estado']='denegado'
+                lanzarModalActualizacion(solicitudes[i].id,json)
+               
+            })
             fila.appendChild(botonAceptarCelda)
             fila.appendChild(botonRechazarCelda)
         }

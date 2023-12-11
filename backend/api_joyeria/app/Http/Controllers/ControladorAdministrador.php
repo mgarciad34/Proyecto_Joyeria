@@ -8,6 +8,7 @@ use App\Models\RolAsignado;
 use App\Models\Rol;
 use App\Models\Peticion;
 use App\Models\TipoPeticion;
+use Illuminate\Support\Facades\Mail;
 use Exception;
 
 class ControladorAdministrador extends Controller
@@ -219,9 +220,32 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             }
             $peticion->estado=$estado;
             $peticion->save();
+            $this->enviarMail($peticion);
             return response()->json(['mensaje'=>'Actualizado correctamente'],200);
         }catch(Exception $e){
-            return response()->json(['mensaje'=>'Error al actualizar la peticion',200]);
+            return response()->json(['mensaje'=>'Error al actualizar la peticion',$e->getMessage(),$peticion],500);
         }
+    }
+/**Óscar */
+    function enviarMail($peticion){
+        $usuario=User::find($peticion->solicitante);
+       
+        $tipo=TipoPeticion::find($peticion->solicitud);
+        $rol=Rol::find($peticion->solicitado);
+       
+        $datos=[
+            'email'=>$usuario->email,
+            'tipo'=>$tipo->nombre,
+            'solicitado'=>$rol->nombre,
+            'estado'=>$peticion->estado,
+        
+        ];
+    
+        $email=$datos['email'];
+        Mail::send('correo',$datos,function($message) use ($email){
+            $message->to($email)->subject('Actualizacion peticion');
+            $message->from('support@gitignore.tech','Se ha actualizado su solicitud');
+        });
+        return response()->json(['mensaje'=>'Email enviado correctamente'],200);
     }
 }
