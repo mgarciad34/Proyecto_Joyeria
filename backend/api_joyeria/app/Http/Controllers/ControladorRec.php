@@ -86,9 +86,13 @@ class ControladorRec extends Controller
     function algoritmoReceta()
     {
         try{
-
+            /**Se obtienen 3 numeros entre el minimo de componentes que tiene una receta y el maximo.
+             * Se resta de la media de componentes que suelen tener las recetas.
+             * Se puntua el valor absoluto del numero en base a lo mas cercano de la media este siendo el mejor
+             * el que obtenga 0 de puntuacion al ser el mismo que la media y de ahi obtenemos cuantos componentes tendra
+             */
             $parametroGeneral = 3;
-            $numeroComponentes = DB::select("SELECT MAX(contador) as 'maximo', 
+            $numeroComponentes = DB::select("SELECT MAX(contador) as 'maximo',
     MIN(contador) as 'minimo',
     ROUND(AVG(contador)) as 'media'
     FROM ( SELECT COUNT(id_joya)
@@ -115,7 +119,17 @@ class ControladorRec extends Controller
         }
         $receta = [];
         $ids = Tipos_componente::all();
-        
+        /**
+         * Una vez obtenido el numero de componente que necesitaremos 
+         * obtendremos 3 componentes aleatorios a los que se les puntuara
+         * 1- El numero de recetas en las que aparece restandolo sobre el numero de recetas totales. 
+         * Esta puntuacion sera el 80% del total.
+         * 2- La cantidad disponible sera restado por la media de la cantidad disponible de todos los componentes.
+         * Esta puntuacion sera del 20% del total.
+         * Una vez generadas las 3 joyas nos quedamos con la que mas puntuacion tenga y solo si no se encuentra en la
+         * receta ya, se incluira.
+         * En caso de estar en la receta se repetira la seleccion de un nuevo componente
+         */
         while (count($receta) < $numeroComponentesResultado['numero']) {
             
             $componentes = [];
@@ -137,9 +151,9 @@ class ControladorRec extends Controller
         
                 $componentes[$x]['puntuacion']=
                 ($parametrosPuntuacionesComponentes['apariciones'][0]
-                ->total-$parametrosPuntuacionesComponentes['apariciones'][1]->total)*0.5;
+                ->total-$parametrosPuntuacionesComponentes['apariciones'][1]->total)*0.8;
 
-                $componentes[$x]['puntuacion']+=$parametrosPuntuacionesComponentes['disponibilidad'][0]->porcentaje*0.5;
+                $componentes[$x]['puntuacion']+=$parametrosPuntuacionesComponentes['disponibilidad'][0]->porcentaje*0.2;
             }
             $ganador=$componentes[0];
             for($x=1;$x<count($componentes);$x++){
@@ -158,12 +172,18 @@ class ControladorRec extends Controller
                 $receta[]=$ganador;
             }
         }
-
+        /**La cantidad necesaria para cada componente sera la media de cantidad de ese componente que se utiliza
+         * en otras recetas. Si no aparecen en ninguna receta , el valor sera 1
+         * 
+         * 
+         * Se podria repetir todo el proceso hasta obtener una joya con una puntuacion minima parametrizada
+         * pero se necesitarian mas datos para obtener mejores puntuaciones.
+         */
         for($x=0;$x<count($receta);$x++){
             $cantidad = DB::select("SELECT ROUND(COALESCE(AVG(cantidad), 1)) AS cantidad
             FROM `detalle_recetas`
             WHERE id_componente = ?",[$receta[$x]->id]);
-            $receta[$x]->cantidad=$cantidad[0];
+            $receta[$x]->cantidad=$cantidad[0]->cantidad;
         }
         $json=[];
         $json['receta']=$receta;
