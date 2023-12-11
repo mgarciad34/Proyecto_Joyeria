@@ -5,6 +5,7 @@ import {
     actualizarJoya,
     subirFoto
 } from "./http/http-modificarJoya.js";
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 let idJoya = JSON.parse(sessionStorage.getItem('joya-guardada'))

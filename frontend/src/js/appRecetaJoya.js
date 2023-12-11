@@ -4,6 +4,7 @@ import {
     isOwner,
     eliminarJoya
 } from './http/http-receta-joya.js'
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
@@ -13,7 +14,7 @@ let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let botones = document.getElementById('botones')
 let btnFabricar = document.getElementById('btnFabricar')
 let disponible = true
-console.log(id_joya)
+
 obtenerRecetas(id_joya).then(function (data) {
     if (data == 202 || data == 302) {
         if (data == 202) {

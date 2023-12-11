@@ -110,7 +110,7 @@ class ControladorJoya extends Controller
             $historico->creado = now();
             $historico->save();
             $receta = Detalle_receta::where('id_joya', '=', $id)->get();
-            print_r($receta[0]->id_componente);
+   
             for ($i = 0; $i < count($receta); $i++) {
                 $tipo = Tipos_componente::find($receta[$i]->id_componente);
                 $tipo->cantidad -= $receta[$i]->cantidad;
@@ -265,6 +265,7 @@ class ControladorJoya extends Controller
             return response()->json(['mensaje' => 'Error al obtener las joyas fabricables'], 500);
         }
     }
+     /**Óscar */
     function getRecomendaciones($parametro)
     {
         try {

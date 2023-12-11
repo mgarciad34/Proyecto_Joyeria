@@ -1,4 +1,5 @@
 export async function obtenerJoyas() {
+     /**Óscar */
     try {
         let token = sessionStorage.getItem('token')
         const options = {

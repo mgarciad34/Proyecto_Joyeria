@@ -1,4 +1,5 @@
 export async function obtenerLotes() {
+     /**Óscar */
     try {
         let token = sessionStorage.getItem('token')
         const options = {

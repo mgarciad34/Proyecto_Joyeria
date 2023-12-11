@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TipoPeticion>
  */
+ /**Óscar */
 class TipoPeticionFactory extends Factory
 {
     public $model=TipoPeticion::class;

@@ -1,7 +1,7 @@
 import {
     obtenerLotes
 } from './http/http-Clasificador.js'
-
+ /**Óscar */
 obtenerLotes().then(function (data) {
     
     if (data == 202 || data == 302) {

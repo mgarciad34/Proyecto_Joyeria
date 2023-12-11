@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lote>
  */
+ /**Óscar */
 class LoteFactory extends Factory
 {
     /**

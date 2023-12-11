@@ -52,8 +52,8 @@ class ControladorReceta extends Controller
         for ($i=0;$i<count($antigua);$i++){
             $componentesViejaReceta[]=$antigua[$i]['id_componente'];
         }
-        print_r($componentesViejaReceta);
-        print_r('<br>');
+    
+     
         for ($i=0;$i<count($nueva);$i++){
             $id=$nueva[$i]['id_componente'];
             $componentesNuevaReceta[]=$id;
@@ -81,7 +81,7 @@ class ControladorReceta extends Controller
               $detalle_receta->save();
             }
         }
-        print_r(count($componentesNuevaReceta));
+
         for($i=0;$i<count($componentesViejaReceta);$i++){
             if (!in_array($componentesViejaReceta[$i], $componentesNuevaReceta)) {
               $eliminar=Detalle_receta::where('id_joya','=',$id_joya)

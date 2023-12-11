@@ -82,7 +82,7 @@ class ControladorRec extends Controller
             return $e;
         }
     }
-
+ /**Óscar */
     function algoritmoReceta()
     {
         try{

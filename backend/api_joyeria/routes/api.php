@@ -75,7 +75,6 @@ Route::middleware('cors')->group( function () {
 
         });
 
-    //** Preguntar a Fernando como hacer que compruebe dos middleware pero que con uno pase */
     Route::prefix('tipos')->group(function () {
         Route::get('', [ControladorTipos::class, 'consultarTipos']);
         Route::post('', [ControladorTipos::class, 'insertarComponente']);

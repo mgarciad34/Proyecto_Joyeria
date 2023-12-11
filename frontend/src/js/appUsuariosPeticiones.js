@@ -1,5 +1,5 @@
 import { obtenerSolicitudes,actualizarPeticion } from "./http/http-peticionesUsuarios.js"
-
+ /**Óscar */
 let tabla = document.getElementById('tabla_peticiones')
 
 obtenerSolicitudes().then(function(data){
@@ -80,7 +80,7 @@ function lanzarModalActualizacion(id,json)
         });
 
         confirmar.addEventListener('click', function () {
-            console.log(JSON.stringify(json))
+           
             confirmar.style.display='none'
             actualizarPeticion(id,JSON.stringify(json)).then(function (data) {
                 alerta.textContent = data.mensaje

@@ -10,11 +10,11 @@ use App\Models\Detalle_receta;
 use App\Models\Joya;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+ 
 class DesignerTest extends TestCase
 {
 
-
+ /**Óscar */
     public function testNuevaJoyaExito()
     {
         $usuario = User::find(3);
@@ -36,6 +36,7 @@ class DesignerTest extends TestCase
         $detalle = Detalle_receta::where('id_joya', '=', $joya->id)->delete();
         $joya->delete();
     }
+     /**Óscar */
     public function testNuevaJoyaSinAcceso()
     {
         $usuario = User::find(3);
@@ -54,7 +55,7 @@ class DesignerTest extends TestCase
         $response->assertStatus(202);
         $response->assertJson(["success" => false, "message" => "No autorizado"]);
     }
-
+ /**Óscar */
     public function testFabricarJoyaExito()
     {
         $usuario = User::find(3);
@@ -73,7 +74,7 @@ class DesignerTest extends TestCase
             'mensaje' => 'Fabricado correctamente',
         ]);
     }
-
+ /**Óscar */
     public function testFabricarJoyaInexistente()
     {
         $usuario = User::find(3);
@@ -92,6 +93,7 @@ class DesignerTest extends TestCase
             'mensaje' => 'Error al fabricar la joya',
         ]);
     }
+     /**Óscar */
     public function testGetAllJoyasExito()
     {
         $usuario = User::find(3);
@@ -113,6 +115,7 @@ class DesignerTest extends TestCase
             ]
         ]);
     }
+     /**Óscar */
     public function testGetAllJoyasSinLogin()
     {
         /**Este test es correcto ya que aunque la ruta nologin devuelve el codigo 203
@@ -122,7 +125,7 @@ class DesignerTest extends TestCase
         $response = $this->get('/api/joyas');
         $response->assertStatus(302);
     }
-
+ /**Óscar */
     public function testGetJoyaOfUsuarioExito()
     {
         $usuario = User::find(3);
@@ -144,6 +147,7 @@ class DesignerTest extends TestCase
             ]
         ]);
     }
+     /**Óscar */
     public function testGetJoyaOfUsuarioSinJoyas()
     {
         $usuario = User::find(3);
@@ -154,7 +158,7 @@ class DesignerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonStructure([]);
     }
-
+ /**Óscar */
     public function testGetAllHistorialExito()
     {
         $usuario = User::find(3);
@@ -164,12 +168,13 @@ class DesignerTest extends TestCase
         ])->get('/api/joyas/historial');
         $response->assertStatus(200);
     }
+     /**Óscar */
     public function testGetAllHistorialSinLogin()
     {
         $response = $this->get('/api/joyas/historial');
         $response->assertStatus(302);
     }
-
+ /**Óscar */
     public function testObtenerJoyaByIdExito()
     {
         $usuario = User::find(3);
@@ -182,6 +187,7 @@ class DesignerTest extends TestCase
             'id' => 1,
         ]);
     }
+     /**Óscar */
     public function testObtenerJoyaByIdSinExistir()
     {
         $usuario = User::find(3);
@@ -194,7 +200,7 @@ class DesignerTest extends TestCase
             'mensaje' => 'Error al obtener la joya',
         ]);
     }
-
+ /**Óscar */
     public function testUpdateJoyaExito()
 {
     $usuario = User::find(3);
@@ -217,6 +223,7 @@ class DesignerTest extends TestCase
         'mensaje' => 'Actualizado correctamente',
     ]);
 }
+ /**Óscar */
 public function testUpdateJoyaSinDetalle()
 {
     $usuario = User::find(3);
@@ -248,6 +255,7 @@ public function testUpdateJoyaSinDetalle()
         
     ]);
 }
+ /**Óscar */
 public function testGetOwnerExito()
 {
     $usuario = User::find(3);
@@ -262,6 +270,7 @@ public function testGetOwnerExito()
 
     $response->assertJson(['resultado'=>true]);
 }
+ /**Óscar */
 public function testGetOwnerError()
 {
     $usuario = User::find(3);
@@ -274,6 +283,7 @@ public function testGetOwnerError()
 
     $response->assertJson(['resultado'=>false]);
 }
+ /**Óscar */
 public function testGetJoyasDisponibles()
 {
     $usuario = User::find(3);

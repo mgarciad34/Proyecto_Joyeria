@@ -1,7 +1,7 @@
 import {
     obtenerAllDespiece
 } from './http/http-componentesClasificados.js'
-
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))

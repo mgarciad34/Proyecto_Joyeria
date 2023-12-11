@@ -7,6 +7,7 @@ use App\Models\Rol;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
+ /**Óscar */
 class RolFactory extends Factory
 {
     public $nombres=['Colaborador','Diseñador','Clasificador','Administrador'];

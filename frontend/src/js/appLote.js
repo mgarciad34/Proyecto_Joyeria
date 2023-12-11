@@ -2,7 +2,7 @@ import {
     guardarElementosBdd,
     obtenerTipos
 } from "./http/http-lote.js";
-
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))
@@ -15,7 +15,7 @@ let btnAdd = document.getElementById('btnAddElement')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario = sessionStorage.getItem('id-usuario')
 btnGuardar.disabled = true
-console.log(usuario)
+
 cabecera.textContent = 'Clasificar elementos Lote Nº: ' + idLote
 
 if (idLote == null && usuario != null) {

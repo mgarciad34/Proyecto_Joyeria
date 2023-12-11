@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
+ /**Óscar */
 class UserFactory extends Factory
 {
     protected static ?string $password;

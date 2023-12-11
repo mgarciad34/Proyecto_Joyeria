@@ -1,7 +1,7 @@
 import {
     obtenerLotes
 } from "./http/http-lotesClasificados.js";
-
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('clasificador'))

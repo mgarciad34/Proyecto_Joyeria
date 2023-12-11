@@ -1,6 +1,6 @@
 
 export async function actualizarEmail(id,json) {
-     
+      /**Óscar */
     try {
         
         let token=sessionStorage.getItem('token')

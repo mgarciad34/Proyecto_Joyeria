@@ -1,4 +1,5 @@
 export async function obtenerRecetas(id) {
+     /**Óscar */
     try {
         let token = sessionStorage.getItem('token')
         const options = {

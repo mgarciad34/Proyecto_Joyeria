@@ -1,5 +1,6 @@
 //Óscar
 export async function obtenerDespiece(id) {
+    
     try {
         let token = sessionStorage.getItem('token')
         const url = 'http://127.0.0.1:8000/api/despieces/lote/' + id

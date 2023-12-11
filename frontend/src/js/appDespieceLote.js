@@ -1,6 +1,7 @@
 import {
     obtenerDespiece
 } from './http/http-despieceLote.js'
+ /**Óscar */
 let idLote = JSON.parse(sessionStorage.getItem('despiece-lote'))
 
 

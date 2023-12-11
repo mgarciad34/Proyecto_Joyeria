@@ -3,6 +3,7 @@ import {
     fabricarJoya,
     recomendacionesJoya
 } from './http/http-fabricarJoya.js'
+ /**Óscar */
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl

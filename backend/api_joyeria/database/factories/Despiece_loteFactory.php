@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
+ /**Óscar */
 class Despiece_loteFactory extends Factory
 {
    public $descripciones=['HP color blanca',' Sony color negro','ASUS TUF amarilla '];

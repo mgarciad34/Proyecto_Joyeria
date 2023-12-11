@@ -2,7 +2,7 @@ import {
   obtenerJoyas,
   eliminarJoya
 } from './http/http-listadoJoyasUsuario.js'
-
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
 sessionStorage.setItem('ultimo-acceso', JSON.stringify('diseñador'))
@@ -126,7 +126,7 @@ function lanzarModalBorrado(joya) {
       eliminarJoya(joya).then(function (data) {
    
           alerta.textContent=data.mensaje
-          console.log(data)
+        
           confirmar.textContent='Continuar'
           confirmar.addEventListener('click',function(){
 

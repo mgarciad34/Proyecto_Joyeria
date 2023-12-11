@@ -79,6 +79,7 @@ public function actualizarPassword(Request $request,$id){
         return response()->json(['mensaje' =>'Error al actualizar la contraseña'], 409);
     }
 }
+ /**Óscar */
 public function nuevaPeticion(Request $request,$id){
     try{
 
@@ -91,6 +92,7 @@ public function nuevaPeticion(Request $request,$id){
         return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
     }
 }
+ /**Óscar */
 public function getPeticionesUsuario($id){
     try{
         $json=[];

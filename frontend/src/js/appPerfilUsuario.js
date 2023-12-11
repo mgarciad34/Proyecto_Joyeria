@@ -11,7 +11,7 @@ import {
     enviarSolicitud,
     obtenerSolicitudes,
 } from "./http/http-perfilUsuario.js"
-
+ /**Óscar */
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('btnFoto').style.background = 'url(' + fotoUrl + ') center / cover'
 let lblFoto = document.getElementById('lblFoto')
@@ -202,7 +202,7 @@ function lanzarModalPassword() {
             } else {
                 let json = {}
                 json['password'] = input1
-                console.log(json)
+               
                 actualizarPassword(usuario, json).then(function (data) {
 
                     alerta.textContent = data.mensaje
@@ -353,7 +353,7 @@ function lanzarModalPeticion() {
             let json = {}
             json['solicitud'] = parametros.value
             if (json['solicitud'] == 1) {
-                console.log(rolesAlta.value)
+             
                 json['solicitado'] = rolesAlta.value
             } else {
                 json['solicitado'] = rolesBaja.value

@@ -1,4 +1,5 @@
 export async function obtenerTipos() {
+     /**Óscar */
     try {
         let token = sessionStorage.getItem('token')
         const options = {

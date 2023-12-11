@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Joya>
  */
+ /**Óscar */
 class JoyaFactory extends Factory
 {
     public $nombres=[' Collar','Pendientes'];

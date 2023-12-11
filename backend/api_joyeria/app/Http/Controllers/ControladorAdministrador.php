@@ -173,7 +173,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
+    /**Óscar */
     public function consultarPeticiones(){
         try{
 
@@ -197,6 +197,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             return response()->json(['mensaje'=>'Error al obtener las peticiones','error'=>$e->getMessage(),400]);
         }
         }
+         /**Óscar */
     public function actualizarPeticion($id,Request $request){
         try{
 

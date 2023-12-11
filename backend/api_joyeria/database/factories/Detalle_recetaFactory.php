@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Detalle_receta>
  */
+ /**Óscar */
 class Detalle_recetaFactory extends Factory
 {
     public $cantidades=[ 200, 1];

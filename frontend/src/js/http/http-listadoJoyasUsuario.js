@@ -1,4 +1,5 @@
 export async function obtenerJoyas(id) {
+     /**Óscar */
     try {
 
         let token = sessionStorage.getItem('token')

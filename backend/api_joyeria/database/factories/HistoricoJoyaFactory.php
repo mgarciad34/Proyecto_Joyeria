@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon as SupportCarbon;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
+ /**Óscar */
 class HistoricoJoyaFactory extends Factory
 {
     public $fechas=['2023/12/02', '2023/12/02'];

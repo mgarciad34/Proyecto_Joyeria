@@ -1,5 +1,5 @@
 export async function obtenerSolicitudes() {
-     
+      /**Óscar */
     try {
         
         let token=sessionStorage.getItem('token')

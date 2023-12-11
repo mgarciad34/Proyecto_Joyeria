@@ -4,7 +4,7 @@ import {
     subirFoto,
     generarNuevaReceta
 } from "./http/http-designJoya.js"
-
+ /**Óscar */
 
 let fotoUrl = sessionStorage.getItem('foto-url')
 document.getElementById('fotoNav').src = fotoUrl
@@ -77,7 +77,7 @@ inputFoto.addEventListener('change', function (event) {
     void carga.offsetWidth;
     carga.classList.add('spinner');
     formData = new FormData(document.getElementById('formulario'));
-    console.log(formData)
+   
     if (!elementoVacio(inputFoto.id)) {
         btnAdd.disabled = false
 
@@ -177,7 +177,7 @@ btnAdd.addEventListener('click', function () {
 })
 btnGeneradorRecetas.addEventListener('click', function () {
     generarNuevaReceta().then(function (data) {
-        console.log(data.receta[0])
+       
         lanzarModalGenerador(data);
     })
 })
@@ -221,7 +221,7 @@ function lanzarModalGuardado(joya) {
 
                 let formulario = document.getElementById('formulario')
                 subirFoto(formulario, data.id).then(function (data) {
-                    console.log(data)
+                    
                     formulario.reset()
                     window.location.href = 'listaJoyas.html'
                 })
@@ -252,7 +252,7 @@ function lanzarModalGenerador(data) {
         for (let i = 0; i < data.receta.length; i++) {
 
             componente += 'Componente: ' + data.receta[i].nombre + ' Cantidad: ' + data.receta[i].cantidad + '<br>'
-            console.log(componente)
+            
         }
         alerta.innerHTML = componente
     } else {
@@ -306,7 +306,7 @@ function aplicarReceta(data) {
         tablaElementosRegistrados.appendChild(fila);
         btnGuardar.disabled = false
 
-        console.log(tiposHabilitados.options[1].textContent)
+       
        
         for (let x = 1; x < tiposHabilitados.options.length; x++) {
             if (tipo.textContent == tiposHabilitados.options[x].textContent) {
