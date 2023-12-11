@@ -54,24 +54,24 @@
       <div class="modal-contenido">
         <span class="cerrar-modal" id="cerrarModal">&times;</span>
         <p>¿Estás seguro de que quieres guardar esta nueva joya?</p>
-        <button id="confirmarGuardado">Confirmar</button>
-        <button id="cancelarGuardado">Cancelar</button>
+        <button class="status shipped" id="confirmarGuardado">Confirmar</button>
+        <button class="status cancelled" id="cancelarGuardado">Cancelar</button>
       </div>
     </div>
     <div id="modal-errores" class="modal">
         <div class="modal-contenido">
           <span class="cerrar-modal" id="cerrarModal">&times;</span>
           <p id="mensajeErrores"></p>
-          <button id="cerrarModalErrores">Continuar</button>
+          <button class="status cancelled" id="cerrarModalErrores">Continuar</button>
         </div>
       </div>
       <div id="modal-generador" class="modal">
         <div class="modal-contenido">
             <h4>Receta generada</h4>
           <p id="alertaGenerador"></p>
-          <button id="aplicarGenerador">Aplicar</button>
-          <button id="nuevaGenerador">Nueva</button>
-          <button id="cancelarGenerador">Cancelar</button>
+          <button class="status delivered" id="aplicarGenerador">Aplicar</button>
+          <button class="status shipped" id="nuevaGenerador">Nueva</button>
+          <button class="status cancelled" id="cancelarGenerador">Cancelar</button>
         </div>
       </div>
     <div class="container">
@@ -117,7 +117,7 @@
                             <th> </th>
                             <th>  </th>
                             <th>  </th>
-                            <th><button id="btnGenerarReceta">Generador de recetas</button> </th>
+                            <th><button class="status delivered" id="btnGenerarReceta">Generador de recetas</button> </th>
                         </tr>
                         <tr>
                             <th> <select class="status shipped" id="tipos-habilitados">    

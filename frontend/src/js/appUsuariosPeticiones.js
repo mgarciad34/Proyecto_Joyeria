@@ -48,10 +48,14 @@ function pintarSolicitudes(solicitudes){
             let botonAceptarCelda=document.createElement('td')
             let botonAceptar=document.createElement('button')
             botonAceptar.textContent='Aceptar'
+            botonAceptar.classList.add('status')
+            botonAceptar.classList.add('delivered')
             botonAceptarCelda.appendChild(botonAceptar)
             let botonRechazarCelda=document.createElement('td')
             let botonRechazar=document.createElement('button')
             botonRechazar.textContent='Rechazar'
+            botonRechazar.classList.add('status')
+            botonRechazar.classList.add('cancelled')
             botonRechazarCelda.appendChild(botonRechazar)
             
             botonAceptar.addEventListener('click',function(){

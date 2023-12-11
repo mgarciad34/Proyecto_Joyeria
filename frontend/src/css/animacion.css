@@ -206,20 +206,4 @@ body {
     cursor: pointer;
   }
   
-  #confirmarGuardado {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  #cancelarGuardado {
-    background-color: #f44336;
-    color: white;
-    border: none;
-  }
-  
-  #cerrarModalErrores{
-    background-color: rgb(197, 178, 74);
-    color: white;
-    border: none;
-  }
+ 

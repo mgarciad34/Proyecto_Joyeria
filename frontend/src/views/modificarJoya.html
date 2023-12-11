@@ -55,15 +55,15 @@
         <div class="modal-contenido">
           <span class="cerrar-modal" id="cerrarModal">&times;</span>
           <p>¿Estás seguro de que quieres guardar los cambios en esta  joya?</p>
-          <button id="confirmarGuardado">Confirmar</button>
-          <button id="cancelarGuardado">Cancelar</button>
+          <button class="status shipped" id="confirmarGuardado">Confirmar</button>
+          <button class="status cancelled" id="cancelarGuardado">Cancelar</button>
         </div>
       </div>
       <div id="modal-errores" class="modal">
           <div class="modal-contenido">
             <span class="cerrar-modal" id="cerrarModal">&times;</span>
             <p id="mensajeErrores"></p>
-            <button id="cerrarModalErrores">Continuar</button>
+            <button class="status cancelled" id="cerrarModalErrores">Continuar</button>
           </div>
         </div>
     <div class="container">
@@ -109,7 +109,7 @@
                           
                             <th> Tipo </th>
                             <th>Cantidad</th>
-                            <th> <button class="status " id="btn-guardar">Guardar cambios</button></th>
+                            <th> <button class="status shipped" id="btn-guardar">Guardar cambios</button></th>
                         </tr>
                        
                             <tr>
@@ -120,7 +120,7 @@
                                 </th>
                                 
                                 <th> <input class="status shipped" id="inputCantidad" min=0 type="number"> </th>
-                                <th> <button class="status" id="btnNuevoElementoReceta">Añadir</button> </th>
+                                <th> <button class="status shipped" id="btnNuevoElementoReceta">Añadir</button> </th>
                             </tr>
                         
                     
