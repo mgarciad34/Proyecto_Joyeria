@@ -107,6 +107,7 @@ Route::middleware('cors')->group( function () {
                 Route::get('/lista', [ControladorJoya::class, 'getDisponibles']);
                 Route::get('/recomendaciones/{parametro}', [ControladorJoya::class, 'getRecomendaciones']);
             });
+            Route::get('/receta/generador',[ControladorRec::class,'algoritmoReceta']);
             
         });
 
