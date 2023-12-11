@@ -1,80 +1,16 @@
-import {
-    crearBoton,
-    crearCelda,
-    mostrarModal
-} from "./http/http-tablaUsuarios.js";
-import {
-    obtenerDatos
-} from "./http/http-consultarUsuarios.js";
-import {
-    eliminarUsuario
-} from "./http/http-eliminarUsuario.js";
-import {
-    obtenerRoles
-} from "./http/http-ObtenerRoles.js";
-
-function mostrarTabla() {
-    obtenerDatos()
-        .then(response => {
-            const data = response.usuarios;
-            const tablaBody = document.getElementById('data');
-            tablaBody.innerHTML = '';
-
-            for (let i = 0; i < data.length; i++) {
-                const item = data[i];
-
-                const nuevaFila = document.createElement('tr');
-
-                nuevaFila.id = `fila-${item.id}`;
-
-                for (const key in item) {
-                    // Hacemos que la ID no aparezca en la tabla
-                    if (key !== 'id') {
-                        nuevaFila.appendChild(crearCelda(item[key]));
-                    }
-                }
-
-                const btnModificar = crearBoton('Modificar', 'warning', () => {
-                    var btnGuardar = document.getElementById('btnGuardar');
-                    var btnCerrar = document.getElementById('btnCerrar');
-
-                    mostrarModal(item, btnGuardar, btnCerrar);
-                });
-
-                const btnEliminar = crearBoton('Eliminar', 'danger', () => {
-                    eliminarUsuario(item.id);
-                });
-
-                // Celdas de botones por fila
-                const celdaBotones = document.createElement('td');
-                celdaBotones.appendChild(btnModificar);
-                celdaBotones.appendChild(btnEliminar);
-                nuevaFila.appendChild(celdaBotones);
-
-                // Agregamos la fila a la tabla
-                tablaBody.appendChild(nuevaFila);
-            }
-        })
-        .catch(error => {
-            console.error('Error al obtener datos:', error);
-        });
-}
+import { obtenerRoles } from "./http/http-ObtenerRoles.js";
 
 document.addEventListener('DOMContentLoaded', function () {
-    mostrarTabla();
-
     var rolesDiv = document.getElementById('roles');
     if (rolesDiv) {
         var id = sessionStorage.getItem("id-usuario");
-
-        obtenerRoles(id)
-            .then(result => {
-                if (result === 202) {
-                    return;
-                } else if (result === 302) {
-                    window.location.href="../index.html";
-                } else {
+        var token = sessionStorage.getItem("token")
+        if (token != null) {
+            obtenerRoles(id)
+                .then(result => {
+                    // Comprobamos que es un objeto con una clave numérica
                     if (result && typeof result === 'object' && Object.keys(result).length === 1) {
+                        // Obtener la primera clave numérica del objeto
                         var id_usuario = Object.keys(result)[0];
 
                         if (Array.isArray(result[id_usuario])) {
@@ -94,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                     case 4:
                                         boton.textContent = "Colaborador";
                                         break;
-                                    default:
-                                        console.error('Rol no reconocido:', rol.id_rol);
                                 }
 
                                 boton.addEventListener('click', () => {
@@ -112,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                         case 4:
                                             window.location.href = './IndexColaborador.html';
                                             break;
-                                        default:
-                                            console.error('Redirección no definida para el rol:', rol.id_rol);
                                     }
                                 });
                                 rolesDiv.appendChild(boton);
@@ -124,11 +56,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         console.error('No es un objeto', result);
                     }
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener roles:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Error al obtener roles:', error);
+                });
+        }else{
+            window.location.href="../index.html";
+        }
     } else {
         console.error('No se encontró el div de roles');
     }
