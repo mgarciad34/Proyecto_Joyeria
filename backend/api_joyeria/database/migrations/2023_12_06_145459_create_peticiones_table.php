@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('peticiones', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('solicitante');
+            $table->unsignedBigInteger('solicitud');
             $table->unsignedBigInteger('solicitado');
             $table->string('estado')->default('pendiente');
             $table->foreign('solicitante')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('solicitado')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('solicitud')->references('id')->on('tipos_peticiones')->onDelete('cascade');
         });
     }
 

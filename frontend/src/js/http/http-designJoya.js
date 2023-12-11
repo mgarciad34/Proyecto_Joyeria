@@ -86,3 +86,27 @@ export async function subirFoto(formulario, id) {
         return error;
     }
 }
+
+export async function generarNuevaReceta() {
+    try {
+        let token = sessionStorage.getItem('token');
+        let url = 'http://127.0.0.1:8000/api/joyas/receta/generador';
+        const options = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+           
+        };
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error('No se pudo generar la receta');
+        }
+
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+}

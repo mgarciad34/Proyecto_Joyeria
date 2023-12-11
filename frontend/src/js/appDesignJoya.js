@@ -1,7 +1,8 @@
 import {
     obtenerTipos,
     guardarNuevaJoya,
-    subirFoto
+    subirFoto,
+    generarNuevaReceta
 } from "./http/http-designJoya.js"
 
 
@@ -15,7 +16,7 @@ let inputNombre = document.getElementById('inputNombre')
 let inputFoto = document.getElementById('inputFoto')
 let btnGuardar = document.getElementById('btn-guardar')
 let usuario = JSON.parse(sessionStorage.getItem('id-usuario'))
-
+let btnGeneradorRecetas = document.getElementById('btnGenerarReceta')
 let carga = document.getElementById('carga')
 
 
@@ -174,6 +175,12 @@ btnAdd.addEventListener('click', function () {
         btnGuardar.disabled = false
     }
 })
+btnGeneradorRecetas.addEventListener('click', function () {
+    generarNuevaReceta().then(function (data) {
+        console.log(data.receta[0])
+        lanzarModalGenerador(data);
+    })
+})
 
 function elementoVacio(id) {
     let elemento = document.getElementById(id)
@@ -231,4 +238,80 @@ function lanzarModalErrores(mensaje) {
     document.getElementById('cerrarModalErrores').addEventListener('click', function () {
         document.getElementById('modal-errores').style.display = 'none';
     })
+}
+
+function lanzarModalGenerador(data) {
+    let nueva = document.getElementById('nuevaGenerador')
+    let cancelar = document.getElementById('cancelarGenerador')
+    let aplicar = document.getElementById('aplicarGenerador')
+    let alerta = document.getElementById('alertaGenerador')
+    alerta.innerHTML = ''
+    document.getElementById('modal-generador').style.display = 'flex';
+    if (data.receta) {
+        let componente = ''
+        for (let i = 0; i < data.receta.length; i++) {
+
+            componente += 'Componente: ' + data.receta[i].nombre + ' Cantidad: ' + data.receta[i].cantidad + '<br>'
+            console.log(componente)
+        }
+        alerta.innerHTML = componente
+    } else {
+        alerta.textContent = data.mensaje
+    }
+
+    cancelar.addEventListener('click', function () {
+        document.getElementById('modal-generador').style.display = 'none';
+    });
+    nueva.addEventListener('click', function () {
+        alerta.innerHTML = ''
+        document.getElementById('modal-generador').style.display = 'none';
+        generarNuevaReceta().then(function (data) {
+            lanzarModalGenerador(data)
+        })
+    })
+    aplicar.addEventListener('click', function () {
+        aplicarReceta(data)
+        document.getElementById('modal-generador').style.display = 'none';
+    })
+
+}
+
+function aplicarReceta(data) {
+    let tablaElementosRegistrados = document.getElementById('detalle-receta')
+    let tiposHabilitados = document.getElementById('tipos-habilitados')
+    for (let x = 1; x < tiposHabilitados.options.length; x++) {
+            tiposHabilitados.options[x].disabled = false
+    }
+    tablaElementosRegistrados.innerHTML = ''
+    for (let i = 0; i < data.receta.length; i++) {
+
+        let fila = document.createElement('tr');
+
+
+        let celdaCantidad = document.createElement('td');
+        let cantidad = document.createElement('span')
+        cantidad.textContent = data.receta[i].cantidad
+
+        let celdaTipo = document.createElement('td');
+        let tipo = document.createElement('span')
+        tipo.textContent = data.receta[i].id + '. ' + data.receta[i].nombre
+
+        celdaTipo.appendChild(tipo);
+        celdaCantidad.appendChild(cantidad)
+
+
+        fila.appendChild(celdaTipo);
+        fila.appendChild(celdaCantidad);
+
+        tablaElementosRegistrados.appendChild(fila);
+        btnGuardar.disabled = false
+
+        console.log(tiposHabilitados.options[1].textContent)
+       
+        for (let x = 1; x < tiposHabilitados.options.length; x++) {
+            if (tipo.textContent == tiposHabilitados.options[x].textContent) {
+                tiposHabilitados.options[x].disabled = true
+            }
+        }
+    }
 }

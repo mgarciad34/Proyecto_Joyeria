@@ -33,14 +33,18 @@ Route::middleware('cors')->group( function () {
     })->name('nologin');
 
     //Rutas agrupadas del administrador
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){
             Route::post('foto/{id}',[FotoControlador::class,'cargarImagen']);
             Route::put('email/{id}',[ControladorUsuarios::class,'updateEmail']);
             Route::put('password/{id}',[ControladorUsuarios::class,'actualizarPassword']);
-
+            Route::get('/roles/{id}', [ControladorRolAsignado::class, 'obtenerRolesPeticion']);
+            Route::post('{id}/peticion',[ControladorUsuarios::class,'nuevaPeticion']);
+            Route::get('{id}/peticion',[ControladorUsuarios::class,'getPeticionesUsuario']);
         });
-
+        
+        //Rutas agrupadas del administrador
     Route::middleware('AdminMid')->group(function () {
         Route::prefix('administrador')->group(function () {
           Route::post('/crear/usuario', [ControladorAdministrador::class, 'crearUsuario']);
@@ -53,6 +57,8 @@ Route::middleware('cors')->group( function () {
           Route::get('/consultar/componentes',[ControladorTipos::class,'consultarTipos']);
           Route::put('/modificar/componente/{id}', [ControladorTipos::class, 'modificarComponente']);
           Route::delete('/eliminar/componente/{id}', [ControladorTipos::class, 'eliminarComponente']);
+          Route::get('/peticiones', [ControladorAdministrador::class, 'consultarPeticiones']);
+          Route::put('/peticiones/{id}', [ControladorAdministrador::class, 'actualizarPeticion']);
         });
     });
 
@@ -109,6 +115,7 @@ Route::middleware('cors')->group( function () {
                 Route::get('/lista', [ControladorJoya::class, 'getDisponibles']);
                 Route::get('/recomendaciones/{parametro}', [ControladorJoya::class, 'getRecomendaciones']);
             });
+            Route::get('/receta/generador',[ControladorRec::class,'algoritmoReceta']);
             
         });
 

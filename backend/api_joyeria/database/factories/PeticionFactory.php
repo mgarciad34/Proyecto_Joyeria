@@ -18,6 +18,7 @@ class PeticionFactory extends Factory
     {
         return [
             'solicitante'=>2,
+            'solicitud'=>1,
             'solicitado'=>3,
             'estado'=>'pendiente'
         ];

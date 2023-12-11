@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+        <link rel="stylesheet" href="../css/animacion.css">
+        <link rel="stylesheet" href="../css/test.css">
+    
+</head>
+<body>
+    <header id="cabecera" class="row ">
+   
+     
+    </header>
+        
+    <div class="modal" id="modal">
+        <div class="modal-contenido">
+            <div class=" col-11">
+            </div>
+    <p id="alertaActualizacion">¿Esta seguro que dessea continuar?</p>
+  <br><br>
+    <button id="confirmarActualizacion">Confirmar</button>
+    <button id="cancelarActualizacion">Cancelar</button>
+    </div>
+</div>
+
+      
+    <div class="container">
+     
+        <main class="table2">
+            <section class="table__header">
+                <h4>Peticiones realizadas</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                   
+                    <thead id="">
+                        <tr>
+                            <th>Nº</th>
+                            <th>Solicitante</th>
+                            <th>Tipo de Peticion</th>
+                            <th>Solicitado</th>
+                            <th> Estado </th>
+                            <th>  </th>
+                            <th>  </th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_peticiones">
+                       <tr><td colspan="5" id="tabla-vacia"> No hay peticiones</td></td></tr> 
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+    
+    <script type="module" src="../js/appUsuariosPeticiones.js"></script>
+</body>
+</html>
