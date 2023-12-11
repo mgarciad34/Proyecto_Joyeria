@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Peticion extends Model
+class TipoPeticion extends Model
 {
     use HasFactory;
-    protected $table = 'peticiones';
-    protected $fillable = ['solicitud','solicitado'];
+    protected $table='tipos_peticiones';
     public $timestamps = false;
 }

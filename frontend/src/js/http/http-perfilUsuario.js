@@ -104,3 +104,90 @@ export async function subirFoto(formulario, id) {
         return error;
     }
 }
+
+
+export async function obtenerRolesAsignados(id) {
+     
+    try {
+        
+        let token=sessionStorage.getItem('token')
+        let url = 'http://127.0.0.1:8000/api/usuarios/roles/'+id
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization":"Bearer "+token,
+                'Content-Type': 'application/json'
+            },
+        }
+ 
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error('No se pudo obtener los roles');
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export async function enviarSolicitud(id,solicitud) {
+     
+    try {
+        
+        let token=sessionStorage.getItem('token')
+        let url = 'http://127.0.0.1:8000/api/usuarios/'+id+'/peticion'
+        const options = {
+            method: "POST",
+            headers: {
+                "Authorization":"Bearer "+token,
+                'Content-Type': 'application/json'
+            },
+            body: solicitud,
+        }
+ 
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error('No se pudo cerrar sesión');
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+
+export async function obtenerSolicitudes(id) {
+     
+    try {
+        
+        let token=sessionStorage.getItem('token')
+        let url = 'http://127.0.0.1:8000/api/usuarios/'+id+'/peticion'
+        const options = {
+            method: "GET",
+            headers: {
+                "Authorization":"Bearer "+token,
+                'Content-Type': 'application/json'
+            },
+           
+        }
+ 
+        const response = await fetch(url, options);
+        if (!response.ok) {
+    
+            throw new Error('No se pudo actualizar');
+        }
+        if (response.status == 202) {
+            return 202
+
+        }
+        const data = await response.json();
+        if (response.ok) {
+
+            return data
+        }
+    } catch (error) {
+        return 302
+    }
+}
