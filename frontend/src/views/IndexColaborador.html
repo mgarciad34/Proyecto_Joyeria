@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/test.css">
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+      }
 
+      body {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .container {
+          flex: 1;
+      }
+
+      footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+      }
+      
+  </style>
 </head>
 <body class="d-flex flex-column min-vh-100" id="body">
-  <header class="row bg-warning row-warning">
+  <header class="row cabezera">
     
       <nav class="navbar navbar-expand-lg p-6">
           <div class="container-fluid justify-content-center">
@@ -21,7 +43,7 @@
                   <ul class="navbar-nav col-12">
                       <div class="col-1"></div>
                       <li class="nav-item">
-                          <a class="nav-link" href="indexAdministrador.html">Inicio</a>
+                          <a class="nav-link" href="IndexColaborador.html">Inicio</a>
                       </li>
                       <div class="col-1"></div>
                       <li class="nav-item dropdown">
@@ -43,7 +65,7 @@
 
       
       <div class="container mt-5">
-        <h2>Gestión de lotes</h2>
+        <h2 style="color:black;">Gestión de lotes</h2>
         <div class="row">
           <div class="col-md-4">
             <div class="card mb-4">
@@ -67,7 +89,7 @@
         </div>
       </div>
 
-      <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
+      <footer class="text-dark text-center py-3 mt-5 d-flex justify-content-between cabecera">
         <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
         <p>LOPD</p>
         <p>Cookies</p>
