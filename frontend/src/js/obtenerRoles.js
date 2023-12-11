@@ -36,15 +36,19 @@ document.addEventListener('DOMContentLoaded', function () {
                                     switch (rol.id_rol) {
                                         case 1:
                                             window.location.href = './indexAdministrador.html';
+                                            sessionStorage.setItem("acceso", "Administrador")
                                             break;
                                         case 2:
                                             window.location.href = './indexClasificador.html';
+                                            sessionStorage.setItem("acceso", "Clasificador")
                                             break;
                                         case 3:
                                             window.location.href = './listaJoyas.html';
+                                            sessionStorage.setItem("acceso", "Diseñador")
                                             break;
                                         case 4:
                                             window.location.href = './IndexColaborador.html';
+                                            sessionStorage.setItem("acceso", "Colaborador")
                                             break;
                                     }
                                 });

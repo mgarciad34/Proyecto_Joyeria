@@ -98,9 +98,26 @@ btnregistro.addEventListener('click', function(event){
     var colorConfirmar = comprobarColor(msgconfirmarContrasena);
     var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
         if(sumatorio == 4){
-            enviarDatos(nuevoUsuario, url).then(function(){
-            window.location.href="indexAdministrador.html";
-        });
+            var token = sessionStorage.getItem("token")
+            if(token != null){
+                enviarDatos(nuevoUsuario, url)
+                    .then(function(){
+                        if(sessionStorage.getItem("username") == "Administrador"){
+                            window.location.href="indexAdministrador.html";
+                        }else{
+                            window.location.href='redirect.html';
+                        }
+                        
+                    });
+            }
     
     }    
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+        window.location.href='redirect.html';
+    }
 });
