@@ -4,61 +4,69 @@ document.addEventListener('DOMContentLoaded', function () {
     var rolesDiv = document.getElementById('roles');
     if (rolesDiv) {
         var id = sessionStorage.getItem("id-usuario");
+        var token = sessionStorage.getItem("token")
+        if (token != null) {
+            obtenerRoles(id)
+                .then(result => {
+                    // Comprobamos que es un objeto con una clave numérica
+                    if (result && typeof result === 'object' && Object.keys(result).length === 1) {
+                        // Obtener la primera clave numérica del objeto
+                        var id_usuario = Object.keys(result)[0];
 
-        obtenerRoles(id)
-            .then(result => {
-                // Comprobamos que es un objeto con una clave numérica
-                if (result && typeof result === 'object' && Object.keys(result).length === 1) {
-                    // Obtener la primera clave numérica del objeto
-                    var id_usuario = Object.keys(result)[0];
-
-                    if (Array.isArray(result[id_usuario])) {
-                        result[id_usuario].forEach(rol => {
-                            const boton = document.createElement('button');
-                            boton.className = "btn status cancelled";
-                            switch (rol.id_rol) {
-                                case 1:
-                                    boton.textContent = "Administrador";
-                                    break;
-                                case 2:
-                                    boton.textContent = "Clasificador";
-                                    break;
-                                case 3:
-                                    boton.textContent = "Diseñador";
-                                    break;
-                                case 4:
-                                    boton.textContent = "Colaborador";
-                                    break;
-                            }
-
-                            boton.addEventListener('click', () => {
+                        if (Array.isArray(result[id_usuario])) {
+                            result[id_usuario].forEach(rol => {
+                                const boton = document.createElement('button');
+                                boton.className = "btn status cancelled";
                                 switch (rol.id_rol) {
                                     case 1:
-                                        window.location.href = './indexAdministrador.html';
+                                        boton.textContent = "Administrador";
                                         break;
                                     case 2:
-                                        window.location.href = './indexClasificador.html';
+                                        boton.textContent = "Clasificador";
                                         break;
                                     case 3:
-                                        window.location.href = './listaJoyas.html';
+                                        boton.textContent = "Diseñador";
                                         break;
                                     case 4:
-                                        window.location.href = './IndexColaborador.html';
+                                        boton.textContent = "Colaborador";
                                         break;
                                 }
+
+                                boton.addEventListener('click', () => {
+                                    switch (rol.id_rol) {
+                                        case 1:
+                                            window.location.href = './indexAdministrador.html';
+                                            sessionStorage.setItem("acceso", "Administrador")
+                                            break;
+                                        case 2:
+                                            window.location.href = './indexClasificador.html';
+                                            sessionStorage.setItem("acceso", "Clasificador")
+                                            break;
+                                        case 3:
+                                            window.location.href = './listaJoyas.html';
+                                            sessionStorage.setItem("acceso", "Diseñador")
+                                            break;
+                                        case 4:
+                                            window.location.href = './IndexColaborador.html';
+                                            sessionStorage.setItem("acceso", "Colaborador")
+                                            break;
+                                    }
+                                });
+                                rolesDiv.appendChild(boton);
                             });
-                            rolesDiv.appendChild(boton);
-                        });
+                        } else {
+                            console.error('No es un array de roles:', result[id_usuario]);
+                        }
                     } else {
-                        console.error('No es un array de roles:', result[id_usuario]);
+                        console.error('No es un objeto', result);
                     }
-                } else {
-                    console.error('No es un objeto', result);
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener roles:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Error al obtener roles:', error);
+                });
+        }else{
+            window.location.href="../index.html";
+        }
     } else {
         console.error('No se encontró el div de roles');
     }
