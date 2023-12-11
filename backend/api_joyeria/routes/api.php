@@ -127,4 +127,3 @@ Route::middleware('cors')->group( function () {
 
 });
 
-Route::get('mensaje', [ControladorAdministrador::class, 'enviarMail']);
