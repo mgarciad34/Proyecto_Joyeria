@@ -102,7 +102,7 @@ btnregistro.addEventListener('click', function (event) {
         if (token != null) {
             enviarDatos(nuevoUsuario, url)
                 .then(function () {
-                    if (sessionStorage.getItem("username") == "Administrador") {
+                    if (sessionStorage.getItem("acceso") == "Administrador") {
                         window.location.href = "indexAdministrador.html";
                     } else {
                         window.location.href = 'redirect.html';
@@ -119,3 +119,4 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'redirect.html';
     }
 });
+
