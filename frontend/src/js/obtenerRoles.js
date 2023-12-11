@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (result === 202) {
                     return;
                 } else if (result === 302) {
-                    window.location.href = "indexAdministrador.html";
+                    window.location.href="../index.html";
                 } else {
                     if (result && typeof result === 'object' && Object.keys(result).length === 1) {
                         var id_usuario = Object.keys(result)[0];
