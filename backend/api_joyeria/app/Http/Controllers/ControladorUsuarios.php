@@ -96,18 +96,20 @@ public function getPeticionesUsuario($id){
         $json=[];
         $peticion=Peticion::where('solicitante','=',$id)->get();
         for ($i=0;$i<count($peticion);$i++){
-    
-            $tipo=TipoPeticion::find($peticion[$i]->solicitado);
+            
+            $tipo=TipoPeticion::find($peticion[$i]->solicitud);
+
             $peticion[$i]->nombre_peticion=$tipo->nombre;
-            if($tipo->id==1 ||$tipo->id==2){
+            if($tipo->id==1 || $tipo->id==2){
                 $rol=Rol::find($peticion[$i]->solicitado);
                 $peticion[$i]->nombre_solicitado=$rol->nombre;
             }
         }
+      
         $json['peticiones']=$peticion;
         return response()->json([$json],200);
     }catch(Exception $e){
-        return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
+        return response()->json(['mensaje'=>'Error al procesar la solicitud',$e->getMessage()],500);
     }
 }
 
