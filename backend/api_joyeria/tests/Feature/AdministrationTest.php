@@ -26,6 +26,8 @@ class AdministrationTest extends TestCase
             ->assertJson([
                 "message" => "Usuario creado exitosamente",
             ]);
+
+        $usuario = User::where("email",  "=", "userprueba@correo.com")->delete();
     }
 
     // Test Login
@@ -54,6 +56,58 @@ class AdministrationTest extends TestCase
             ]);
     }
 
+    //Registrar Usuario desde el administrador
+    public function testCrearUsuarioAdministrador()
+    {
+        $login = [
+            "email" => "administrador@jawas.com",
+            "password" => "administrador",
+        ];
 
+        $response = $this->json("post", "/api/login", $login);
+
+        $token = $response->json('token');
+
+
+
+        $response = $this->withHeader('Authorization', 'Bearer ' . $token)->post("/api/administrador/crear/usuario", [
+
+            "name" => "usuarioprueban",
+            "email" => "userprueba3@correo.com",
+            "password" => "password123",
+            "rol" => 4,
+        ]);
+             $response->assertJson([
+                 "message" => "Usuario creado exitosamente",
+             ]);
+
+             $usuario = User::where("email",  "=", "userprueba3@correo.com")->delete();
+    }
+
+    //Test consultar usuarios desde administrador
+    public function testConsultarUsuariosAdministrador()
+    {
+        $adminLogin = [
+            "email" => "administrador@jawas.com",
+            "password" => "administrador",
+        ];
+
+        $response = $this->json("post", "/api/login", $adminLogin);
+        $token = $response->json('token');
+
+        $response = $this->withHeader('Authorization', 'Bearer ' . $token)->get("/api/administrador/usuarios");
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'usuarios' => [
+                    '*' => [
+                        'id',
+                        'name',
+                        'email',
+                        'foto',
+                    ],
+                ],
+            ]);
+    }
 
 }
