@@ -8,7 +8,8 @@ var btnRegistrar = document.getElementById('btnAnadirLote');
 
 btnRegistrar.addEventListener('click', function(event){
     event.preventDefault();
-    if(sessionStorage.getItem("ultimo-acceso") == "colaborador"){
+    let acceso=JSON.parse(sessionStorage.getItem("ultimo-acceso"))
+    if(acceso == "colaborador"){
         var anadirLote = new AnadirLote(sessionStorage.getItem("id-usuario"), sessionStorage.getItem("Latitud"), sessionStorage.getItem("Longitud"), 'Entregado');
         enviarDatos(anadirLote, 'http://127.0.0.1:8000/api/lotes/agregar/lote');
         window.location.href="indexColaborador.html";
