@@ -38,8 +38,22 @@ class AdministrationTest extends TestCase
 
         $this->json("post", "/api/login", $datos)
             ->assertStatus(200)
+            ->assertJsonStructure([
+                "success",
+                "data" => [
+                    "nombre",
+                    "foto",
+                    "token",
+                    "id"
+                ],
+                "message"
+            ])
             ->assertJson([
-                "message" => "OK",
+                "success" => true,
+                "message" => "User logged-in!"
             ]);
     }
+
+
+
 }
