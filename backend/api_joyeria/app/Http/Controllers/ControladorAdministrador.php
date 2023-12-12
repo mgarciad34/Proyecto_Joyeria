@@ -93,7 +93,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
                                         ->exists();
 
         if ($registroExistente) {
-            return response()->json(['message' => 'El rol ya está asignado al usuario'], 200);
+            return response()->json(['message' => 'El rol ya está asignado al usuario'], 400);
         }
 
         $usuarioExistente = User::find($idUsuario);
@@ -163,7 +163,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     {
         try {
             $usuario = User::find($id);
-            
+
             if (!$usuario) {
                 return response()->json(['error' => 'Usuario no encontrado'], 404);
             }
@@ -178,12 +178,12 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
     public function consultarPeticiones(){
         try{
 
-            
+
             $peticiones=Peticion::all();
             for($i=0;$i<count($peticiones);$i++){
-                
+
                 $tipos=TipoPeticion::find($peticiones[$i]->solicitud);
-                
+
                 $usuario=User::find($peticiones[$i]->solicitante);
                 $peticiones[$i]->solicitante_nombre=$usuario->name;
                 $peticiones[$i]->solicitud_nombre=$tipos->nombre;
@@ -205,7 +205,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             $peticion=Peticion::find($id);
             $estado=$request->get('estado');
             if($estado=='aceptado'){
-                
+
                 if($peticion->solicitud==1){
                     $asignacion=new RolAsignado();
                     $asignacion->id_rol=$peticion->solicitado;
@@ -216,7 +216,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
                     $asignacion=RolAsignado::where('id_usuario','=',$peticion->solicitante)->where('id_rol','=',$peticion->solicitado);
                     $asignacion->delete();
                 }
-                
+
             }
             $peticion->estado=$estado;
             $peticion->save();
@@ -229,18 +229,18 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
 /**Óscar */
     function enviarMail($peticion){
         $usuario=User::find($peticion->solicitante);
-       
+
         $tipo=TipoPeticion::find($peticion->solicitud);
         $rol=Rol::find($peticion->solicitado);
-       
+
         $datos=[
             'email'=>$usuario->email,
             'tipo'=>$tipo->nombre,
             'solicitado'=>$rol->nombre,
             'estado'=>$peticion->estado,
-        
+
         ];
-    
+
         $email=$datos['email'];
         Mail::send('correo',$datos,function($message) use ($email){
             $message->to($email)->subject('Actualizacion peticion');

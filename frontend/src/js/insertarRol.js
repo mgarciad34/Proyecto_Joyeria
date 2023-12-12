@@ -41,12 +41,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
+//'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario'
 btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
-    if (sessionStorage.getItem("ultimo-acceso") == "administrador") {
+    if (sessionStorage.getItem("ultimo-acceso") === "administrador") {
         var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
-        enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario');
-        window.location.href = "indexAdministrador.html";
+        enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario')
+        .then(response => {
+            if(response === 201){
+                mensajeBoton.value = "";
+                window.location.href = "indexAdministrador.html";
+            }else if(response === 400){
+                mensajeBoton.innerHTML = "El usuario ya tiene ese permiso";
+                mensajeBoton.style.color = "red";
+            }
+        })
+        
+        
     }
 });
