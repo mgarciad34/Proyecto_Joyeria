@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-//'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario'
+
 btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
     if (sessionStorage.getItem("ultimo-acceso") === "administrador") {

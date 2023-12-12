@@ -37,10 +37,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-btnRegistrarRol.addEventListener('click', function(event){
+btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
-    var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
-    enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario');
-    window.location.href="indexAdministrador.html";
-
+    if (sessionStorage.getItem("ultimo-acceso") === "administrador") {
+        var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
+        enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario')
+        .then(response => {
+            console.log(response)
+            if(response === 200){
+                mensajeBoton.value = "";
+                window.location.href = "indexAdministrador.html";
+            }else if(response === 400){
+                mensajeBoton.innerHTML = "El usuario ya no tiene ese permiso";
+                mensajeBoton.style.color = "red";
+            }
+        })
+        
+        
+    }
 });

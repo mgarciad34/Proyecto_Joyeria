@@ -13,7 +13,9 @@ export async function enviarDatos(datos, ruta) {
         });
 
         if (!respuesta.ok) {
-            throw new Error(`Error de red: ${respuesta.status}`);
+            return 400;
+        }else{
+            return 200;
         }
     } catch (error) {
         console.error('Error al enviar los datos:', error.message);

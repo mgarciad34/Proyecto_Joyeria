@@ -148,7 +148,7 @@ public function insertarRol(Request $request, $idUsuario = null, $idRol = null)
             ->where('id_rol', $idRol)->first();
 
             if (!$rolAsignado) {
-                return response()->json(['error' => 'El rol no está asignado al usuario'], 404);
+                return response()->json(['error' => 'El rol no está asignado al usuario'], 400);
             }
 
             $rolAsignado->delete();
