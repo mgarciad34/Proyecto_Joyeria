@@ -47,7 +47,7 @@ btnRegistrarRol.addEventListener('click', function (event) {
         var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
         enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario')
         .then(response => {
-            console.log(response)
+      
             if(response === 200){
                 mensajeBoton.value = "";
                 window.location.href = "indexAdministrador.html";

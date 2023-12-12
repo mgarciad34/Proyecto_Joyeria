@@ -32,7 +32,6 @@ Route::middleware('cors')->group( function () {
         return response()->json("No logeado", 203);
     })->name('nologin');
 
-    //Rutas agrupadas del administrador
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('usuarios')->group(function(){

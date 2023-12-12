@@ -450,7 +450,7 @@ function lanzarModalPeticion() {
             }
 
             enviarSolicitud(usuario, JSON.stringify(json)).then(function (data) {
-                console.log(data)
+               
                 alerta.textContent = data.mensaje
                 confirmar.style.display='none'
                 cancelar.textContent='Continuar'

@@ -8,7 +8,7 @@
 
 - Asegúrese de tener instalado **"Node.js"** junto con su gestor de paquetes **"npm"**.
 
-- Asegúrese de tener instalado algún **sistema de gestión de bases de datos compatible con MySQ**L, junto con la versión más reciente de MySQL.
+- Asegúrese de tener instalado algún **sistema de gestión de bases de datos compatible con MySQL**, junto con la versión más reciente de MySQL.
 
 ### Pasos
 
@@ -21,18 +21,39 @@
    - `composer update`           Descargamos todas las dependencias especificadas en el documento 'composer.json'.
 
    - Creamos un archivo '.env' donde introduciremos los datos necesarios para la conexión con la base de datos.
-     (Puede ayudarse del archivo '.env.example' que por defecto se genera al realizar el anterior comando)
+     (Puede ayudarse del archivo '.env.example' que por defecto se genera al realizar el anterior comando).
+     
+**De ser proporcionado un fichero .env debe pegarse en el directorio 'api_joyas' a la misma altura que el fichero de ejemplo**
+
 
    - `php artisan migrate`       Lanzará las migraciones instalando las tablas necesarias para el almacenamiento y persistencia de datos.
 
    - `php artisan db:seed`       Lanzará los seeders sobre las tablas creadas anteriormente, introduciendo los datos mínimos imprescindibles para el primer inicio.
 
+   **DE NO FUNCIONAR EL COMANDO 'php artisan db:seed' SE DEBE REALIZAR EL SIGUIETE:**
+
+    - `php artisan db:seed --class=AuxiliarSeeder`       
+
+
+  
+  - `php artisan key:generate`       Generara la key para que funcionen los tokens de control de acceso.
+
+
    - `php artisan serve`         Lanza el servidor al cual realizaremos las peticiones.
+
+
+**DE NO FUNCIONAR EL BUCKET S3 DE AWS SE DEBE INGRESAR LOS SIGUIENTES COMANDOS:**
+
+  - `php artisan composer require aws/aws-sdk-php`      
+  Instala el paquete AWS SDK para PHP utilizando Composer.
+
+   - `php artisan composer require aws/aws-sdk-laravel`      
+  Instala el paquete AWS SDK para LARAVEL utilizando Composer.
 
 3. Una vez lanzado el cliente de forma que quede conectado con la base de datos, lanzaremos el cliente con los siguientes comandos:
 
    **En el segundo terminal:**
-   - `npm update`                Descargamos todas las dependencias especificadas en el documento 'package.json'.
+   - `npm install`               Descargamos todas las dependencias especificadas en el documento 'package.json'.
 
    - `npm run build`             Construirá la carpeta 'dist' donde se ubicarán los archivos js comprimidos asociados a los html.
 
@@ -140,14 +161,6 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **Descripción:** Obtiene información  de un lote específico.
 
 
-## Tipos
-
-### Consultar Tipos
-- **Ruta:** `http://127.0.0.1:8000/api/tipos`
-
-- **Método:** `GET`
-
-- **Descripción:** Obtiene la lista de todos los tipos de componentes.
 
 
 ## Despieces
@@ -188,6 +201,29 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
       {"tipo": 0, "cantidad": 0, "descripcion": "xxxx"}
     ]
   }
+,
+  ### Consultar Tipos
+- **Ruta:** `http://127.0.0.1:8000/api/despiece/tipos`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtiene la lista de todos los tipos de componentes desde un perfil clasificador.
+
+
+## Insertar nuevo componente desde el clasificador
+
+- **Ruta:** `http://127.0.0.1:8000/api/despiece/tipos`
+
+- **Método:** `POST`
+
+- **Descripción:** Creamos un nuevo componente desde un perfil clasificador.
+
+- **JSON:**
+  ```json
+    {
+        "nombre": "Memoria RAM",
+        "cantidad": 30
+    }
 
 ## Joyas
 
@@ -322,6 +358,43 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 
 - **Descripción:** Obtiene la lista de joyas disponibles para fabricación.
 
+## Obtener Joyas con fabricación Disponible Recomendadas
+
+- **Ruta:** `http://127.0.0.1:8000/api/joyas/disponibles/recomendaciones/{parametro}`
+
+- **Método:** `GET`
+
+- **Parámetros:**
+  - `{parametro}`: Indica la preferencia del orden .
+
+- **Descripción:** Obtiene la lista de joyas disponibles para fabricación ordenada en base a un parametro especificado.
+
+ ### Consultar Tipos
+- **Ruta:** `http://127.0.0.1:8000/api/joyas/tipos`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtiene la lista de todos los tipos de componentes desde un perfil diseñador.
+
+ ### Generar Receta
+- **Ruta:** `http://127.0.0.1:8000/api/joyas/generador`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtiene una lista de elementos para una posible receta obtenida a través de un algoritmo
+
+ ### Cargar una Foto
+- **Ruta:** `http://127.0.0.1:8000/api/joyas/foto/{id}`
+
+- **Método:** `POST`
+
+**SE DEBE DE SUBIR UNA FOTO EN EL BODY DE LA PETICION**
+
+- **Descripción:** Actualiza la foto de la joya o la inserta si no lo ha hecho aún.
+
+
+- **Parámetros:**
+  - `{id}`: Identificador único de la joya.
 
 ## Registro
 
@@ -529,4 +602,104 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **Método:** `GET`
 
 - **Descripción:** Obtienemos todos roles del usuario.
+
+
+
+
+## Usuarios
+
+### Cargar imagen
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/foto/{id}`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Actualiza la imagen de perfil
+
+**SE DEBE DE SUBIR UNA FOTO EN EL BODY DE LA PETICION**
+
+
+
+### Actualizar Email
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/email/{id}`
+
+- **Método:** `PUT`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Actualiza el email del usuario 
+
+- **JSON:**
+  ```json
+  {
+    "email": "XXXX"
+  }
+,
+
+
+### Actualizar Contraseña
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/email/{id}`
+
+- **Método:** `PUT`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Actualiza la contraseña del usuario 
+
+- **JSON:**
+  ```json
+  {
+    "password": "XXXX"
+  }
+,
+
+### Obtener roles para las peticiones
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/roles/{id}`
+
+- **Método:** `GET`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Devuelve los roles que el usuario tiene asignados y los que no para su clasificación en las distintas peticiones posibles.
+
+### Obtener peticiones realizadas por el usuario 
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/{id}/peticiones`
+
+- **Método:** `GET`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Devuelve todas las peticiones realizadas por un usuario.
+
+
+### Insertar peticiones realizadas por el usuario 
+
+- **Ruta:** `http://127.0.0.1:8000/api/usuarios/{id}/peticiones`
+
+- **Método:** `POST`
+
+- **Parámetros:**
+  - `{id}`: Identificador único del usuario.
+
+
+- **Descripción:** Inserta una peticion en la base de datos.
+
+**NO PUEDE HABER DOS PETICIONES IGUALES POR UN MISMO USUARIO EN ESTADO 'PENDIENTE'**
+
 
