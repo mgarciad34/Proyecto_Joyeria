@@ -12,7 +12,6 @@ function mostrarDatosEnTabla() {
                 const data = response.usuarios;
                 const tablaBody = document.getElementById('data');
                 tablaBody.innerHTML = '';
-
                 for (let i = 0; i < data.length; i++) {
                     const item = data[i];
 
@@ -21,7 +20,15 @@ function mostrarDatosEnTabla() {
                     nuevaFila.id = `fila-${item.id}`;
 
                     for (const key in item) {
-                        if (key !== 'id') {
+                        if (key === 'foto') {
+                            const celdaImagen = document.createElement('td');
+                            const imagen = document.createElement('img');
+                            imagen.src = item[key]; 
+                            imagen.alt = 'Imagen de usuario';
+                            imagen.style.width = '50px'; 
+                            celdaImagen.appendChild(imagen);
+                            nuevaFila.appendChild(celdaImagen);
+                        } else if (key !== 'id') {
                             nuevaFila.appendChild(crearCelda(item[key]));
                         }
                     }
@@ -46,11 +53,11 @@ function mostrarDatosEnTabla() {
                 }
             })
             .catch(error => {
-                window.location.href='redirect.html';
+                window.location.href = 'redirect.html';
             });
-        }else{
-            window.location.href='redirect.html';
-        }
+    } else {
+        window.location.href = 'redirect.html';
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -59,10 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
     obtenerRoles(id)
         .then(result => {
             if (result === 202) {
-                window.location.href='redirect.html';
-            }else if (result === 302) { 
-                window.location.href="../index.html";
-            }else {
+                window.location.href = 'redirect.html';
+            } else if (result === 302) {
+                window.location.href = "../index.html";
+            } else {
                 mostrarDatosEnTabla();
             }
         })
