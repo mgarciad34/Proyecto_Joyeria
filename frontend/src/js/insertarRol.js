@@ -13,21 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'redirect.html';
     } else {
 
-
-        var selUsuario = document.getElementById('selUsuario');
-        var selRol = document.getElementById('selRol');
-
-        if (!selUsuario) {
-            console.error('No se encontró el elemento con ID "selUsuario".');
-            return;
-        }
-        if (sessionStorage.getItem("ultimo-acceso") == "Administrador") {
+        if (sessionStorage.getItem("ultimo-acceso") == "administrador") {
+            var selUsuario = document.getElementById('selUsuario');
+            var selRol = document.getElementById('selRol');
             obtenerDatos()
                 .then(response => {
                     const usuarios = response.usuarios;
-
+                    console.log(response)
                     if (Array.isArray(usuarios)) {
-                        // Limpiar las opciones actuales del select
                         selUsuario.innerHTML = '';
 
                         // Agregar una opción por cada usuario
