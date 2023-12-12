@@ -5,9 +5,10 @@ export async function enviarDatos(datos, ruta) {
         const respuesta = await fetch(ruta, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
+                "Authorization": "Bearer " + token,
+                'Content-Type': 'aplication/json'
             },
+
             body: JSON.stringify(datos),
         });
 

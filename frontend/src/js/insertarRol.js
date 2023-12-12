@@ -42,10 +42,14 @@ sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
 
 btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
-    if (sessionStorage.getItem("ultimo-acceso") === "administrador") {
+    console.log("llego")
+    let acceso = JSON.parse(sessionStorage.getItem("ultimo-acceso"))
+    console.log(acceso)
+    if (acceso == 'administrador') {
         var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
         enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/agregar/rol/usuario')
         .then(response => {
+            console.log(response)
             if(response === 201){
                 mensajeBoton.value = "";
                 window.location.href = "indexAdministrador.html";
@@ -54,7 +58,5 @@ btnRegistrarRol.addEventListener('click', function (event) {
                 mensajeBoton.style.color = "red";
             }
         })
-        
-        
     }
 });

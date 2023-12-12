@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 boton.className = "btn status cancelled";
                                 switch (rol.id_rol) {
                                     case 1:
-                                        boton.textContent = "Administrador";
+                                        boton.textContent = 'Administrador';
                                         break;
                                     case 2:
-                                        boton.textContent = "Clasificador";
+                                        boton.textContent = 'Clasificador';
                                         break;
                                     case 3:
                                         boton.textContent = "Diseñador";
@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
                                     switch (rol.id_rol) {
                                         case 1:
                                             window.location.href = './indexAdministrador.html';
-                                            sessionStorage.setItem("ultimo-acceso", "administrador")
+                                            sessionStorage.setItem("ultimo-acceso", 'administrador')
                                             break;
                                         case 2:
                                             window.location.href = './indexClasificador.html';
-                                            sessionStorage.setItem("ultimo-acceso", "clasificador")
+                                            sessionStorage.setItem("ultimo-acceso", 'clasificador')
                                             break;
                                         case 3:
                                             window.location.href = './listaJoyas.html';
-                                            sessionStorage.setItem("ultimo-acceso", "diseñador")
+                                            sessionStorage.setItem("ultimo-acceso", 'diseñador')
                                             break;
                                         case 4:
                                             window.location.href = './IndexColaborador.html';
-                                            sessionStorage.setItem("ultimo-acceso", "colaborador")
+                                            sessionStorage.setItem("ultimo-acceso", 'colaborador')
                                             break;
                                     }
                                 });
