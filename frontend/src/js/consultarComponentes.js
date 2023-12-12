@@ -3,6 +3,11 @@ import { obtenerDatos } from "./http/http-consultarComponentes.js";
 import { eliminarComponente } from "./http/http-eliminarComponente.js";
 import { crearCelda, crearBoton, mostrarModal } from "./http/http-tablaComponente.js";
 
+
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
+
 function mostrarTabla() {
     var token = sessionStorage.getItem("token")
     if (token != null) {

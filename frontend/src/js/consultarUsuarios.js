@@ -3,6 +3,9 @@ import { obtenerDatos } from "./http/http-consultarUsuarios.js";
 import { eliminarUsuario } from "./http/http-eliminarUsuario.js";
 import { obtenerRoles } from "./http/http-ObtenerRoles.js";
 
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
 function mostrarDatosEnTabla() {
     var token = sessionStorage.getItem("token")
     if (token != null) {

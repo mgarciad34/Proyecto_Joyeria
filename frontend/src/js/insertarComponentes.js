@@ -12,7 +12,9 @@ var msgNombre = document.getElementById('mensajeNombre');
 var msgBoton = document.getElementById('mensajeBoton');
 
 var btnregistro = document.getElementById('btnregistrar');
-
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
 
 nombre.addEventListener('input', function(){
     if (validarNombre(nombre.value) === false){

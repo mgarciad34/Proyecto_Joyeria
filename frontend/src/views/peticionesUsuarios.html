@@ -9,13 +9,75 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
         <link rel="stylesheet" href="../css/animacion.css">
         <link rel="stylesheet" href="../css/test.css">
-    
+    <style>
+   .cabezera {
+    position: relative;
+    z-index: 1000;
+}
+
+.container {
+    position: relative;
+    z-index: 1; 
+}
+    </style>
 </head>
-<body>
-    <header id="cabecera" class="row ">
+<header class="row cabezera">
+    
+    <nav class="navbar navbar-expand-lg p-6">
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand" href="./redirect.html"><img src="../images/joya.png" alt="Acceso a roles" style="width: 35px; height: 35px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="col-1"></div>
+            <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                <ul class="navbar-nav col-12">
+                    <div class="col-1"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="indexAdministrador.html">Inicio</a>
+                    </li>
+                    <div class="col-1"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
+                            <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
+                            <a class="dropdown-item" href="peticionesUsuarios.html">Peticiones</a>
+                        </div>
+                    </li>
+                    <div class="col-1"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Roles
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
+                            <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
+                        </div>
+                    </li>
+                    <div class="col-1"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Componentes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
+                            <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
+                        </div>
+                    </li>
+                    <div class="col-1"></div>
+                     
+                      <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<body >
    
-     
-    </header>
         
     <div class="modal" id="modal">
         <div class="modal-contenido">

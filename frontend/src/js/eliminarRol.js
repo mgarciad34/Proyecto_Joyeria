@@ -7,6 +7,9 @@ var btnRegistrarRol = document.getElementById('btnInsertarRol');
 var mensajeBoton = document.getElementById('mensajeBoton');
 
 document.addEventListener('DOMContentLoaded', function () {
+    let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav2').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
     var selUsuario = document.getElementById('selUsuario');
     var selRol = document.getElementById('selRol');
 

@@ -16,7 +16,9 @@ var msgcontrasena = document.getElementById('mensajeContrasena');
 var msgconfirmarContrasena = document.getElementById('mensajeConfirmarContrasena');
 
 var btnregistro = document.getElementById('btnregistrar');
-
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
 
 function comprobarContrasena(contrasena) {
     var contrasenaTam = contrasena.length;

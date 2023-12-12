@@ -1,10 +1,14 @@
 import { obtenerSolicitudes,actualizarPeticion } from "./http/http-peticionesUsuarios.js"
  /**Óscar */
 let tabla = document.getElementById('tabla_peticiones')
+let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
 
 obtenerSolicitudes().then(function(data){
    
    pintarSolicitudes(data[0].peticiones)
+   
 })
 
 function pintarSolicitudes(solicitudes){

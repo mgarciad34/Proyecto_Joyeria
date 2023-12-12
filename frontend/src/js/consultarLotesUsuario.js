@@ -1,6 +1,7 @@
 //Manuel
 import { cancelarLote } from './http/http-cancelarLote.js';
 import { obtenerDatos } from './http/http-consultarLotesUsuario.js';
+let fotoUrl = sessionStorage.getItem('foto-url')
 
 document.addEventListener('DOMContentLoaded', () => {
     var id = sessionStorage.getItem('id-usuario');
