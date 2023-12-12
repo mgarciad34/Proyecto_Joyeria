@@ -12,7 +12,7 @@ obtenerLotes().then(function (data) {
         }
     } else {
         pintarLotes(data);
-
+        console.log(data)
     }
 })
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lote;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Exception;
 
@@ -14,6 +15,10 @@ class ControladorLote extends Controller
         try{
 
             $lotes = Lote::where('estado', '=','entregado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){
@@ -102,6 +107,12 @@ class ControladorLote extends Controller
         try{
 
             $lotes = Lote::where('estado', '=','clasificado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+                $clasificador=User::find($lotes[$i]->id_clasificador);
+                $lotes[$i]->clasificador=$clasificador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){
