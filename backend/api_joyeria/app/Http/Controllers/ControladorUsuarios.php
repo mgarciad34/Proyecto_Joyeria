@@ -9,6 +9,7 @@ use App\Models\Peticion;
 use App\Models\TipoPeticion;
 use App\Models\Rol;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ControladorUsuarios extends Controller
 {
@@ -89,8 +90,14 @@ class ControladorUsuarios extends Controller
             $peticion = new Peticion;
             $peticion->fill($request->all());
             $peticion->solicitante = $id;
-            $peticion->save();
-            return response()->json(['mensaje' => 'Solicitud realizada correctamente'], 200);
+            $numero=DB::select("select count(*) as contador from peticiones where solicitante = ? and estado = 'pendiente' and solicitud = ? and solicitado = ?",[$peticion->solicitante,$peticion->solicitud,$peticion->solicitado]);
+            if($numero[0]->contador==0){
+
+                $peticion->save();
+                return response()->json(['mensaje' => 'Solicitud realizada correctamente'], 200);
+            }else{
+                return response()->json(['mensaje'=>'Ya existe una solicitud pendiente con esas caracteristicas'],200);
+            }
         } catch (Exception $e) {
             return response()->json(['mensaje' => 'Error al procesar la solicitud'], 500);
         }
@@ -120,10 +127,5 @@ class ControladorUsuarios extends Controller
             return response()->json(['mensaje' => 'Error al procesar la solicitud', $e->getMessage()], 500);
         }
     }
-    function testMany()
-    {
-        $usuario = User::find(2);
-        $comentario = $usuario->peticionesDe()->get();
-        return response()->json([$comentario]);
-    }
+ 
 }

@@ -127,4 +127,4 @@ Route::middleware('cors')->group( function () {
 
 });
 
-Route::get('test', [ControladorUsuarios::class, 'testMany']);
+Route::get('test/{id}', [ControladorUsuarios::class, 'testPeticion']);

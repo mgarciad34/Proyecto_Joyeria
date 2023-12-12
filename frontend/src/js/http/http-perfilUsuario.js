@@ -148,7 +148,7 @@ export async function enviarSolicitud(id,solicitud) {
  
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error('No se pudo cerrar sesión');
+            throw new Error('No se pudo enviar la peticion');
         }
         const data = await response.json();
         return data
