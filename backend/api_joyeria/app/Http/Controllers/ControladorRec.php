@@ -91,7 +91,7 @@ class ControladorRec extends Controller
              * Se puntua el valor absoluto del numero en base a lo mas cercano de la media este siendo el mejor
              * el que obtenga 0 de puntuacion al ser el mismo que la media y de ahi obtenemos cuantos componentes tendra
              */
-            $parametroGeneral = 3;
+            $parametroGeneral = env('PARAMETRO_ALGORITMO');
             $numeroComponentes = DB::select("SELECT MAX(contador) as 'maximo',
     MIN(contador) as 'minimo',
     ROUND(AVG(contador)) as 'media'
