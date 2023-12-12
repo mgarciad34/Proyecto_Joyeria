@@ -21,7 +21,6 @@ function mostrarTabla() {
                     nuevaFila.id = `fila-${item.id}`;
 
                     for (const key in item) {
-                        //Hacemos que la ID no aparezca en la tabla
                         if (key !== 'id') {
                             nuevaFila.appendChild(crearCelda(item[key]));
                         }
@@ -38,13 +37,11 @@ function mostrarTabla() {
                         eliminarComponente(item.id);
                     });
 
-                    //Celdas de botones por fila
                     const celdaBotones = document.createElement('td');
                     celdaBotones.appendChild(btnModificar);
                     celdaBotones.appendChild(btnEliminar);
                     nuevaFila.appendChild(celdaBotones);
 
-                    //Agregamos la fila a la tabla
                     tablaBody.appendChild(nuevaFila);
                 }
             })

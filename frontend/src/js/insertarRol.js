@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Array.isArray(usuarios)) {
                         selUsuario.innerHTML = '';
 
-                        // Agregar una opción por cada usuario
                         usuarios.forEach(usuario => {
                             var optionUsuario = document.createElement('option');
                             optionUsuario.value = usuario.id;

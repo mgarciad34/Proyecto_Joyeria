@@ -1,13 +1,13 @@
 //Manuel
 import { obtenerDatos, enviarSessionStorage } from "./http/http-login.js";
 
-//Variables a utilizar
+
 const correo = document.getElementById('txtcorreo');
 const contrasena = document.getElementById('txtcontrasena');
 var btnlogin = document.getElementById('loguearse');
 const message = document.getElementById('txtmensaje')
 
-//Eventos
+
 btnlogin.addEventListener('click', function(event){
   event.preventDefault();
 

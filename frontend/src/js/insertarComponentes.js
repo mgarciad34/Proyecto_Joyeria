@@ -5,20 +5,14 @@ import { comprobarColor } from './http/http-registro.js';
 import { enviarDatos } from './http/http-insertarUsuarios.js';
 import Componentes from './clases/Componentes.js';
 
-//Llamamos a todas las variables que vamos a usar
-
-//Variables de tipo input
 var nombre = document.getElementById('txtnombre');
 var cantidad = document.getElementById('txtcantidad');
 
-//Varibles que notifican mensajes
 var msgNombre = document.getElementById('mensajeNombre');
 var msgBoton = document.getElementById('mensajeBoton');
 
-//Botones
 var btnregistro = document.getElementById('btnregistrar');
 
-// Eventos
 
 nombre.addEventListener('input', function(){
     if (validarNombre(nombre.value) === false){
@@ -30,7 +24,6 @@ nombre.addEventListener('input', function(){
     }
 });
 
-//Funcionalidad boton
 
 btnregistro.addEventListener('click', function(event){
     event.preventDefault();

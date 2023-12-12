@@ -5,24 +5,18 @@ import { validarNombre, validarCorreo, validarContrasena, confirmarContrasena } 
 import { comprobarColor } from './http/http-registro.js';
 import { enviarDatos } from './http/http-insertarUsuarios.js';
 
-//Llamamos a todas las variables que vamos a usar
-
-//Variables de tipo input
 var nombre = document.getElementById('txtnombre');
 var correo = document.getElementById('txtcorreo');
 var contrasena = document.getElementById('txtcontrasena');
 var confirmaContrasena = document.getElementById('txtconfirmarContrasena');
 
-//Varibles que notifican mensajes
 var msgNombre = document.getElementById('mensajeNombre');
 var msgCorreo = document.getElementById('mensajeCorreo');
 var msgcontrasena = document.getElementById('mensajeContrasena');
 var msgconfirmarContrasena = document.getElementById('mensajeConfirmarContrasena');
 
-//Botones
 var btnregistro = document.getElementById('btnregistrar');
 
-//Funcionalidades
 
 function comprobarContrasena(contrasena) {
     var contrasenaTam = contrasena.length;
@@ -44,8 +38,6 @@ function comprobarContrasena(contrasena) {
     }
     return validacion;
 }
-
-// Eventos
 
 nombre.addEventListener('input', function () {
     if (validarNombre(nombre.value) === false) {
@@ -84,8 +76,6 @@ confirmaContrasena.addEventListener('input', function () {
     }
 });
 
-
-//Funcionalidad boton
 
 btnregistro.addEventListener('click', function (event) {
     event.preventDefault();

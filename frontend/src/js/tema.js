@@ -1,5 +1,4 @@
 //Manuel
-//Archivo para el tema claro/oscuro del html
 
 function cambiarColorFondo() {
     var body = document.getElementById('body');

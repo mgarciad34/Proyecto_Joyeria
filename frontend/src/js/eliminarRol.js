@@ -20,14 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const usuarios = response.usuarios;
 
             if (Array.isArray(usuarios)) {
-                // Limpiar las opciones actuales del select
                 selUsuario.innerHTML = '';
 
-                // Agregar una opción por cada usuario
                 usuarios.forEach(usuario => {
                     var optionUsuario = document.createElement('option');
                     optionUsuario.value = usuario.id;
-                    optionUsuario.text = usuario.name; // Ajusta según la estructura de tus datos
+                    optionUsuario.text = usuario.name; 
                     selUsuario.add(optionUsuario);
                 });
             } else {

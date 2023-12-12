@@ -16,10 +16,7 @@ var mensajeContrasena = document.getElementById('messagePassword');
 var mensajeContrasenaConfirmar = document.getElementById('messagePasswordConfirm');
 var mensajeNombre = document.getElementById('messageName');
 var mensajeEmail = document.getElementById('messageEmail');
-//Variables de los validadores
 
-
-// Funcionalidades
 function comprobarContrasena(contrasena) {
     var contrasenaTam = contrasena.length;
     var validacion = true;
@@ -40,9 +37,6 @@ function comprobarContrasena(contrasena) {
     }
     return validacion;
 }
-
-// -------------------- LISTENERS --------------------
-// Comprobación dinámica de la contraseña cuando se genera un cambio en el formulario
 
 nombre.addEventListener('input', function(){
     if (validarNombre(nombre.value) === false){
