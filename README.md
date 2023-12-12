@@ -110,6 +110,15 @@ Una vez ejecutados los comandos de migraciones y seeders, en la base de datos se
 - **Descripción:** Obtiene la lista de lotes que han sido entregados.
 
 
+### Consultar Lotes Entregados por ID de usuario
+
+- **Ruta:** `http://127.0.0.1:8000/api/lotes/entregados/{id}`
+
+- **Método:** `GET`
+
+- **Descripción:** Obtiene la lista de lotes que han sido entregados por el id del usuario.
+
+
 ### Consultar Lotes Clasificados
 
 - **Ruta:** `http://127.0.0.1:8000/api/lotes/clasificados`

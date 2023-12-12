@@ -7,39 +7,37 @@ var btnRegistrarRol = document.getElementById('btnInsertarRol');
 var mensajeBoton = document.getElementById('mensajeBoton');
 
 document.addEventListener('DOMContentLoaded', function () {
+    let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav2').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
+    var selUsuario = document.getElementById('selUsuario');
+    var selRol = document.getElementById('selRol');
 
-    var token = sessionStorage.getItem("token")
-    if (token == null) {
-        window.location.href = 'redirect.html';
-    } else {
-
-        if (sessionStorage.getItem("ultimo-acceso") == "administrador") {
-            var selUsuario = document.getElementById('selUsuario');
-            var selRol = document.getElementById('selRol');
-            obtenerDatos()
-                .then(response => {
-                    const usuarios = response.usuarios;
-                    console.log(response)
-                    if (Array.isArray(usuarios)) {
-                        selUsuario.innerHTML = '';
-
-                        usuarios.forEach(usuario => {
-                            var optionUsuario = document.createElement('option');
-                            optionUsuario.value = usuario.id;
-                            optionUsuario.text = usuario.name;
-                            selUsuario.add(optionUsuario);
-                        });
-                    } else {
-                        console.error('La respuesta de la API no es un array:', usuarios);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al cargar datos en el select:', error);
-                });
-        }else{
-            window.location.href = 'redirect.html';
-        }
+    if (!selUsuario) {
+        console.error('No se encontró el elemento con ID "selUsuario".');
+        return;
     }
+
+    obtenerDatos()
+        .then(response => {
+            const usuarios = response.usuarios;
+
+            if (Array.isArray(usuarios)) {
+                selUsuario.innerHTML = '';
+
+                usuarios.forEach(usuario => {
+                    var optionUsuario = document.createElement('option');
+                    optionUsuario.value = usuario.id;
+                    optionUsuario.text = usuario.name; 
+                    selUsuario.add(optionUsuario);
+                });
+            } else {
+                console.error('La respuesta de la API no es un array:', usuarios);
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar datos en el select:', error);
+        });
 });
 
 btnRegistrarRol.addEventListener('click', function (event) {
