@@ -52,68 +52,78 @@ class ControladorUsuarios extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-/**Óscar */
-    public function updateEmail(Request $request,$id){
-        try{
-          
-            $nuevo=$request->get('email');
-            $usuario=User::find($id);
-            $usuario->email=$nuevo;
+    /**Óscar */
+    public function updateEmail(Request $request, $id)
+    {
+        try {
+
+            $nuevo = $request->get('email');
+            $usuario = User::find($id);
+            $usuario->email = $nuevo;
             $usuario->save();
-            return response()->json(['mensaje'=>'Actualización de email exitosa'],200);
-        }catch(Exception $e){
-            return response()->json(['mensaje' =>'Error al actualizar el email'], 409);
+            return response()->json(['mensaje' => 'Actualización de email exitosa'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al actualizar el email'], 409);
         }
     }
 
-/**Óscar */
-public function actualizarPassword(Request $request,$id){
-    try{
-      
-        $nuevo=$request->get('password');
-        $usuario=User::find($id);
-        $usuario->password=bcrypt($nuevo);
-        $usuario->save();
-        return response()->json(['mensaje'=>'Actualización de contraseña exitosa'],200);
-    }catch(Exception $e){
-        return response()->json(['mensaje' =>'Error al actualizar la contraseña'], 409);
-    }
-}
- /**Óscar */
-public function nuevaPeticion(Request $request,$id){
-    try{
+    /**Óscar */
+    public function actualizarPassword(Request $request, $id)
+    {
+        try {
 
-        $peticion=new Peticion;
-        $peticion->fill($request->all());
-        $peticion->solicitante=$id;
-        $peticion->save();
-        return response()->json(['mensaje'=>'Solicitud realizada correctamente'],200);
-    }catch(Exception $e){
-        return response()->json(['mensaje'=>'Error al procesar la solicitud'],500);
+            $nuevo = $request->get('password');
+            $usuario = User::find($id);
+            $usuario->password = bcrypt($nuevo);
+            $usuario->save();
+            return response()->json(['mensaje' => 'Actualización de contraseña exitosa'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al actualizar la contraseña'], 409);
+        }
     }
-}
- /**Óscar */
-public function getPeticionesUsuario($id){
-    try{
-        $json=[];
-        $peticion=Peticion::where('solicitante','=',$id)->get();
-        for ($i=0;$i<count($peticion);$i++){
-            
-            $tipo=TipoPeticion::find($peticion[$i]->solicitud);
+    /**Óscar */
+    public function nuevaPeticion(Request $request, $id)
+    {
+        try {
 
-            $peticion[$i]->nombre_peticion=$tipo->nombre;
-            if($tipo->id==1 || $tipo->id==2){
-                $rol=Rol::find($peticion[$i]->solicitado);
-                $peticion[$i]->nombre_solicitado=$rol->nombre;
+            $peticion = new Peticion;
+            $peticion->fill($request->all());
+            $peticion->solicitante = $id;
+            $peticion->save();
+            return response()->json(['mensaje' => 'Solicitud realizada correctamente'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al procesar la solicitud'], 500);
+        }
+    }
+    /**Óscar */
+    public function getPeticionesUsuario($id)
+    {
+        try {
+            $json = [];
+            $usuario=User::find($id);
+            // $peticion = Peticion::where('solicitante', '=', $id)->get();
+            $peticion=$usuario->peticionesDe()->get();
+            for ($i = 0; $i < count($peticion); $i++) {
+
+                $tipo = TipoPeticion::find($peticion[$i]->solicitud);
+
+                $peticion[$i]->nombre_peticion = $tipo->nombre;
+                if ($tipo->id == 1 || $tipo->id == 2) {
+                    $rol = Rol::find($peticion[$i]->solicitado);
+                    $peticion[$i]->nombre_solicitado = $rol->nombre;
+                }
             }
+
+            $json['peticiones'] = $peticion;
+            return response()->json([$json], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al procesar la solicitud', $e->getMessage()], 500);
         }
-      
-        $json['peticiones']=$peticion;
-        return response()->json([$json],200);
-    }catch(Exception $e){
-        return response()->json(['mensaje'=>'Error al procesar la solicitud',$e->getMessage()],500);
+    }
+    function testMany()
+    {
+        $usuario = User::find(2);
+        $comentario = $usuario->peticionesDe()->get();
+        return response()->json([$comentario]);
     }
 }
-
-}
-

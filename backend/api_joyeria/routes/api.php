@@ -127,3 +127,4 @@ Route::middleware('cors')->group( function () {
 
 });
 
+Route::get('test', [ControladorUsuarios::class, 'testMany']);
