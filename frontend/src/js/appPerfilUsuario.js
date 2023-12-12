@@ -319,6 +319,94 @@ function insertarCabecera() {
             </div>
         </nav>
             `,
+        administrador : `
+        <header class="row cabezera " style="position: relative;
+     z-index: 1000;">
+         
+         <nav class="navbar navbar-expand-lg p-6">
+             <div class="container-fluid justify-content-center">
+                 <a class="navbar-brand" href="./redirect.html"><img src="../images/joya.png" alt="Acceso a roles" style="width: 35px; height: 35px;"></a>
+                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button>
+                 <div class="col-1"></div>
+                 <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                     <ul class="navbar-nav col-12">
+                         <div class="col-1"></div>
+                         <li class="nav-item">
+                             <a class="nav-link" href="indexAdministrador.html">Inicio</a>
+                         </li>
+                         <div class="col-1"></div>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Usuarios
+                             </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                 <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
+                                 <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
+                                 <a class="dropdown-item" href="peticionesUsuarios.html">Peticiones</a>
+                             </div>
+                         </li>
+                         <div class="col-1"></div>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Roles
+                             </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                 <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
+                                 <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
+                             </div>
+                         </li>
+                         <div class="col-1"></div>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Componentes
+                             </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                 <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
+                                 <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
+                             </div>
+                         </li>
+                      
+                     </ul>
+                 </div>
+             </div>
+         </nav>
+     </header>
+        
+        `,
+        colaborador: `
+        
+        <nav class="navbar navbar-expand-lg p-6">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="#"><img src="../images/joya.png" alt="logo" style="width: 35px; height: 35px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-1"></div>
+                <div class="collapse navbar-collapse ps-4" id="navbarNav">
+                    <ul class="navbar-nav col-12">
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="IndexColaborador.html">Inicio</a>
+                        </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Lotes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                <a class="dropdown-item" href="registrarLotes.html">Nuevo Lote</a>
+                                <a class="dropdown-item" href="consultarLote.html">Buscar Lotes</a>
+                            </div>
+                        </li>
+                        <div class="col-1"></div>
+                        </li>
+                      
+                    </ul>
+                </div>
+            </div>
+        `
 
     };
     cabecera.innerHTML = cabeceras[ultimoAcceso]

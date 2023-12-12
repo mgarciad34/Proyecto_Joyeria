@@ -19,6 +19,9 @@ btnRegistrar.addEventListener('click', function(event){
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('colaborador'))
     var token = sessionStorage.getItem("token")
     if (token == null) {
         window.location.href = 'redirect.html';

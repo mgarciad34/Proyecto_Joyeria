@@ -57,6 +57,10 @@
                       </li>
                       <div class="col-1"></div>
                       </li>
+                      <div class="col-1"></div>
+                     
+                      <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                   
                   </ul>
               </div>
           </div>
@@ -99,6 +103,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    <script src="js/tema.js"></script>
+    <script>
+      let fotoUrl = sessionStorage.getItem('foto-url')
+    document.getElementById('fotoNav').src = fotoUrl
+    sessionStorage.setItem('ultimo-acceso', JSON.stringify('colaborador'))
+    </script>
 </body>
 </html>

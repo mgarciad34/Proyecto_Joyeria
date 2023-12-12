@@ -5,7 +5,9 @@ let fotoUrl = sessionStorage.getItem('foto-url')
 
 document.addEventListener('DOMContentLoaded', () => {
     var id = sessionStorage.getItem('id-usuario');
-
+    let fotoUrl = sessionStorage.getItem('foto-url')
+    document.getElementById('fotoNav').src = fotoUrl
+    sessionStorage.setItem('ultimo-acceso', JSON.stringify('colaborador'))
     obtenerDatos(id)
         .then(responseArray => {
             if (sessionStorage.getItem("token") != null) {
