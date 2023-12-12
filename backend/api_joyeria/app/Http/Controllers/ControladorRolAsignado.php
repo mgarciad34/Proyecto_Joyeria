@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RolAsignado;
-use App\Http\Controllers\ControladorRolAsignado;
+use App\Models\Rol;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class ControladorRolAsignado extends Controller
 {
+    /*Manuel */
         public function InsertarRolConValidacion($idUsuario, $idRol)
         {
             try {
@@ -41,7 +43,7 @@ class ControladorRolAsignado extends Controller
                     return response()->json(['error' => $validator->errors()], 400);
                 }
 
-                $rolesAsignados = RolAsignado::where('idusuario', $idUsuario)->get();
+                $rolesAsignados = RolAsignado::where('id_usuario', $idUsuario)->get();
 
                 if ($rolesAsignados->isEmpty()) {
                     return response()->json(['message' => 'El usuario no tiene roles asignados'], 404);
@@ -49,10 +51,12 @@ class ControladorRolAsignado extends Controller
                 $roles = [];
                 foreach ($rolesAsignados as $rolAsignado) {
                     $rol = RolAsignado::find($rolAsignado->id);
+                    $nombre=Rol::find($rol);
                     if ($rol) {
                         $roles[] = [
-                            'idusuario' => $rol->idusuario,
-                            'idrol' => $rol->idrol,
+                            'id_usuario' => $rol->id_usuario,
+                            'id_rol' => $rol->id_rol,
+                            'nombre'=>$nombre[0]->nombre,
                         ];
                     }
                 }
@@ -62,5 +66,35 @@ class ControladorRolAsignado extends Controller
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }
+        /**Óscar */
+        public function obtenerRolesPeticion($id){
+            try{
 
-}
+                $rolesId=RolAsignado::where('id_usuario', $id)->get();
+                $roles=Rol::all();
+                $json=[];
+                for($i=0;$i<count($roles);$i++){
+                $x=0;
+                $asignado=false;
+                while($x<count($rolesId)  && $asignado==false){
+                    if($rolesId[$x]->id_rol==$roles[$i]->id){
+                        $asignado=true;
+                    }else{
+                        $x++;
+                    }
+                }
+                if($asignado){
+                    $json['asignados'][]=$roles[$i];
+                }else{
+                    $json['no_asignados'][]=$roles[$i];
+                }
+
+            }
+            return response()->json([$json],200);
+        }catch(Exception $e){
+            return response()->json(['mensaje'=>'No se puedo obtener los roles'],500);
+        }
+            
+        }
+        
+    }

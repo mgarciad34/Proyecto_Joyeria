@@ -8,7 +8,7 @@ use Exception;
 
 class ControladorTipos extends Controller
 {
-    /**Óscar */
+    /*Manuel, Óscar */
     function consultarTipos(){
         try{
 
@@ -22,7 +22,7 @@ class ControladorTipos extends Controller
     function insertarComponente(Request $request)
     {
        $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|unique:tipos_componentes',
             'cantidad' => 'required|numeric',
         ]);
 

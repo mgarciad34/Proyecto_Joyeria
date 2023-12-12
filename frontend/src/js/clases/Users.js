@@ -1,3 +1,4 @@
+//Manuel
 export default class Users {
     constructor(name, email, password) {
       this.name = name;

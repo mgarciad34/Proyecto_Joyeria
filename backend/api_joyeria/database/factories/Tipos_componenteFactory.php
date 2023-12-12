@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tipos_componente>
  */
+ /**Óscar */
 class Tipos_componenteFactory extends Factory
 {
    public $nombres = ['Teclado', 'RAM', 'Tarjeta Gráfica', 'Monitor', 'Ratón', 'Disco Duro', 'Placa Base', 'Altavoces', 'Impresora'];

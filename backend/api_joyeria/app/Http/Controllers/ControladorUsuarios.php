@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RolAsignado;
-
+use App\Models\Peticion;
+use App\Models\TipoPeticion;
+use App\Models\Rol;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ControladorUsuarios extends Controller
 {
-    // ...
+    /* Manuel */
 
     public function crearUsuario(Request $request)
     {
@@ -40,8 +44,8 @@ class ControladorUsuarios extends Controller
 
 
             RolAsignado::create([
-                'idusuario' => $idUsuario,
-                'idrol' => $idRol,
+                'id_usuario' => $idUsuario,
+                'id_rol' => $idRol,
             ]);
 
             return response()->json(['message' => 'Rol asignado exitosamente'], 201);
@@ -49,4 +53,79 @@ class ControladorUsuarios extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    /**Óscar */
+    public function updateEmail(Request $request, $id)
+    {
+        try {
+
+            $nuevo = $request->get('email');
+            $usuario = User::find($id);
+            $usuario->email = $nuevo;
+            $usuario->save();
+            return response()->json(['mensaje' => 'Actualización de email exitosa'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al actualizar el email'], 409);
+        }
+    }
+
+    /**Óscar */
+    public function actualizarPassword(Request $request, $id)
+    {
+        try {
+
+            $nuevo = $request->get('password');
+            $usuario = User::find($id);
+            $usuario->password = bcrypt($nuevo);
+            $usuario->save();
+            return response()->json(['mensaje' => 'Actualización de contraseña exitosa'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al actualizar la contraseña'], 409);
+        }
+    }
+    /**Óscar */
+    public function nuevaPeticion(Request $request, $id)
+    {
+        try {
+
+            $peticion = new Peticion;
+            $peticion->fill($request->all());
+            $peticion->solicitante = $id;
+            $numero=DB::select("select count(*) as contador from peticiones where solicitante = ? and estado = 'pendiente' and solicitud = ? and solicitado = ?",[$peticion->solicitante,$peticion->solicitud,$peticion->solicitado]);
+            if($numero[0]->contador==0){
+
+                $peticion->save();
+                return response()->json(['mensaje' => 'Solicitud realizada correctamente'], 200);
+            }else{
+                return response()->json(['mensaje'=>'Ya existe una solicitud pendiente con esas caracteristicas'],200);
+            }
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al procesar la solicitud'], 500);
+        }
+    }
+    /**Óscar */
+    public function getPeticionesUsuario($id)
+    {
+        try {
+            $json = [];
+            $usuario=User::find($id);
+            // $peticion = Peticion::where('solicitante', '=', $id)->get();
+            $peticion=$usuario->peticionesDe()->get();
+            for ($i = 0; $i < count($peticion); $i++) {
+
+                $tipo = TipoPeticion::find($peticion[$i]->solicitud);
+
+                $peticion[$i]->nombre_peticion = $tipo->nombre;
+                if ($tipo->id == 1 || $tipo->id == 2) {
+                    $rol = Rol::find($peticion[$i]->solicitado);
+                    $peticion[$i]->nombre_solicitado = $rol->nombre;
+                }
+            }
+
+            $json['peticiones'] = $peticion;
+            return response()->json([$json], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al procesar la solicitud', $e->getMessage()], 500);
+        }
+    }
+ 
 }

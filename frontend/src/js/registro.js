@@ -1,3 +1,4 @@
+// Manuel
 // Importamos las clases a utilizar
 import Users from '../js/clases/Users.js';
 import { validarNombre, validarCorreo, validarContrasena, confirmarContrasena } from './validaciones.js';
@@ -15,10 +16,7 @@ var mensajeContrasena = document.getElementById('messagePassword');
 var mensajeContrasenaConfirmar = document.getElementById('messagePasswordConfirm');
 var mensajeNombre = document.getElementById('messageName');
 var mensajeEmail = document.getElementById('messageEmail');
-//Variables de los validadores
 
-
-// Funcionalidades
 function comprobarContrasena(contrasena) {
     var contrasenaTam = contrasena.length;
     var validacion = true;
@@ -39,9 +37,6 @@ function comprobarContrasena(contrasena) {
     }
     return validacion;
 }
-
-// -------------------- LISTENERS --------------------
-// Comprobación dinámica de la contraseña cuando se genera un cambio en el formulario
 
 nombre.addEventListener('input', function(){
     if (validarNombre(nombre.value) === false){
@@ -92,6 +87,8 @@ btnregistro.addEventListener('click', function(event){
     var sumatorio = colorNombre + colorCorreo + colorContrasena + colorConfirmar;
     if(sumatorio == 4){
             enviarDatos(nuevoUsuario, url).then(function(){
+            
+            
             window.location.href="../index.html";
         });
         

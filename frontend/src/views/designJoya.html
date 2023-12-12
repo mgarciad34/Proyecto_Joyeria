@@ -4,35 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <style>
-        /*temporal*/
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; 
-        }
-    
-        nav li {
-            margin-right: 10px; 
-        }
-    
-        nav a {
-            text-decoration: none;
-            color: black;
-            
-        }
-    </style>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+        <link rel="stylesheet" href="../css/animacion.css">
+        <link rel="stylesheet" href="../css/test.css">
 </head>
 <body>
-    <header class="row bg-warning row-warning">
+    <header class="row ">
    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-1"></div>
@@ -58,60 +41,108 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./historialJoyas.html">Historial</a>
                         </li>
+                        <div class="col-1"></div>
+                       
+                        <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                     
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="text-center mb-3">
-        <h4> Crear nueva Joya</h4>
-        
+    <div id="modal" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar-modal" id="cerrarModal">&times;</span>
+        <p>¿Estás seguro de que quieres guardar esta nueva joya?</p>
+        <button class="status shipped" id="confirmarGuardado">Confirmar</button>
+        <button class="status cancelled" id="cancelarGuardado">Cancelar</button>
+      </div>
     </div>
+    <div id="modal-errores" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p id="mensajeErrores"></p>
+          <button class="status cancelled" id="cerrarModalErrores">Continuar</button>
+        </div>
+      </div>
+      <div id="modal-generador" class="modal">
+        <div class="modal-contenido">
+            <h4>Receta generada</h4>
+          <p id="alertaGenerador"></p>
+          <button class="status delivered" id="aplicarGenerador">Aplicar</button>
+          <button class="status shipped" id="nuevaGenerador">Nueva</button>
+          <button class="status cancelled" id="cancelarGenerador">Cancelar</button>
+        </div>
+      </div>
     <div class="container">
-        <caption>Datos principales</caption>
-        
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>foto</th>
-                </tr>
-            </thead>
-            <tbody id="tabla_joya">
-        <tr>
-            <td><input id="inputNombre" type="text"></td>
-            <th><input id="inputFoto" type="text"></th>
-        </tr>
-    </tbody>
-</table>
-<caption>Introduce una receta para la joya</caption>
-<table class="table">
-        <thead>
-            <tr>
-                <th>Componente necesario</th>
-                <th>Cantidad</th>
-            </tr>
-        </thead>
-        <tbody id="tabla_receta">
-            <tr>
-                <td>
-                    <select id="tipos-habilitados">    
-                        <option id="opcion-default" value="0" disabled selected>Selecciona un tipo</option>     
-                    </select>
-                </td>
-                
-                <td><input id="inputCantidad" min=0 type="number"></td>
-                <td><button id="btnNuevoElementoReceta" disabled>Añadir</button></td>
-            </tr>
-        </tbody>
-        <tbody id="detalle-receta"></tbody>
-        <tfoot><tr><td><button id="btn-guardar" disabled>Crear joya</button></td></tr></tfoot>
-    </table>
+        <main class="table4">
+            <section class="table__header">
+                <h6>Datos Principales</h6>
+            </section>
+            
+            <section class="table__body" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Nombre </th>
+                            <th> <input placeholder="Introduce el nombre" class="status shipped" id="inputNombre" type="text"></th>
+                            <th>  </th>
+                            <th> Foto</th>
+                            <form id="formulario" action="http://localhost:8000/api/testing" method="post" enctype="multipart/form-data">
+                                <th>
+                                 
+
+                                        <label id="lblFoto" class=" status shipped fotoPerfil"  for="inputFoto"></label>
+                                        <input class="" type="file" id="inputFoto" name="foto" accept="image/png, image/jpeg, image/jpg" value="1">
+                                  
+                                </th>
+                            </form>
+                           <th><div id='carga' class="spDefault" ></div></th>
+                        </tr>
+                    </thead>
+                       
+                </table>
+            </section>
+        </main>
+        <main class="table3">
+            <section class="table__header">
+                <h5>Receta</h5>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead id="tabla_receta">
+                        <tr>
+                            <th> Componente necesario</th>
+                            <th> Cantidad </th>
+                            <th> </th>
+                            <th>  </th>
+                            <th>  </th>
+                            <th><button class="status delivered" id="btnGenerarReceta">Generador de recetas</button> </th>
+                        </tr>
+                        <tr>
+                            <th> <select class="status shipped" id="tipos-habilitados">    
+                                <option  id="opcion-default" value="0" disabled selected>Selecciona un tipo</option>     
+                            </select>
+                        </th>
+                            <th> <input class="status shipped" id="inputCantidad" min=0 type="number"> </th>
+                            <th> <button class="status shipped" id="btnNuevoElementoReceta" disabled>Añadir</button> </th>
+                            <th>  </th>
+                            <th> </th>
+                            <th> <button class="status shipped" id="btn-guardar" disabled>Crear joya</button> </th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="detalle-receta">
+    
+                    </tbody>
+                </table>
+            </section>
+        </main>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
     
-    <script src="../../../dist/appDesignjoya.bundle.js"></script>
+    <script  src="../../../dist/appDesignjoya.bundle.js"></script>
 </body>
 </html>

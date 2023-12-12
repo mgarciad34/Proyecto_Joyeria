@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Tipos_componente;
+ /**Óscar */
 class Tipos_componenteSeeder extends Seeder
 {
     /**
@@ -12,6 +13,6 @@ class Tipos_componenteSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Tipos_componente::factory(5)->create();
+        \App\Models\Tipos_componente::factory(9)->create();
     }
 }

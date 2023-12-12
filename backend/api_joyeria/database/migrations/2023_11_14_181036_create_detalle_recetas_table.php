@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+ /**Óscar */
 return new class extends Migration
 {
     /**
@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_componente');
             $table->integer('cantidad');
           
-
+            $table->foreign('id_joya')->references('id')->on('joyas')->onDelete('cascade');
+            $table->foreign('id_componente')->references('id')->on('tipos_componentes')->onDelete('cascade');
             
         });
     }

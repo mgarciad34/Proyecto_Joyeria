@@ -1,3 +1,4 @@
+//Manuel
 import { obtenerDatos } from '../js/http/http-consultarUsuarios.js';
 import RolesAsignados from './clases/rolesAsignados.js';
 import { enviarDatos } from './http/http-eliminarRol.js';
@@ -6,6 +7,9 @@ var btnRegistrarRol = document.getElementById('btnInsertarRol');
 var mensajeBoton = document.getElementById('mensajeBoton');
 
 document.addEventListener('DOMContentLoaded', function () {
+    let fotoUrl = sessionStorage.getItem('foto-url')
+document.getElementById('fotoNav2').src = fotoUrl
+sessionStorage.setItem('ultimo-acceso', JSON.stringify('administrador'))
     var selUsuario = document.getElementById('selUsuario');
     var selRol = document.getElementById('selRol');
 
@@ -19,14 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const usuarios = response.usuarios;
 
             if (Array.isArray(usuarios)) {
-                // Limpiar las opciones actuales del select
                 selUsuario.innerHTML = '';
 
-                // Agregar una opción por cada usuario
                 usuarios.forEach(usuario => {
                     var optionUsuario = document.createElement('option');
                     optionUsuario.value = usuario.id;
-                    optionUsuario.text = usuario.name; // Ajusta según la estructura de tus datos
+                    optionUsuario.text = usuario.name; 
                     selUsuario.add(optionUsuario);
                 });
             } else {
@@ -38,10 +40,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-btnRegistrarRol.addEventListener('click', function(event){
+btnRegistrarRol.addEventListener('click', function (event) {
     event.preventDefault();
-    var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
-    enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario');
-    window.location.href="indexAdministrador.html";
-
+    if (sessionStorage.getItem("ultimo-acceso") === "administrador") {
+        var rolAsignado = new RolesAsignados(selUsuario.value, selRol.value)
+        enviarDatos(rolAsignado, 'http://127.0.0.1:8000/api/administrador/eliminar/rol/usuario')
+        .then(response => {
+            console.log(response)
+            if(response === 200){
+                mensajeBoton.value = "";
+                window.location.href = "indexAdministrador.html";
+            }else if(response === 400){
+                mensajeBoton.innerHTML = "El usuario ya no tiene ese permiso";
+                mensajeBoton.style.color = "red";
+            }
+        })
+        
+        
+    }
 });

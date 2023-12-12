@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+ /**Óscar */
 class Tipos_componente extends Model
 {
     use HasFactory;

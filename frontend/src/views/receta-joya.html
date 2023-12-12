@@ -4,35 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /*temporal*/
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; 
-        }
-    
-        nav li {
-            margin-right: 10px; 
-        }
-    
-        nav a {
-            text-decoration: none;
-            color: black;
-            
-        }
-    </style>
+    <link rel="stylesheet" href="../css/test.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 </head>
 <body>
-    <header class="row bg-warning row-warning">
+    <header class="row">
    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-1"></div>
@@ -58,32 +39,57 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./historialJoyas.html">Historial</a>
                         </li>
+                        <div class="col-1"></div>
+                       
+                        <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                     
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <div class="text-center mb-3">
-            <h4> Receta</h4>
-            
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p id="alertaModal"></p>
+          <button class="status shipped" id="confirmarGuardado">Confirmar</button>
+          <button class="status cancelled" id="cancelarGuardado">Cancelar</button>
         </div>
-    
-    <caption>Componentes necesarios</caption>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tipo</th>
-                <th> Cantidad Necesaria</th>
-                <th> Cantidad Disponible</th>
-            </tr>
-        </thead>
-        <tbody id="tabla_receta">
-        </tbody>
-        <tfoot><tr id="botones"><td><button id="btnFabricar">Fabricar</button></td></tr></tfoot>
-    </table>
+      </div>
+      <div id="modal-errores" class="modal">
+        <div class="modal-contenido">
+          <span class="cerrar-modal" id="cerrarModal">&times;</span>
+          <p id="mensajeErrores"></p>
+          <button class="status cancelled" id="cerrarModalErrores">Continuar</button>
+        </div>
+      </div>
+    <div class="container">
+        <main class="table2">
+            <section class="table__header">
+                <h1>Receta</h1>
+                <h4 id="nombreJoya">Receta</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead id="">
+                        <tr id="botones">
+                            <th> Tipo </th>
+                            <th> Cantidad Necesaria</th>
+                            <th> Cantidad Disponible </th>
+                            <th > <button class="status shipped" id="btnFabricar">Fabricar</button></th>
+                            <th id="botonModificarOculto"></th>
+                            <th id="botonEliminarOculto"></th>
+                            
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_receta">
+                            
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

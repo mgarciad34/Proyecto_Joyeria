@@ -1,3 +1,4 @@
+//Manuel
 export async function enviarDatos(datos, ruta) {
     try {
         const respuesta = await fetch(ruta, {
@@ -13,12 +14,10 @@ export async function enviarDatos(datos, ruta) {
         }
     } catch (error) {
         console.error('Error al enviar los datos:', error.message);
-        // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
     }
 }
 
 export function obtenerNombreColor(rgbColor) {
-    // Mapea colores RGB a sus nombres
     var colores = {
         'rgb(255, 0, 0)': 'red',
         'rgb(0, 128, 0)': 'green'

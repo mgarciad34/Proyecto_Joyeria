@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las validaciones
 import { validarNombre,validarCorreo } from "../validaciones.js";
 import { enviarDatos } from "../http/http-modificarUsuario.js";
@@ -20,7 +21,7 @@ export function crearBoton(texto, color, clickHandler) {
 
 
 export function mostrarModal(usuarios, modificar, cerrar) {
-    console.log(usuarios)
+  
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const myInputNombre = document.getElementById('txtnombre');
     const myInputEmail = document.getElementById('txtemail');

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lote>
  */
+ /**Óscar */
 class LoteFactory extends Factory
 {
     /**
@@ -16,13 +17,20 @@ class LoteFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model=Lote::class;
-    public $estados=['entregado','clasificado','cancelado','creado'];
+    public $estados=['entregado','clasificado','cancelado'];
     public function definition(): array
+    
     {
+        $clasificador=0;
+        if(count($this->estados)==2){
+            $clasificador=2;
+        }
         return [
             'estado' =>array_pop($this->estados),
-            'ubicacion'=>strval(rand(0,10000)),
+            'latitud'=>strval(rand(0,10000)),
+            'longitud'=>strval(rand(0,10000)),
             'id_empresa'=>1,
+            'id_clasificador'=>$clasificador
         ];
     }
 }

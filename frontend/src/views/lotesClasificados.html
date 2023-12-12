@@ -6,13 +6,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="../css/test.css">
 </head>
 <body>
-    <header class="row bg-warning row-warning">
+    <header class="row">
    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="" alt="logo"></a>
+                <a style="margin-left: 20px;" class="navbar-brand " href="../views/redirect.html"><img class="foto" src="../images/joya.png" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,7 +21,7 @@
                 <div class="collapse navbar-collapse ps-4" id="navbarNav">
                     <ul class="navbar-nav col-12">
                       
-                        <div class="col-1"></div>
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="./indexClasificador.html">Lotes sin clasificar</a>
                         </li>
@@ -32,6 +33,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./componentesClasificados.html">Componentes clasificados</a>
                         </li>
+                        <div class="col-1"></div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./clasificadorCrearTipo.html">Crear Tipo</a>
+                        </li>
+                        <div class="col-1"></div>
+                       
+                        <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                     
                      
                     </ul>
                 </div>
@@ -39,26 +48,30 @@
         </nav>
     </header>
     <div class="container">
-        <div class="text-center mb-3">
-            
-            <h3 id="cabecera">Lotes CLasificados</h3>
-            
-        </div>
-        <caption>Listado de lotes</caption>
-        <table id="tabla-input" class="table">
-        <thead>
-            <tr>
-                <th class="col-2"> ID Lote</th>
-                <th class="col-2" >ID Empresa</th>
-                <th class="col-2" >Ubicacion</th>
-                <th class="col-2">ID Clasificador</th>
-                <th class="col-2"></th>
-            </tr>
-        </thead>
-        
-        <tbody id="tabla_lotes">
-           
-        </tbody>
+        <main class="table2">
+            <section class="table__header">
+                <h4>Lotes Clasificados</h4>
+            </section>
+            <section class="table__body">
+                <table>
+                   
+                    <thead id="">
+                        <tr>
+                            <th> Nº</th>
+                            <th> Colaborador </th>
+                            <th> Ubicacion</th>
+                            <th> Clasificador </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody id="tabla_lotes">
+    
+                    </tbody>
+                   
+                </table>
+            </section>
+        </main>
     </table>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

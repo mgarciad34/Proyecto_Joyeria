@@ -1,3 +1,4 @@
+//Manuel
 //Importamos las validaciones
 import Componentes from "../clases/Componentes.js";
 import { validarNombre,validarCorreo } from "../validaciones.js";
@@ -20,7 +21,7 @@ export function crearBoton(texto, color, clickHandler) {
 
 
 export function mostrarModal(tipos, modificar, cerrar) {
-    console.log(tipos)
+    
     const myModal = new bootstrap.Modal(document.getElementById('myModal'));
     const myInputNombre = document.getElementById('txtnombre');
     const myInputCantidad = document.getElementById('txtnumero');
@@ -64,7 +65,7 @@ export function mostrarModal(tipos, modificar, cerrar) {
     modificar.addEventListener("click", function () {
         var url = 'http://127.0.0.1:8000/api/administrador/modificar/componente/'+tipos.id;
         var modificarComponente = new Componentes(tipos.nombre, tipos.cantidad);
-        console.log(modificarComponente)
+   
         enviarDatos(modificarComponente, url);
         myModal.hide();
         window.location.href="indexAdministrador.html";

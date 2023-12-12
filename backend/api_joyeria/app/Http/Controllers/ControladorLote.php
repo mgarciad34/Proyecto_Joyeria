@@ -4,38 +4,75 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lote;
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Exception;
 
 class ControladorLote extends Controller
 {
-    /**Oscar */
+    /** Manuel, Oscar */
     function consultarLotesEntregados(){
         try{
 
             $lotes = Lote::where('estado', '=','entregado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){
             return response()->json(['mensaje'=>'Error al obtener los lotes'],500);
         }
+    }
+
+    function eliminarLote($id) {
+        try {
+            $lote = Lote::find($id);
+            if ($lote) {
+                $lote->delete();
+
+                return response()->json(['mensaje' => 'Lote eliminado correctamente'], 200);
+            } else {
+                return response()->json(['mensaje' => 'Lote no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => 'Error al eliminar el lote'], 500);
         }
+    }
+
+
+    function consultarLotesEntregadosID($id_empresa){
+        try{
+            $lotes = Lote::where('estado', '=', 'entregado')
+                          ->where('id_empresa', '=', $id_empresa)
+                          ->get();
+
+            $json['lotes'] = $lotes;
+            return response()->json([$json], 200);
+        } catch(Exception $e){
+            return response()->json(['mensaje' => 'Error al obtener los lotes'], 500);
+        }
+    }
 
     function consultarLote($id){
         $lotes = Lote::find($id);
         return response()->json(['mensaje' => $lotes]);
     }
-    
+
 
     function insertarLote(Request $request){
         $request->validate([
             'id_empresa' => 'required',
-            'ubicacion' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required',
             'estado' => 'required',
         ]);
 
         $nuevoLote = new Lote();
         $nuevoLote->id_empresa = $request->input('id_empresa');
-        $nuevoLote->ubicacion = $request->input('ubicacion');
+        $nuevoLote->latitud = $request->input('latitud');
+        $nuevoLote->longitud = $request->input('longitud');
         $nuevoLote->estado = $request->input('estado');
         $nuevoLote->save();
 
@@ -57,23 +94,25 @@ class ControladorLote extends Controller
     }
 
     function consultarLotes(Request $request){
-        // Obtener todos los lotes
         $lotes = Lote::all();
 
-        // Verificar si se encontraron lotes
         if ($lotes->isEmpty()) {
             return response()->json(['mensaje' => 'No se encontraron lotes'], 404);
         }
 
-        // Devolver una respuesta JSON con la lista de todos los lotes
         return response()->json(['mensaje' => $lotes]);
     }
 
-    /**Oscar */
     function consultarLotesClasificados(){
         try{
 
             $lotes = Lote::where('estado', '=','clasificado')->get();
+            for($i=0;$i<count($lotes);$i++){
+                $colaborador=User::find($lotes[$i]->id_empresa);
+                $lotes[$i]->colaborador=$colaborador->name;
+                $clasificador=User::find($lotes[$i]->id_clasificador);
+                $lotes[$i]->clasificador=$clasificador->name;
+            }
             $json['lotes']=$lotes;
             return response()->json([ $json],200);
         }catch(Exception $e){

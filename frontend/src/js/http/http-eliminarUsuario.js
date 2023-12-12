@@ -1,3 +1,4 @@
+//Manuel
 export function eliminarUsuario(id) {
     eliminarDatos(id)
         .then(() => {
@@ -14,10 +15,13 @@ export function eliminarUsuario(id) {
 
 export async function eliminarDatos(id) {
     try {
+         const token = sessionStorage.getItem('token')
+
         const response = await fetch(`http://127.0.0.1:8000/api/administrador/eliminar/usuario/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
             },
         });
 

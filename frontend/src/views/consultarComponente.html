@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/test.css">
+    <style>
+     
+    .cabezera {
+    position: relative;
+    z-index: 1000;
+}
 
+.container {
+    position: relative;
+    z-index: 1; 
+}
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100" id="body">
-    <header class="row bg-warning row-warning">
-   
+    <header class="row cabezera">
+    
         <nav class="navbar navbar-expand-lg p-6">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img src="../images/joya.png" alt="logo" style="width: 35px; height: 35px;"></a>
+                <a class="navbar-brand" href="./redirect.html"><img src="../images/joya.png" alt="Acceso a roles" style="width: 35px; height: 35px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,51 +37,67 @@
                         </li>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Usuarios
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                                 <a class="dropdown-item" href="insertarUsuarios.html">Añadir Usuario</a>
                                 <a class="dropdown-item" href="consultarUsuarios.html">Consultar Usuarios</a>
+                                <a class="dropdown-item" href="peticionesUsuarios.html">Peticiones</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Roles
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                 <a class="dropdown-item" href="insertarRol.html">Añadir Rol</a>
                                 <a class="dropdown-item" href="eliminarRol.html">Eliminar Rol</a>
                             </div>
                         </li>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Componentes
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                                 <a class="dropdown-item" href="insertarComponente.html">Añadir Componente</a>
                                 <a class="dropdown-item" href="consultarComponente.html">Consultar Componentes</a>
                             </div>
                         </li>
+                        <div class="col-1"></div>
+                         
+                          <a class="nav-link divFoto " href="./perfil.html"><img id="fotoNav" class='foto' src="../images/alien.jpg"></a>
+                       
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-            </tr>
-        </thead>
-        <tbody id="data">
-        </tbody>
-    </table>
-      
+    <main class="table2">
+        <section class="table__header">
+            <h1 style="font-size: larger;">Componentes</h1>
+            <button class="status shipped"><a href="./insertarComponente.html" >Crear nuevo componente</a></button>
+        </section>
+        <section class="table__body">
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+            </table>
+        </section>
+    </main>
     <div class="flex-grow-1"></div>
 
     <div id="myModal" class="modal" tabindex="-1">
@@ -100,7 +128,7 @@
         </div>
       </div>
 
-    <footer class="bg-warning text-dark text-center py-3 mt-5 d-flex justify-content-between">
+    <footer class="text-dark text-center py-3 mt-5 d-flex justify-content-between cabecera">
         <p>&copy; 2023 Manuel & Oscar. Todos los derechos reservados.</p>
         <p>LOPD</p>
         <p>Cookies</p>
