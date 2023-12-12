@@ -95,8 +95,8 @@ btnAdd.addEventListener('click', function () {
         let botonEliminarCelda = document.createElement('td');
         let botonEliminar = document.createElement('button');
         botonEliminar.textContent = 'Eliminar'
-        boton.classList.add('status')
-        boton.classList.add('cancelled')
+        botonEliminar.classList.add('status')
+        botonEliminar.classList.add('cancelled')
 
         botonEliminar.addEventListener('click', function () {
             tablaElementosRegistrados.removeChild(fila)

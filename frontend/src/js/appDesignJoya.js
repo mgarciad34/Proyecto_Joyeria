@@ -131,13 +131,13 @@ btnAdd.addEventListener('click', function () {
     let mensaje = ''
 
     if (inputCantidad == '' || inputCantidad.includes('-') || inputCantidad == '0') {
-        mensaje = mensaje + ' Debe introducir una cantidad \n'
+        mensaje = mensaje + ' Debe introducir una cantidad <br>'
         validaciones.push(false)
 
     }
 
     if (inputTipo == 0) {
-        mensaje = mensaje + ' Debe introducir elegir un tipo \n'
+        mensaje = mensaje + ' Debe introducir elegir un tipo <br>'
         validaciones.push(false)
 
     }
@@ -234,7 +234,7 @@ function lanzarModalGuardado(joya) {
 
 function lanzarModalErrores(mensaje) {
     document.getElementById('modal-errores').style.display = 'flex';
-    document.getElementById('mensajeErrores').textContent = mensaje
+    document.getElementById('mensajeErrores').innerHTML = mensaje
     document.getElementById('cerrarModalErrores').addEventListener('click', function () {
         document.getElementById('modal-errores').style.display = 'none';
     })
@@ -304,8 +304,7 @@ function aplicarReceta(data) {
         fila.appendChild(celdaCantidad);
 
         tablaElementosRegistrados.appendChild(fila);
-        btnGuardar.disabled = false
-
+       
        
        
         for (let x = 1; x < tiposHabilitados.options.length; x++) {

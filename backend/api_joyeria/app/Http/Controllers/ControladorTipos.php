@@ -27,7 +27,7 @@ class ControladorTipos extends Controller
         ]);
 
         $tipoComponente = new Tipos_componente();
-        $tipoComponente->nombre = $request->nombre;
+        $tipoComponente->nombre = ucfirst($request->nombre);
         $tipoComponente->cantidad = $request->cantidad;
         $tipoComponente->save();
 

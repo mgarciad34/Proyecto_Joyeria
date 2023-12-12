@@ -32,7 +32,7 @@ obtenerTipos().then(function (data) {
 });
 btnAdd.addEventListener('click', function () {
     let nombre = inputNombre.value
-    nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1)
+   
     let validaciones = [true]
     let mensaje = ''
     if (!comprobarVacio(inputNombre.value)) {
@@ -86,7 +86,7 @@ function revisarTipos(nombre, tipos) {
     let nuevo = true
     let i = 0
     while (nuevo && i < tipos.length) {
-        if (tipos[i] == nombre) {
+        if (tipos[i].toLowerCase() == nombre.toLowerCase()) {
             nuevo = false
         }
         i++

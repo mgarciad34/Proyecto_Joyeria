@@ -169,8 +169,8 @@ function lanzarModalEmail() {
                     cancelar.style.display = 'none'
                     alerta.style.color = 'green'
                     confirmar.addEventListener('click', function () {
-                        input1.value = ''
-                        input2.value = ''
+                        document.getElementById('inputEmail').value = ''
+                        document.getElementById('inputEmail').value = ''
                         window.location.reload(true)
                     })
                 }).catch(function (error) {
