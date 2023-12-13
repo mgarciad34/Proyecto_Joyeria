@@ -45,8 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
 
                             const btnEliminar = crearBoton('Cancelar Entrega', 'cancelled', function () {
-                                cancelarLote(item.id);
-                                window.location.href = 'IndexColaborador.html';
+                                cancelarLote(item.id).then(function(data){
+
+                                    window.location.href = 'IndexColaborador.html';
+                                });
                             });
 
                             columnaBotones.appendChild(btnEditar);

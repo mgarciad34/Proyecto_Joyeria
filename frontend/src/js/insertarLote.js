@@ -11,8 +11,10 @@ btnRegistrar.addEventListener('click', function(event){
     let acceso=JSON.parse(sessionStorage.getItem("ultimo-acceso"))
     if(acceso == "colaborador"){
         var anadirLote = new AnadirLote(sessionStorage.getItem("id-usuario"), sessionStorage.getItem("Latitud"), sessionStorage.getItem("Longitud"), 'entregado');
-        enviarDatos(anadirLote, 'http://127.0.0.1:8000/api/lotes/agregar/lote');
-        window.location.href="indexColaborador.html";
+        enviarDatos(anadirLote, 'http://127.0.0.1:8000/api/lotes/agregar/lote').then(function(){
+
+            window.location.href="indexColaborador.html";
+        });
     }else{
         window.location.href = 'redirect.html';
     }
